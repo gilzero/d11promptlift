@@ -1,0 +1,10 @@
+{
+    "name": "drupal/ai_provider_deepl",
+    "description": "DeepL provider for AI module.",
+    "type": "drupal-module",
+    "require": {
+        "deeplcom/deepl-php": "^1.6"
+    }
+}
+
+

@@ -1,0 +1,15 @@
+{
+    "name": "drupal/simplify",
+    "type": "drupal-module",
+    "description": "Simplifies the user interface by hiding particular fields.",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "homepage": "https://www.drupal.org/project/simplify",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/simplify",
+        "source": "https://git.drupalcode.org/project/simplify"
+    },
+    "require": {
+        "drupal/core": "^10.3 || ^11"
+    }
+}

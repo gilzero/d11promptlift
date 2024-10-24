@@ -1,0 +1,4 @@
+name: Prompt Markdown
+description: Renders markdown content for prompt fields
+type: module
+core_version_requirement: ^11

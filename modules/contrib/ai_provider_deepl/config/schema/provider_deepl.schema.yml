@@ -1,0 +1,17 @@
+ai_provider_deepl.settings:
+  type: config_object
+  label: 'DeepL Translation Provider Settings'
+  mapping:
+    api_key:
+      type: string
+      label: 'API Key'
+      description: 'The API key for the translation service.'
+    language_variants:
+      type: mapping
+      label: 'Language Variants'
+      description: 'Specify language variants for translations, where keys are language codes.'
+      mapping:
+        '*':
+          type: string
+          label: 'Language Variant'
+          description: 'The language variant (e.g., en-GB, pt-PT, zh-CN).'

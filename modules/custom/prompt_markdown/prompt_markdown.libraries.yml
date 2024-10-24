@@ -1,0 +1,8 @@
+markdown:
+  js:
+    //cdn.jsdelivr.net/npm/marked/marked.min.js: { type: external, minified: true }
+    js/prompt_markdown.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once

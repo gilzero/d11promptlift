@@ -1,0 +1,77 @@
+name: Stat with icons or image
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:stat_item"
+      slots:
+        figure:
+          - type: "html_tag"
+            tag: "div"
+            attributes:
+              class: text-primary
+            icon:
+              type: icon
+              pack_id: hero_outline_24
+              icon_id: heart
+              settings:
+                size: 32
+                stroke_width: 2
+        title: Total Likes
+        value:
+          - type: "html_tag"
+            tag: "div"
+            value: 25.6K
+            attributes:
+              class: text-primary
+        desc: 21% more than last month
+    - type: component
+      component: "ui_suite_daisyui:stat_item"
+      slots:
+        figure:
+          - type: "html_tag"
+            tag: "div"
+            attributes:
+              class: text-secondary
+            icon:
+              type: icon
+              pack_id: hero_outline_24
+              icon_id: bolt
+              settings:
+                size: 32
+                stroke_width: 2
+        title: Page Views
+        value:
+          - type: "html_tag"
+            tag: "div"
+            value: 2.6M
+            attributes:
+              class: text-secondary
+        desc: 21% more than last month
+    - type: component
+      component: "ui_suite_daisyui:stat_item"
+      slots:
+        figure:
+          type: component
+          component: "ui_suite_daisyui:avatar"
+          slots:
+            image:
+              theme: image
+              uri: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+          props:
+            variant: online
+            size: w-12
+            rounded: rounded-full
+        title: Tasks done
+        value: 86%
+        desc:
+          - type: "html_tag"
+            tag: "div"
+            value: 31 tasks remaining
+            attributes:
+              class: text-secondary
+      props:
+        reverse_order: true
+props:
+  variant: default
+  attributes:
+    class: "shadow"

@@ -1,0 +1,15 @@
+{% if is_header %}
+  {% set cell_tag = 'th' %}
+{% else %}
+  {% set cell_tag = 'td' %}
+{% endif %}
+
+{% if is_sortable %}
+  {% set attributes = attributes.merge(create_attribute()).setAttribute('data-sortable', 'true').setAttribute('scope', 'col') %}
+{% else %}
+  {% set attributes = attributes.merge(create_attribute()).setAttribute('scope', 'col') %}
+{% endif %}
+
+<{{ cell_tag }}{{ attributes }}>
+  {{- content -}}
+</{{ cell_tag }}>

@@ -1,0 +1,57 @@
+footer {
+  --footer-color: var(--theme-footer-color);
+  --footer-background: var(--theme-footer-background);
+
+  color: var(--footer-color);
+  background-color: var(--footer-background);
+
+  .nav {
+    .nav-item .nav-link {
+      --footer-nav-link-font-size: var(--theme-footer-links-font-size, var(--bs-nav-link-font-size, 1rem));
+      --footer-nav-link-font-weight: var(--theme-footer-links-font-weight, var(--bs-nav-link-font-weight, 400));
+      --footer-nav-link-color: var(--theme-footer-links-color, var(--bs-nav-link-color, #{$primary}));
+      --footer-nav-link-decoration: var(--theme-footer-links-decoration, unset);
+
+      font-size: var(--footer-nav-link-font-size);
+      font-weight: var(--footer-nav-link-font-weight);
+      color: var(--footer-nav-link-color);
+      text-decoration: var(--footer-nav-link-decoration);
+      &:hover,
+      &:active,
+      &:focus {
+        --footer-nav-link-accent-color: var(--theme-footer-links-accent-color, var(--bs-nav-link-hover-color, #{$secondary}));
+
+        color: var(--footer-nav-link-accent-color);
+      }
+    }
+  }
+}
+
+footer .footer-top {
+  --footer-top-color: var(--theme-footer-top-color);
+  --footer-top-background: var(--theme-footer-top-background);
+
+  color: var(--footer-top-color);
+  background-color: var(--footer-top-background);
+
+  .nav {
+    .nav-item .nav-link {
+      --footer-top-nav-link-font-size: var(--theme-footer-top-links-font-size, var(--bs-nav-link-font-size, 1rem));
+      --footer-top-nav-link-font-weight: var(--theme-footer-top-links-font-weight, var(--bs-nav-link-font-weight, 400));
+      --footer-top-nav-link-color: var(--theme-footer-top-links-color, var(--bs-nav-link-color, #{$primary}));
+      --footer-top-nav-link-decoration: var(--theme-footer-top-links-decoration, unset);
+
+      font-size: var(--footer-top-nav-link-font-size);
+      font-weight: var(--footer-top-nav-link-font-weight);
+      color: var(--footer-top-nav-link-color);
+      text-decoration: var(--footer-top-nav-link-decoration);
+      &:hover,
+      &:active,
+      &:focus {
+        --footer-top-nav-link-accent-color: var(--theme-footer-top-links-accent-color, var(--bs-nav-link-hover-color, #{$secondary}));
+
+        color: var(--footer-top-nav-link-accent-color);
+      }
+    }
+  }
+}

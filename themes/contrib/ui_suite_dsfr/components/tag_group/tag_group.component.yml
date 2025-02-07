@@ -1,0 +1,9 @@
+name: "Tags group"
+description: "Grouping of tags."
+group: Tag
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/tag"
+slots:
+  tags:
+    title: Tags
+    description: "A list of 'tag' components."

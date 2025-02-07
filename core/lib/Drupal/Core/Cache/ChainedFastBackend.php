@@ -142,7 +142,7 @@ class ChainedFastBackend implements CacheBackendInterface, CacheTagsInvalidatorI
       try {
         $items = $this->fastBackend->getMultiple($cids, $allow_invalid);
       }
-      catch (\Exception $e) {
+      catch (\Exception) {
         $cids = $cids_copy;
         $items = [];
       }
@@ -166,7 +166,9 @@ class ChainedFastBackend implements CacheBackendInterface, CacheTagsInvalidatorI
     if ($cids) {
       foreach ($this->consistentBackend->getMultiple($cids, $allow_invalid) as $item) {
         $cache[$item->cid] = $item;
-        $this->fastBackend->set($item->cid, $item->data, $item->expire, $item->tags);
+        if (!$allow_invalid || $item->valid) {
+          $this->fastBackend->set($item->cid, $item->data, $item->expire, $item->tags);
+        }
       }
     }
 

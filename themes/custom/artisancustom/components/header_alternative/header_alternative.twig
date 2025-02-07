@@ -1,0 +1,26 @@
+{% set attributes = attributes ?: create_attribute() %}
+
+{% block top %}
+  {% embed 'artisan:header-top' with {
+    container_attributes: create_attribute({'class': ['container']}),
+    content: top,
+  } only %}
+  {% endembed %}
+{% endblock %}
+
+<header {{ attributes.addClass(['header']) }}>
+  {% block content %}
+
+    {% embed 'artisan:navigation_alternative' with {
+      attributes: create_attribute({'class': ['justify-content-between']}),
+      navbar_container_attributes: create_attribute({'class': ['container', 'd-flex', 'justify-content-between', 'align-items-center']}),
+      header_container_attributes: create_attribute({'class': ['d-none d-lg-block']}),
+      branding: content.branding,
+      header: content.header,
+      primary_menu: content.primary_menu,
+      secondary_menu: content.secondary_menu,
+    } only %}
+    {% endembed %}
+
+  {% endblock %}
+</header>

@@ -1,0 +1,18 @@
+name: Preview
+slots:
+  title: "Share page"
+  text: "Please <a href=https://example.com>allow the deposit of cookies</a> to share on Facebook, X (formerly Twitter) and LinkedIn."
+props:
+  links:
+    - id: facebook
+      title: "Share on Facebook"
+      url: ""
+    - id: twitter-x
+      title: "Share on X (formerly Twitter)"
+      url: "https://twitter.com/intent/tweet?url=https://example.com&text=HelloWorld&via=@username&hashtags=dummy"
+    - id: linkedin
+      title: "Share on LinkedIn"
+      url: "https://www.linkedin.com/shareArticle?url=https://example.com&title=HelloWorld"
+    - id: mail
+      title: "Share by email"
+      url: "mailto:?subject=SubjectHere&body=BodyHere"

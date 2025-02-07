@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Template for a Dropdown menu component.
+ */
+#}
+{%
+  set dropdown_menu_classes = [
+    'dropdown-menu',
+  ]|merge(dropdown_menu_utility_classes ?: [])
+%}
+
+{% if (items|length) > 0 %}
+  <ul class="{{ dropdown_menu_classes|join(' ') }}">
+    {% for item in items %}
+      {% set nav_link_classes = ['dropdown-item', item.in_active_trail ? 'active' : ''] %}
+
+      {% if item.url.options.attributes.class is iterable %}
+        {% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+      {% elseif item.url.options.attributes.class %}
+        {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+      {% endif %}
+
+      <li class="dropdown{% if item.below %} {{ dropdown_direction }}{% endif %}">
+        {% if item.below %}
+          <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle'])|join(' ') }}" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{{ item.title }}</a>
+          {%
+            include 'radix:dropdown-menu' with {
+              items: item.below,
+            }
+          %}
+        {% elseif item.url|render is empty %}
+          <hr class="dropdown-divider">
+        {% else %}
+          {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

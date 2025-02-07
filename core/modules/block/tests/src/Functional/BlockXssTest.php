@@ -48,7 +48,7 @@ class BlockXssTest extends BrowserTestBase {
     $this->container->get('module_installer')->install(['block_test']);
     $this->drupalPlaceBlock('test_xss_title', ['label' => '<script>alert("XSS label");</script>']);
 
-    \Drupal::state()->set('block_test.content', $this->randomMachineName());
+    \Drupal::keyValue('block_test')->set('content', $this->randomMachineName());
     $this->drupalGet('');
     // Check that the block title was properly sanitized when rendered.
     $this->assertSession()->responseNotContains('<script>alert("XSS label");</script>');
@@ -101,7 +101,7 @@ class BlockXssTest extends BrowserTestBase {
   /**
    * Tests XSS coming from View block labels.
    */
-  protected function doViewTest() {
+  protected function doViewTest(): void {
     // Create a View without a custom label for its block Display. The
     // admin_label of the block then becomes just the View's label.
     $view = View::create([
@@ -151,7 +151,7 @@ class BlockXssTest extends BrowserTestBase {
   /**
    * Tests XSS coming from Menu block labels.
    */
-  protected function doMenuTest() {
+  protected function doMenuTest(): void {
     Menu::create([
       'id' => $this->randomMachineName(),
       'label' => '<script>alert("menu");</script>',
@@ -167,7 +167,7 @@ class BlockXssTest extends BrowserTestBase {
   /**
    * Tests XSS coming from Block Content block info.
    */
-  protected function doBlockContentTest() {
+  protected function doBlockContentTest(): void {
     BlockContentType::create([
       'id' => 'basic',
       'label' => 'basic',

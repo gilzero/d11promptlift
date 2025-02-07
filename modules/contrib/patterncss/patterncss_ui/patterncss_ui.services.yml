@@ -1,0 +1,6 @@
+services:
+  patterncss.pattern_manager:
+    class: Drupal\patterncss_ui\PatternCssManager
+    arguments: [ '@database' ]
+    tags:
+      - { name: backend_overridable }

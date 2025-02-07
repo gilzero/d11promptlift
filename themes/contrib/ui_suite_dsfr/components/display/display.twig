@@ -1,0 +1,33 @@
+<div {{ attributes.addClass('fr-display') }}>
+    <fieldset class="fr-fieldset">
+        <legend class="fr-fieldset__legend--regular fr-fieldset__legend">
+            {{ title|default('Choose a theme to personalize the appearance of site.'|t) }}
+        </legend>
+        {% for theme in themes %}
+            <div class="fr-fieldset__element">
+                <div class="fr-radio-group fr-radio-rich">
+                    {% if theme.attributes.id %}
+                    <input value="{{ theme.attributes.id }}" type="radio"
+                           id="fr-radios-theme-{{ theme.attributes.id }}"
+                           name="fr-radios-theme">
+                    {% else %}
+                    <input type="radio" disabled="disabled" name="fr-radios-theme">
+                    {% endif %}
+                    <label class="fr-label" for="fr-radios-theme-{{ theme.attributes.id }}">
+                        {{ theme.title|default(loop.index) }}
+                    </label>
+                    {% if theme.url %}
+                        <div class="fr-radio-rich__img">
+                            <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px"
+                                 height="80px">
+                                <use class="fr-artwork-decorative" href="{{ theme.url }}#artwork-decorative"></use>
+                                <use class="fr-artwork-minor" href="{{ theme.url }}#artwork-minor"></use>
+                                <use class="fr-artwork-major" href="{{ theme.url }}#artwork-major"></use>
+                            </svg>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </fieldset>
+</div>

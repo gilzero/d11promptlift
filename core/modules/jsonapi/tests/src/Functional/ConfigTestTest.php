@@ -11,7 +11,6 @@ use Drupal\Core\Url;
  * JSON:API integration test for the "ConfigTest" config entity type.
  *
  * @group jsonapi
- * @group #slow
  */
 class ConfigTestTest extends ConfigEntityResourceTestBase {
 
@@ -45,7 +44,7 @@ class ConfigTestTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUpAuthorization($method) {
+  protected function setUpAuthorization($method): void {
     $this->grantPermissionsToTestedRole(['view config_test']);
   }
 
@@ -78,7 +77,7 @@ class ConfigTestTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedDocument() {
+  protected function getExpectedDocument(): array {
     $self_url = Url::fromUri('base:/jsonapi/config_test/config_test/' . $this->entity->uuid())->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     return [
       'jsonapi' => [
@@ -117,7 +116,7 @@ class ConfigTestTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getPostDocument() {
+  protected function getPostDocument(): array {
     // @todo Update in https://www.drupal.org/node/2300677.
     return [];
   }

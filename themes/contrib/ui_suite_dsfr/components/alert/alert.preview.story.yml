@@ -1,0 +1,10 @@
+name: Preview
+slots:
+  title: "Alert: Title of an alert"
+  message:
+    type: html_tag
+    tag: p
+    value: "Detailed description of the message."
+props:
+  dismissible: core
+  close_title: "Hide message"

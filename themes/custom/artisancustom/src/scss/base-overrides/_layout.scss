@@ -1,0 +1,18 @@
+.page {
+  --page-max-width: var(--theme-layout-global-max-width, unset);
+
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+.container {
+  --container-max-width: var(--theme-layout-content-max-width, 1320px);
+  --container-spacing: calc(var(--theme-layout-spacing, var(--bs-gutter-x, 1.5rem)) * 0.5);
+
+  padding-left: var(--container-spacing);
+  padding-right: var(--container-spacing);
+
+  @include media-breakpoint-up(map-get-last-key($grid-breakpoints)) {
+    max-width: var(--theme-layout-content-max-width, map-get-last-value($container-max-widths));
+  }
+}

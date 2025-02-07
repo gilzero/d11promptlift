@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * UI Pattern library page template, override this in your theme.
+ */
+#}
+{% if patterns is not empty %}
+
+  {% set content %}
+
+    <p>{{ 'USWDS components are simple and consistent solutions to common user-interface needs.' }}</p>
+    <p>{{ 'See components on' }} <a
+        href="https://designsystem.digital.gov/components/overview/">https://designsystem.digital.gov/components/overview/</a>.
+    </p>
+
+    <em class="margin-bottom-1em" style="display: block;">{{ 'Patterns are grouped by category' }}</em>
+
+    <div class="grid-row">
+      <div class="grid-col-12">
+
+        {% for group_name, group_patterns in patterns %}
+          <div class="usa-accordion usa-accordion--bordered pattern-preview">
+            <h2 class="usa-accordion__heading">
+              <button type="button" class="usa-accordion__button"
+                      aria-expanded="false"
+                      aria-controls="pattern_group-{{ group_name|lower }}">
+                {{ group_name }}
+              </button>
+            </h2>
+            <div id="pattern_group-{{ group_name|lower }}" class="usa-accordion__content usa-prose">
+              {% for pattern_name, pattern in group_patterns %}
+                <h3 class="pattern-preview__label font-lang-15">{{ pattern.label }}</h3>
+                {{ pattern.meta }}
+
+                {# Link to standalone pattern preview page.#}
+                <p class="margin-y-2">
+                  <a href="{{ url('ui_patterns.patterns.single', {'name': pattern.id}) }}" class="pattern-preview__view">
+                    {% trans %}View {{ pattern.label }} as stand-alone{% endtrans %}
+                  </a>
+                </p>
+
+                {# Rendered pattern preview. #}
+
+                {% if pattern.rendered %}
+                  <div class="border border-dashed padding-2">
+                    {{ pattern.rendered }}
+                  </div>
+                {% endif %}
+
+                <hr/>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endset %}
+
+  {{ include('ui_suite_uswds:in_page_nav', {
+    content: content,
+    content_selector: 'main.main-content',
+    heading_selectors: [2, 3],
+    title_heading_level: 2,
+    title_text: 'Available patterns',
+  }, with_context = false) }}
+
+{% endif %}

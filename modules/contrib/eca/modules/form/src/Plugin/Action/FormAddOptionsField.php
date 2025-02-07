@@ -124,7 +124,7 @@ class FormAddOptionsField extends FormAddFieldActionBase {
   protected function buildDefaultValue(): array|string|MarkupInterface {
     if ($default_options = $this->buildOptionsArray($this->configuration['default_value'])) {
       $is_multiple = (bool) $this->configuration['multiple'];
-      return $is_multiple ? array_keys($default_options) : key($default_options);
+      return $is_multiple ? array_values($default_options) : key($default_options);
     }
     return parent::buildDefaultValue();
   }

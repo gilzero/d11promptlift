@@ -2,11 +2,13 @@
 
 namespace Drupal\eca_render\Plugin\Action;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Markup as RenderMarkup;
 use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\eca\Plugin\ECA\PluginFormTrait;
 use Drupal\views\Entity\View;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -97,6 +99,35 @@ class Views extends RenderElementActionBase {
     $this->configuration['view_id'] = $form_state->getValue('view_id');
     $this->configuration['display_id'] = $form_state->getValue('display_id');
     $this->configuration['arguments'] = $form_state->getValue('arguments');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function access($object, ?AccountInterface $account = NULL, $return_as_object = FALSE) {
+    $result = AccessResult::forbidden();
+    $view_id = $this->getViewId();
+    if ($view_id !== '') {
+      $view = View::load($view_id);
+      if ($view && $view->status()) {
+        $viewExecutable = $view->getExecutable();
+        $display_id = $this->getDisplayId();
+        $display = NULL;
+        if ($display_id !== '') {
+          if ($viewExecutable->setDisplay($display_id)) {
+            $display = $viewExecutable->getDisplay();
+          }
+        }
+        else {
+          $viewExecutable->initDisplay();
+          $display = $viewExecutable->getDisplay();
+        }
+        if ($display !== NULL) {
+          $result = AccessResult::allowedIf($display->access($account));
+        }
+      }
+    }
+    return $return_as_object ? $result : $result->isAllowed();
   }
 
   /**

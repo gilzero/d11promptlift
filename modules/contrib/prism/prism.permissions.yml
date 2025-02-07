@@ -1,0 +1,4 @@
+'administer prism languages':
+  title: Administer prism languages
+  description: Control which languages can be used to highlight the content added in the prism field.
+  'restrict access': FALSE

@@ -1,0 +1,140 @@
+<?php
+
+/**
+ * @file
+ * This is a simple Markdown module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function markdown_easy_form_filter_format_add_form_alter(array &$form, FormStateInterface $form_state): void {
+  $form['#validate'][] = '_markdown_easy_filter_format_edit_form_validate';
+  $form['actions']['submit']['#submit'][] = '_markdown_easy_filter_format_form_submit';
+
+  // Fixes issue related to https://www.drupal.org/project/markdown_easy/issues/3378216#comment-15209538
+  // Remove if/when https://www.drupal.org/project/drupal/issues/3383891 is
+  // fixed.
+  $input = $form_state->getUserInput();
+  if (isset($input['filters'])) {
+    // Copy submitted weights to filter order.
+    foreach ($form['filters']['order'] as $name => $item) {
+      if (isset($input['filters'][$name]['weight'])) {
+        $form['filters']['order'][$name]['#weight'] = intval($input['filters'][$name]['weight']);
+      }
+    }
+    // Sort filters by weight.
+    uasort($form['filters']['order'], function ($a, $b) {
+      if (is_array($a) && is_array($b) && isset($a['#weight']) && isset($b['#weight'])) {
+        return $a['#weight'] - $b['#weight'];
+      }
+      return 0;
+    });
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function markdown_easy_form_filter_format_edit_form_alter(array &$form, FormStateInterface $form_state): void {
+  markdown_easy_form_filter_format_add_form_alter($form, $form_state);
+}
+
+/**
+ * Custom validate handler for filter format add/edit form.
+ *
+ * Ensures that Markdown Easy filter is run before the "Limit allowed HTML tags
+ * and correct faulty HTML" filter. Code based on
+ * media_filter_format_edit_form_validate().
+ */
+function _markdown_easy_filter_format_edit_form_validate(array $form, FormStateInterface $form_state): void {
+  if ($form_state->getTriggeringElement()['#name'] !== 'op') {
+    return;
+  }
+
+  $markdown_easy_enabled = $form_state->getValue([
+    'filters',
+    'markdown_easy',
+    'status',
+  ]);
+  if (!((bool) $markdown_easy_enabled)) {
+    return;
+  }
+
+  $get_filter_label = function ($filter_plugin_id) use ($form) {
+    return (string) $form['filters']['order'][$filter_plugin_id]['filter']['#markup'];
+  };
+
+  $filters = $form_state->getValue('filters');
+
+  // The "markdown_easy" filter must run before the following filters.
+  $subsequent = [
+    'filter_html',
+    'filter_autop',
+  ];
+
+  $error_filters = [];
+  foreach ($subsequent as $filter_name) {
+    // A filter that should run after the markdown_easy filter.
+    $subsequent = $filters[$filter_name];
+
+    if (!isset($subsequent['status']) || !((bool) $subsequent['status']) || !isset($subsequent['weight']) || ($subsequent['weight'] <= $filters['markdown_easy']['weight'])) {
+      $error_filters[$filter_name] = $get_filter_label($filter_name);
+    }
+  }
+
+  if ((bool) count($error_filters)) {
+    $error_message = \Drupal::translation()->formatPlural(
+      count($error_filters),
+      'The %markdown-easy-filter-label filter needs to be placed before the %filter filter.',
+      'The %markdown-easy-filter-label filter needs to be placed before the following filters: %filters.',
+      [
+        '%markdown-easy-filter-label' => $get_filter_label('markdown_easy'),
+        '%filter' => reset($error_filters),
+        '%filters' => implode(', ', $error_filters),
+      ]
+    )->render();
+
+    $form_state->setErrorByName('filters', $error_message);
+  }
+
+  // Check that "Convert line breaks" filter runs after "Limit HTML".
+  if ((bool) $filters['filter_html']['status'] && (bool) $filters['filter_autop']['status']) {
+    if ($filters['filter_html']['weight'] >= $filters['filter_autop']['weight']) {
+      $error_message = t('The "Convert line breaks into HTML (i.e. &lt;br&gt; and &lt;p&gt;)" filter must run after the "Limit allowed HTML tags and correct faulty HTML" filter in order for the Markdown Easy filter to work properly.')->render();
+      $form_state->setErrorByName('filters', $error_message);
+    }
+  }
+}
+
+/**
+ * Custom submit handler for filter format add/edit form.
+ *
+ * @param array<mixed> $form
+ *   The form.
+ * @param Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function _markdown_easy_filter_format_form_submit(array $form, FormStateInterface &$form_state): void {
+  $filters = $form_state->getValue('filters');
+
+  /** @var Drupal\markdown_easy\MarkdownUtility $markdown_easy_utility_service */
+  $markdown_easy_utility_service = \Drupal::service('markdown_easy.utility');
+  $weights = $markdown_easy_utility_service->getFilterWeights($filters);
+
+  /** @var Drupal\Core\Messenger\Messenger $messenger_service */
+  $messenger_service = \Drupal::service('messenger');
+  if (isset($weights['markdown_easy'])) {
+    if (!isset($weights['filter_html']) || ($weights['filter_html'] < $weights['markdown_easy'])) {
+      $messenger_service->addWarning(t('The text format %format is potentially configured insecurely. The "Limit allowed HTML tags and correct faulty HTML" filter is strongly recommended and should be configured to run after the Markdown Easy filter.', ['%format' => $form_state->getValue('name')]));
+    }
+    if (!isset($weights['filter_autop']) || ($weights['filter_autop'] < $weights['markdown_easy'])) {
+      $messenger_service->addWarning(t('The text format %format is potentially configured incorrectly. The "Convert line breaks into HTML" filter is recommended and should be configured to run after the Markdown Easy filter.', ['%format' => $form_state->getValue('name')]));
+    }
+  }
+
+}

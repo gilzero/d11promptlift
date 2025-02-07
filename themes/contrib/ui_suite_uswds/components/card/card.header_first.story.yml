@@ -1,0 +1,13 @@
+name: Header first
+slots:
+  header: Featured
+  image:
+    theme: image
+    uri: 'data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iZm9udC1zaXplOiAxLjEyNXJlbTsgdGV4dC1hbmNob3I6IG1pZGRsZTsgdXNlci1zZWxlY3Q6IG5vbmU7IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiIGZvY3VzYWJsZT0iZmFsc2UiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGxhY2Vob2xkZXI6IEltYWdlIGNhcCI+PHRpdGxlPlBsYWNlaG9sZGVyPC90aXRsZT48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjODY4ZTk2Ij48L3JlY3Q+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiNkZWUyZTYiIGR5PSIuM2VtIj5JbWFnZSBjYXA8L3RleHQ+PC9zdmc+Cg=='
+    alt: '&copy; 2017 John Smith photography'
+  content:
+    - markup: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>'
+  footer: 'Visit Florida Keys'
+  footer_url: '#'
+props:
+  header_first: true

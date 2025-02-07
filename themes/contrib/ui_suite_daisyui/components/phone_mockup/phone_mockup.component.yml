@@ -1,0 +1,8 @@
+name: Phone mockup
+description: "Phone mockup shows a mockup of an iPhone."
+group: Mockup
+links:
+  - "https://daisyui.com/components/mockup-phone/"
+slots:
+  content:
+    title: Content

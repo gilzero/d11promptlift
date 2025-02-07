@@ -1,0 +1,47 @@
+# https://git.drupalcode.org/project/gitlab_templates/
+
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - '/includes/include.drupalci.main.yml'
+      - '/includes/include.drupalci.variables.yml'
+      - '/includes/include.drupalci.workflows.yml'
+
+.twig-lint-base:
+  stage: validate
+  before_script:
+    - composer require --dev vincentlanglet/twig-cs-fixer
+  script:
+    - vendor/bin/twig-cs-fixer lint --config=$_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/.twig-cs-fixer.php $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/templates $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/components
+  rules:
+    - changes:
+        - "**/*.twig"
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+  artifacts:
+    expose_as: twig-lint
+    when: always
+    expire_in: 6 mos
+    reports:
+      codequality: twig-lint-quality-report.xml
+    name: artifacts-$CI_PIPELINE_ID-$CI_JOB_NAME_SLUG
+    paths:
+      - twig-lint-quality-report.xml
+
+twig-lint:
+  extends: .twig-lint-base
+  allow_failure: false
+stylelint:
+  allow_failure: false
+composer-lint:
+  allow_failure: false
+cspell:
+  allow_failure: true
+eslint:
+  allow_failure: false
+phpcs:
+  allow_failure: false
+phpstan:
+  allow_failure: false
+phpunit:
+  allow_failure: false

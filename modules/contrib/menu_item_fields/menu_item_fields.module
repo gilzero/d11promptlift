@@ -1,0 +1,224 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks for the Menu Item Fields module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\menu_item_fields\Render\Callback;
+use Drupal\system\MenuInterface;
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function menu_item_fields_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  /** @var \Drupal\Core\Field\BaseFieldDefinition[] $fields */
+  if ($entity_type->id() === 'menu_link_content') {
+    $fields['link']
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'link',
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+    $fields['title']
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => 0,
+        'region' => 'hidden',
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+    $fields['description']
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => 0,
+        'region' => 'hidden',
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+    $fields['weight']
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'number_integer',
+        'weight' => 0,
+        'region' => 'hidden',
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+    $fields['enabled']
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'boolean',
+        'weight' => 0,
+        'region' => 'hidden',
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+    $fields['expanded']
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'boolean',
+        'weight' => 0,
+        'region' => 'hidden',
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function menu_item_fields_theme() {
+  return [
+    'menu_link_content' => [
+      'render element' => 'content',
+    ],
+    'menu__field_content' => [
+      'base hook' => 'menu',
+      'variables' => [
+        'menu_name' => NULL,
+        'items' => [],
+        'attributes' => [],
+        'view_mode' => 'default',
+        'view_mode_override_field' => '',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_menu__field_content().
+ */
+function menu_item_fields_preprocess_menu__field_content(&$variables) {
+  $menu_link_content_prefix = 'menu_link_content:';
+  $viewBuilder = \Drupal::entityTypeManager()
+    ->getViewBuilder('menu_link_content');
+  $entityRepository = \Drupal::service('entity.repository');
+  $viewDisplayStorage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+  foreach ($variables['items'] as $itemId => &$item) {
+    if (strpos($itemId, $menu_link_content_prefix) === 0) {
+      $uuid = substr($itemId, strlen($menu_link_content_prefix));
+      $menuLinkContent = $entityRepository->loadEntityByUuid('menu_link_content', $uuid);
+
+      // Override the view mode with a field value.
+      $viewMode = $variables['view_mode'] ?? 'default';
+      if ($variables['view_mode_override_field'] ?? '') {
+        $viewModeValue = $menuLinkContent->get($variables['view_mode_override_field'])->getString();
+        if ($viewModeValue && $viewDisplayStorage->load('menu_link_content.' . $menuLinkContent->bundle() . '.' . $viewModeValue)) {
+          $viewMode = $viewModeValue;
+        }
+      }
+
+      $content = $viewBuilder->view($menuLinkContent, $viewMode);
+      $content['#menu_item'] = $item;
+      $content['#pre_render'][] = [Callback::class, 'preRenderMenuLinkContent'];
+
+      $item['content'] = $content;
+    }
+
+    // Recursively preprocess the items below.
+    if ($item['below']) {
+      $below_variables = [
+        'items' => $item['below'],
+        'view_mode' => $variables['view_mode'] ?? '',
+        'view_mode_override_field' => $variables['view_mode_override_field'] ?? '',
+      ];
+      menu_item_fields_preprocess_menu__field_content($below_variables);
+      $item['below'] = $below_variables['items'];
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_view_display_presave().
+ */
+function menu_item_fields_entity_view_display_presave(EntityInterface $entity) {
+  if ($entity->get('targetEntityType') === 'menu_link_content') {
+    menu_item_fields_set_config_dependencies($entity);
+  }
+}
+
+/**
+ * Implements hook_entity_form_display_presave().
+ */
+function menu_item_fields_entity_form_display_presave(EntityInterface $entity) {
+  if ($entity->get('targetEntityType') === 'menu_link_content') {
+    menu_item_fields_set_config_dependencies($entity);
+  }
+}
+
+/**
+ * Implements hook_entity_view_mode_presave().
+ */
+function menu_item_fields_entity_view_mode_presave(EntityInterface $entity) {
+  if ($entity->get('targetEntityType') === 'menu_link_content') {
+    menu_item_fields_set_config_dependencies($entity);
+  }
+}
+
+/**
+ * Implements hook_field_config_presave().
+ */
+function menu_item_fields_field_config_presave(EntityInterface $entity) {
+  if ($entity->get('entity_type') === 'menu_link_content') {
+    menu_item_fields_set_config_dependencies($entity);
+  }
+}
+
+/**
+ * Implements hook_field_storage_config_presave().
+ */
+function menu_item_fields_field_storage_config_presave(EntityInterface $entity) {
+  if ($entity->get('entity_type') === 'menu_link_content') {
+    menu_item_fields_set_config_dependencies($entity);
+  }
+}
+
+/**
+ * Set proper dependencies on the config entities created with this module.
+ */
+function menu_item_fields_set_config_dependencies(EntityInterface $entity) {
+  $dependencies = $entity->get('dependencies');
+  if (array_search('menu_item_fields', $dependencies['module'] ?? []) === FALSE) {
+    $dependencies['module'][] = 'menu_item_fields';
+  }
+  $entity->set('dependencies', $dependencies);
+}
+
+/**
+ * Implements hook_entity_form_mode_alter().
+ *
+ * When there is a form mode that matches the menu
+ * use that one instead of default.
+ */
+function menu_item_fields_entity_form_mode_alter(&$form_mode, \Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() !== 'menu_link_content') {
+    return;
+  }
+  $routeMatch = \Drupal::routeMatch();
+  $menuId = NULL;
+  if ($entity->isNew()) {
+    $menu = $routeMatch->getParameter('menu');
+    if (!$menu || !is_a($menu, MenuInterface::class)) {
+      return;
+    }
+    /** @var \Drupal\system\MenuInterface $menu */
+    $menuId = $menu->id();
+  }
+  else {
+    $menuId = $entity->get('menu_name')->first()->get('value')->getValue();
+  }
+
+  $underscoreId = str_replace(search: '-', replace: '_', subject: $menuId);
+  // When the form mode is enabled swap the current form mode.
+  if (\Drupal::config('core.entity_form_display.menu_link_content.menu_link_content.' . $underscoreId)->get('status')) {
+    $form_mode = $underscoreId;
+  }
+}

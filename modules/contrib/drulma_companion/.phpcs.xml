@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="drulma_companion">
+  <rule ref="Drupal">
+  </rule>
+  <rule ref="DrupalPractice">
+  </rule>
+</ruleset>

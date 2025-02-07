@@ -201,3 +201,13 @@ function eca_update_8009(): void {
   $storage = \Drupal::entityTypeManager()->getStorage('eca');
   $storage->rebuildSubscribedEvents();
 }
+
+/**
+ * Update global configuration with new service user setting.
+ */
+function eca_update_8010(): void {
+  \Drupal::configFactory()
+    ->getEditable('eca.settings')
+    ->set('service_user', '')
+    ->save();
+}

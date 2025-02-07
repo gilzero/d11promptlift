@@ -1,0 +1,9 @@
+name: 'Process List'
+description: 'A process list displays the steps or stages of important instructions or processes.'
+group: List
+links:
+  - 'https://designsystem.digital.gov/components/process-list/'
+slots:
+  items:
+    title: 'Items'
+    description: 'Process list items.'

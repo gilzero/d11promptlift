@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Media
+ */
+#}
+{% set attributes = attributes ?: create_attribute() %}
+{%
+  set classes = [
+    'media',
+    'media--type-' ~ bundle|clean_class,
+    not published ? 'media--unpublished',
+    view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{% set attributes = attributes ?: create_attribute() %}
+  {% apply spaceless %}
+    <div {{ attributes.addClass(classes)}}>
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+  {% endapply %}

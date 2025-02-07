@@ -1,0 +1,40 @@
+{% if social or newsletter %}
+  {% set title_tag = title_tag|default('h3') %}
+  {% set follow_title_tag = title_tag|default('h3') %}
+  <div{{ attributes.addClass('fr-follow') }}>
+    <div class="fr-container">
+      <div class="fr-grid-row">
+        {% set social_class = social and newsletter ? 'fr-col-12 fr-col-md-4' : 'fr-col-12' %}
+        {% set newsletter_class = social and newsletter ? 'fr-col-12 fr-col-md-8' : 'fr-col-12' %}
+        {% if newsletter %}
+          <div class="{{ newsletter_class }}">
+            <div class="fr-follow__newsletter">
+              <div>
+                <{{ title_tag }} class="fr-h5 fr-follow__title">{{ newsletter_title }}</{{ title_tag }}>
+                {% if newsletter_body %}<p class="fr-text--sm fr-follow__desc">{{ newsletter_body }}</p>{% endif %}
+              </div>
+              <div>
+                {{ newsletter }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% if social %}
+          <div class="{{ social_class }}">
+            <div class="fr-follow__social">
+              <{{ follow_title_tag }} class="fr-h5 fr-mb-3v fr-mb-3v">{{ social_title }}</{{ follow_title_tag }}>
+              <ul class="fr-btns-group fr-btns-group--lg">
+                {% set social = social and social is not sequence ? [social] : social %}
+                {% for link in social %}
+                  <li>
+                    {{ link }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}

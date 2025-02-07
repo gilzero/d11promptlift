@@ -10,12 +10,12 @@ use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Query\QueryInterface;
 
 /**
- * Prepend AI Search results into the database search..
+ * Prepend and combine AI Search results into the database search.
  *
  * @SearchApiProcessor(
  *   id = "database_boost_by_ai_search",
  *   label = @Translation("Boost Database by AI Search"),
- *   description = @Translation("Prepend results from the AI Search into the database results ready for subsequent filtering (if any) to improve relevance."),
+ *   description = @Translation("This combines results from the AI Search (Vector Database) with the traditional database, both finding results that would otherwise not be found due to lack of keyword match, as well as vastly improving the relevance of the top results. It prepends the results from the AI Search into the database results ready for and respecting any filtering applied to this index (such as filters, exposed filters, or facets)."),
  *   stages = {
  *     "preprocess_query" = 0,
  *   }
@@ -27,7 +27,7 @@ class DatabaseBoostByAiSearch extends BoostByAiSearchBase {
    * {@inheritdoc}
    */
   public static function supportsIndex(IndexInterface $index): bool {
-    if ($index->getServerInstance()->getBackendId() == 'search_api_database') {
+    if ($index->getServerInstance()->getBackendId() == 'search_api_db') {
       return TRUE;
     }
     return FALSE;
@@ -60,10 +60,56 @@ class DatabaseBoostByAiSearch extends BoostByAiSearchBase {
     if ($query_string_keys = $query->getKeys()) {
       $ai_results = $this->getAiSearchResults($query_string_keys);
       if ($ai_results) {
+        if ($languages = $query->getLanguages()) {
+          $ai_results = $this->normalizeLanguage($ai_results, $languages);
+        }
         $query->addTag('database_boost_by_ai_search');
         $query->addTag('ai_search_ids:' . implode(',', array_keys($ai_results)));
       }
     }
+  }
+
+  /**
+   * The vector database AI search results may be in any language.
+   *
+   * These need to be normalized to allowed languages. This happens because the
+   * semantic meaning of the words are the same roughly the same regardless of
+   * which language they are said in.
+   *
+   * @param array $ai_results
+   *   The AI results to be updated.
+   * @param array $allowed_languages
+   *   Get any language restrictions on the query.
+   *
+   * @return array
+   *   The updated results.
+   */
+  protected function normalizeLanguage(array $ai_results, array $allowed_languages): array {
+    $updated_results = [];
+
+    // If there is no match, determine what language to default to.
+    $default_language = 'en';
+    if (!in_array('en', $allowed_languages)) {
+      $default_language = reset($allowed_languages);
+    }
+    foreach ($ai_results as $key => $result) {
+
+      // We expect results like "entity:node/1:es".
+      $parts = explode(':', $key);
+      if (count($parts) !== 3) {
+        $updated_results[$key] = $result;
+        continue;
+      }
+
+      // Only use results in the allowed languages.
+      $result_language = $parts[2];
+      if (!in_array($result_language, $allowed_languages)) {
+        $parts[2] = $default_language;
+      }
+      $key = implode(':', $parts);
+      $updated_results[$key] = $result;
+    }
+    return $updated_results;
   }
 
   /**
@@ -100,7 +146,43 @@ class DatabaseBoostByAiSearch extends BoostByAiSearchBase {
       }
 
       // If we have entity IDs, alter the query.
-      if ($item_ids && $query instanceof SelectInterface) {
+      if ($item_ids) {
+
+        // Update conditions of the base query.
+        self::updateConditions($query, $item_ids);
+
+        // Update conditions of the joined queries if existing.
+        $tables = &$query->getTables();
+        foreach ($tables as &$table) {
+          if (
+            !is_array($table)
+            || !isset($table['table'])
+            || !$table['table'] instanceof SelectInterface
+          ) {
+            continue;
+          }
+          $table['table'] = self::updateConditions(
+            $table['table'],
+            $item_ids,
+            $table['alias'],
+          );
+        }
+
+        // Having conditions do not support nested OR in the Select Interface,
+        // but as far as can be seen, there is always only one, so we can just
+        // add it in. If there are no conditions, just skip this.
+        $having_conditions = &$query->havingConditions();
+        if (count($having_conditions) >= 2) {
+          $having_conditions['#conjunction'] = 'OR';
+          $query->having('t.item_id IN (:item_ids[])', [
+            ':item_ids[]' => $item_ids,
+          ]);
+        }
+
+        // The updated query conditions can lead to multiple rows returned per
+        // item ID. E.g. if we have 10 results for a single ID and only 10
+        // results are allowed, we would get a single result without this.
+        $query->groupBy('t.item_id');
 
         // Add an expression to boost AI result entity IDs.
         // Ensure the entity IDs are all integers.
@@ -121,6 +203,63 @@ class DatabaseBoostByAiSearch extends BoostByAiSearchBase {
         $order_by_parts = $new_order;
       }
     }
+  }
+
+  /**
+   * Update conditions (or nested conditions) for vector database results.
+   *
+   * By default, only content where the searched terms exist in the results
+   * will be returned, but we also want results that have similar terms, not
+   * just exact terms, so we allow results that either are in the vector
+   * database returned IDs OR have the keywords entered.
+   *
+   * @param \Drupal\Core\Database\Query\SelectInterface $query
+   *   The query to check for keywords and update as appropriate.
+   * @param array $item_ids
+   *   The search API item IDs returned by the vector database.
+   * @param string $alias
+   *   The alias of the table being checked.
+   */
+  protected static function updateConditions(
+    SelectInterface $query,
+    array $item_ids,
+    string $alias = 't',
+  ): SelectInterface {
+    $conditions = &$query->conditions();
+    $keyword_condition = FALSE;
+    foreach ($conditions as $key => $condition) {
+
+      // Get the full keyword search condition.
+      if (
+        is_array($condition)
+        && isset($condition['field'])
+        && $condition['field'] === $alias . '.word'
+        && isset($condition['value'])
+        && isset($condition['operator'])
+      ) {
+        $keyword_condition = $condition;
+        unset($conditions[$key]);
+      }
+    }
+    if ($keyword_condition) {
+
+      // Add the condition group back in, but also add the IDs which
+      // may not have the same keywords since vector search finds words
+      // with similar meanings.
+      $condition_group = $query->orConditionGroup();
+      $condition_group->condition(
+        $keyword_condition['field'],
+        $keyword_condition['value'],
+        $keyword_condition['operator'],
+      );
+      $condition_group->condition(
+        $alias . '.item_id',
+        $item_ids,
+        'IN',
+      );
+      $query->condition($condition_group);
+    }
+    return $query;
   }
 
 }

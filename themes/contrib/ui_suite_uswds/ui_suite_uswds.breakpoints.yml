@@ -1,0 +1,60 @@
+ui_suite_uswds.smallest:
+  label: smallest
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+ui_suite_uswds.card:
+  label: card
+  mediaQuery: 'all and (min-width: 160px)'
+  weight: 1
+  multipliers:
+    - 1x
+ui_suite_uswds.card-lg:
+  label: card-lg
+  mediaQuery: 'all and (min-width: 240px)'
+  weight: 2
+  multipliers:
+    - 1x
+ui_suite_uswds.mobile:
+  label: mobile
+  mediaQuery: 'all and (min-width: 320px)'
+  weight: 3
+  multipliers:
+    - 1x
+ui_suite_uswds.mobile-lg:
+  label: mobile-lg
+  mediaQuery: 'all and (min-width: 480px)'
+  weight: 4
+  multipliers:
+    - 1x
+ui_suite_uswds.tablet:
+  label: tablet
+  mediaQuery: 'all and (min-width: 640px)'
+  weight: 5
+  multipliers:
+    - 1x
+ui_suite_uswds.tablet-lg:
+  label: tablet-lg
+  mediaQuery: 'all and (min-width: 880px)'
+  weight: 6
+  multipliers:
+    - 1x
+ui_suite_uswds.desktop:
+  label: desktop
+  mediaQuery: 'all and (min-width: 1024px)'
+  weight: 7
+  multipliers:
+    - 1x
+ui_suite_uswds.desktop-lg:
+  label: desktop-lg
+  mediaQuery: 'all and (min-width: 1200px)'
+  weight: 8
+  multipliers:
+    - 1x
+ui_suite_uswds.widescreen:
+  label: widescreen
+  mediaQuery: 'all and (min-width: 1400px)'
+  weight: 9
+  multipliers:
+    - 1x

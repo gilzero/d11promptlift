@@ -1,0 +1,68 @@
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-card--' ~ variant) %}
+{% endif %}
+
+{% if header_first %}
+  {% set attributes = attributes.addClass('usa-card--header-first') %}
+{% endif %}
+
+{% set header_attributes = create_attribute({
+  'class': [
+    'usa-card__header',
+    header_exdent ? 'usa-card__header--exdent'
+  ],
+}) %}
+
+{% set body_attributes = create_attribute({
+  'class': [
+    'usa-card__body',
+    body_exdent ? 'usa-card__body--exdent'
+  ],
+}) %}
+
+{% set media_attributes = create_attribute({
+  'class': [
+    'usa-card__media',
+    media_exdent ? 'usa-card__media--exdent',
+    media_inset ? 'usa-card__media--inset',
+  ],
+}) %}
+
+{% set footer_attributes = create_attribute({
+  'class': [
+    'usa-card__footer',
+    footer_exdent ? 'usa-card__footer--exdent'
+  ],
+}) %}
+
+<{{ list ? 'li' : 'div' }}{{ attributes.addClass('usa-card') }}>
+  <div class="usa-card__container">
+
+    {% if header %}
+      <div{{ header_attributes }}>
+        <h{{ heading_level|default(2) }} class="usa-card__heading">{{ header }}</h{{ heading_level|default(2) }} >
+      </div>
+    {% endif %}
+
+    {% if image %}
+      <div{{ media_attributes }}>
+        <div class="usa-card__img">
+          {{ image }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if content %}
+      <div{{ body_attributes }}>
+        {{ content }}
+      </div>
+    {% endif %}
+
+    {% if footer %}
+      <div{{ footer_attributes }}>
+        <a href="{{ footer_url|default('#') }}" class="usa-button">{{ footer }}</a>
+      </div>
+    {% endif %}
+
+  </div>
+</{{ list ? 'li' : 'div' }}>

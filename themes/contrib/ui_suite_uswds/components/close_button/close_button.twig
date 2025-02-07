@@ -1,0 +1,7 @@
+{% set attributes = attributes.addClass('usa-button') %}
+{% set attributes = attributes.setAttribute('aria-label', aria_label|default('Close'|t)) %}
+{% set attributes = attributes.setAttribute('type', 'button') %}
+
+<button{{ attributes }}>
+  {{ icon('uswds', 'close') }}
+</button>

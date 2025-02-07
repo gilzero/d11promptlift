@@ -3,6 +3,7 @@
 namespace Drupal\eca_content\Plugin\EntityReferenceSelection;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -129,20 +130,21 @@ final class EventBasedSelection extends SelectionPluginBase implements Container
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state): array {
-    /** @var \Drupal\Core\Entity\EntityFormInterface $form_object */
     $form_object = $form_state->getFormObject();
-    /** @var \Drupal\Core\Field\FieldDefinitionInterface $entity */
-    $entity = $form_object->getEntity();
-    // We need to know the field name later on, therefore pass it along.
-    $form['field_name'] = [
-      '#type' => 'hidden',
-      '#value' => $entity->getName(),
-      '#weight' => -20,
-    ];
-    $form['help'] = [
-      '#markup' => $this->t('You can react upon this within ECA using the event <em>"Entity reference field selection"</em> and define which entities may be referenced from there.'),
-      '#weight' => -10,
-    ];
+    if ($form_object instanceof EntityFormInterface) {
+      /** @var \Drupal\Core\Field\FieldDefinitionInterface $entity */
+      $entity = $form_object->getEntity();
+      // We need to know the field name later on, therefore pass it along.
+      $form['field_name'] = [
+        '#type' => 'hidden',
+        '#value' => $entity->getName(),
+        '#weight' => -20,
+      ];
+      $form['help'] = [
+        '#markup' => $this->t('You can react upon this within ECA using the event <em>"Entity reference field selection"</em> and define which entities may be referenced from there.'),
+        '#weight' => -10,
+      ];
+    }
     return parent::buildConfigurationForm($form, $form_state);
   }
 

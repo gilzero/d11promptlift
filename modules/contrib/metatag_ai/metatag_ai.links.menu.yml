@@ -1,0 +1,11 @@
+metatag_ai.content_settings:
+  title: 'Metatag AI Content Type Settings'
+  description: 'Configure Metatag AI Settings for Content.'
+  route_name: metatag_ai.content_settings
+  parent: metatag_ai.admin_settings
+
+metatag_ai.admin_settings:
+  title: 'Metatag AI Settings'
+  description: 'Configure Metatag AI Settings for Metatag.'
+  route_name: metatag_ai.admin_settings
+  parent: system.admin_config_content

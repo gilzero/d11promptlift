@@ -1,0 +1,22 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set dropdown_toggle_attributes = dropdown_toggle_attributes ?: create_attribute() %}
+{% set dropdown_menu_attributes = dropdown_menu_attributes ?: create_attribute() %}
+{% set dropdown_menu_item_attributes = dropdown_menu_item_attributes ?: create_attribute() %}
+
+<div {{ attributes.addClass('dropdown') }}>
+
+    <a {{ dropdown_toggle_attributes
+      .setAttribute('type', 'button')
+      .setAttribute('data-bs-toggle', 'dropdown')
+      .setAttribute('aria-expanded', 'false')
+      .addClass(['dropdown-toggle']) }}>
+      {{ toggle }}
+    </a>
+
+    <div {{ dropdown_menu_attributes.setAttribute('aria-labelledby', 'Dropdown').addClass('dropdown-menu') }}>
+      {%- for item in items -%}
+        <div {{ dropdown_menu_item_attributes.addClass('dropdown-item') }}>{{ item.link }}</div>
+      {%- endfor -%}
+    </div>
+
+</div>

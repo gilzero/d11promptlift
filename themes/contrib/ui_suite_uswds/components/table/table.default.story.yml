@@ -1,0 +1,597 @@
+name: Preview
+slots:
+  header:
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 1'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 2'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      tag: th
+      active: true
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 3'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 4'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 5'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 6'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 7'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 8 '
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 9'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 10'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 11'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 12'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 13'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 14'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 15'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 16'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 17'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 18'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 19'
+      props:
+        is_sortable: true
+        is_header: true
+    -
+      type: component
+      component: 'ui_suite_uswds:table_cell'
+      slots:
+        content: 'Table head 20'
+      props:
+        is_sortable: true
+        is_header: true
+  rows:
+    -
+      type: component
+      component: 'ui_suite_uswds:table_row'
+      slots:
+        cells:
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 1A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 2A'
+          -
+            type: component
+            active: true
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 3A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 4A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 5A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 6A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 7A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 8A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 9A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 10A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 11A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 12A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 13A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 14A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 15A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 16A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 17A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 18A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 19A'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 20A'
+    -
+      type: component
+      component: 'ui_suite_uswds:table_row'
+      slots:
+        cells:
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 1B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 2B'
+          -
+            type: component
+            active: true
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 3B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 4B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 5B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 6B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 7B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 8B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 9B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 10B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 11B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 12B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 13B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 14B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 15B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 16B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 17B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 18B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 19B'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 20B'
+    -
+      type: component
+      component: 'ui_suite_uswds:table_row'
+      slots:
+        cells:
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 1C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 2C'
+          -
+            type: component
+            active: true
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 3C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 4C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 5C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 6C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 7C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 8C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 9C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 10C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 11C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 12C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 13C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 14C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 15C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 16C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 17C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 18C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 19C'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 20C'
+    -
+      type: component
+      component: 'ui_suite_uswds:table_row'
+      slots:
+        cells:
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 1D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 2D'
+          -
+            type: component
+            active: true
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 3D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 4D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 5D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 6D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 7D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 8D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 9D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 10D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 11D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 12D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 13D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 14D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 15D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 16D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 17D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 18D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 19D'
+          -
+            type: component
+            component: 'ui_suite_uswds:table_cell'
+            slots:
+              content: 'Cell 20D'
+  caption: 'Example table (caption)'
+props:
+  sticky: true
+  striped: true
+  scrollable: true
+  stacked: false
+  sortable: true

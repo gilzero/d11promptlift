@@ -831,6 +831,7 @@ abstract class ModellerBpmnBase extends ModellerBase {
 
         case 'item':
         case 'markup':
+        case 'container':
           if (isset($definition['#markup'])) {
             $extraDescriptions[] = (string) $definition['#markup'];
           }

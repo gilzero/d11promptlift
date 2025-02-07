@@ -1,0 +1,22 @@
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - artisan_starterkit
+id: artisan_starterkit_breadcrumbs
+theme: artisan_starterkit
+region: content
+weight: -3
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/user/*"

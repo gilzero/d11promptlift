@@ -1,0 +1,9 @@
+metatag_ai.admin_settings:
+  base_route: metatag_ai.admin_settings
+  route_name: metatag_ai.admin_settings
+  title: 'Settings'
+
+metatag_ai.content_settings:
+  base_route: metatag_ai.admin_settings
+  route_name: metatag_ai.content_settings
+  title: 'Content Type'

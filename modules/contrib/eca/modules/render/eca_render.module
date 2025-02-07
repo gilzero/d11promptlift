@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\ContentEntityFormInterface;
 use Drupal\Core\Entity\Display\EntityDisplayInterface;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
@@ -200,6 +201,46 @@ function eca_render_contextual_links_alter(array &$links, string $group, array $
         'weight' => $weight,
       ];
       $links[$i] = $link;
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function eca_render_menu_local_tasks_alter(array &$data, string $route_name, RefinableCacheableDependencyInterface &$cacheability): void {
+  $build = [];
+  $event = _eca_trigger_event()->dispatchFromPlugin('eca_render:local_tasks', $route_name, $data, $build);
+  if ($event instanceof RenderEventInterface) {
+    $build = &$event->getRenderArray();
+  }
+  // Convert link element builds into contextual link arrays.
+  $k = 0;
+  foreach ($build as $i => $link) {
+    if ($link instanceof EntityInterface) {
+      if (!($link->hasLinkTemplate('canonical'))) {
+        unset($build[$i]);
+        continue;
+      }
+      $url = $link->toUrl('canonical');
+      $link = [
+        '#title' => $link->label(),
+        '#url' => $url,
+        'weight' => (++$k * 10),
+      ];
+    }
+    if (isset($link['#title'], $link['#url'])) {
+      $weight = $link['weight'] ?? ($link['#weight'] ?? (++$k * 10));
+      $data['tabs'][0]['eca.local_task.' . $i] = [
+        '#theme' => 'menu_local_task',
+        '#link' => [
+          'title' => $link['#title'],
+          'url' => is_string($link['#url']) ? Url::fromUserInput($link['#url']) : $link['#url'],
+          'localized_options' => [],
+        ],
+        '#access' => TRUE,
+        '#weight' => $weight,
+      ];
     }
   }
 }

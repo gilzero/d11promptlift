@@ -1,0 +1,4 @@
+name: Preview
+slots:
+  label: Show
+  tooltip: 'Lorem ipsum dolor sit amet consectetur adipiscing elit interdum habitant commodo'

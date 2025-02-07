@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('ui_suite_uswds/logo') }}
+
+{% set content %}
+
+  {% if site_name and site_slogan %}
+    <div class="logo_content">
+  {% endif %}
+
+  {% if site_name %}
+    <div class="logo_content--site_name padding-left-1">{{ site_name }}</div>
+  {% endif %}
+
+  {% if site_slogan %}
+    <div class="logo_content--site_slogan">{{ site_slogan }}</div>
+  {% endif %}
+
+  {% if site_name and site_slogan %}
+    </div>
+  {% endif %}
+{% endset %}
+
+{{ include('ui_suite_uswds:logo', {
+  content: {
+    '#markup': content
+  },
+  site_logo: site_logo,
+  link_attributes: create_attribute({
+      'class': [
+        'display-flex',
+        'flex-align-center',
+        'flex-no-wrap',
+      ],
+      'href': front_path ?: '/',
+      'accesskey': 2,
+      'aria-label': site_name ?: 'Homepage'
+    })
+  }
+) }}
+
+<button class="usa-menu-btn" type="button">{{ 'Menu'|t }}</button>

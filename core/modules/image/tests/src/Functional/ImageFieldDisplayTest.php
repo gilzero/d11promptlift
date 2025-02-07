@@ -17,7 +17,6 @@ use Drupal\user\RoleInterface;
  * Tests the display of image fields.
  *
  * @group image
- * @group #slow
  */
 class ImageFieldDisplayTest extends ImageFieldTestBase {
 
@@ -56,7 +55,7 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
   /**
    * Tests image formatters on node display.
    */
-  public function _testImageFieldFormatters($scheme) {
+  public function _testImageFieldFormatters($scheme): void {
     /** @var \Drupal\Core\Render\RendererInterface $renderer */
     $renderer = $this->container->get('renderer');
     $node_storage = $this->container->get('entity_type.manager')->getStorage('node');

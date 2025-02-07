@@ -1,0 +1,23 @@
+name: Translate
+description: "Language selector. Works properly only in page header."
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/selecteur-de-langue/"
+variants:
+  default:
+    title: "Default (with outline)"
+  no-outline:
+    title: "Without outline"
+slots:
+  title:
+    title: "Translate menu title"
+props:
+  type: object
+  properties:
+    id:
+      title: ID
+      description: "Used for collapse mechanism. Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"
+    links:
+      title: "List of languages"
+      description: "List of languages"
+      $ref: "ui-patterns://links"

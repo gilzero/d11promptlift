@@ -1,0 +1,8 @@
+name: Window mockup
+description: "Window mockup shows a box that looks like an operating system window."
+group: Mockup
+links:
+  - "https://daisyui.com/components/mockup-window/"
+slots:
+  content:
+    title: Content

@@ -11,6 +11,6 @@ namespace Drupal\eca_form\Event;
  *
  * @package Drupal\eca_form\Event
  */
-class FormAfterBuild extends FormBase {
+class FormAfterBuild extends FormBuild {
 
 }

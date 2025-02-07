@@ -1,0 +1,6 @@
+name: Preview
+slots:
+  content: "An item"
+props:
+  active: false
+  disabled: false

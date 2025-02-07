@@ -1,0 +1,5 @@
+field_label.admin_config:
+  title: 'Field Label'
+  route_name: field_label.module_config_form
+  parent: system.admin_config_content
+  description: 'Configure Field Label settings.'

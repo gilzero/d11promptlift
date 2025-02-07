@@ -1,0 +1,32 @@
+name: Search
+description: 'Search allows users to search for specific content if they know what search terms to use or can’t find desired content in the main navigation.'
+group: Search
+links:
+  - 'https://designsystem.digital.gov/components/search/'
+variants:
+  default:
+    title: 'Default'
+  big:
+    title: 'Big'
+    description: 'Search component with increased padding and font-size.'
+  small:
+    title: 'Small'
+    description: 'A compact variation of the search. Uses a magnifying glass icon for the submit button.'
+slots:
+  label:
+    title: 'Label'
+    description: 'Label value.'
+props:
+  type: object
+  properties:
+    name:
+      title: 'Search keyword name value'
+      type: string
+    search_id:
+      title: 'Search field idea'
+      description: "Value for the 'id' attribute, for accessibility."
+      $ref: 'ui-patterns://identifier'
+    search_icon:
+      title: 'Search icon path'
+      description: 'Path to search icon.'
+      type: string

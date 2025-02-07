@@ -1,0 +1,9 @@
+name: 'Icon List'
+description: 'An icon list reinforces the meaning and visibility of individual list items with a leading icon.'
+group: List
+links:
+  - 'https://designsystem.digital.gov/components/icon-list/'
+slots:
+  items:
+    title: 'Items'
+    description: 'Icon list items.'

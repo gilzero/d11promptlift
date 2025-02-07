@@ -1,0 +1,17 @@
+name: Preview
+slots:
+  completed_items:
+    -
+      plain_text: First
+    -
+      plain_text: Second
+    -
+      plain_text: Third
+  in_progress_items:
+    -
+      plain_text: Fourth
+    -
+      plain_text: Fifth
+props:
+  heading_level: 4
+  label: 'Support documents'

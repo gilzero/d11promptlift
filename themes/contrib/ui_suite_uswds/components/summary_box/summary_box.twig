@@ -1,0 +1,14 @@
+{% set summary_box_id = summary_box_id|default('"summary-box--' ~ random()) %}
+
+<div{{ attributes.addClass('usa-summary-box').setAttribute('role', 'region').setAttribute('aria-labelleddby', summary_box_id) }}>
+  <div class="usa-summary-box__body">
+    {% if summary_heading %}
+      <h3 class="usa-summary-box__heading" id="{{ summary_box_id }}">
+        {{ summary_heading }}
+      </h3>
+    {% endif %}
+    <div class="usa-summary-box__text">
+      {{ content }}
+    </div>
+  </div>
+</div>

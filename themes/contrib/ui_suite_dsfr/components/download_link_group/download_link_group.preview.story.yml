@@ -1,0 +1,27 @@
+name: Preview
+slots:
+  title: "Download group title"
+  downloads:
+    - type: component
+      component: "ui_suite_dsfr:download_link"
+      slots:
+        name: "Download document 1"
+        url: "#"
+        detail: "PDF – 161,88 Ko"
+      props:
+        new_window: true
+    - type: component
+      component: "ui_suite_dsfr:download_link"
+      slots:
+        name: "Download document 2"
+        url: "#"
+        detail: "PNG – 61,88 Ko"
+    - type: component
+      component: "ui_suite_dsfr:download_link"
+      slots:
+        name: "Download document 3"
+        url: "#"
+        detail: "JPG – 261,88 Ko"
+props:
+  bordered: true
+  title_tag: h4

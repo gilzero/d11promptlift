@@ -19,13 +19,16 @@
 # Indirect deprecations. These are not in Drupal's remit to fix, but it is
 # worth keeping track of dependencies' issues.
 %Method "[^"]+" might add "[^"]+" as a native return type declaration in the future. Do the same in implementation "org\\bovigo\\vfs\\[^"]+" now to avoid errors or add an explicit @return annotation to suppress this message%
+%Method "[^"]+" might add "[^"]+" as a native return type declaration in the future. Do the same in (child class|implementation) "OpenTelemetry\\[^"]+" now to avoid errors or add an explicit @return annotation to suppress this message%
 
 # The following deprecation is listed for Twig 2 compatibility when unit
 # testing using \Symfony\Component\ErrorHandler\DebugClassLoader.
+%The "Twig\\Template" class is considered internal\. It may change without further notice\. You should not use it from "Drupal\\Tests\\Core\\Template\\StubTwigTemplate"\.%
 %The "Twig\\Environment::getTemplateClass\(\)" method is considered internal\. It may change without further notice\. You should not extend it from "Drupal\\Core\\Template\\TwigEnvironment"\.%
 
 # PHPUnit 10.
 %The "PHPUnit\\Framework\\TestCase::__construct\(\)" method is considered internal.*You should not extend it from "Drupal\\[^"]+"%
 
-# Twig 3.
-%Since twig/twig 3.12: Twig Filter "spaceless" is deprecated%
+# Symfony 7.2
+%Since symfony/http-foundation 7.2: NativeSessionStorage's "sid_length" option is deprecated and will be ignored in Symfony 8.0.%
+%Since symfony/http-foundation 7.2: NativeSessionStorage's "sid_bits_per_character" option is deprecated and will be ignored in Symfony 8.0.%

@@ -1,0 +1,13 @@
+name: Preview
+slots:
+  video:
+    type: html_tag
+    tag: iframe
+    attributes:
+      src: "https://www.youtube.com/embed/HyirpmPL43I"
+      allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen: ""
+      alt: "Media Video with a transcription"
+props:
+  ratio: 16x9
+  caption: "© Media caption"

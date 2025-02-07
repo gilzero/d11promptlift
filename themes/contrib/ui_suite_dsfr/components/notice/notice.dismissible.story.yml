@@ -1,0 +1,6 @@
+name: Dismissible
+props:
+  title: "Title of an notice"
+  description: "This is a notice description."
+  dismissible: true
+  close_title: "Hide message"

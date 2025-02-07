@@ -1,0 +1,18 @@
+field.formatter.third_party.empty_fields:
+  type: mapping
+  label: 'Empty fields entity display third party setting'
+  mapping:
+    handler:
+      type: string
+      label: 'Handler plugin ID'
+    settings:
+      type: empty_fields.settings.[%parent.handler]
+      label: 'Handler settings'
+
+empty_fields.settings.text:
+  type: mapping
+  label: 'Text plugin settings'
+  mapping:
+    empty_text:
+      type: text
+      label: 'Text replacement'

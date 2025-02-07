@@ -1,0 +1,12 @@
+name: Preview
+props:
+  items:
+    - title: Sitemap
+      url: "#"
+    - title: Accessibility
+      url: "#"
+    - title: "Legal Notice"
+      url: "#"
+    - title: "Personal data"
+      url: "#"
+    - title: Cook

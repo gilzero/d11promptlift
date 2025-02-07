@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+
+{# Don't use USWDS classes here they break too much #}
+
+{% if input_group %}
+<div class="input-group">
+  {% endif %}
+
+  {% if prefix %}
+    {{ prefix }}
+  {% endif %}
+
+  {% block input %}
+    <input{{ attributes }} style="margin-bottom: 0 !important; padding: 2px !important;"/>
+  {% endblock %}
+
+  {% if suffix %}
+    {{ suffix }}
+  {% endif %}
+
+  {% if input_group %}
+</div>
+{% endif %}
+
+{{ children }}

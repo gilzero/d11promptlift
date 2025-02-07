@@ -1,0 +1,15 @@
+name: Stat
+description: "Stat is used to show numbers and data in a box."
+group: Data display
+links:
+  - "https://daisyui.com/components/stat/"
+variants:
+  default:
+    title: Default
+  vertical:
+    title: Vertical
+  responsive:
+    title: Responsive
+slots:
+  items:
+    title: Items

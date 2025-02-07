@@ -1,0 +1,9 @@
+name: Stack
+description: "Stack visually puts elements on top of each other."
+group: Layout
+links:
+  - "https://daisyui.com/components/stack/"
+slots:
+  items:
+    title: Items
+    description: "Expect a list of items"

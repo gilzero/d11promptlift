@@ -1,0 +1,9 @@
+layout_option_definitions:
+  layout_class_checkboxes:
+    options:
+      class5: 'Class 5'
+
+layout_options:
+  global:
+    layout_id:
+      layout: TRUE

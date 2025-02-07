@@ -12,6 +12,7 @@ use Drupal\KernelTests\KernelTestBase;
  * Tests Stable 9's template overrides.
  *
  * @group Theme
+ * @group #slow
  */
 class Stable9TemplateOverrideTest extends KernelTestBase {
 
@@ -63,7 +64,7 @@ class Stable9TemplateOverrideTest extends KernelTestBase {
   /**
    * Installs all core modules.
    */
-  protected function installAllModules() {
+  protected function installAllModules(): void {
     // Enable all core modules.
     $all_modules = $this->container->get('extension.list.module')->getList();
     $all_modules = array_filter($all_modules, function ($module) {

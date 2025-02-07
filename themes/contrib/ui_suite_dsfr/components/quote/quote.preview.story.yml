@@ -1,0 +1,21 @@
+name: Preview
+slots:
+  image:
+    theme: image
+    uri: "data:image/svg+xml;charset=UTF-8,%3csvg style='font-size: 1.125rem; text-anchor: middle; user-select: none;' width='100%25' height='254' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'%3e%3crect width='100%25' height='100%25' fill='%23868e96'%3e%3c/rect%3e%3ctext x='50%25' y='50%25' fill='%23dee2e6' dy='.3em'%3eImage cap%3c/text%3e%3c/svg%3e"
+    alt: ""
+  quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi placerat gravida tortor id semper."
+  author: Auteur
+  source:
+    - type: html_tag
+      tag: cite
+      value: Work
+    - plain_text: "Detail 1"
+    - plain_text: "Detail 2"
+    - type: component
+      component: "ui_suite_dsfr:link"
+      slots:
+        label: "Detail 5"
+        url: "https://example.com"
+props:
+  color_schema: pink-macaron

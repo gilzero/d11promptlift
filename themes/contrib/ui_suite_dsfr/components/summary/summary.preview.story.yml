@@ -1,0 +1,19 @@
+name: Preview
+slots:
+  title: Summary
+props:
+  links:
+    - title: "Anchor title 1"
+      url: "#anchor-title-1"
+      attributes:
+        data-test: test
+    - title: "Anchor title 2"
+      url: "#anchor-title-2"
+    - title: "Anchor title 3"
+      url: "#anchor-title-3"
+    - title: "Anchor title 4"
+      url: "#anchor-title-4"
+    - title: "Anchor title 5"
+      url: "#anchor-title-5"
+    - title: "Anchor title 6"
+      url: "#anchor-title-6"

@@ -62,7 +62,7 @@ class EntityField extends FieldPluginBase implements CacheableDependencyInterfac
    *
    * @var bool
    */
-  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName, Drupal.Commenting.VariableComment.Missing
   public $limit_values;
 
   /**
@@ -70,7 +70,7 @@ class EntityField extends FieldPluginBase implements CacheableDependencyInterfac
    *
    * @var string
    */
-  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName, Drupal.Commenting.VariableComment.Missing
   public $base_table;
 
   /**
@@ -139,7 +139,7 @@ class EntityField extends FieldPluginBase implements CacheableDependencyInterfac
   /**
    * The fields that we are actually grouping on.
    */
-  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName, Drupal.Commenting.VariableComment.Missing
   public array $group_fields;
 
   /**
@@ -148,7 +148,7 @@ class EntityField extends FieldPluginBase implements CacheableDependencyInterfac
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
+   *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager

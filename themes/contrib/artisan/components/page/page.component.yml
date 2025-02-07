@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Page
+slots:
+  header:
+    title: Header
+    examples:
+      - <header>Header</header>
+  main_content:
+    title: Main content
+    examples:
+      - Main
+  footer:
+    title: Footer
+    examples:
+      - <footer>Footer</footer>
+props:
+  type: object
+  properties:
+    distraction_free:
+      type: boolean
+      name: Distraction free
+      title: Distraction free
+      examples:
+        - false
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: ['example-class-attribute']
+    header_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Header attributes
+      title: Header attributes
+      examples:
+        - class: ['example-class-attribute']
+    main_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Main attributes
+      title: Main attributes
+      examples:
+        - class: ['example-class-attribute']
+    footer_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Footer attributes
+      title: Footer attributes
+      examples:
+        - class: ['example-class-attribute']

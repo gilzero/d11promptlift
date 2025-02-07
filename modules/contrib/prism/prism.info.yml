@@ -1,0 +1,10 @@
+name: Prism
+type: module
+description: Support for the prism.js syntax highlighting library
+core_version_requirement: ^9 || ^10 || ^11
+package: Other
+
+# Information added by Drupal.org packaging script on 2025-02-06
+version: '2.2.3'
+project: 'prism'
+datestamp: 1738849184

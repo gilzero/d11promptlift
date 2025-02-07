@@ -1,0 +1,10 @@
+name: 'Sub Sub Theme Test Layout Options'
+type: theme
+description: 'Theme for testing options override with theme inheritance.'
+base theme: subtheme_test_layout_options
+package: 'Testing'
+
+# Information added by Drupal.org packaging script on 2024-10-16
+version: '8.x-1.7'
+project: 'layout_options'
+datestamp: 1729077850

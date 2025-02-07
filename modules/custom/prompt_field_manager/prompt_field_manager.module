@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains prompt_field_manager.module.
+ */
+
+/**
+ * Implements hook_form_alter().
+ */
+function prompt_field_manager_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Only hide the field in node add form, not in edit form
+  if (isset($form["#entity_type"]) && 
+      $form["#entity_type"] === "node" && 
+      isset($form["field_enhanced_prompt"]) &&
+      strpos($form_id, 'node_prompt_form') !== FALSE && 
+      !strpos($form_id, 'edit')) {
+    
+    // Add CSS to hide the field wrapper
+    $form["#attached"]["library"][] = "prompt_field_manager/prompt_field_styles";
+    
+    // Add the class to the field wrapper div
+    $form["field_enhanced_prompt"]["#attributes"]["class"][] = "visually-hidden-field";
+    $form["field_enhanced_prompt"]["widget"]["#attributes"]["class"][] = "visually-hidden-field";
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function prompt_field_manager_page_attachments(array &$attachments) {
+  // Only add CSS on node add form pages
+  $current_path = \Drupal::service('path.current')->getPath();
+  if (strpos($current_path, '/node/add/prompt') === 0) {
+    $attachments["#attached"]["library"][] = "prompt_field_manager/prompt_field_styles";
+  }
+}

@@ -1,0 +1,14 @@
+allowed_tags:
+  - div
+  - span
+  - h2
+  - h3
+  - h4
+  - h5
+  - h6
+class_list: ''
+label_tag_enabled: TRUE
+label_class_enabled: TRUE
+label_class_select_enabled: FALSE
+label_value_enabled: TRUE
+plural_label_enabled: FALSE

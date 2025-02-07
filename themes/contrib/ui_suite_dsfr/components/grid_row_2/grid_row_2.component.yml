@@ -1,0 +1,136 @@
+name: "Grid row (2 cols)"
+description: "Two configurable regions, with layout management and alignment of content."
+links:
+  - "https://www.systeme-de-design.gouv.fr/fondamentaux/grille-et-points-de-rupture"
+slots:
+  first:
+    title: "First column"
+    description: "The content of the first column."
+  second:
+    title: "Second column"
+    description: "The content of the second column."
+props:
+  type: object
+  properties:
+    container_type:
+      title: "Container type"
+      type: string
+      enum:
+        - container
+        - fluid
+      "meta:enum":
+        container: "Container"
+        fluid: "Fluid container (no external margin)"
+    with_gutters:
+      title: "With gutters?"
+      description: "The gutters between columns"
+      type: boolean
+      default: true
+    horizontal_align:
+      title: "Horizontal alignement"
+      type: string
+      enum:
+        - left
+        - right
+        - center
+      "meta:enum":
+        left: Left
+        right: Right
+        center: Center
+    vertical_align:
+      title: "Vertical alignment"
+      type: string
+      enum:
+        - top
+        - bottom
+        - middle
+      "meta:enum":
+        top: Top
+        bottom: Bottom
+        middle: Middle
+    cols:
+      title: "Columns span"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    cols_sm:
+      title: "Columns span (small)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    cols_md:
+      title: "Columns span (medium)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    cols_lg:
+      title: "Columns span (large)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    cols_xl:
+      title: "Columns span (extra large)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    offset:
+      title: "Columns offset"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    offset_sm:
+      title: "Columns offset (small)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    offset_md:
+      title: "Columns offset (medium)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    offset_lg:
+      title: "Columns offset (large)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    offset_xl:
+      title: "Columns offset (extra large)"
+      type: array
+      maxItems: 2
+      items:
+        type: integer
+        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    container_attributes:
+      title: "Container attributes"
+      description: "The attributes to customize the tag with the container class if present."
+      $ref: "ui-patterns://attributes"
+    col_attributes:
+      title: "Column attributes"
+      description: "The attributes to customize the tag with the col class."
+      $ref: "ui-patterns://attributes"
+    first_attributes:
+      title: "First column attributes"
+      description: "The attributes to customize the tag the first column."
+      $ref: "ui-patterns://attributes"
+    second_attributes:
+      title: "Second column attributes"
+      description: "The attributes to customize the tag the second column."
+      $ref: "ui-patterns://attributes"

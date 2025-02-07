@@ -1,0 +1,51 @@
+pattern-list:
+  version: VERSION
+  css:
+    theme:
+      css/patterncss.admin.css: { }
+
+pattern-color:
+  version: VERSION
+  css:
+    theme:
+      css/patterncss.color.css: { minified: true }
+  js:
+    js/patterncss.color.js: { minified: true }
+
+pattern-form:
+  version: VERSION
+  css:
+    theme:
+      css/patterncss.form.css: { }
+  js:
+    js/patterncss.admin.js: { }
+    js/patterncss.sidebar.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - patterncss_ui/pattern-color
+
+pattern-settings:
+  version: VERSION
+  css:
+    theme:
+      css/patterncss.admin.css: { }
+  js:
+    js/patterncss.admin.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+pattern-init:
+  version: VERSION
+  js:
+    js/patterncss.init.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once

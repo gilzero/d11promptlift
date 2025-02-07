@@ -11,7 +11,6 @@ use Drupal\Tests\BrowserTestBase;
  * Tests the tableselect form element for expected behavior.
  *
  * @group Form
- * @group #slow
  */
 class ElementsTableSelectTest extends BrowserTestBase {
 
@@ -210,7 +209,7 @@ class ElementsTableSelectTest extends BrowserTestBase {
    * @internal param $form_element A form element to test.
    *   A form element to test.
    */
-  private function formSubmitHelper($form, $edit) {
+  private function formSubmitHelper($form, $edit): array {
     $form_id = $this->randomMachineName();
     $form_state = new FormState();
 

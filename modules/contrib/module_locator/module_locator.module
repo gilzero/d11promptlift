@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * Contains module_locator.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_help().
+ */
+function module_locator_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the module_locator module.
+    case 'help.page.module_locator':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Locate modules in filesystem. Add Location string on modules page.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function module_locator_theme() {
+  return [
+    'system_modules_details_alter' => [
+      'render element' => 'form',
+      'base hook' => 'system_modules_details',
+      'variables' => [
+        'modules' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function module_locator_theme_suggestions_system_modules_details_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'system_modules_details_alter';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function module_locator_preprocess_system_modules_details_alter(&$variables) {
+  $form = $variables['form'];
+
+  $variables['modules'] = [];
+  // Iterate through all the modules, which are children of this element.
+  foreach (Element::children($form) as $key) {
+    // Stick the key into $module for easier access.
+    $module = $form[$key];
+    unset($module['enable']['#title']);
+    $module['#requires'] = array_filter($module['#requires']);
+    $module['#required_by'] = array_filter($module['#required_by']);
+    // Add the checkbox to allow installing new modules and to show the
+    // installation status of the module.
+    $module['checkbox'] = $module['enable'];
+
+    // Add the module label and expand/collapse functionality.
+    $id = Html::getUniqueId('module-' . $key);
+    $module['id'] = $id;
+    $module['enable_id'] = $module['enable']['#id'];
+
+    // @todo Remove early rendering and use safe_join in the Twig template once
+    //   https://www.drupal.org/node/2579091 is fixed.
+    $renderer = \Drupal::service('renderer');
+    $machine_name_render = [
+      '#prefix' => '<span dir="ltr" class="table-filter-text-source">',
+      '#plain_text' => $key,
+      '#suffix' => '</span>',
+    ];
+    $module['machine_name'] = $renderer->render($machine_name_render);
+
+    if (!empty($module['#requires'])) {
+      $requires = [
+        '#theme' => 'item_list',
+        '#items' => $module['#requires'],
+        '#context' => ['list_style' => 'comma-list'],
+      ];
+      $module['requires'] = $renderer->render($requires);
+    }
+    if (!empty($module['#required_by'])) {
+      $required_by = [
+        '#theme' => 'item_list',
+        '#items' => $module['#required_by'],
+        '#context' => ['list_style' => 'comma-list'],
+      ];
+      $module['required_by'] = $renderer->render($required_by);
+    }
+
+    if (!empty($module['version'])) {
+      $module['version'] = $renderer->render($module['version']);
+    }
+
+    if (!empty($module['location'])) {
+      $module['location'] = $renderer->render($module['location']);
+    }
+
+    $module['attributes'] = new Attribute($module['#attributes']);
+    $variables['modules'][] = $module;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function module_locator_form_system_modules_alter(&$form, FormStateInterface $form_state, $form_id) {
+  foreach ($form['modules'] as $key => $value) {
+    if ($key[0] != '#') {
+      foreach ($value as $module => $property) {
+        if ($module[0] != '#') {
+          $form['modules'][$key][$module]['location'] = ['#markup' => \Drupal::service('extension.list.module')->getPath($module)];
+        }
+      }
+    }
+  }
+}

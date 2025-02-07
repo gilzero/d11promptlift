@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg6062"
+   sodipodi:docname="library.svg"
+   viewBox="0 0 128 128"
+   version="1.1"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <defs
+     id="defs14" />
+  <title
+     id="title6087">Library Pictogram</title>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="27"
+     fit-margin-left="0"
+     pagecolor="#ffffff"
+     fit-margin-top="0"
+     inkscape:window-maximized="1"
+     inkscape:zoom="3.2596291"
+     inkscape:window-x="0"
+     inkscape:window-height="1016"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="g6132"
+     inkscape:cx="-98.280957"
+     inkscape:cy="12.24337"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="2560"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px" />
+  <g
+     id="layer1"
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     transform="translate(-514.72,-662.65)">
+    <g
+       id="g6132"
+       style="fill:#000000;stroke:#000000"
+       transform="translate(-174.32,533.49)">
+      <path
+         id="path3095-8-4-1"
+         style="fill:#000000;stroke:#000000;stroke-width:3.67490005;stroke-linecap:round;stroke-linejoin:round"
+         sodipodi:type="star"
+         sodipodi:sides="3"
+         inkscape:transform-center-x="-2.9502215e-05"
+         sodipodi:r1="35.777088"
+         sodipodi:r2="17.888544"
+         inkscape:transform-center-y="-5.8410898"
+         sodipodi:arg1="0.52359878"
+         sodipodi:arg2="1.5707963"
+         transform="matrix(1.99,0,0,0.81622,2615.7,-838.43)"
+         inkscape:randomized="0"
+         sodipodi:cy="1224.0945"
+         sodipodi:cx="-936"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         d="m -905.01613,1241.983 -30.98387,0 -30.98387,0 15.49194,-26.8328 15.49193,-26.8328 15.49193,26.8328 z" />
+      <path
+         id="rect3888-8-8-09-6-3-4"
+         style="fill:#000000;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round"
+         inkscape:connector-curvature="0"
+         d="m 703.35,171.65 v 74 h -7.6253 v 10 h 116 v -10 h -7.594 v -74 h -11.094 v 74 h -78.596 v -74 h -11.094 z" />
+      <g
+         id="g6027-1"
+         style="fill:#ffffff;stroke:#000000"
+         transform="matrix(0.602995,0,0,0.602995,299.24328,30.003533)">
+        <path
+           id="path5652-4-1-50-9"
+           style="fill:#ffffff;fill-rule:evenodd;stroke:#000000"
+           inkscape:connector-curvature="0"
+           d="m 755.79,233.98 c 9.0948,-6.2802 18.187,-5.4673 27.282,2.6875 v -39.406 c -4.9632,-4.4503 -9.9435,-6.723 -14.907,-6.875 -4.1281,-0.12638 -8.2472,1.2844 -12.375,4.125 v 39.469 z" />
+        <path
+           id="path5650-8-5-7-5"
+           style="fill:#ffffff;fill-rule:evenodd;stroke:#000000"
+           inkscape:connector-curvature="0"
+           d="m 750.79,194.51 c -4.1281,-2.8406 -8.2786,-4.2514 -12.407,-4.125 -4.9632,0.15194 -9.9121,2.4247 -14.875,6.875 v 39.406 c 9.0947,-8.1548 18.187,-8.9676 27.282,-2.6875 v -39.469 z" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path412"
+         style="fill:#25aae1;fill-opacity:1;stroke-width:0.0899273"
+         d="m 777.81406,218.26082 v 2.9676 c -0.19783,0.54857 -0.027,1.31294 -0.26978,1.88847 -1.1151,9.71216 -9.42438,18.53402 -19.06458,20.23365 -0.98021,0.38669 -2.14027,0.37769 -3.14746,0.53956 h -3.68702 c -1.00718,-0.16187 -2.16725,-0.15287 -3.14746,-0.53956 -10.3956,-1.78956 -18.86225,-11.80746 -19.33437,-22.21204 v -3.05753 c 0.3294,-2.03236 0.74838,-4.14565 1.55125,-6.08807 0.81295,-1.56475 1.65017,-3.12049 2.60789,-4.5863 l 3.05753,-4.13666 c 6.83897,-8.12943 12.82812,-16.86137 17.33349,-26.37567 l 1.241,2.63037 c 3.72299,9.06917 9.59523,17.09968 16.00705,24.64458 0.69244,1.01617 1.43884,2.00537 2.24818,2.96759 1.20503,1.85251 2.38308,3.72299 3.32732,5.75535 0.64747,1.71762 1.05214,3.57012 1.27696,5.36866 z" />
+    </g>
+  </g>
+  <metadata
+     id="metadata11">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Library Pictogram</dc:title>
+        <dc:date>2012-12-09T14:32:58</dc:date>
+        <dc:description>A simple library pictogram.</dc:description>
+        <dc:source>https://openclipart.org/detail/173650/library-pictogram-by-libberry-173650</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>libberry</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>book</rdf:li>
+            <rdf:li>library</rdf:li>
+            <rdf:li>pictogram</rdf:li>
+            <rdf:li>symbol</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <xhtml:iframe
+     class="cleanslate hidden"
+     src="library_files/commandline.html"
+     id="cmdline_iframe"
+     style="height: 0px !important;" />
+</svg>

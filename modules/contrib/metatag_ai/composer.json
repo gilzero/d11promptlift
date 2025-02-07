@@ -1,0 +1,24 @@
+{
+    "name": "drupal/metatag_ai",
+    "description": "Metatag AI Generator.",
+    "type": "drupal-module",
+    "keywords": ["Drupal", "metatag", "openai", "seo"],
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Rachel Jaro (nx2611)",
+            "homepage": "https://www.drupal.org/u/nx2611",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://www.drupal.org/project/metatag_ai",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/metatag_ai",
+        "source": "https://git.drupalcode.org/project/metatag_ai"
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3",
+        "drupal/metatag": "^2 || ^1.2",
+        "drupal/core": "^9 || ^10 || ^11"
+    }
+}

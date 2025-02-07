@@ -1,0 +1,8 @@
+name: Preview
+props:
+  field_name: fruit
+  field_label: 'Example Range slider'
+  min: 1
+  max: 10
+  data_text_unit: stars
+  data_text_preposition: of

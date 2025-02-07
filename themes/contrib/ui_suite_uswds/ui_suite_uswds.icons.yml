@@ -1,0 +1,135 @@
+uswds:
+  enabled: true
+  label: USWDS
+  description: "Icons help communicate meaning, actions, status, or feedback."
+  links:
+    - https://designsystem.digital.gov/components/icon/
+    - https://github.com/uswds/uswds/
+  version: 3.11.0
+  license:
+    name: Apache 2.0 License and design modifications by GSA released as CC0
+    url: https://github.com/uswds/uswds/blob/develop/LICENSE.md
+    gpl-compatible: true
+  extractor: svg_sprite
+  config:
+    sources:
+      - assets/images/sprite.svg
+  settings:
+    size:
+      title: "Size"
+      type: "integer"
+      default: 32
+    # Color is an example, see documentation for USWDS color handling.
+    # https://designsystem.digital.gov/components/icon/
+    color:
+      title: "Color"
+      type: "string"
+      enum:
+        - "currentColor"
+        - "#dfe1e2"
+        - "#a9aeb1"
+        - "#71767a"
+        - "#565c65"
+        - "#3d4551"
+        - "#1b1b1b"
+        - "#d9e8f6"
+        - "#73b3e7"
+        - "#005ea2"
+        - "#0050d8"
+        - "#1a4480"
+        - "#162e51"
+        - "#f3e1e4"
+        - "#f2938c"
+        - "#d83933"
+        - "#e41d3d"
+        - "#b50909"
+        - "#8b0a03"
+        - "#e1f3f8"
+        - "#97d4ea"
+        - "#00bde3"
+        - "#28a0cb"
+        - "#07648d"
+        - "#f2e4d4"
+        - "#ffbc78"
+        - "#fa9441"
+        - "#c05600"
+        - "#775540"
+        - "#ffffff"
+        - "#f0f0f0"
+        - "#e6e6e6"
+        - "#adadad"
+        - "#757575"
+        - "#454545"
+        - "#171717"
+        - "#000000"
+        - "#e52207"
+        - "#e66f0e"
+        - "#ffbe2e"
+        - "#fee685"
+        - "#538200"
+        - "#04c585"
+        - "#009ec1"
+        - "#0076d6"
+        - "#676cc8"
+        - "#8168b3"
+        - "#d72d79"
+      'meta:enum':
+        "currentColor": "Current color"
+        "#f0f0f0": "Base lightest"
+        "#dfe1e2": "Base lighter"
+        "#a9aeb1": "Base light"
+        "#71767a": "Base"
+        "#565c65": "Base dark"
+        "#3d4551": "Base darker"
+        "#1b1b1b": "Base darkest"
+        "#d9e8f6": "Primary lighter"
+        "#73b3e7": "Primary light"
+        "#005ea2": "Primary"
+        "#0050d8": "Primary vivid"
+        "#1a4480": "Primary dark"
+        "#162e51": "Primary darker"
+        "#f3e1e4": "Lighter"
+        "#f2938c": "Light"
+        "#d83933": "Secondary"
+        "#e41d3d": "Secondary vivid"
+        "#b50909": "Secondary dark"
+        "#8b0a03": "Secondary darker"
+        "#e1f3f8": "Cool lighter"
+        "#97d4ea": "Cool light"
+        "#00bde3": "Cool"
+        "#28a0cb": "Cool dark"
+        "#07648d": "Cool darker"
+        "#f2e4d4": "Warm lighter"
+        "#ffbc78": "Warm light"
+        "#fa9441": "Warm"
+        "#c05600": "Warm dark"
+        "#775540": "Warm darkest"
+        "#ffffff": "White"
+        "#e6e6e6": "Gray 10"
+        "#adadad": "Gray 30"
+        "#757575": "Gray 50"
+        "#454545": "Gray 70"
+        "#171717": "Gray 90"
+        "#000000": "Black"
+        "#e52207": "Red"
+        "#e66f0e": "Orange"
+        "#ffbe2e": "Gold"
+        "#fee685": "Yellow"
+        "#538200": "Green"
+        "#04c585": "Mint"
+        "#009ec1": "Cyan"
+        "#0076d6": "Blue"
+        "#676cc8": "Indigo"
+        "#8168b3": "Violet"
+        "#d72d79": "Magenta"
+      default: "currentColor"
+  template: >-
+    <svg
+      class="usa-icon"
+      width="{{ size|default(32) }}"
+      height="{{ size|default(32) }}"
+      fill="{{ color }}"
+      aria-hidden="true"
+    >
+      <use href="{{ source }}#{{ icon_id }}"/>
+    </svg>

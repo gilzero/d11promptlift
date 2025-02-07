@@ -1,0 +1,12 @@
+{% set attributes = attributes.addClass('usa-header').addClass('usa-header--' ~ variant|default('extended')) %}
+<header{{ attributes.setAttribute('role', 'banner') }}>
+  {% if variant == 'basic' %}
+  <div class="usa-nav-container">
+    {{ top }}
+    {{ nav }}
+  </div>
+  {% else %}
+    {{ top }}
+    {{ nav }}
+  {% endif %}
+</header>

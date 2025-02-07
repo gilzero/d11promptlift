@@ -1,0 +1,29 @@
+{
+    "name": "drupal/patterncss",
+    "description": "Integrates Pattern.css, is a CSS only library to fill your empty background with beautiful patterns.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/patterncss",
+    "keywords": ["Drupal", "PatternCSS", "Pattern CSS", "Pattern.css"],
+    "authors": [
+        {
+            "name": "Mahyar Sabeti",
+            "email": "mahyar.sbt7@gmail.com",
+            "homepage": "https://www.drupal.org/u/mahyarsbt",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://drupal.org/project/issues/patterncss",
+        "source": "https://git.drupalcode.org/project/patterncss"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/core": "^8.8 || ^9 || ^10 || ^11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\patterncss_ui\\": "patterncss_ui/src/"
+        }
+    },
+    "license": "GPL-2.0-or-later"
+}

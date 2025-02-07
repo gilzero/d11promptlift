@@ -1,0 +1,12 @@
+name: Readmore
+type: module
+description: Add "read more" field formatter.
+core_version_requirement: ^10 || ^11
+package: Fields
+dependencies:
+  - drupal:field
+
+# Information added by Drupal.org packaging script on 2024-11-30
+version: '2.0.0-alpha3'
+project: 'readmore'
+datestamp: 1732950050

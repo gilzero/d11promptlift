@@ -1,0 +1,34 @@
+<li{{ attributes.addClass('usa-icon-list__item') }}>
+
+  {% if not icon_attributes %}
+    {% set icon_attributes = create_attribute() %}
+  {% endif %}
+
+  {% if icon_name.icon_id %}
+    <div{{ icon_attributes.addClass('usa-icon-list__icon') }}>
+      {{ icon('uswds', icon_name.icon_id, icon_name.settings) }}
+    </div>
+  {% endif %}
+
+  <div class="usa-icon-list__content">
+    {% if header %}
+      <h3 class="usa-icon-list__title">
+        {{ header }}
+      </h3>
+
+      {% if body %}
+        <div>
+          {{ body }}
+        </div>
+      {% endif %}
+
+    {% else %}
+      {% if body %}
+        <div>
+          {{ body }}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+
+</li>

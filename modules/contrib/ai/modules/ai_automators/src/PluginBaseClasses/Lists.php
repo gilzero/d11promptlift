@@ -20,8 +20,8 @@ class Lists extends RuleBase {
   /**
    * {@inheritDoc}
    */
-  public function tokens() {
-    $tokens = parent::tokens();
+  public function tokens(ContentEntityInterface $entity) {
+    $tokens = parent::tokens($entity);
     $tokens['options_comma'] = 'A comma separated list of all options.';
     $tokens['options_nl'] = 'A new line separated list of all options.';
     $tokens['value_options_comma'] = 'A comma separated list of all value options.';

@@ -1,5 +1,8 @@
 eca_ui.listing:
   version: VERSION
+  css:
+    theme:
+      css/eca_ui.listing.css: {}
   js:
     js/eca_ui.listing.js: {}
   dependencies:

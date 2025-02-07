@@ -1,0 +1,37 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set sdc_theme_source = sdc_theme_source  ?? 'artisan' %}
+{% set dropdown_direction = dropdown_direction ?? 'dropend' %}
+
+{% if (items|length) > 0 %}
+  <ul {{ attributes.addClass('dropdown-menu') }}>
+      {% for item in items %}
+        {% set nav_link_classes = ['dropdown-item', item.in_active_trail ? 'active' : '', 'nav-link'] %}
+
+        {% if item.url.options.attributes.class is iterable %}
+          {% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+        {% elseif item.url.options.attributes.class %}
+          {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+        {% endif %}
+
+        {% if item.is_expanded and item.below %}
+          <li class="dropdown btn-group flex-wrap w-100">
+            {{ link(item.title, item.url, { 'class': nav_link_classes|merge(['dropdown-toggle-split-link', 'w-auto']) }) }}
+            <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle', 'dropdown-toggle-split', 'w-auto', 'ps-0'])|join(' ') }}" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <span class="visually-hidden">{{ item.title }}</span>
+            </a>
+            {% if item.below %}
+              {%
+                include sdc_theme_source ~ ':dropdown-menu' with {
+                items: item.below,
+                dropdown_direction,
+              } only %}
+            {% endif %}
+          </li>
+        {% else %}
+          <li>
+            {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+          </li>
+        {% endif %}
+      {% endfor %}
+  </ul>
+{% endif %}

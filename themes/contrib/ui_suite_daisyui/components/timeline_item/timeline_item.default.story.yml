@@ -1,0 +1,18 @@
+name: Default
+slots:
+  timeline_start: "1984"
+  timeline_end: "First Macintosh computer"
+props:
+  timeline_box_end: true
+  icon:
+    pack_id: hero_solid_20
+    icon_id: check-circle
+    settings:
+      size: 20
+      stroke_width: 2
+library_wrapper: >
+  <ul class="timeline">
+  <li>
+  {{ _story }}
+  </li>
+  </ul>

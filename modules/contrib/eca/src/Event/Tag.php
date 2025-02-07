@@ -43,7 +43,7 @@ final class Tag {
   const BEFORE = 0b00001000000;
 
   /**
-   * Instantiated before a scoped operation.
+   * Instantiated after a scoped operation.
    */
   const AFTER = 0b00010000000;
 

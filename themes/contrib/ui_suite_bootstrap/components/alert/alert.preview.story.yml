@@ -1,0 +1,6 @@
+name: Preview
+slots:
+  heading: "Well done!"
+  message: "A simple alert. Check it out!"
+props:
+  dismissible: true

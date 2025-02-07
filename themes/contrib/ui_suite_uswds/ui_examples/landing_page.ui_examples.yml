@@ -1,0 +1,104 @@
+id: 'landing_page'
+label: 'Landing page'
+description: 'Provide someone’s first impression of your agency or program.'
+links:
+  - 'https://designsystem.digital.gov/templates/landing-page/'
+render:
+  0:
+    type: 'component'
+    component: 'ui_suite_uswds:banner'
+    story: default
+  1:
+    type: 'component'
+    component: 'ui_suite_uswds:header'
+    story: basic
+  2:
+    type: 'component'
+    component: 'ui_suite_uswds:hero'
+    story: default
+  3:
+    type: 'component'
+    component: 'ui_suite_uswds:section'
+    slots:
+      content:
+        1:
+          type: 'component'
+          component: 'ui_suite_uswds:grid_row_2'
+          attributes:
+            class:
+              - grid-gap
+          props:
+            tablet:
+              - 4
+              - 8
+          slots:
+            first:
+              - - type: 'html_tag'
+                  tag: 'h2'
+                  value: 'A tagline highlights your approach'
+                  attributes:
+                    class:
+                      - font-heading-xl
+                      - margin-top-0
+                      - tablet:margin-bottom-9
+            second:
+              - - type: 'html_tag'
+                  tag: 'p'
+                  value: 'The tagline should inspire confidence and interest, focusing on the value that your overall approach offers to your audience. Use a heading typeface and keep your tagline to just a few words, and don’t confuse or mystify.'
+                - type: 'html_tag'
+                  tag: 'p'
+                  value: 'Use the right side of the grid to explain the tagline a bit more. What are your goals? How do you do your work? Write in the present tense, and stay brief here. People who are interested can find details on internal pages.'
+  4:
+    type: 'component'
+    component: 'ui_suite_uswds:graphic_list'
+    attributes:
+      class:
+        - usa-section
+        - usa-section--dark
+    slots:
+      items:
+        0:
+          type: 'component'
+          component: 'ui_suite_uswds:graphic_list_item'
+          story: default
+        1:
+          type: 'component'
+          component: 'ui_suite_uswds:graphic_list_item'
+          story: default
+        2:
+          type: 'component'
+          component: 'ui_suite_uswds:graphic_list_item'
+          story: default
+        3:
+          type: 'component'
+          component: 'ui_suite_uswds:graphic_list_item'
+          story: default
+  5:
+    type: 'component'
+    component: 'ui_suite_uswds:section'
+    slots:
+      content:
+        - - type: 'html_tag'
+            tag: 'h2'
+            value: 'Section heading'
+            attributes:
+              class:
+                - font-heading-xl
+                - margin-y-0
+          - type: 'html_tag'
+            tag: 'p'
+            value: 'Everything up to this point should help people understand your agency or project: who you are, your goal or mission, and how you approach it. Use this section to encourage them to act. Describe why they should get in touch here, and use an active verb on the button below. “Get in touch,” “Learn more,” and so on.'
+            attributes:
+              class:
+                - usa-intro
+          - type: 'component'
+            component: 'ui_suite_uswds:button'
+            slots:
+              label: 'Call to action'
+            props:
+              url: '#'
+  6:
+    type: 'component'
+    component: 'ui_suite_uswds:footer'
+    story: big
+

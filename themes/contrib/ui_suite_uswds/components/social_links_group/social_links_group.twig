@@ -1,0 +1,15 @@
+{% if items %}
+  <div{{ attributes.addClass(['usa-footer__social-links', 'grid-gap-1', 'grid-row']) }}>
+    {% for link in items %}
+      {% if link %}
+        <div class="grid-col-auto">
+          {{ include('ui_suite_uswds:social_link', {
+            icon: link.icon,
+            href: link.url,
+            name: link.title,
+          }, with_context = false) }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

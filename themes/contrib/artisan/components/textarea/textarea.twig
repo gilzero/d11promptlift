@@ -1,0 +1,5 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set textarea_attributes = textarea_attributes ?: create_attribute() %}
+<div{{ attributes }}>
+  <textarea{{ textarea_attributes }}>{{ value }}</textarea>
+</div>

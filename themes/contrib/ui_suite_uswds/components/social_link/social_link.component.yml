@@ -1,0 +1,18 @@
+name: 'Social link'
+description: 'A single uswds social link.'
+group: Social
+props:
+  type: object
+  properties:
+    icon:
+      title: 'Social icon'
+      description: 'Path to social icon.'
+      type: string
+    href:
+      title: 'href'
+      description: 'The social link href.'
+      type: string
+    name:
+      title: 'Name'
+      description: 'Name of the type of social link, example facebook or instagram.'
+      type: string

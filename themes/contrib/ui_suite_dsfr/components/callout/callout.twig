@@ -1,0 +1,21 @@
+{% if icon.icon_id %}
+  {% set attributes = attributes.addClass([icon.icon_id ? 'fr-icon-' ~ icon.icon_id|clean_class, (icon.settings.size|default('md') != 'md') ? 'fr-icon--' ~ icon.settings.size|clean_class, icon.settings.color ? 'fr-text-' ~ icon.settings.color|clean_class]) %}
+{% endif %}
+{% if color_schema %}
+  {% set attributes = attributes.addClass('fr-callout--' ~ color_schema) %}
+{% endif %}
+
+{% set title_tag = title_tag|default('h3') %}
+{% set text_tag = text_tag|default('p') %}
+
+<div{{ attributes.addClass('fr-callout') }}>
+  {% if title %}
+    <{{ title_tag }} class="fr-callout__title">
+      {{ title }}
+    </{{ title_tag }}>
+  {% endif %}
+  <p class="fr-callout__text">
+    {{ text }}
+  </p>
+  {{ button }}
+</div>

@@ -1,0 +1,31 @@
+{% set translate_id = id|default('translate-' ~ random()) %}
+
+{% if links -%}
+  <nav{{ attributes.addClass(['fr-translate', 'fr-nav']) }} role="navigation">
+    <div class="fr-nav__item">
+      <button class="fr-translate__btn fr-btn fr-btn--tertiary{% if variant == 'no-outline' %}-no-outline{% endif %}" aria-controls="{{ translate_id }}" aria-expanded="false" title="{{ 'Select a language'|t }}" type="button">
+        {{ title }}
+      </button>
+      <div class="fr-collapse fr-translate__menu fr-menu" id="{{ translate_id }}">
+        <ul class="fr-menu__list">
+          {%- for item in links -%}
+            {%- if item.url -%}
+              <li>
+                {% set item_lang = item.attributes.lang ?: '' %}
+                {% set link_attributes = item.attributes|default({}) %}
+                {% set link_attributes = create_attribute(link_attributes) %}
+                {% set link_attributes = link_attributes.setAttribute('href', item.url) %}
+                {% set link_attributes = item_lang ? link_attributes.setAttribute('lang', item_lang) : link_attributes %}
+                {% set link_attributes = item_lang ? link_attributes.setAttribute('hreflang', item_lang) : link_attributes %}
+                {% set link_attributes = item.in_active_trail ? link_attributes.setAttribute('aria-current', 'true') : link_attributes %}
+                <a{{ link_attributes.addClass(['fr-translate__language', 'fr-nav__link']) }}>
+                  {{ item_lang|upper }} - {{ item.title }}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </nav>
+{%- endif %}

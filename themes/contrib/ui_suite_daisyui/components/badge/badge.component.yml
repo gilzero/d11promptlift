@@ -1,0 +1,50 @@
+name: Badge
+description: "Badges are used to inform the user of the status of specific data."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/badge/"
+variants:
+  default:
+    title: Default
+  neutral:
+    title: Neutral
+  primary:
+    title: Primary
+  secondary:
+    title: Secondary
+  accent:
+    title: Accent
+  ghost:
+    title: Ghost
+  info:
+    title: Info
+  success:
+    title: Success
+  warning:
+    title: Warning
+  error:
+    title: Error
+slots:
+  label:
+    title: Label
+props:
+  type: object
+  properties:
+    outline:
+      title: "Outlined?"
+      description: "It is possible to outline any badge?"
+      type: boolean
+    size:
+      title: Size
+      description: "It is possible to set the size of badges."
+      type: string
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+      "meta:enum":
+        xs: "Extra small"
+        sm: Small
+        md: Medium
+        lg: Large

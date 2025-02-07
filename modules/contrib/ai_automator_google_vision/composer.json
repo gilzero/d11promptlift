@@ -1,0 +1,16 @@
+{
+  "name": "drupal/ai_automator_google_vision",
+  "description": "Google Vision actions for AI Automator",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "google/cloud-vision": "^1.9",
+    "drupal/ai": "^1.0.0-alpha8"
+  },
+  "authors": [
+    {
+      "name": "Marcus Johansson",
+      "email": "me@marcusmailbox.com"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+name: Preview
+slots:
+  name: "Download PDF lorem ipsum sit dolores amet"
+  detail: "PDF – 61,88 Ko"
+  description: "Description texte body small regular consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore…"
+props:
+  url: "#pdf"
+  new_window: true
+  detail_icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: file-pdf-line

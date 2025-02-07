@@ -1,0 +1,26 @@
+name: "Download link group"
+description: "It is possible to make a list of download links."
+group: Download
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/telechargement-de-fichier"
+slots:
+  title:
+    title: Title
+  downloads:
+    title: "Downloads items"
+    description: "A list of 'Download link' components."
+props:
+  type: object
+  properties:
+    bordered:
+      title: "With border?"
+      type: boolean
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6

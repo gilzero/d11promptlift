@@ -1,0 +1,38 @@
+name: Artboard
+description: "Artboard provides fixed size container to display a demo content on mobile size."
+group: Layout
+links:
+  - "https://daisyui.com/components/artboard/"
+variants:
+  default:
+    title: Default
+  horizontal:
+    title: Horizontal
+props:
+  type: object
+  properties:
+    demo:
+      title: "Artboard demo"
+      description: "Adds shadow and radius. Puts items in center."
+      type: boolean
+    size:
+      title: Size
+      description: "It is possible to set the size of artboards."
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      "meta:enum":
+        1: "Size 1 (default)"
+        2: "Size 2"
+        3: "Size 3"
+        4: "Size 4"
+        5: "Size 5"
+        6: "Size 6"
+slots:
+  content:
+    title: Content

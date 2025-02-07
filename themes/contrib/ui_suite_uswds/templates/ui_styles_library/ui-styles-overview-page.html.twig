@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Styles page template, override this in your theme.
+ */
+#}
+
+
+
+{% if styles is not empty %}
+  <div class="usa-in-page-nav-container">
+  
+    <aside
+    class="usa-in-page-nav"
+    data-title-text=""
+    data-title-heading-level="h3"
+    data-scroll-offset="0"
+    data-threshold="1"
+    data-main-content-selector="main"
+  ></aside>
+  
+  <main>
+  {% for group_name, group_styles in styles %}
+    <h2 class="margin-y-3">{{ group_name }}</h2>
+    {% for style in group_styles %}
+      <h3 id="{{ style.id }}">{{ style.label }}</h3>
+      {% if style.description %}
+        <p>{{ style.description }}</p>
+      {% endif %}
+      {% for id, option in style.preview_options %}
+        {% set option_attributes = create_attribute()
+          .addClass(id)
+          .addClass(option.previewed_with) %}
+        {% set previewed_as = option.previewed_as %}
+        {% set label = option.label %}
+
+        {% if previewed_as == 'aside' %}
+          <p>{{ label }} ({{ id }})</p>
+          <div{{ option_attributes }}>{{ 'Example'|t }}</div>
+        {% elseif previewed_as == 'hidden' %}
+          <p>{{ label }} ({{ id }})</p>
+        {% else %}
+          <p{{ option_attributes }}>{{ label }} ({{ id }})</p>
+        {% endif %}
+
+        {% if option.description is not empty %}
+          <p>{{ option.description }}</p>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+      <hr>
+  {% endfor %}
+    </main>
+</div>
+{% endif %}

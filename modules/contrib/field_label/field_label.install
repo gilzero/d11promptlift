@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Update functions for the Field Label module.
+ */
+
+/**
+ * Update settings to match new schema (Issue #3323168).
+ */
+function field_label_update_8101() {
+  $config = \Drupal::configFactory()->getEditable('field_label.settings');
+
+  // With new schema in place, simply re-save to update integers to booleans.
+  $config->save();
+}

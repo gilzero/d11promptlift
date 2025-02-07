@@ -1,0 +1,18 @@
+name: 'Collection Item'
+description: "Internal: to be used in the 'Collection' component."
+group: Collection
+links:
+  - 'https://designsystem.digital.gov/components/collection/'
+slots:
+  header_text:
+    title: 'Header text'
+    description: 'Plain text that will be rendered as link.'
+  content:
+    title: 'Content'
+    description: 'Plain text, or any kind of content.'
+  meta_items_list:
+    title: 'Meta items list'
+    description: 'A list of meta items to be included with collection item. Optional.'
+  meta_items_tags:
+    title: 'Meta items tags'
+    description: 'Tag meta items.'

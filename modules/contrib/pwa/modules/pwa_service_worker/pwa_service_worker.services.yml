@@ -1,0 +1,5 @@
+services:
+  pwa_service_worker.response_subscriber:
+    class: Drupal\pwa_service_worker\EventSubscriber\ResponseSubscriber
+    tags:
+      - { name: event_subscriber }

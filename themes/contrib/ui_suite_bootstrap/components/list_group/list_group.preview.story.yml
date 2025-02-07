@@ -1,0 +1,29 @@
+name: Preview
+slots:
+  items:
+    - type: component
+      component: "ui_suite_bootstrap:list_group_item"
+      slots:
+        content: "The current link item"
+      props:
+        active: true
+    - type: component
+      component: "ui_suite_bootstrap:list_group_item"
+      slots:
+        content: "A second link item"
+    - type: component
+      component: "ui_suite_bootstrap:list_group_item"
+      slots:
+        content: "A third link item"
+    - type: component
+      component: "ui_suite_bootstrap:list_group_item"
+      slots:
+        content: "A fourth link item, with a link"
+      props:
+        url: "https://example.com"
+    - type: component
+      component: "ui_suite_bootstrap:list_group_item"
+      slots:
+        content: "The disabled link item"
+      props:
+        disabled: true

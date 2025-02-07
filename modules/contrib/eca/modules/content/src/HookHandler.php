@@ -162,9 +162,11 @@ class HookHandler extends BaseHookHandler {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The form state.
    */
-  public function prepareForm(EntityInterface $entity, ?string $operation, FormStateInterface $form_state): void {
+  public function prepareForm(EntityInterface &$entity, ?string $operation, FormStateInterface $form_state): void {
     if ($entity instanceof ContentEntityInterface) {
-      $this->triggerEvent->dispatchFromPlugin('content_entity:prepareform', $entity, $this->entityTypes, $operation, $form_state);
+      /** @var \Drupal\eca_content\Event\ContentEntityPrepareForm $event */
+      $event = $this->triggerEvent->dispatchFromPlugin('content_entity:prepareform', $entity, $this->entityTypes, $operation, $form_state);
+      $entity = $event->getEntity();
     }
   }
 

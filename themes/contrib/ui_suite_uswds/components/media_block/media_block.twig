@@ -1,0 +1,8 @@
+<div{{ attributes.addClass('usa-media-block') }}>
+    {{ image|add_class('usa-media-block__img') }}
+    {% if body %}
+    <div class="usa-media-block__body">
+      {{ body }}
+    </div>
+    {% endif %}
+</div>

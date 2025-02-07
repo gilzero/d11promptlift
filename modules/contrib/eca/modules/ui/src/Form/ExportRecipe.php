@@ -2,6 +2,11 @@
 
 namespace Drupal\eca_ui\Form;
 
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Ajax\AjaxFormHelperTrait;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\File\FileSystem;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -13,6 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Export a model as a recipe.
  */
 class ExportRecipe extends FormBase {
+
+  use AjaxFormHelperTrait;
 
   /**
    * The export recipe service.
@@ -78,6 +85,20 @@ class ExportRecipe extends FormBase {
       '#value' => $this->t('Export'),
       '#button_type' => 'primary',
     ];
+
+    if ($this->isAjax()) {
+      $form['actions']['submit']['#ajax']['callback'] = '::ajaxSubmit';
+      // @todo static::ajaxSubmit() requires data-drupal-selector to be the same
+      //   between the various Ajax requests. A bug in
+      //   \Drupal\Core\Form\FormBuilder prevents that from happening unless
+      //   $form['#id'] is also the same. Normally, #id is set to a unique HTML
+      //   ID via Html::getUniqueId(), but here we bypass that in order to work
+      //   around the data-drupal-selector bug. This is okay so long as we
+      //   assume that this form only ever occurs once on a page. Remove this
+      //   workaround in https://www.drupal.org/node/2897377.
+      $form['#id'] = Html::getId($form_state->getBuildInfo()['form_id']);
+    }
+
     return $form;
   }
 
@@ -99,13 +120,34 @@ class ExportRecipe extends FormBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Helper function to perform the export.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
    */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {
+  protected function doExport(FormStateInterface $form_state): void {
     /** @var \Drupal\eca\Entity\Eca $eca */
     $eca = Eca::load($form_state->getValue('eca'));
     $this->exportRecipe->doExport($eca, $form_state->getValue('name'), $form_state->getValue('namespace'), $form_state->getValue('destination'));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
+    $this->doExport($form_state);
     $form_state->setRedirect('entity.eca.collection');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function successfulAjaxSubmit(array $form, FormStateInterface $form_state): AjaxResponse {
+    $this->doExport($form_state);
+    $response = new AjaxResponse();
+    $response->addCommand(new CloseModalDialogCommand());
+    $response->addCommand(new MessageCommand('The model has been exported as a recipe.'));
+    return $response;
   }
 
 }

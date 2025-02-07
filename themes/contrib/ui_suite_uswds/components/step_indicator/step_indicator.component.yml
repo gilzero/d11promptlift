@@ -1,0 +1,49 @@
+name: 'Step Indicator'
+description: 'A step indicator updates users on their progress through a multi-step process.'
+group: List
+links:
+  - 'https://designsystem.digital.gov/components/step-indicator/'
+variants:
+  default:
+    title: 'Default'
+  no_labels:
+    title: 'No labels'
+    description: 'Don’t show step labels.'
+  counters:
+    title: 'Counters'
+    description: 'Show step counters.'
+  counters_sm:
+    title: 'Counters - Small'
+    description: 'Show small step counters.'
+  center:
+    title: 'Center'
+    description: 'Center counters and labels in each step.'
+slots:
+  completed_items:
+    title: 'Completed Items'
+    description: 'An array of completed patterns.'
+  in_progress_items:
+    title: 'In Progress Items'
+    description: 'An array of in progress items.'
+props:
+  type: object
+  properties:
+    heading_level:
+      title: 'Heading level'
+      type: integer
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      'meta:enum':
+        2: 'h2'
+        3: 'h3'
+        4: 'h4 (Default)'
+        5: 'h5'
+        6: 'h6'
+    label:
+      title: 'Label'
+      description: 'Label of the step indicator.'
+      type: string

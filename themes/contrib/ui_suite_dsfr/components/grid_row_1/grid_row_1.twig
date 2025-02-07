@@ -1,0 +1,34 @@
+{% set attributes = attributes.addClass([
+  'fr-grid-row',
+  with_gutters ? 'fr-grid-row--gutters',
+  horizontal_align ? 'fr-grid-row--' ~ horizontal_align,
+  vertical_align ? 'fr-grid-row--' ~ vertical_align,
+]) %}
+
+{% set col_attributes = create_attribute(col_attributes|default({})).addClass([
+  'fr-col',
+  col ? 'fr-col-' ~ col,
+  col_sm ? 'fr-col-sm-' ~ col_sm,
+  col_md ? 'fr-col-md-' ~ col_md,
+  col_lg ? 'fr-col-lg-' ~ col_lg,
+  col_xl ? 'fr-col-xl-' ~ col_xl,
+  offset ? 'fr-col-offset-' ~ offset,
+  offset_sm ? 'fr-col-offset-sm-' ~ offset_sm,
+  offset_md ? 'fr-col-offset-md-' ~ offset_md,
+  offset_lg ? 'fr-col-offset-lg-' ~ offset_lg,
+  offset_xl ? 'fr-col-offset-xl-' ~ offset_xl,
+]) %}
+{% if container_type %}
+{% set container_attributes = create_attribute(container_attributes|default({})).addClass([
+  (container_type == 'fluid') ? 'fr-container--fluid' : 'fr-container',
+]) %}
+<div{{ container_attributes }}>
+{% endif %}
+  <div{{ attributes }}>
+    <div{{ col_attributes }}>
+      {{ content }}
+    </div>
+  </div>
+{% if container_type %}
+</div>
+{% endif %}

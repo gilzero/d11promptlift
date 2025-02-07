@@ -1,4 +1,0 @@
-services:
-  provider_huggingface.api:
-    class: Drupal\provider_huggingface\HuggingfaceApi
-    arguments: ['@http_client']

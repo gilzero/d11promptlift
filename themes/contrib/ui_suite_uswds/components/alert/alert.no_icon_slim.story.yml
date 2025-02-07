@@ -1,0 +1,6 @@
+name: No icon and Slim
+props:
+  no_icon: true
+slots:
+  heading: 'Hello world'
+  message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'

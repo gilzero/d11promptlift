@@ -1,0 +1,6 @@
+// Ckeditor styles hide non active for selected element.
+.ck-editor__top {
+  .ck.ck-style-panel .ck-style-grid .ck-style-grid__button.ck-disabled {
+    display: none !important;
+  }
+}

@@ -1,0 +1,12 @@
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-button-group--' ~ variant) %}
+{% endif %}
+
+<ul{{ attributes.addClass('usa-button-group') }}>
+  {% set buttons = buttons is sequence ? buttons : [buttons] %}
+  {% for button in buttons %}
+    <li class="usa-button-group__item">
+      {{ button }}
+    </li>
+  {% endfor %}
+</ul>

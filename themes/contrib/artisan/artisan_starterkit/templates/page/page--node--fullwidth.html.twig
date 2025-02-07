@@ -1,0 +1,19 @@
+{% embed 'artisan:page' with {
+  header_attributes: create_attribute({'class': ['shadow']}),
+  footer_attributes: create_attribute({'class': ['shadow']}),
+  main_attributes: create_attribute({'class': ['shadow']}),
+  distraction_free: distraction_free ?: false,
+  header: {
+    top: page.header_top,
+    branding: page.branding,
+    primary_menu: page.primary_menu,
+    secondary_menu: page.secondary_menu,
+    header: page.header,
+  },
+  main_content: page.content,
+  footer: {
+    top: page.footer_top,
+    bottom: page.footer_bottom,
+  }
+} only %}
+{% endembed %}

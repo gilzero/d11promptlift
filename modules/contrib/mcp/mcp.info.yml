@@ -1,0 +1,10 @@
+name: 'Model Context Protocol'
+type: module
+description: 'The MCP Drupal module implements the Model Context Protocol (MCP)'
+package: Automation
+core_version_requirement: ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2025-01-13
+version: '1.0.0-alpha4'
+project: 'mcp'
+datestamp: 1736778433

@@ -1,0 +1,35 @@
+name: Summary
+description: "The summary allows users to preview content and navigate between different sections of a page."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/sommaire"
+slots:
+  title:
+    title: Title
+props:
+  type: object
+  properties:
+    links:
+      title: Links
+      description: "Summary links by provider."
+      $ref: "ui-patterns://links"
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - p
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        p: p
+        h2: "h2 (default)"
+        h3: h3
+        h4: h4
+        h5: h5
+        h6: h6
+    title_id:
+      title: "Title ID"
+      description: "Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"

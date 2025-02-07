@@ -1,0 +1,22 @@
+{
+    "name": "drupal/pwa",
+    "type": "drupal-module",
+    "description": "Provides progressive web app integration for your Drupal site.",
+    "keywords": [
+        "Drupal",
+        "Progressive Web App",
+        "PWA",
+        "Mobile",
+        "Handheld"
+    ],
+    "license": "GPL-2.0+",
+    "homepage": "https://www.drupal.org/project/pwa",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/pwa",
+        "source": "https://git.drupalcode.org/project/pwa"
+    },
+    "minimum-stability": "dev",
+    "require": {
+      "php": "^8"
+    }
+}

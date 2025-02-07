@@ -1,0 +1,16 @@
+name: Share
+description: "Share buttons allow users to easily share content they are viewing with other users."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/partage"
+slots:
+  title:
+    title: Title
+  text:
+    title: Text
+props:
+  type: object
+  properties:
+    links:
+      title: Links
+      description: "Share links by provider. The link element contains the following elements: id: Share provider machine name (facebook, twitter, mail…); title: Link label (Share on Facebook, Share by email…); url: Link URI."
+      $ref: "ui-patterns://links"

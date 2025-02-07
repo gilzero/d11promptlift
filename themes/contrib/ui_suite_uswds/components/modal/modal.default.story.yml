@@ -1,0 +1,10 @@
+name: Preview
+slots:
+  title: 'Modal title'
+  body: 'Modal body text goes here.'
+props:
+  button_text: 'Open modal'
+  yes_text: 'Example yes text'
+  yes_url: '/'
+  no_text: 'Example no text'
+  no_url: '/'

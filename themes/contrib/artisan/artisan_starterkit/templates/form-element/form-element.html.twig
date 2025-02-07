@@ -1,0 +1,19 @@
+{% set classes = [
+  floating_label ? 'form-floating',
+] %}
+{% embed "artisan:form-element" with {
+  floating_label: floating_label,
+  name: name ?? '',
+  type: type,
+  prefix: prefix ?? '',
+  suffix: suffix ?? '',
+  children: children,
+  errors: errors,
+  attributes: attributes.addClass(classes),
+  description: description.content ?? '',
+  description_display: description_display ?? 'none',
+  description_attributes: description.attributes ? description.attributes.addClass('form-text') : NULL,
+  label: label ?? '',
+  label_display: label_display ?? 'none',
+} only %}
+{% endembed %}

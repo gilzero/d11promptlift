@@ -1,0 +1,14 @@
+name: Preview
+slots:
+  label: "Simple Link"
+props:
+  title: "Simple Link title"
+  url: /
+  target: self
+  external: false
+  tooltip: "Lorem [...] elit ut"
+  icon_position: left
+  icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: arrow-right-line

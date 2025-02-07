@@ -1,0 +1,40 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set navbar_container_attributes = navbar_container_attributes ?: create_attribute() %}
+{% set navbar_collapse_attributes = navbar_collapse_attributes ?: create_attribute() %}
+{% set header_container_attributes = header_container_attributes ?: create_attribute() %}
+{% set navbar_toggler_attributes = navbar_toggler_attributes ?: create_attribute() %}
+
+<div {{ navbar_container_attributes.addClass('navigation-alternative') }}>
+  {% block branding %}
+    {{ branding }}
+  {% endblock %}
+
+  {% block header %}
+    <div {{ header_container_attributes }}>
+      {{ header }}
+    </div>
+  {% endblock %}
+
+  {% block secondary_menu %}
+    {{ secondary_menu }}
+  {% endblock %}
+
+  <nav {{ attributes.addClass(['navbar', 'navbar-expand-lg', 'd-lg-none']) }}>
+    <button {{ navbar_toggler_attributes
+      .setAttribute('type', 'button')
+      .setAttribute('data-bs-toggle', 'collapse')
+      .setAttribute('data-bs-target', '.navbar-collapse')
+      .setAttribute('aria-controls', 'navbar-collapse')
+      .setAttribute('aria-expanded', 'false')
+      .setAttribute('aria-label', 'Toggle navigation')
+      .addClass(['navbar-toggler', 'collapsed'])
+    }}>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div {{ navbar_collapse_attributes.addClass(['collapse', 'navbar-collapse']) }}>
+      {{ primary_menu }}
+    </div>
+  </nav>
+</div>
+
+<div class="container navbar navbar-expand-lg d-none d-lg-flex justify-content-lg-center">{{ primary_menu }}</div>

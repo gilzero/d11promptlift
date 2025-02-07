@@ -1,0 +1,12 @@
+services:
+  plugin.manager.mcp:
+    class: Drupal\mcp\McpPluginManager
+    arguments:
+      - '@container.namespaces'
+      - '@cache.discovery'
+      - '@module_handler'
+      - '@config.factory'
+
+  mcp.service:
+    class: Drupal\mcp\McpService
+    arguments: [ '@plugin.manager.mcp' ]

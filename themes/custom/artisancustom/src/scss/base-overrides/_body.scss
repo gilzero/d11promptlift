@@ -1,0 +1,15 @@
+body {
+  --body-font-family: var(--theme-base-font-family, var(--bs-body-font-family, Roboto));
+  --body-font-size: var(--theme-base-font-size, var(--bs-body-font-size, 1rem));
+  --body-font-weight: var(--theme-base-font-weight, var(--bs-body-font-weight, 400));
+  --body-line-height: var(--theme-base-line-height, var(--bs-body-line-height, 1.5));
+  --body-color: var(--theme-body-color, var(--bs-body-color, black));
+  --body-background: var(--theme-body-background, var(--bs-body-bg, white));
+
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--body-color);
+  background-color: var(--body-background);
+}

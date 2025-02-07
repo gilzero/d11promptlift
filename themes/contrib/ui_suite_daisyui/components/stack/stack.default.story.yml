@@ -1,0 +1,22 @@
+name: Default
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:alert"
+      slots:
+        title: "Notification 1"
+        message: "You have 3 unread messages. Tap here to see."
+    - type: component
+      component: "ui_suite_daisyui:alert"
+      slots:
+        title: "Notification 2"
+        message: "You have 3 unread messages. Tap here to see."
+      props:
+        variant: success
+    - type: component
+      component: "ui_suite_daisyui:alert"
+      slots:
+        title: "Notification 3"
+        message: "You have 3 unread messages. Tap here to see."
+      props:
+        variant: warning

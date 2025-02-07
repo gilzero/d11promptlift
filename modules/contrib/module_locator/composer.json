@@ -1,0 +1,23 @@
+{
+    "name": "drupal/module_locator",
+    "type": "drupal-module",
+    "description": "Locate modules in filesystem.",
+    "keywords": [
+      "Drupal",
+      "Developer"
+    ],
+    "homepage": "https://www.drupal.org/project/module_locator",
+    "license": "GPL-2.0+",
+    "authors": [
+      {
+        "name": "Andrew Answer",
+        "email": "mail@answe.ru",
+        "homepage": "http://answe.ru",
+        "role": "Maintainer"
+      }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/module_locator",
+        "source": "http://cgit.drupalcode.org/module_locator"
+    }
+}

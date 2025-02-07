@@ -17,7 +17,8 @@ use Drupal\eca\Service\Actions;
 use Drupal\eca\Service\Conditions;
 use Drupal\eca\Service\ExportRecipe;
 use Drupal\eca\Service\Modellers;
-use Drush\Attributes as CLI;
+use Drush\Attributes\Command;
+use Drush\Attributes\Usage;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig\Environment as TwigEnvironment;
@@ -182,8 +183,8 @@ final class DocsCommands extends DrushCommands {
   /**
    * Export documentation for all plugins.
    */
-  #[CLI\Command(name: 'eca:doc:plugins', aliases: [])]
-  #[CLI\Usage(name: 'eca:doc:plugins', description: 'Export documentation for all plugins.')]
+  #[Command(name: 'eca:doc:plugins', aliases: [])]
+  #[Usage(name: 'eca:doc:plugins', description: 'Export documentation for all plugins.')]
   public function plugins(): void {
     @$this->fileSystem->mkdir('../mkdocs/include/modules', NULL, TRUE);
     @$this->fileSystem->mkdir('../mkdocs/include/plugins', NULL, TRUE);
@@ -207,8 +208,8 @@ final class DocsCommands extends DrushCommands {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    */
-  #[CLI\Command(name: 'eca:doc:models', aliases: [])]
-  #[CLI\Usage(name: 'eca:doc:models', description: 'Export documentation for all models.')]
+  #[Command(name: 'eca:doc:models', aliases: [])]
+  #[Usage(name: 'eca:doc:models', description: 'Export documentation for all models.')]
   public function models(): void {
     /** @var \Drupal\eca\Entity\Eca $eca */
     foreach ($this->entityTypeManager
@@ -404,6 +405,7 @@ final class DocsCommands extends DrushCommands {
 
         case 'item':
         case 'markup':
+        case 'container':
           if (isset($def['#markup']) && !str_starts_with($key, 'eca_token_')) {
             $extraDescriptions[] = (string) $def['#markup'];
           }

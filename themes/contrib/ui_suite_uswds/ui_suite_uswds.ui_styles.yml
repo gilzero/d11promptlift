@@ -1,0 +1,1502 @@
+# Height and width
+height:
+  category: Sizing
+  label: Height
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#height
+  options:
+    height-auto: Auto
+    height-full: Full (100%)
+    height-viewport: Viewport (100vh)
+    height-0: 0
+    height-05: 4
+    height-1: 8
+    height-105: 12
+    height-2: 16
+    height-205: 20
+    height-3: 24
+    height-4: 32
+    height-5: 40
+    height-6: 48
+    height-7: 56
+    height-8: 64
+    height-9: 72
+    height-10: 80
+    height-card: 160
+    height-card-lg: 240
+    height-mobile: 320
+    height-mobile-lg: 480
+    height-tablet: 640
+    height-tablet-lg: 880
+    height-desktop: 1024
+    height-desktop-lg: 1200
+    height-widescreen: 1400
+  previewed_with: [ bg-primary-lighter, padding-1]
+
+width:
+  category: Sizing
+  label: Width
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#width
+  options:
+    width-auto: Auto
+    width-full: Full (100%)
+    width-viewport: Viewport (100vh)
+    width-0: 0
+    width-05: 4
+    width-1: 8
+    width-105: 12
+    width-2: 16
+    width-205: 20
+    width-3: 24
+    width-4: 32
+    width-5: 40
+    width-6: 48
+    width-7: 56
+    width-8: 64
+    width-9: 72
+    width-10: 80
+    width-card: 160
+    width-card-lg: 240
+    width-mobile: 320
+    width-mobile-lg: 480
+    width-tablet: 640
+    width-tablet-lg: 880
+    width-desktop: 1024
+    width-desktop-lg: 1200
+    width-widescreen: 1400
+  previewed_with: [ bg-primary-lighter, padding-1, maxw-full]
+
+max_height:
+  category: Sizing
+  label: Max height
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#maxh
+  options:
+    maxh-auto: Auto
+    maxh-full: Full (100%)
+    maxh-viewport: Viewport (100vh)
+    maxh-none: None
+    maxh-0: 0
+    maxh-05: 4
+    maxh-1: 8
+    maxh-105: 12
+    maxh-2: 16
+    maxh-205: 20
+    maxh-3: 24
+    maxh-4: 32
+    maxh-5: 40
+    maxh-6: 48
+    maxh-7: 56
+    maxh-8: 64
+    maxh-9: 72
+    maxh-10: 80
+    maxh-card: 160
+    maxh-card-lg: 240
+    maxh-mobile: 320
+    maxh-mobile-lg: 480
+    maxh-tablet: 640
+    maxh-tablet-lg: 880
+    maxh-desktop: 1024
+    maxh-desktop-lg: 1200
+    maxh-widescreen: 1400
+  previewed_as: hidden
+
+max_width:
+  category: Sizing
+  label: Max Width
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#maxw
+  options:
+    maxw-auto: Auto
+    maxw-full: Full (100%)
+    maxw-viewport: Viewport (100vh)
+    maxw-none: None
+    maxw-0: 0
+    maxw-05: 4
+    maxw-1: 8
+    maxw-105: 12
+    maxw-2: 16
+    maxw-205: 20
+    maxw-3: 24
+    maxw-4: 32
+    maxw-5: 40
+    maxw-6: 48
+    maxw-7: 56
+    maxw-8: 64
+    maxw-9: 72
+    maxw-10: 80
+    maxw-card: 160
+    maxw-card-lg: 240
+    maxw-mobile: 320
+    maxw-mobile-lg: 480
+    maxw-tablet: 640
+    maxw-tablet-lg: 880
+    maxw-desktop: 1024
+    maxw-desktop-lg: 1200
+    maxw-widescreen: 1400
+  previewed_as: hidden
+
+min_height:
+  category: Sizing
+  label: Min height
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#minh
+  options:
+    minh-auto: Auto
+    minh-full: Full (100%)
+    minh-viewport: Viewport (100vh)
+    min-none: None
+    minh-0: 0
+    minh-05: 4
+    minh-1: 8
+    minh-105: 12
+    minh-2: 16
+    minh-205: 20
+    minh-3: 24
+    minh-4: 32
+    minh-5: 40
+    minh-6: 48
+    minh-7: 56
+    minh-8: 64
+    minh-9: 72
+    minh-10: 80
+    minh-card: 160
+    minh-card-lg: 240
+    minh-mobile: 320
+    minh-mobile-lg: 480
+    minh-tablet: 640
+    minh-tablet-lg: 880
+    minh-desktop: 1024
+    minh-desktop-lg: 1200
+    minh-widescreen: 1400
+  previewed_as: hidden
+
+min_width:
+  category: Sizing
+  label: Min width
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#minw
+  options:
+    minw-auto: Auto
+    minw-full: Full (100%)
+    minw-viewport: Viewport (100vh)
+    min-none: None
+    minw-0: 0
+    minw-05: 4
+    minw-1: 8
+    minw-105: 12
+    minw-2: 16
+    minw-205: 20
+    minw-3: 24
+    minw-4: 32
+    minw-5: 40
+    minw-6: 48
+    minw-7: 56
+    minw-8: 64
+    minw-9: 72
+    minw-10: 80
+    minw-card: 160
+    minw-card-lg: 240
+    minw-mobile: 320
+    minw-mobile-lg: 480
+    minw-tablet: 640
+    minw-tablet-lg: 880
+    minw-desktop: 1024
+    minw-desktop-lg: 1200
+    minw-widescreen: 1400
+  previewed_as: hidden
+
+aspect_ratio:
+  category: Sizing
+  label: Aspect Ratio
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#aspect
+  options:
+    add-aspect-1x1: 1x1
+    add-aspect-2x1: 2x1
+    add-aspect-9x16: 9x16
+    add-aspect-16x9: 16x9
+    add-aspect-4x3: 4x3
+    add-aspect-3x4: 3x4
+  previewed_with: [ bg-primary-lighter, padding-1, maxw-tablet]
+
+circle:
+  category: Sizing
+  label: Circle
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#circle
+  options:
+    circle-0: 0
+    circle-05: 4
+    circle-1: 8
+    circle-105: 12
+    circle-2: 16
+    circle-205: 20
+    circle-3: 24
+    circle-4: 32
+    circle-5: 40
+    circle-6: 48
+    circle-7: 56
+    circle-8: 64
+    circle-9: 72
+    circle-10: 80
+    circle-card: 160
+    circle-card-lg: 240
+    circle-mobile: 320
+  previewed_with: [ bg-primary-lighter, padding-1]
+
+square:
+  category: Sizing
+  label: Square
+  description: Set the dimensions of an item.
+  links:
+    - https://designsystem.digital.gov/utilities/height-and-width/#square
+  options:
+    square-0: 0
+    square-05: 4
+    square-1: 8
+    square-105: 12
+    square-2: 16
+    square-205: 20
+    square-3: 24
+    square-4: 32
+    square-5: 40
+    square-6: 48
+    square-7: 56
+    square-8: 64
+    square-9: 72
+    square-10: 80
+    square-card: 160
+    square-card-lg: 240
+    square-mobile: 320
+  previewed_with: [ bg-primary-lighter, padding-1]
+
+font_style:
+  label: Font style
+  category: Text styles
+  links:
+    - https://designsystem.digital.gov/utilities/text-styles/#font-style-2
+  options:
+    text-italic: Italic
+    text-no-italic: No italic
+
+font_weight:
+  label: Font weight
+  category: Text styles
+  links:
+    - https://designsystem.digital.gov/utilities/text-styles/#font-weight-2
+  options:
+    text-thin: Thin
+    text-light: Light
+    text-normal: Normal
+    text-semibold: Semibold
+    text-bold: Bold
+    text-heavy: Heavy
+
+letter_spacing:
+  label: Letter spacing
+  category: Text styles
+  links:
+    - https://designsystem.digital.gov/utilities/text-styles/#letterspacing-2
+  options:
+    text-ls-neg-3: -3
+    text-ls-neg-2: -2
+    text-ls-neg-1: -1
+    text-ls-auto: Auto
+    text-ls-1: 1
+    text-ls-2: 2
+    text-ls-3: 3
+
+text_underline:
+  label: Text underline
+  category: Text styles
+  options:
+    text-underline: Underline
+    text-no-underline: No underline
+
+text_strike:
+  label: Text strike
+  category: Text styles
+  options:
+    text-strike: Strike
+    text-no-strike: No strike
+
+text_decoration_color:
+  label: Text Decoration Color
+  category: Text styles
+  links:
+    - https://designsystem.digital.gov/utilities/text-styles/#text-decoration-color
+  options:
+    underline-base-lightest: Base lightest
+    underline-base-lighter: Base lighter
+    underline-base-light: Base light
+    underline-base: Base
+    underline-base-dark: Base dark
+    underline-base-darker: Base darker
+    underline-base-darkest: Base darkest
+    underline-ink: Ink
+    underline-primary-lighter: Primary lighter
+    underline-primary-light: Primary light
+    underline-primary: Primary
+    underline-primary-vivid: Primary vivid
+    underline-primary-dark: Primary dark
+    underline-primary-darker: Primary darker
+    underline-secondary-lighter: Lighter
+    underline-secondary-light: Light
+    underline-secondary: Secondary
+    underline-secondary-vivid: Secondary vivid
+    underline-secondary-dark: Secondary dark
+    underline-secondary-darker: Secondary darker
+    underline-accent-cool-lighter: Cool lighter
+    underline-accent-cool-light: Cool light
+    underline-accent-cool: Cool
+    underline-accent-cool-dark: Cool dark
+    underline-accent-cool-darker: Cool darker
+    underline-accent-warm-lighter: Warm lighter
+    underline-accent-warm-light: Warm light
+    underline-accent-warm: Warm
+    underline-accent-warm-dark: Warm dark
+    underline-accent-warm-darker: Warm darkest
+    underline-emergency: Emergency
+    underline-emergency-dark: Emergency dark
+    underline-white:  White
+    underline-gray-5: Gray 5
+    underline-gray-10: Gray 10
+    underline-gray-30: Gray 30
+    underline-gray-50: Gray 50
+    underline-gray-70: Gray 70
+    underline-gray-90: Gray 90
+    underline-black: Black
+    underline-red: Red
+    underline-orange: Orange
+    underline-gold: Gold
+    underline-yellow: Yellow
+    underline-green: Green
+    underline-mint: Mint
+    underline-cyan: Cyan
+    underline-blue: Blue
+    underline-indigo: Indigo
+    underline-violet: Violet
+    underline-magenta: Magenta
+  previewed_with:
+    - text-underline
+
+text_transform:
+  label: Text transform
+  category: Text styles
+  options:
+    text-uppercase: Uppercase
+    text-lowercase: Lowercase
+    text-no-uppercase: No uppercase
+    text-no-lowercase: No lowercase
+
+vertical_alignment:
+  label: Vertical Alignment
+  category: Text styles
+  links:
+    - https://designsystem.digital.gov/utilities/text-styles/#vertical-align
+  options:
+    text-baseline: Baseline
+    text-bottom: Bottom
+    text-middle: Middle
+    text-sub: Sub
+    text-super: Super
+    text-tbottom: tBottom
+    text-ttop: tTop
+    text-top: Top
+  previewed_with: [bg-red, width-4]
+
+whitespace:
+  label: Whitespace formatting
+  category: Text styles
+  links:
+    - https://designsystem.digital.gov/utilities/text-styles/#whitespace
+  options:
+    text-pre: Pre
+    text-pre-line: Pre-line
+    text-pre-wrap: Pre-wrap
+    text-wrap: Wrap
+    text-no-wrap: No wrap
+
+list_reset:
+  label: List Reset
+  description: Reset default list styling
+  links:
+    - https://designsystem.digital.gov/utilities/list-reset/
+  options:
+    add-list-reset: Reset
+
+opacity:
+  label: Opacity
+  description: Set the opacity (or transparency) of an item in increments of 10%.
+  links:
+    - https://designsystem.digital.gov/design-tokens/opacity/
+  options:
+    opacity-0: 0
+    opacity-10: 10
+    opacity-20: 20
+    opacity-30: 30
+    opacity-40: 40
+    opacity-50: 50
+    opacity-60: 60
+    opacity-70: 70
+    opacity-80: 80
+    opacity-90: 90
+    opacity-100: 100
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+shadow:
+  label: Shadow
+  description: Often used to indicate elevation.
+  links:
+    - https://designsystem.digital.gov/design-tokens/shadow/
+    - https://designsystem.digital.gov/utilities/shadow/
+  options:
+    shadow-none: None
+    shadow-1: 1
+    shadow-2: 2
+    shadow-3: 3
+    shadow-4: 4
+    shadow-5: 5
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+prose:
+  label: Prose
+  options:
+    usa-prose: Prose
+
+margin_top:
+  label: Margin top
+  category: Spacing
+  options:
+    margin-top-0: 0
+    margin-top-1: 1
+    margin-top-2: 2
+    margin-top-3: 3
+    margin-top-4: 4
+    margin-top-5: 5
+    margin-top-6: 6
+    margin-top-7: 7
+    margin-top-8: 8
+    margin-top-9: 9
+    margin-top-10: 10
+    margin-top-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+margin_right:
+  label: Margin right
+  category: Spacing
+  options:
+    margin-right-0: 0
+    margin-right-1: 1
+    margin-right-2: 2
+    margin-right-3: 3
+    margin-right-4: 4
+    margin-right-5: 5
+    margin-right-6: 6
+    margin-right-7: 7
+    margin-right-8: 8
+    margin-right-9: 9
+    margin-right-10: 10
+    margin-right-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+margin_bottom:
+  label: Margin bottom
+  category: Spacing
+  options:
+    margin-bottom-0: 0
+    margin-bottom-1: 1
+    margin-bottom-2: 2
+    margin-bottom-3: 3
+    margin-bottom-4: 4
+    margin-bottom-5: 5
+    margin-bottom-6: 6
+    margin-bottom-7: 7
+    margin-bottom-8: 8
+    margin-bottom-9: 9
+    margin-bottom-10: 10
+    margin-bottom-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+margin_left:
+  label: Margin left
+  category: Spacing
+  options:
+    margin-left-0: 0
+    margin-left-1: 1
+    margin-left-2: 2
+    margin-left-3: 3
+    margin-left-4: 4
+    margin-left-5: 5
+    margin-left-6: 6
+    margin-left-7: 7
+    margin-left-8: 8
+    margin-left-9: 9
+    margin-left-10: 10
+    margin-left-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+padding_top:
+  label: Padding top
+  category: Spacing
+  options:
+    padding-top-0: 0
+    padding-top-1: 1
+    padding-top-2: 2
+    padding-top-3: 3
+    padding-top-4: 4
+    padding-top-5: 5
+    padding-top-6: 6
+    padding-top-7: 7
+    padding-top-8: 8
+    padding-top-9: 9
+    padding-top-10: 10
+    padding-top-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+padding_right:
+  label: Padding right
+  category: Spacing
+  options:
+    padding-right-0: 0
+    padding-right-1: 1
+    padding-right-2: 2
+    padding-right-3: 3
+    padding-right-4: 4
+    padding-right-5: 5
+    padding-right-6: 6
+    padding-right-7: 7
+    padding-right-8: 8
+    padding-right-9: 9
+    padding-right-10: 10
+    padding-right-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+    - text-right
+
+padding_bottom:
+  label: Padding bottom
+  category: Spacing
+  options:
+    padding-bottom-0: 0
+    padding-bottom-1: 1
+    padding-bottom-2: 2
+    padding-bottom-3: 3
+    padding-bottom-4: 4
+    padding-bottom-5: 5
+    padding-bottom-6: 6
+    padding-bottom-7: 7
+    padding-bottom-8: 8
+    padding-bottom-9: 9
+    padding-bottom-10: 10
+    padding-bottom-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+padding_left:
+  label: Padding left
+  category: Spacing
+  options:
+    padding-left-0: 0
+    padding-left-1: 1
+    padding-left-2: 2
+    padding-left-3: 3
+    padding-left-4: 4
+    padding-left-5: 5
+    padding-left-6: 6
+    padding-left-7: 7
+    padding-left-8: 8
+    padding-left-9: 9
+    padding-left-10: 10
+    padding-left-15: 15
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+measure:
+  label: Measure
+  category: Paragraph styles
+  links:
+    - https://designsystem.digital.gov/utilities/paragraph-styles/#measure
+  options:
+    measure-1: 1
+    measure-2: 2
+    measure-3: 3
+    measure-4: 4
+    measure-5: 5
+    measure-none: None
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+text_alignment:
+  label: Text alignment
+  category: Paragraph styles
+  links:
+    - https://designsystem.digital.gov/utilities/paragraph-styles/#text-alignment
+  options:
+    text-left: Left
+    text-center: Center
+    text-right: Right
+    text-justify: Justify
+
+text_indent:
+  label: Text intent
+  category: Paragraph styles
+  links:
+    - https://designsystem.digital.gov/utilities/paragraph-styles/#text-indent
+  options:
+    text-indent-neg-9: -72
+    text-indent-neg-8: -64
+    text-indent-neg-7: -56
+    text-indent-neg-6: -48
+    text-indent-neg-5: -40
+    text-indent-neg-4: -32
+    text-indent-neg-3: -24
+    text-indent-neg-205: -20
+    text-indent-neg-2: -16
+    text-indent-neg-105: -12
+    text-indent-neg-1: -8
+    text-indent-neg-05: -4
+    text-indent-05: 4
+    text-indent-1: 8
+    text-indent-105: 12
+    text-indent-2: 16
+    text-indent-205: 20
+    text-indent-3: 24
+    text-indent-4: 32
+    text-indent-5: 40
+    text-indent-6: 48
+    text-indent-7: 56
+    text-indent-8: 64
+    text-indent-9: 72
+
+background_color:
+  label: Background color
+  category: Color
+  links:
+    - https://designsystem.digital.gov/utilities/color/#background-color-2
+  options:
+    bg-base-lightest: Base lightest
+    bg-base-lighter: Base lighter
+    bg-base-light: Base light
+    bg-base: Base
+    bg-base-dark:
+      label: Base dark
+      previewed_with:
+        - text-base-lightest
+    bg-base-darker:
+      label: Base darker
+      previewed_with:
+        - text-base-lightest
+    bg-base-darkest:
+      label: Base darkest
+      previewed_with:
+        - text-base-lightest
+    bg-ink:
+      label: Ink
+      previewed_with:
+        - text-base-lightest
+    bg-primary-lighter: Primary lighter
+    bg-primary-light: Primary light
+    bg-primary: Primary
+    bg-primary-vivid: Primary vivid
+    bg-primary-dark:
+      label: Primary dark
+      previewed_with:
+        - text-base-lightest
+    bg-primary-darker:
+      label: Primary darker
+      previewed_with:
+        - text-base-lightest
+    bg-secondary-lighter: Lighter
+    bg-secondary-light: Light
+    bg-secondary: Secondary
+    bg-secondary-vivid: Secondary vivid
+    bg-secondary-dark:
+      label: Secondary dark
+      previewed_with:
+        - text-base-lightest
+    bg-secondary-darker:
+      label: Secondary darker
+      previewed_with:
+        - text-base-lightest
+    bg-accent-cool-lighter: Cool lighter
+    bg-accent-cool-light: Cool light
+    bg-accent-cool: Cool
+    bg-accent-cool-dark:
+      label: Cool dark
+      previewed_with:
+        - text-base-lightest
+    bg-accent-cool-darker:
+      label: Cool darker
+      previewed_with:
+        - text-base-lightest
+    bg-accent-warm-lighter: Warm lighter
+    bg-accent-warm-light: Warm light
+    bg-accent-warm: Warm
+    bg-accent-warm-dark:
+      label: Warm dark
+      previewed_with:
+        - text-base-lightest
+    bg-accent-warm-darker:
+      label: Warm darkest
+      previewed_with:
+        - text-base-lightest
+    bg-emergency: Emergency
+    bg-emergency-dark:
+      label: Emergency dark
+      previewed_with:
+        - text-base-lightest
+    bg-white:  White
+    bg-gray-5: Gray 5
+    bg-gray-10: Gray 10
+    bg-gray-30: Gray 30
+    bg-gray-50: Gray 50
+    bg-gray-70: Gray 70
+    bg-gray-90: Gray 90
+    bg-black: Black
+    bg-red: Red
+    bg-orange: Orange
+    bg-gold: Gold
+    bg-yellow: Yellow
+    bg-green: Green
+    bg-mint: Mint
+    bg-cyan: Cyan
+    bg-blue: Blue
+    bg-indigo: Indigo
+    bg-violet: Violet
+    bg-magenta: Magenta
+  previewed_with:
+    - padding-1
+
+text_color:
+  label: Text color
+  category: Color
+  links:
+    - https://designsystem.digital.gov/utilities/color/#text-color
+  options:
+    text-base-lightest:
+      label: Base lightest
+      previewed_with:
+        - bg-base-light
+    text-base-lighter:
+      label: Base lighter
+      previewed_with:
+        - bg-base-light
+    text-base-light: Base light
+    text-base: Base
+    text-base-dark:
+      label: Base dark
+      previewed_with:
+        - bg-base-lightest
+    text-base-darker:
+      label: Base darker
+      previewed_with:
+        - bg-base-lightest
+    text-base-darkest:
+      label: Base darkest
+      previewed_with:
+        - bg-base-lightest
+    text-ink:
+      label: Ink
+      previewed_with:
+        - bg-base-lightest
+    text-primary-lighter: Primary lighter
+    text-primary-light: Primary light
+    text-primary: Primary
+    text-primary-vivid: Primary vivid
+    text-primary-dark:
+      label: Primary dark
+      previewed_with:
+        - bg-base-lightest
+    text-primary-darker:
+      label: Primary darker
+      previewed_with:
+        - bg-base-lightest
+    text-secondary-lighter: Lighter
+    text-secondary-light: Light
+    text-secondary: Secondary
+    text-secondary-vivid: Secondary vivid
+    text-secondary-dark:
+      label: Secondary dark
+      previewed_with:
+        - bg-base-lightest
+    text-secondary-darker:
+      label: Secondary darker
+      previewed_with:
+        - bg-base-lightest
+    text-accent-cool-lighter: Cool lighter
+    text-accent-cool-light: Cool light
+    text-accent-cool: Cool
+    text-accent-cool-dark:
+      label: Cool dark
+      previewed_with:
+        - bg-base-lightest
+    text-accent-cool-darker:
+      label: Cool darker
+      previewed_with:
+        - bg-base-lightest
+    text-accent-warm-lighter: Warm lighter
+    text-accent-warm-light: Warm light
+    text-accent-warm: Warm
+    text-accent-warm-dark:
+      label: Warm dark
+      previewed_with:
+        - bg-base-lightest
+    text-accent-warm-darker:
+      label: Warm darkest
+      previewed_with:
+        - bg-base-lightest
+    text-emergency: Emergency
+    text-emergency-dark:
+      label: Emergency dark
+      previewed_with:
+        - bg-base-lightest
+    text-white:
+      label: White
+      previewed_with:
+        - bg-base-lightest
+    text-gray-5: Gray 5
+    text-gray-10: Gray 10
+    text-gray-30: Gray 30
+    text-gray-50: Gray 50
+    text-gray-70: Gray 70
+    text-gray-90: Gray 90
+    text-black: Black
+    text-red: Red
+    text-orange: Orange
+    text-gold: Gold
+    text-yellow: Yellow
+    text-green: Green
+    text-mint: Mint
+    text-cyan: Cyan
+    text-blue: Blue
+    text-indigo: Indigo
+    text-violet: Violet
+    text-magenta: Magenta
+  previewed_with:
+    - padding-1
+
+clearfix:
+  label: Clearfix
+  category: Float
+  links:
+    - https://designsystem.digital.gov/utilities/clearfix/
+  options:
+    clearfix: Yes
+
+float:
+  label: Float
+  category: Float
+  links:
+    - https://designsystem.digital.gov/utilities/float/
+  options:
+    float-none: None
+    float-right: Right
+    float-left: Left
+
+flex:
+  label: Flex
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/
+  options:
+    flex-auto: Auto
+    flex-fill: Fill
+    flex-1: 1
+    flex-2: 2
+    flex-3: 3
+    flex-4: 4
+    flex-5: 5
+    flex-6: 6
+    flex-7: 7
+    flex-8: 8
+    flex-9: 9
+    flex-10: 10
+    flex-11: 11
+    flex-12: 12
+
+flex_direction:
+  label: Flex Direction
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/#utility-flex-direction
+  options:
+    flex-column: Column
+    flex-row: Row
+
+flex_wrap:
+  label: Flex Wrap
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/#utility-flex-wrap
+  options:
+    flex-wrap: Wrap
+    flex-no-wrap: No wrap
+
+flex_align:
+  label: Flex Align
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/#utility-flex-align
+  options:
+    flex-align-start: Start
+    flex-align-center: Center
+    flex-align-end: End
+    flex-align-stretch: Stretch
+
+flex_self_align:
+  label: Flex Self Align
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/#utility-flex-align-self
+  options:
+    flex-align-self-start: Start
+    flex-align-self-center: Center
+    flex-align-self-end: End
+    flex-align-self-stretch: Stretch
+
+flex_justify:
+  label: Flex Justify
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/#utility-flex-justify
+  options:
+    flex-justify: Justify
+    flex-justify-start: Justify Start
+    flex-justify-center: Justify Center
+    flex-justify-end: Justify End
+
+flex_order:
+  label: Flex Order
+  category: Flex
+  links:
+    - https://designsystem.digital.gov/utilities/flex/#utility-order
+  options:
+    order-first: First
+    order-last: Last
+    order-initial: Initial
+    order-0: 0
+    order-1: 1
+    order-2: 2
+    order-3: 3
+    order-4: 4
+    order-5: 5
+    order-6: 6
+    order-7: 7
+    order-8: 8
+    order-9: 9
+    order-10: 10
+    order-11: 11
+    order-12: 12
+
+outline:
+  label: Outline
+  category: Outline
+  links:
+    - https://designsystem.digital.gov/utilities/outline/
+  options:
+    outline-0: 0
+    outline-1px: 1px
+    outline-2px: 2px
+    outline-05: 4px
+
+outline_color:
+  label: Outline Color
+  category: Outline
+  links:
+    - https://designsystem.digital.gov/utilities/outline/#utility-outline-color
+  options:
+    outline-transparent: Transparent
+    outline-black: Block
+    outline-white: White
+  previewed_with:
+    - outline-1px
+
+border_top:
+  label: Border Top
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/
+  options:
+    border-top-1px: 1px
+    border-top-05: 4
+    border-top-1: 8
+    border-top-105: 12
+    border-top-2: 16
+    border-top-205: 20
+    border-top-3: 24
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+border_bottom:
+  label: Border Bottom
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/
+  options:
+    border-bottom-1px: 1px
+    border-bottom-05: 4
+    border-bottom-1: 8
+    border-bottom-105: 12
+    border-bottom-2: 16
+    border-bottom-205: 20
+    border-bottom-3: 24
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+border_left:
+  label: Border Left
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/
+  options:
+    border-left-1px: 1px
+    border-left-05: 4
+    border-left-1: 8
+    border-left-105: 12
+    border-left-2: 16
+    border-left-205: 20
+    border-left-3: 24
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+border_right:
+  label: Border Right
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/
+  options:
+    border-right-1px: 1px
+    border-right-05: 4
+    border-right-1: 8
+    border-right-105: 12
+    border-right-2: 16
+    border-right-205: 20
+    border-right-3: 24
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+border_style:
+  label: Border Style
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-border-style
+  options:
+    border-solid: Solid
+    border-dashed: Dashed
+    border-dotted: Dotted
+  previewed_with:
+    - bg-primary-lighter
+    - padding-1
+
+border_width_top:
+  label: Border Width Top
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-border-width
+  options:
+    border-top-width-1px: 1px
+    border-top-width-05: 4
+    border-top-width-1: 8
+    border-top-width-105: 12
+    border-top-width-2: 16
+    border-top-width-205: 20
+    border-top-width-3: 24
+  previewed_with:
+    - border-top-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_width_bottom:
+  label: Border Width Bottom
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-border-width
+  options:
+    border-bottom-width-1px: 1px
+    border-bottom-width-05: 4
+    border-bottom-width-1: 8
+    border-bottom-width-105: 12
+    border-bottom-width-2: 16
+    border-bottom-width-205: 20
+    border-bottom-width-3: 24
+  previewed_with:
+    - border-bottom-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_width_left:
+  label: Border Width Left
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-border-width
+  options:
+    border-left-width-1px: 1px
+    border-left-width-05: 4
+    border-left-width-1: 8
+    border-left-width-105: 12
+    border-left-width-2: 16
+    border-left-width-205: 20
+    border-left-width-3: 24
+  previewed_with:
+    - border-left-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_width_right:
+  label: Border Width Right
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-border-width
+  options:
+    border-right-width-1px: 1px
+    border-right-width-05: 4
+    border-right-width-1: 8
+    border-right-width-105: 12
+    border-right-width-2: 16
+    border-right-width-205: 20
+    border-right-width-3: 24
+  previewed_with:
+    - border-right-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_color:
+  label: Border Color
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-border-color
+  options:
+    border-base-lightest: Base lightest
+    border-base-lighter: Base lighter
+    border-base-light: Base light
+    border-base: Base
+    border-base-dark: Base dark
+    border-base-darker: Base darker
+    border-base-darkest: Base darkest
+    border-ink: Ink
+    border-primary-lighter: Primary lighter
+    border-primary-light: Primary light
+    border-primary: Primary
+    border-primary-vivid: Primary vivid
+    border-primary-dark: Primary dark
+    border-primary-darker: Primary darker
+    border-secondary-lighter: Lighter
+    border-secondary-light: Light
+    border-secondary: Secondary
+    border-secondary-vivid: Secondary vivid
+    border-secondary-dark: Secondary dark
+    border-secondary-darker: Secondary darker
+    border-accent-cool-lighter: Cool lighter
+    border-accent-cool-light: Cool light
+    border-accent-cool: Cool
+    border-accent-cool-dark: Cool dark
+    border-accent-cool-darker: Cool darker
+    border-accent-warm-lighter: Warm lighter
+    border-accent-warm-light: Warm light
+    border-accent-warm: Warm
+    border-accent-warm-dark: Warm dark
+    border-accent-warm-darker: Warm darkest
+    border-emergency: Emergency
+    border-emergency-dark: Emergency dark
+    border-white:  White
+    border-gray-5: Gray 5
+    border-gray-10: Gray 10
+    border-gray-30: Gray 30
+    border-gray-50: Gray 50
+    border-gray-70: Gray 70
+    border-gray-90: Gray 90
+    border-black: Black
+    border-red: Red
+    border-orange: Orange
+    border-gold: Gold
+    border-yellow: Yellow
+    border-green: Green
+    border-mint: Mint
+    border-cyan: Cyan
+    border-blue: Blue
+    border-indigo: Indigo
+    border-violet: Violet
+    border-magenta: Magenta
+  previewed_with:
+    - border-top-1px
+    - border-bottom-1px
+    - border-left-1px
+    - border-right-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_radius_top:
+  label: Border Radius Top
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-radius
+  options:
+    radius-top-sm: 2px
+    radius-top-md: 4px
+    radius-top-lg: 8px
+    radius-top-pill: 99rem
+  previewed_with:
+    - border-top-1px
+    - border-bottom-1px
+    - border-left-1px
+    - border-right-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_radius_bottom:
+  label: Border Radius Bottom
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-radius
+  options:
+    radius-bottom-sm: 2px
+    radius-bottom-md: 4px
+    radius-bottom-lg: 8px
+    radius-bottom-pill: 99rem
+  previewed_with:
+    - border-top-1px
+    - border-bottom-1px
+    - border-left-1px
+    - border-right-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_radius_left:
+  label: Border Radius Left
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-radius
+  options:
+    radius-left-sm: 2px
+    radius-left-md: 4px
+    radius-left-lg: 8px
+    radius-left-pill: 99rem
+  previewed_with:
+    - border-top-1px
+    - border-bottom-1px
+    - border-left-1px
+    - border-right-1px
+    - bg-primary-lighter
+    - padding-1
+
+border_radius_right:
+  label: Border Radius Right
+  category: Border
+  links:
+    - https://designsystem.digital.gov/utilities/border/#utility-radius
+  options:
+    radius-right-sm: 2px
+    radius-right-md: 4px
+    radius-right-lg: 8px
+    radius-right-pill: 99rem
+  previewed_with:
+    - border-top-1px
+    - border-bottom-1px
+    - border-left-1px
+    - border-right-1px
+    - bg-primary-lighter
+    - padding-1
+
+display:
+  label: Display
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/
+  options:
+    display-none: None
+    display-block: Block
+    display-flex: Flex
+    display-inline: Inline
+    display-inline-block: Inline Block
+    display-inline-flex: Inline Flex
+    display-table-cell: Table Cell
+
+overflow_x:
+  label: Overflow X
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/
+  options:
+    overflow-x-visible: Visible
+    overflow-x-hidden: Hidden
+    overflow-x-scroll: Scroll
+    overflow-x-auto: Auto
+
+overflow_y:
+  label: Overflow y
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/
+  options:
+    overflow-y-visible: Visible
+    overflow-y-hidden: Hidden
+    overflow-y-scroll: Scroll
+    overflow-y-auto: Auto
+
+position:
+  label: Position
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#position
+  options:
+    position-absolute: Absolute
+    position-fixed: Fixed
+    position-relative: Relative
+    position-static: Static
+    position-sticky: Sticky
+
+relative_position_top:
+  label: Relative Position Top
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#relative-position
+  options:
+    top-auto: Auto
+    top-full: Full
+    top-neg-3: -24
+    top-neg-205: -20
+    top-neg-2: -16
+    top-neg-105: -12
+    top-neg-1: -8
+    top-neg-05: -4
+    top-0: 0
+    top-05: 4
+    top-1: 8
+    top-105: 12
+    top-2: 16
+    top-205: 20
+    top-3: 24
+
+relative_position_bottom:
+  label: Relative Position Bottom
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#relative-position
+  options:
+    bottom-auto: Auto
+    bottom-full: Full
+    bottom-neg-3: -24
+    bottom-neg-205: -20
+    bottom-neg-2: -16
+    bottom-neg-105: -12
+    bottom-neg-1: -8
+    bottom-neg-05: -4
+    bottom-0: 0
+    bottom-05: 4
+    bottom-1: 8
+    bottom-105: 12
+    bottom-2: 16
+    bottom-205: 20
+    bottom-3: 24
+
+relative_position_right:
+  label: Relative Position Right
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#relative-position
+  options:
+    right-auto: Auto
+    right-full: Full
+    right-neg-3: -24
+    right-neg-205: -20
+    right-neg-2: -16
+    right-neg-105: -12
+    right-neg-1: -8
+    right-neg-05: -4
+    right-0: 0
+    right-05: 4
+    right-1: 8
+    right-105: 12
+    right-2: 16
+    right-205: 20
+    right-3: 24
+
+relative_position_left:
+  label: Relative Position Left
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#relative-position
+  options:
+    left-auto: Auto
+    left-full: Full
+    left-neg-3: -24
+    left-neg-205: -20
+    left-neg-2: -16
+    left-neg-105: -12
+    left-neg-1: -8
+    left-neg-05: -4
+    left-0: 0
+    left-05: 4
+    left-1: 8
+    left-105: 12
+    left-2: 16
+    left-205: 20
+    left-3: 24
+
+pin:
+  label: Pin
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#pinning
+  options:
+    pin-top: Top
+    pin-bottom: Bottom
+    pin-right: Right
+    pin-left: Left
+    pin-x: X
+    pin-y: Y
+    pin-all: All
+    pin-none: None
+    pin-top.pin-x: Top X
+    pin-bottom.pin-x: Bottom X
+    pin-left.pin-y: Left Y
+    pin-right.pin-y: Right Y
+
+z_index:
+  label: Z Index
+  category: Display
+  links:
+    - https://designsystem.digital.gov/utilities/display/#z-index
+  options:
+    z-auto: Auto
+    z-top: Top
+    z-500: 500
+    z-400: 400
+    z-300: 300
+    z-200: 200
+    z-100: 100
+    z-0: 0
+    z-bottom: Bottom

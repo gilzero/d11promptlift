@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Install function for libraries_provider module.
+ */
+
+// Update hooks.
+include_once __DIR__ . '/includes/update.php';
+
+/**
+ * Implements hook_install().
+ *
+ * Clear the library definitions to force a proper rebuild.
+ */
+function libraries_provider_install() {
+  \Drupal::service('library.discovery')->clearCachedDefinitions();
+}

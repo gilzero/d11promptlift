@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="menu_item_fields">
+  <rule ref="Drupal">
+  </rule>
+  <rule ref="DrupalPractice">
+  </rule>
+</ruleset>

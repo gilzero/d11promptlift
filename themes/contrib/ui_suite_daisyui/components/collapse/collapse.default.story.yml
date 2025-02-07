@@ -1,0 +1,13 @@
+name: Default
+slots:
+  title: "Focus me to see content"
+  content:
+    type: html_tag
+    tag: p
+    value: 'tabindex="0" attribute is necessary to make the div focusable'
+props:
+  focus: true
+  border: true
+  plus: true
+  attributes:
+    class: bg-base-200

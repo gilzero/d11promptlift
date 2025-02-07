@@ -1,0 +1,14 @@
+name: 'Layout Options UI'
+type: module
+description: 'Provides a way to replace the default Layout class with the Layout Options class in existing templates.'
+core_version_requirement: ^10 || ^11
+package: 'Layout'
+configure: layout_options_ui.settings
+dependencies:
+  - drupal:layout_discovery
+  - layout_options:layout_options
+
+# Information added by Drupal.org packaging script on 2024-10-16
+version: '8.x-1.7'
+project: 'layout_options'
+datestamp: 1729077850

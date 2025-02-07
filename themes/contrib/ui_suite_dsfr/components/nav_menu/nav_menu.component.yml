@@ -1,0 +1,23 @@
+name: "Main navigation"
+description: "The main navigation can be adjusted according to your needs and the site structure. It can display up to 8 main entries."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/navigation-principale"
+props:
+  type: object
+  properties:
+    is_mega_menu:
+      title: "Is mega menu?"
+      description: "If true the menu will be displayed as mega menu."
+      type: boolean
+    menu_name:
+      title: "Menu name"
+      description: "For aria label."
+      type: string
+    id:
+      title: ID
+      description: "Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"
+    items:
+      title: "Menu items"
+      description: "Full-height and lightweight navigation (including support for dropdowns). With an additional 'content' property containing extra_title, extra_description, extra_link"
+      $ref: "ui-patterns://links"

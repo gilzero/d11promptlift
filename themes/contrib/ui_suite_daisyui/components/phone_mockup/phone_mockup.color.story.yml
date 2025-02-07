@@ -1,0 +1,14 @@
+name: With color
+slots:
+  content:
+    type: component
+    component: "ui_suite_daisyui:artboard"
+    slots:
+      content: 320×568
+    props:
+      variant: default
+      demo: true
+      size: 1
+props:
+  attributes:
+    class: "border-primary"

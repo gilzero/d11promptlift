@@ -349,6 +349,16 @@ class ContentEventsTest extends KernelTestBase {
             ['id' => 'write_prepareview', 'condition' => ''],
           ],
         ],
+        'validate' => [
+          'plugin' => 'content_entity:validate',
+          'label' => 'validate',
+          'configuration' => [
+            'type' => 'node article',
+          ],
+          'successors' => [
+            ['id' => 'write_validate', 'condition' => ''],
+          ],
+        ],
         'fieldvaluesinit' => [
           'plugin' => 'content_entity:fieldvaluesinit',
           'label' => 'fieldvaluesinit',
@@ -507,6 +517,15 @@ class ContentEventsTest extends KernelTestBase {
           ],
           'successors' => [],
         ],
+        'write_validate' => [
+          'plugin' => 'eca_test_array_write',
+          'label' => 'Write validate',
+          'configuration' => [
+            'key' => 'validate',
+            'value' => 'validate [node:title]',
+          ],
+          'successors' => [],
+        ],
         'write_fieldvaluesinit' => [
           'plugin' => 'eca_test_array_write',
           'label' => 'Write fieldvaluesinit',
@@ -530,6 +549,8 @@ class ContentEventsTest extends KernelTestBase {
     ]);
     $this->assertEquals('create English node', ArrayWrite::$array['create']);
     $this->assertEquals('fieldvaluesinit English node', ArrayWrite::$array['fieldvaluesinit']);
+    $node->validate();
+    $this->assertEquals('validate English node', ArrayWrite::$array['validate']);
     $node->save();
     $this->assertEquals('presave English node', ArrayWrite::$array['presave']);
     $this->assertEquals('insert English node', ArrayWrite::$array['insert']);

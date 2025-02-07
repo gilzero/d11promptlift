@@ -1,0 +1,63 @@
+name: Table
+description: 'A table shows information in columns and rows.'
+group: Table
+links:
+  - 'https://designsystem.digital.gov/components/table/'
+slots:
+  colgroups:
+    title: 'Colgroups'
+    description: 'Sticked to Drupal structure after preprocessing of the Drupal table element.'
+  header:
+    title: 'Header'
+    description: 'A sequence of cell components.'
+  rows:
+    title: 'Rows'
+    description: 'A sequence of row components.'
+  footer:
+    title: 'Footer'
+    description: 'A sequence of row components.'
+  empty:
+    title: 'Empty'
+    description: 'Render element used when there is no rows.'
+  caption:
+    title: 'Caption'
+    description: "A caption functions like a heading for a table. It helps users with screen readers to find a table and understand what it's about and decide if they want to read it. By default it is displayed at the bottom of the table."
+props:
+  type: object
+  properties:
+    sticky:
+      title: 'Sticky headers'
+      description: 'Allows the table header element to stick to the top of the page as the user scrolls. Preferred for long tables with many rows. This variant is not compatible with the scrollable and stacked table variants.'
+      type: boolean
+    striped:
+      title: 'Striped'
+      description: 'A striped table can improve readability by visually grouping row content with alternating background colors.'
+      type: boolean
+    borderless:
+      title: 'Borderless'
+      description: 'A borderless table can be useful when you want the information to feel more a part of the text it accompanies and extends.'
+      type: boolean
+    scrollable:
+      title: 'Scrollable'
+      description: 'A scrollable table is ideal for dense data.'
+      type: boolean
+    stacked:
+      title: 'Responsive Stacked'
+      description: 'A responsive stacked table collapses at narrow widths for better readability on small screens.'
+      type: boolean
+    stacked_header:
+      title: 'Responsive Stacked - Header'
+      description: 'Stacks the table cells on narrow screens and visually promotes the first cell of every row into a “header” for that group. Preferred for directories and other lists where the first cell of every row is a name. If you use this variant, you must ensure there is a data-label attribute on each cell of the table that matches the column header.'
+      type: boolean
+    sortable:
+      title: 'Sortable'
+      description: 'A sorted column changes the row ordering based on alphabetical or numeric cell values. Requires a caption.'
+      type: boolean
+    compact:
+      title: 'Compact'
+      description: 'Reduces the row height and vertical spacing to display more table rows within a limited space. Should only be used with dense, numerical data, not text content. Pairs well with scrollable and striped variants, but is not suitable for use with stacked variants.'
+      type: boolean
+    header_columns:
+      title: 'Number of columns in the header'
+      description: 'Used to display properly the empty message if the table is empty. Leave empty for automatic value.'
+      type: integer

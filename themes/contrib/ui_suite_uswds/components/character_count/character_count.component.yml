@@ -1,0 +1,24 @@
+name: 'Character count'
+description: 'Character count helps users know how much text they can enter when there is a limit on the number of characters.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/character-count/'
+slots:
+  label:
+    title: Label
+    description: 'Label used for input field, used for accessibility purposes so required.'
+props:
+  type: object
+  properties:
+    max_length:
+      title: 'Max length'
+      description: 'Max length input should be.'
+      type: integer
+    field_name:
+      title: 'Field name'
+      description: 'Field machine name.'
+      $ref: 'ui-patterns://identifier'
+    field_label:
+      title: 'Field label'
+      description: 'Field label to the field'
+      type: string

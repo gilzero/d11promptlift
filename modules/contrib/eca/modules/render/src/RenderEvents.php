@@ -44,6 +44,15 @@ final class RenderEvents {
   public const CONTEXTUAL_LINKS = 'eca_render.contextual_links';
 
   /**
+   * Dispatches when local tasks are being rendered.
+   *
+   * @Event
+   *
+   * @var string
+   */
+  public const LOCAL_TASKS = 'eca_render.local_tasks';
+
+  /**
    * Dispatches when an ECA Views field is being rendered.
    *
    * @Event

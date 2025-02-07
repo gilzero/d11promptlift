@@ -1,0 +1,8 @@
+{% if tags %}
+  <ul{{ attributes.addClass('fr-tags-group') }}>
+    {% set tags = tags and tags is not sequence ? [tags] : tags %}
+    {% for tag in tags %}
+      <li>{{ tag }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

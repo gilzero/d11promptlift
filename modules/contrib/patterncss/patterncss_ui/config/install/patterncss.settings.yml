@@ -1,0 +1,29 @@
+load: true
+method: local
+build:
+  variant: true
+request_path:
+  negate: 0
+  pages:
+    - '/admin*'
+    - '/imagebrowser*'
+    - '/img_assist*'
+    - '/imce*'
+    - '/node/add*'
+    - '/node/*/edit'
+    - '/user/*/edit'
+    - '/print/*'
+    - '/printpdf/*'
+    - '/system/ajax'
+    - '/system/ajax/*'
+    - '/batch*'
+options:
+  selector: {}
+  pattern: 'grid'
+  color: ''
+  background: ''
+  size: 'md'
+  custom: ''
+  opacity: '1'
+  height: ''
+  transform: ''

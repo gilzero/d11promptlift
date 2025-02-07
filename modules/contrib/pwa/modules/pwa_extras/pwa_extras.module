@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * Contains pwa_extras.module.
+ */
+
+use Drupal\Component\Utility\Xss;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pwa_extras_page_attachments(array &$attachments) {
+  if (!\Drupal::currentUser()->hasPermission('access pwa')) {
+    return;
+  }
+
+  $site_name = \Drupal::config('pwa.config')->get('name') ?: \Drupal::config('system.site')->get('name');
+  $config = \Drupal::config('pwa_extras.settings.apple');
+  $mask_color = $config->get('mask_color') ?: '#0678be';
+  $status_color = $config->get('color_select') ?: 'default';
+  $tag_list = pwa_extras_tag_list($site_name, $mask_color, $status_color);
+
+  $meta_tags = $config->get('touch_icons') + $config->get('meta_tags') + $config->get('home_screen_icons');
+  if (empty($meta_tags)) {
+    return;
+  }
+
+  foreach ($meta_tags as $key => $value) {
+    if (!$value) {
+      continue;
+    }
+
+    $string_tag = $tag_list[$key];
+    $dom = new DOMDocument();
+    $dom->loadHTML($string_tag);
+    $data = $dom->documentElement->firstChild->firstChild;
+    $tag_name = $data->tagName;
+
+    $tag_attributes = [];
+    foreach ($data->attributes as $attribute) {
+      $tag_attributes[$attribute->name] = $attribute->value;
+    }
+
+    if ($tag_name == 'link') {
+      $attachments['#attached']['html_head_link'][] = [$tag_attributes];
+    }
+    else {
+      $tag_data = [
+        '#tag' => $tag_name,
+        '#attributes' => $tag_attributes,
+      ];
+      $attachments['#attached']['html_head'][] = [
+        $tag_data,
+        $tag_attributes['name'],
+      ];
+    }
+  }
+}
+
+/**
+ * Merges the pwa_extra meta-data.
+ */
+function pwa_extras_tag_list($site_name, $mask_color, $status_color) {
+  $touch_icons = pwa_extras_apple_touch_icons();
+  $meta_tags = pwa_extras_apple_meta_tags($site_name, $status_color);
+  $homescreen_icons = pwa_extras_apple_home_screen_icons();
+  return array_merge($touch_icons, $meta_tags, $homescreen_icons);
+}
+
+/**
+ * Fetches the apple touch icon link array.
+ */
+function pwa_extras_apple_touch_icons() {
+  $config = \Drupal::config('pwa.config');
+  $touchIcons = [
+    'touch-icon-default' => '<link rel="apple-touch-icon" sizes="192x192" href="' . $config->get('image_small_fid') . '">',
+  ];
+
+  foreach ($touchIcons as &$touchIcon) {
+    $touchIcon = Xss::filter($touchIcon, ['link']);
+  }
+
+  return $touchIcons;
+}
+
+/**
+ * Fetches apple specific meta data.
+ */
+function pwa_extras_apple_meta_tags($site_name = '', $status_color = '') {
+
+  $metaTags = [
+    'meta-capable' => '<meta name="apple-mobile-web-app-capable" content="yes">',
+    'meta-status-bar-style' => '<meta name="apple-mobile-web-app-status-bar-style" content="' . $status_color . '">',
+    'meta-app-title' => '<meta name="apple-mobile-web-app-title" content="' . $site_name . '">',
+  ];
+
+  foreach ($metaTags as &$metaTag) {
+    $metaTag = Xss::filter($metaTag, ['meta']);
+  }
+
+  return $metaTags;
+}
+
+/**
+ * Fetches apple specific home screen icon data.
+ */
+function pwa_extras_apple_home_screen_icons() {
+  $homeScreenItems = [
+    'iphone5-splash' => '<link href="' . base_path() . 'iphone5_splash.png" media="(width: 320px) and (height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'iphone6-splash' => '<link href="' . base_path() . 'iphone6_splash.png" media="(width: 375px) and (height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'iphoneplus-splash' => '<link href="' . base_path() . 'iphoneplus_splash.png" media="(width: 621px) and (height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />',
+    'iphonex-splash' => '<link href="' . base_path() . 'iphonex_splash.png" media="(width: 375px) and (height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />',
+    'iphonexr-splash' => '<link href="' . base_path() . 'iphonexr_splash.png" media="(width: 414px) and (height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'iphonexsmax-splash' => '<link href="' . base_path() . 'iphonexsmax_splash.png" media="(width: 414px) and (height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />',
+    'ipad-splash' => '<link href="' . base_path() . 'ipad_splash.png" media="(width: 768px) and (height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'ipadpro1-splash' => '<link href="' . base_path() . 'ipadpro1_splash.png" media="(width: 834px) and (height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'ipadpro2-splash' => '<link href="' . base_path() . 'ipadpro2_splash.png" media="(width: 1024px) and (height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+    'ipadpro3-splash' => '<link href="' . base_path() . 'ipadpro3_splash.png" media="(width: 834px) and (height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />',
+  ];
+
+  foreach ($homeScreenItems as &$homeScreenItem) {
+    $homeScreenItem = Xss::filter($homeScreenItem, ['link']);
+  }
+
+  return $homeScreenItems;
+}

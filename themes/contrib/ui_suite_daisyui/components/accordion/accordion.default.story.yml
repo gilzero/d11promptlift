@@ -1,0 +1,44 @@
+name: Default
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:collapse"
+      slots:
+        title: "Click to open this one and close others"
+        content: Hello
+      props:
+        accordion_id: my-accordion-1
+        arrow: true
+        checked: true
+        attributes:
+          class: bg-base-200
+    - type: component
+      component: "ui_suite_daisyui:collapse"
+      slots:
+        title: "Click to open this one and close others"
+        content: Hello
+      props:
+        accordion_id: my-accordion-1
+        arrow: true
+        attributes:
+          class: bg-base-200
+    - type: component
+      component: "ui_suite_daisyui:collapse"
+      slots:
+        title: "Click to open this one and close others"
+        content: Hello
+      props:
+        accordion_id: my-accordion-1
+        arrow: true
+        attributes:
+          class: bg-base-200
+    - type: component
+      component: "ui_suite_daisyui:collapse"
+      slots:
+        title: "Click to open this one and close others"
+        content: Hello
+      props:
+        accordion_id: my-accordion-1
+        arrow: true
+        attributes:
+          class: bg-base-200

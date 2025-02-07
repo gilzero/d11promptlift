@@ -1,0 +1,5 @@
+name: Preview
+slots:
+  label: Submit
+props:
+  url: 'https://example.com'

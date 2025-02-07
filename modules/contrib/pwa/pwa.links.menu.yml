@@ -1,0 +1,10 @@
+pwa.config:
+  title: 'Progressive Web App'
+  description: 'Configure Progressive Web App'
+  parent: system.admin_config_services
+  route_name: pwa.config
+pwa.config_manifest:
+  title: 'Manifest'
+  description: 'Configure Progressive Web App manifest'
+  parent: pwa.config
+  route_name: pwa.config_manifest

@@ -1,0 +1,23 @@
+name: 'Footer contact region'
+description: 'The contact section of the footer.'
+group: Layout
+props:
+  type: object
+  properties:
+    is_slim:
+      title: 'Is slim?'
+      description: 'Flag to determine if slim footer is being used.'
+      type: boolean
+    agency_contact_center:
+      title: 'Agency logo'
+      description: "Path to footer agency logo (from this theme's folder)."
+      type: string
+    agency_email:
+      title: 'Agency email'
+      type: string
+    agency_phone:
+      title: 'Agency phone'
+      type: string
+    social_links:
+      title: 'Social media links'
+      $ref: 'ui-patterns://links'

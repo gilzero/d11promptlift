@@ -1,0 +1,17 @@
+name: Preview
+slots:
+  title: "Choose a theme to personalize the appearance of site."
+props:
+  themes:
+    - title: Light
+      url: /libraries/dsfr/dist/artwork/pictograms/environment/sun.svg
+      attributes:
+        id: light
+    - title: Dark
+      url: /libraries/dsfr/dist/artwork/pictograms/environment/moon.svg
+      attributes:
+        id: dark
+    - title: System
+      url: /libraries/dsfr/dist/artwork/pictograms/system/system.svg
+      attributes:
+        id: system

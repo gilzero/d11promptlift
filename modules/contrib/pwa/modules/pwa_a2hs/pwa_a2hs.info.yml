@@ -1,0 +1,12 @@
+name: Progressive Web Add to Home Screen
+description: 'Provides a block with a button to prompt users to add the webapp to their home screen.'
+type: module
+package: PWA
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - pwa
+
+# Information added by Drupal.org packaging script on 2025-02-04
+version: '2.1.0-beta7'
+project: 'pwa'
+datestamp: 1738667271

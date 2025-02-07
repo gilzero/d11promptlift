@@ -1,0 +1,75 @@
+name: Preview
+slots:
+  social_title: "Follow us <br> on social networks"
+  newsletter_title: "Subscribe to our newsletter"
+  newsletter_body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et."
+  newsletter:
+    type: component
+    component: "ui_suite_dsfr:button"
+    slots:
+      label: Subscribe
+      url: "https://example.com"
+  social:
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on Facebook"
+      props:
+        url: "https://facebook.com"
+        social: facebook
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on X (formerly Twitter)"
+      props:
+        url: "https://x.com"
+        social: twitter-x
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on Instagram"
+      props:
+        url: "https://instagram.com"
+        social: instagram
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on LinkedIn"
+      props:
+        url: "https://www.linkedin.com"
+        social: linkedin
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on Youtube"
+      props:
+        url: "https://www.youtube.com"
+        social: youtube
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on Threads"
+      props:
+        url: "https://www.threads.com"
+        social: threads
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on TikTok"
+      props:
+        url: "https://www.tiktok.com"
+        social: tiktok
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on Dailymotion"
+      props:
+        url: "https://www.dailymotion.com"
+        social: dailymotion
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        title: "Follow on Mastodon"
+      props:
+        url: "https://www.mastodon.com"
+        social: mastodon

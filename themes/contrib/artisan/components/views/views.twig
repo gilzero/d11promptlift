@@ -1,0 +1,66 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set rows_attributes = rows_attributes ?: create_attribute() %}
+{% set header_attributes = header_attributes ?: create_attribute() %}
+{% set footer_attributes = footer_attributes ?: create_attribute() %}
+
+<div{{ attributes.addClass([
+    'view',
+    css_name|clean_class,
+    display_id|clean_class,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    css_class ? css_class,
+  ]) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+
+
+  {% block header %}
+    {% if header %}
+      <div {{ header_attributes.addClass('view-header') }}>
+        {{ header }}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block exposed %}
+    {{ exposed }}
+  {% endblock %}
+
+  {% block attachment_before %}
+    {{ attachment_before }}
+  {% endblock %}
+
+  {% block rows %}
+    {% if rows -%}
+      <div {{ rows_attributes.addClass('view-content') }}>
+        {{ rows }}
+      </div>
+    {% elseif empty -%}
+      {{ empty }}
+    {% endif %}
+  {% endblock %}
+
+  {% block pager %}
+    {{ pager }}
+  {% endblock %}
+
+
+  {% block attachment_after %}
+    {{ attachment_after }}
+  {% endblock %}
+
+  {% block more %}
+    {{ more }}
+  {% endblock %}
+
+  {% block footer %}
+    {% if footer %}
+      <div {{ footer_attributes.addClass('view-footer') }}>
+        {{ footer }}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {{ feed_icons }}
+</div>

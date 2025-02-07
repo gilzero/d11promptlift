@@ -1,0 +1,6 @@
+name: Default
+slots:
+  label: Label
+props:
+  outline: true
+  size: lg

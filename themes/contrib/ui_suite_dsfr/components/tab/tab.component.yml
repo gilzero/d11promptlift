@@ -1,0 +1,32 @@
+name: (Tab)
+description: "Usually used with 'tabs' component."
+group: Tabs
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/onglet"
+variants:
+  default:
+    title: Default
+  selected:
+    title: Selected
+slots:
+  title:
+    title: Title
+props:
+  type: object
+  properties:
+    id:
+      title: "Unique ID"
+      description: "Must be unique in the scope of a Web page. The same ID will be passed to the corresponding panel."
+      $ref: "ui-patterns://identifier"
+    url:
+      title: URL
+      description: "This component can be used as standalone, with hyperlinks instead of the dynamic tabs."
+      $ref: "ui-patterns://url"
+    icon:
+      title: Icon
+      description: "Available button icons."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr

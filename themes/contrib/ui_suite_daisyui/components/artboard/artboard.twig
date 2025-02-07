@@ -1,0 +1,13 @@
+{% set attributes = attributes.addClass('artboard') %}
+
+{% if demo %}
+{% set attributes = attributes.addClass('artboard-demo') %}
+{% endif %}
+
+{% set attributes = size ? attributes.addClass('phone-' ~ size) : attributes.addClass('phone-1') %}
+
+{% if variant %}
+{% set attributes = (variant != 'default') ? attributes.addClass('artboard-' ~ variant) : attributes %}
+{% endif %}
+
+<div {{ attributes }}>{{ content }}</div>

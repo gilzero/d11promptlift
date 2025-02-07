@@ -34,7 +34,6 @@ function drupal_error_levels() {
     E_USER_ERROR => ['User error', RfcLogLevel::ERROR],
     E_USER_WARNING => ['User warning', RfcLogLevel::WARNING],
     E_USER_NOTICE => ['User notice', RfcLogLevel::NOTICE],
-    E_STRICT => ['Strict warning', RfcLogLevel::DEBUG],
     E_RECOVERABLE_ERROR => ['Recoverable fatal error', RfcLogLevel::ERROR],
     E_DEPRECATED => ['Deprecated function', RfcLogLevel::DEBUG],
     E_USER_DEPRECATED => ['User deprecated function', RfcLogLevel::DEBUG],
@@ -84,7 +83,7 @@ function _drupal_error_handler_real($error_level, $message, $filename, $line) {
   }
   // If the site is a test site then fail for user deprecations so they can be
   // caught by the deprecation error handler.
-  elseif (DRUPAL_TEST_IN_CHILD_SITE && $error_level === E_USER_DEPRECATED) {
+  elseif (defined('DRUPAL_TEST_IN_CHILD_SITE') && DRUPAL_TEST_IN_CHILD_SITE && $error_level === E_USER_DEPRECATED) {
     static $seen = [];
     if (array_search($message, $seen, TRUE) === FALSE) {
       // Only report each deprecation once. Too many headers can break some
@@ -330,7 +329,7 @@ function _drupal_get_error_level() {
   try {
     $error_level = \Drupal::config('system.logging')->get('error_level');
   }
-  catch (\Exception $e) {
+  catch (\Exception) {
     $error_level = $GLOBALS['config']['system.logging']['error_level'] ?? ERROR_REPORTING_HIDE;
   }
 

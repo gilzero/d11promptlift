@@ -1,0 +1,15 @@
+metatag_ai.admin_settings:
+  path: '/admin/config/content/metatag-ai'
+  defaults:
+    _form: '\Drupal\metatag_ai\Form\MetatagAIConfigForm'
+    _title: 'Metatag AI Settings'
+  requirements:
+    _permission: 'Administer Metatag AI'
+
+metatag_ai.content_settings:
+  path: '/admin/config/content/metatag-ai/content-type'
+  defaults:
+    _form: '\Drupal\metatag_ai\Form\MetatagAISettingsForm'
+    _title: 'Metatag Content Type Settings'
+  requirements:
+    _permission: 'Administer Metatag AI'

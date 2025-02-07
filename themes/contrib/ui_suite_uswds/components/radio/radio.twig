@@ -1,0 +1,22 @@
+{% if tile %}
+  {% set attributes = attributes.addClass('usa-radio__input--tile') %}
+{% endif %}
+
+{% if field_label and field_name %}
+  {% set attributes = attributes.setAttribute('id', field_name) %}
+{% endif %}
+
+<input{{ attributes.addClass('usa-radio__input').setAttribute('type', 'radio') }} />
+
+{% if field_label and field_name %}
+  {{ include('ui_suite_uswds:label', {
+    label: field_label|default(''),
+    description: description,
+    for_value: field_name,
+    attributes: create_attribute({
+      'class': [
+        'usa-checkbox__label'
+      ]
+    }),
+  }, with_context = false) }}
+{% endif %}

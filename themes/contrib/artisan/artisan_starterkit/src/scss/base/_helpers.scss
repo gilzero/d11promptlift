@@ -1,0 +1,152 @@
+$theme-messages: (
+  "error": $danger,
+  "warning": $warning,
+  "alert": $info,
+  "status": $success,
+);
+
+.messages {
+  --#{$prefix}alert-bg: transparent;
+  --#{$prefix}alert-padding-x: #{$alert-padding-x};
+  --#{$prefix}alert-padding-y: #{$alert-padding-y};
+  --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
+  --#{$prefix}alert-color: inherit;
+  --#{$prefix}alert-border-color: transparent;
+  --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
+  --#{$prefix}alert-border-radius: #{$alert-border-radius};
+  --#{$prefix}alert-link-color: inherit;
+
+  position: relative;
+  padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
+  margin-bottom: var(--#{$prefix}alert-margin-bottom);
+  color: var(--#{$prefix}alert-color);
+  background-color: var(--#{$prefix}alert-bg);
+  border: var(--#{$prefix}alert-border);
+  @include border-radius(var(--#{$prefix}alert-border-radius));
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+@each $state, $color in $theme-messages {
+  .messages--#{$state} {
+    --#{$prefix}alert-color: #{$color};
+    --#{$prefix}alert-bg: #{$color}1a;
+    --#{$prefix}alert-border-color: #{$color};
+    --#{$prefix}alert-link-color: #{$color};
+  }
+}
+
+.layout-builder__link--add-template-to-library.button {
+  width: 100%;
+}
+
+.layout-builder-form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: $spacer * 2;
+  left: $spacer;
+  z-index: $zindex-fixed;
+  background-color: $white;
+  padding: $spacer * 2;
+  border: 0.5px solid;
+  border-radius: $spacer / 2;
+  max-height: 7.8rem;
+  overflow: hidden;
+  opacity: .5;
+  transition: opacity .25s ease-in-out;
+
+  .layout-builder__message {
+    order: 0;
+  }
+
+  .form-item.form-type-vertical-tabs {
+    order: 1;
+  }
+
+  .form-type-vertical-tabs {
+    order: 2;
+
+    .form-item {
+      margin: 0;
+    }
+  }
+
+  .form-actions {
+    order: 3;
+    margin: 0;
+  }
+
+  .js-show {
+    order: 4;
+  }
+
+  div[data-drupal-selector="edit-actions"] {
+    order: -999;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    max-height: 100%;
+    opacity: 1;
+
+    div[data-drupal-selector="edit-actions"] {
+      order: 999;
+    }
+  }
+}
+
+.vlsuite-utility-classes-live-previewer {
+  z-index: calc(var(--theme-header-z-index, 501) + 1);
+  &:focus,
+  &:focus-within,
+  &:hover {
+    z-index: calc(var(--theme-header-z-index, 501) + 1);
+  }
+}
+
+.ui-dialog,
+.toolbar-oriented .toolbar-bar {
+  z-index: calc(var(--theme-header-z-index, 501) + 1);
+}
+
+// Use this class / css variable to place sticky / fixed elements taking into
+// account possible sticky header & admin menu toolbar. Auto refresh.
+.sticky-fixed-offset-top {
+  // @see components/header/header.js.
+  // @see artisan_starterkit/src/scss/base/_body.scss.
+  top: var(--theme-sticky-fixed-offset-top);
+}
+
+.vlsuite-block-headings-menu {
+  --vlsuite-block-headings-menu-top: var(--theme-sticky-fixed-offset-top);
+  --vlsuite-block-headings-menu-top-mobile: var(--theme-sticky-fixed-offset-top);
+  --vlsuite-block-headings-menu-position-mobile: sticky;
+  --vlsuite-block-headings-menu-position: sticky;
+}
+.vlsuite-layout.vlsuite-layout-twocols > .row .col-12:has(.vlsuite-block-headings-menu) {
+  @media (max-width: 767px) {
+    position: sticky;
+    top: var(--theme-sticky-fixed-offset-top);
+    z-index: 1;
+
+    .vlsuite-block-headings-menu {
+      position: static;
+    }
+  }
+}
+
+// Use different strategy to avoid overflow without overflow hidden to allow
+// sticky elements inside sections.
+.vlsuite-layout, .vlsuite-layout-bg-wrapper {
+  contain: paint;
+  overflow: unset;
+}
+
+.filter-white-color {
+  filter: brightness(0) invert(1);
+}

@@ -1,0 +1,27 @@
+{% set wrapper_attributes = create_attribute({
+  'data-placeholder': placeholder|default(''),
+  'data-default-value': default_value|default('')
+}) %}
+
+{% if required %}
+  {% set attributes = attributes.setAttribute('required', required) %}
+{% endif %}
+
+{% if disabled %}
+  {% set attributes = attributes.setAttribute('disabled', disabled) %}
+{% endif %}
+
+{{ include('ui_suite_uswds:label', {
+  label: field_label|default(''),
+  for_value: field_name,
+}, with_context = false) }}
+
+<div{{ wrapper_attributes.addClass('usa-combo-box') }} >
+
+  <select{{ attributes.addClass('usa-select').setAttribute('id', field_name) }}>
+    {% for option in options %}
+      {{ option }}
+    {% endfor %}
+  </select>
+
+</div>

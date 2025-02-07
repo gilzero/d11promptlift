@@ -1,0 +1,36 @@
+name: Preview
+slots:
+  buttons:
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        label: "First button"
+        url: "https://example.com"
+      props:
+        icon:
+          pack_id: dsfr
+          settings: {}
+          icon_id: arrow-right-line
+        icon_position: right
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        label: "Second button"
+        url: "https://example.com"
+      props:
+        variant: secondary
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        label: "Third button"
+      props:
+        variant: tertiary
+    - type: component
+      component: "ui_suite_dsfr:button"
+      slots:
+        label: "Fourth button"
+      props:
+        variant: tertiary_no_outline
+props:
+  equisized: true
+  icon_position: left

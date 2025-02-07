@@ -1,0 +1,5 @@
+ai_automator_google_vision.settings:
+  title: "Google Vision Config"
+  description: "Setup Google Vision"
+  route_name: ai_automator_google_vision.settings
+  parent: system.admin_config_services

@@ -72,6 +72,7 @@ class FormActionsTest extends KernelTestBase {
     User::create(['uid' => 0, 'name' => 'guest'])->save();
     User::create(['uid' => 1, 'name' => 'admin'])->save();
     User::create(['uid' => 2, 'name' => 'auth'])->save();
+    User::create(['uid' => 3, 'name' => 'somebody'])->save();
 
     // Create the Article content type with a standard body field.
     /** @var \Drupal\node\NodeTypeInterface $node_type */
@@ -415,8 +416,14 @@ class FormActionsTest extends KernelTestBase {
    * Default values for the checkboxes are entities.
    */
   public function testFormAddCheckboxesDefaultValueEntities(): void {
-    $users = [User::load(0), User::load(1), User::load(2)];
+    $users = [User::load(1), User::load(2), User::load(3)];
+    $defaultValues = [
+      1 => '1',
+      2 => '2',
+      3 => '3',
+    ];
     $this->tokenService->addTokenData('users', $users);
+    $this->tokenService->addTokenData('default_values', $defaultValues);
 
     /** @var \Drupal\eca_form\Plugin\Action\FormAddOptionsField $action */
     $action = $this->actionManager->createInstance('eca_form_add_optionsfield', [
@@ -424,7 +431,7 @@ class FormActionsTest extends KernelTestBase {
       'type' => 'checkboxes',
       'multiple' => TRUE,
       'options' => '[users]',
-      'default_value' => '[users]',
+      'default_value' => '[default_values]',
       'use_yaml' => FALSE,
     ]);
 
@@ -455,17 +462,17 @@ class FormActionsTest extends KernelTestBase {
     $this->assertTrue(isset($form['mycheckboxes']));
     $this->assertEquals('checkboxes', $form['mycheckboxes']['#type']);
     $this->assertSame([
-      '0' => User::load(0)->label(),
       '1' => User::load(1)->label(),
       '2' => User::load(2)->label(),
+      '3' => User::load(3)->label(),
     ], $form['mycheckboxes']['#options']);
 
     /** @var \Drupal\Core\Render\RendererInterface $renderer */
     $renderer = \Drupal::service('renderer');
     $rendered = $renderer->renderInIsolation($build);
-    $this->assertStringContainsString('name="mycheckboxes[0]" value="0" checked="checked"', $rendered);
     $this->assertStringContainsString('name="mycheckboxes[1]" value="1" checked="checked"', $rendered);
     $this->assertStringContainsString('name="mycheckboxes[2]" value="2" checked="checked"', $rendered);
+    $this->assertStringContainsString('name="mycheckboxes[3]" value="3" checked="checked"', $rendered);
   }
 
   /**

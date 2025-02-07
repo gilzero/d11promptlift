@@ -1,0 +1,70 @@
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-step-indicator--' ~ variant|replace({'_': '-'})) %}
+{% endif %}
+
+{% set total = 0 %}
+{% if completed_items and in_progress_items %}
+  {% set total = completed_items|length + in_progress_items|length %}
+{% endif %}
+
+{% set completed = completed_items|length %}
+
+{% set heading_level = heading_level|default(2) %}
+
+<div{{ attributes.addClass('usa-step-indicator') }}>
+  <ol class="usa-step-indicator__segments">
+
+    {% set completed_items = completed_items is sequence ? completed_items : [completed_items] %}
+    {% for completed_item in completed_items %}
+      {% set list_attributes = create_attribute({
+        'class': [
+          'usa-step-indicator__segment'
+        ]
+      }) %}
+
+      {% if loop.last == false %}
+        {% set list_attributes = list_attributes.addClass('usa-step-indicator__segment--complete') %}
+      {% else %}
+        {% set list_attributes = list_attributes.addClass('usa-step-indicator__segment--current') %}
+      {% endif %}
+
+      <li{{ list_attributes }}>
+        <span class="usa-step-indicator__segment-label">
+          {{ completed_item }}
+          <span class="usa-sr-only">
+            {{ 'Completed'|trans }}
+          </span>
+        </span>
+      </li>
+    {% endfor %}
+
+    {% set in_progress_items = in_progress_items is sequence ? in_progress_items : [in_progress_items] %}
+    {% for in_progress_item in in_progress_items %}
+      {% set list_attributes = create_attribute({
+        'class': [
+          'usa-step-indicator__segment'
+        ]
+      }) %}
+
+      <li{{ list_attributes }}>
+        <span class="usa-step-indicator__segment-label">
+          {{ in_progress_item }}
+          <span class="usa-sr-only">
+            {{ 'Not completed'|trans }}
+          </span>
+        </span>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <div class="usa-step-indicator__header">
+    <h{{ heading_level }} class="usa-step-indicator__heading">
+      <span class="usa-step-indicator__heading-counter">
+        <span class="usa-sr-only">{{ 'Step'|trans }}</span>
+        <span class="usa-step-indicator__current-step">{{ completed }}</span>
+        <span class="usa-step-indicator__total-steps">of {{ total }}</span>
+      </span>
+      <span class="usa-step-indicator__heading-text">{{ label }}</span>
+    </h{{ heading_level }}>
+  </div>
+</div>

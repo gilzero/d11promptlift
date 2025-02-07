@@ -1,0 +1,244 @@
+dsfr:
+  enabled: true
+  label: "DSFR Icon"
+  description: "DSFR Icons with their utility classes"
+  links:
+    - https://www.systeme-de-design.gouv.fr/fondamentaux/icone
+  version: 1.12.1
+  license:
+    name: MIT
+    url: https://github.com/GouvernementFR/dsfr/blob/main/LICENSE.md
+    gpl-compatible: true
+  # No metadata sources for icons, only physical files.
+  extractor: svg
+  config:
+    sources:
+      - /libraries/dsfr/dist/icons/{group}/{icon_id}.svg
+  settings:
+    size:
+      title: "Size"
+      type: "string"
+      enum: ['xs', 'md', 'lg']
+      default: 'md'
+    # Random colors are not allowed with DSFR icons rules
+    # Icons must use predefined colors as seen in documentation.
+    # https://www.systeme-de-design.gouv.fr/fondamentaux/icone/
+    color:
+      title: "Color"
+      type: "string"
+      enum:
+        - ""
+        - action-high--blue-france
+        - action-high--grey
+        - action-high--red-marianne
+        - default--error
+        - default--grey
+        - default--info
+        - default--success
+        - default--warning
+        - inverted--blue-france
+        - inverted--error
+        - inverted--grey
+        - inverted--info
+        - inverted--red-marianne
+        - inverted--success
+        - inverted--warning
+        - label--blue-france
+        - label--grey
+        - label--red-marianne
+        - mention--grey
+        - title--blue-france
+        - title--grey
+        - title--red-marianne
+      'meta:enum':
+        "": "Default"
+        action-high--blue-france: Action-high blue France
+        action-high--grey: Action-high grey
+        action-high--red-marianne: Action-high red Marianne
+        default--error: Default error
+        default--grey: Default grey
+        default--info: Default info
+        default--success: Default success
+        default--warning: Default warning
+        inverted--blue-france: Inverted blue France
+        inverted--error: Inverted error
+        inverted--grey: Inverted grey
+        inverted--info: Inverted info
+        inverted--red-marianne: Inverted red Marianne
+        inverted--success: Inverted success
+        inverted--warning: Inverted warning
+        label--blue-france: Label blue France
+        label--grey: Label grey
+        label--red-marianne: Label red Marianne
+        mention--grey: Mention grey
+        title--blue-france: Title blue France
+        title--grey: Title g  rey
+        title--red-marianne: Title red Marianne
+    alt:
+      title: "Alt text"
+      description: "Accessibility alternative text, leave empty for decorative icon."
+      type: string
+  library: "ui_suite_dsfr/dsfr"
+  template: >
+    <span
+      class="fr-icon-{{ icon_id|replace({'fr--': ""})|clean_class }} {% if size != 'md' %}fr-icon--{{ size }}{% endif %} {% if color %}fr-text-{{ color|clean_class }}{% endif %}"
+      {% if alt is empty %} aria-hidden="true" {% else %} aria-label="{{ alt }}" {% endif %}
+    ></span>
+
+dsfr_picto:
+  enabled: true
+  label: "DSFR Pictogram"
+  description: "DSFR pictograms used as SVG files"
+  links:
+    - https://www.systeme-de-design.gouv.fr/fondamentaux/pictogramme
+  version: 1.12.1
+  license:
+    name: MIT
+    url: https://github.com/GouvernementFR/dsfr/blob/main/LICENSE.md
+    gpl-compatible: true
+  extractor: svg
+  config:
+    sources:
+      - /libraries/dsfr/dist/artwork/pictograms/{group}/{icon_id}.svg
+  settings:
+    size:
+      title: "Size"
+      type: "integer"
+      default: 80
+    color:
+      title: "Color secondary"
+      type: "string"
+      enum:
+        # Default color.
+        - red-marianne
+        - green-tilleul-verveine
+        - green-bourgeon
+        - green-emeraude
+        - green-menthe
+        - green-archipel
+        - blue-ecume
+        - blue-cumulus
+        - purple-glycine
+        - pink-macaron
+        - pink-tuile
+        - yellow-tournesol
+        - yellow-moutarde
+        - orange-terre-battue
+        - brown-cafe-creme
+        - brown-caramel
+        - brown-opera
+        - beige-gris-galet
+      default: "red-marianne"
+  template: >
+    <svg class="fr-artwork fr-artwork--{{ color|default('red-marianne') }}" aria-hidden="true" viewBox="0 0 80 80" width="{{ size|default(80) }}" height="{{ size|default(80) }}">
+      <use class="fr-artwork-decorative" xlink:href="{{ source }}#artwork-decorative"></use>
+      <use class="fr-artwork-minor" xlink:href="{{ source }}#artwork-minor"></use>
+      <use class="fr-artwork-major" xlink:href="{{ source }}#artwork-major"></use>
+    </svg>
+  # Library is required for colors and css.
+  # Colors do not apply in CKEditor5 as the css is not loaded here
+  # The css in CKEditor5 through directives in .info.yml
+  library: "ui_suite_dsfr/dsfr"
+
+# Disabled because unusable in DSFR library as SVGs files
+# We would need to create additional css classes to
+# fill colors and set allowed sizes
+dsfr_svg:
+  enabled: false
+  label: "DSFR icons as svg"
+  description: "DSFR icons as SVG"
+  links:
+    - https://www.systeme-de-design.gouv.fr/fondamentaux/icone
+  version: 1.12.1
+  license:
+    name: MIT
+    url: https://github.com/GouvernementFR/dsfr/blob/main/LICENSE.md
+    gpl-compatible: true
+  extractor: svg
+  config:
+    sources:
+      - /libraries/dsfr/dist/icons/{group}/*.svg
+  settings:
+    # Random sizes are not allowed with DSFR icons rules
+    # Icons are available in 3 sizes: xs, md (default), lg
+    # https://www.systeme-de-design.gouv.fr/fondamentaux/icone/
+    # The problem with size of SVG, is that DSFR
+    # does not provide width & height CSS in the utility classes
+    size:
+      title: "Size"
+      type: "string"
+      enum: ['xs', 'md', 'lg']
+      default: 'md'
+    # Random colors are not allowed with DSFR icons rules
+    # Icons must use predefined colors as seen in documentation.
+    # https://www.systeme-de-design.gouv.fr/fondamentaux/icone/
+    # The problem with color of SVG, is that DSFR
+    # does not provide the fill CSS properties to utility classes
+    color:
+      title: "Color"
+      type: "string"
+      enum:
+        - action-high--blue-france
+        - action-high--grey
+        - action-high--red-marianne
+        - default--error
+        - default--grey
+        - default--info
+        - default--success
+        - default--warning
+        - inverted--blue-france
+        - inverted--error
+        - inverted--grey
+        - inverted--info
+        - inverted--red-marianne
+        - inverted--success
+        - inverted--warning
+        - label--blue-france
+        - label--grey
+        - label--red-marianne
+        - mention--grey
+        - title--blue-france
+        - title--grey
+        - title--red-marianne
+      'meta:enum':
+        action-high--blue-france: Action-high blue France
+        action-high--grey: Action-high grey
+        action-high--red-marianne: Action-high red Marianne
+        default--error: Default error
+        default--grey: Default grey
+        default--info: Default info
+        default--success: Default success
+        default--warning: Default warning
+        inverted--blue-france: Inverted blue France
+        inverted--error: Inverted error
+        inverted--grey: Inverted grey
+        inverted--info: Inverted info
+        inverted--red-marianne: Inverted red Marianne
+        inverted--success: Inverted success
+        inverted--warning: Inverted warning
+        label--blue-france: Label blue France
+        label--grey: Label grey
+        label--red-marianne: Label red Marianne
+        mention--grey: Mention grey
+        title--blue-france: Title blue France
+        title--grey: Title g  rey
+        title--red-marianne: Title red Marianne
+    alt:
+      title: "Alt text"
+      description: "Accessibility alternative text, leave empty for decorative icon."
+      type: string
+  template: >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      class="icon icon-{{ icon_id|clean_class }} {% if size != 'md' %}fr-icon--{{ size }}{% endif %} {% if color %}fr-text-{{ color|clean_class }}{% endif %}"
+      width="{{ size|default(32) }}"
+      height="{{ size|default(32) }}"
+      {# fill="{{ color|default('currentColor') }}" #}
+      {% if alt is empty %}
+        aria-hidden="true"
+      {% else %}
+        aria-label="{{ alt }}"
+      {% endif %}
+    >
+      {{ content }}
+    </svg>
+  library: "ui_suite_dsfr/dsfr"

@@ -1,0 +1,49 @@
+name: "Newsletter & Follow us"
+description: "Allow the user to have access to the subscription to the proposed newsletter (s), and the links to the social network accounts of the entity."
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/lettre-d-information-et-reseaux-sociaux"
+slots:
+  social_title:
+    title: "Social networks title"
+  newsletter_title:
+    title: "Newsletter title"
+  newsletter_body:
+    title: "Newsletter description"
+  newsletter:
+    title: "Newsletter button"
+  social:
+    title: "Social networks links"
+    description: "A list of button components."
+props:
+  type: object
+  properties:
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        h2: h2
+        h3: "h3 (default)"
+        h4: h4
+        h5: h5
+        h6: h6
+    follow_title_tag:
+      title: "HTML tag for 'Follow us' title"
+      type: string
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        h2: h2
+        h3: "h3 (default)"
+        h4: h4
+        h5: h5
+        h6: h6

@@ -1,0 +1,99 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Views
+props:
+  type: object
+  properties:
+    title:
+      title: Title
+      examples:
+        - Views example title!
+      type: string
+    dom_id:
+      title: Dom id
+      examples:
+        - views-example
+      type: string
+    display_id:
+      title: Display id
+      examples:
+        - views-example
+      type: string
+    css_class:
+      title: The user-specified classes names, if any.
+      examples:
+        - views-example
+      type: string
+    css_name:
+      title: A CSS-safe version of the view name
+      examples:
+        - views-example
+      type: string
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      examples:
+        - class: ['example-class-attribute']
+    header_attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Header attributes
+      examples:
+        - class: ['example-class-attribute']
+    rows_attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Rows attributes
+      examples:
+        - class: ['example-class-attribute']
+    footer_attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Footer attributes
+      examples:
+        - class: ['example-class-attribute']
+slots:
+  title_prefix:
+    title: Title prefix
+    examples:
+      - <small>Title prefix</small>
+  title_suffix:
+    title: Title suffix
+    examples:
+      - <small>Title suffix</small>
+  header:
+    title: Header
+    examples:
+      - <div>Header</div>
+  exposed:
+    title: Exposed
+    examples:
+      - <div>Exposed</div>
+  attachment_before:
+    title: Attachment before
+    examples:
+      - <div>Attachment before</div>
+  attachment_after:
+    title: Attachment after
+    examples:
+      - <div>Attachment after</div>
+  rows:
+    title: Rows
+    examples:
+      - <div>Rows</div>
+  empty:
+    title: Empty
+    examples:
+      - Empty results
+  pager:
+    title: Pager
+    examples:
+      - Pager
+  more:
+    title: More
+    examples:
+      - More
+  footer:
+    title: Footer
+    examples:
+      - Footer
+  feed_icons:
+    title: Feed icons
+    examples:
+      - <div>Feed icons</div>

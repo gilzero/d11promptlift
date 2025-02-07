@@ -1,0 +1,32 @@
+{% set attributes = attributes.addClass('stat') %}
+{% if centered %}
+{% set attributes = attributes.addClass('place-items-center') %}
+{% endif %}
+
+<div {{ attributes }}>
+  {% if figure %}
+    <div class="stat-figure">{{ figure }}</div>
+  {% endif %}
+  {% if title and value %}
+    {% if not reverse_order %}
+    <div class="stat-title">{{ title }}</div>
+    <div class="stat-value">{{ value }}</div>
+    {% else %}
+    <div class="stat-value">{{ value }}</div>
+    <div class="stat-title">{{ title }}</div>
+    {% endif %}
+  {% else %}
+    {% if title %}
+      <div class="stat-title">{{ title }}</div>
+    {% endif %}
+    {% if value %}
+      <div class="stat-value">{{ value }}</div>
+    {% endif %}
+  {% endif %}
+  {% if desc %}
+    <div class="stat-desc">{{ desc }}</div>
+  {% endif %}
+  {% if actions %}
+    <div class="stat-actions">{{ actions }}</div>
+  {% endif %}
+</div>

@@ -16,7 +16,6 @@ use Drupal\Tests\BrowserTestBase;
  * Tests that the block configuration UI exists and stores data correctly.
  *
  * @group block
- * @group #slow
  */
 class BlockUiTest extends BrowserTestBase {
 
@@ -34,8 +33,6 @@ class BlockUiTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
-
-  protected $regions;
 
   /**
    * The submitted block values used by this test.

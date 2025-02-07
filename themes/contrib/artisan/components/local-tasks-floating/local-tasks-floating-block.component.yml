@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Local Tasks floating block
+slots:
+  icon:
+    title: Icon
+  content:
+    title: Content
+    examples:
+      - >
+        {% embed "artisan:local-tasks" with {
+          primary_tabs: {
+            '#markup':
+              '<li class="nav-item"><a href="#" class="nav-link">Tab 1</a></li>
+              <li class="nav-item"><a href="#" class="nav-link">Tab 2</a></li>'
+          }
+        } only %}
+        {% endembed %}
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class' ]
+    nav_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Nav attributes
+      title: Nav attributes
+      examples:
+        - class: [ 'example-nav-attributes-class' ]
+

@@ -1,0 +1,14 @@
+name: Tag
+description: 'A tag draws attention to new or categorized content elements.'
+group: Other
+links:
+  - 'https://designsystem.digital.gov/components/tag/'
+variants:
+  default:
+    title: 'Default'
+  big:
+    title: 'Big'
+slots:
+  text:
+    title: 'Tag text'
+    description: 'Simple text to show in tag.'

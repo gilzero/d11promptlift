@@ -1,0 +1,41 @@
+{% set attributes = attributes.addClass([
+  'fr-grid-row',
+  with_gutters ? 'fr-grid-row--gutters',
+  horizontal_align ? 'fr-grid-row--' ~ horizontal_align,
+  vertical_align ? 'fr-grid-row--' ~ vertical_align,
+]) %}
+{% if container_type %}
+{% set container_attributes = create_attribute(container_attributes|default({})).addClass([
+  (container_type == 'fluid') ? 'fr-container--fluid' : 'fr-container',
+]) %}
+<div{{ container_attributes }}>
+{% endif %}
+  {% set region_attributes = [
+    first_attributes|default({}),
+    second_attributes|default({}),
+    third_attributes|default({}),
+    fourth_attributes|default({}),
+  ] %}
+  <div{{ attributes }}>
+  {% for region in [first, second, third, fourth] %}
+    {% set this_col_attributes = create_attribute(col_attributes|default({})|merge(region_attributes[loop.index0])).addClass([
+      'fr-col',
+      cols[loop.index0] ? 'fr-col-' ~ cols[loop.index0],
+      cols_sm[loop.index0] ? 'fr-col-sm-' ~ cols_sm[loop.index0],
+      cols_md[loop.index0] ? 'fr-col-md-' ~ cols_md[loop.index0],
+      cols_lg[loop.index0] ? 'fr-col-lg-' ~ cols_lg[loop.index0],
+      cols_xl[loop.index0] ? 'fr-col-xl-' ~ cols_xl[loop.index0],
+      offset[loop.index0] ? 'fr-col-offset-' ~ offset[loop.index0],
+      offset_sm[loop.index0] ? 'fr-col-offset-sm-' ~ offset_sm[loop.index0],
+      offset_md[loop.index0] ? 'fr-col-offset-md-' ~ offset_md[loop.index0],
+      offset_lg[loop.index0] ? 'fr-col-offset-lg-' ~ offset_lg[loop.index0],
+      offset_xl[loop.index0] ? 'fr-col-offset-xl-' ~ offset_xl[loop.index0],
+    ]) %}
+    <div{{ this_col_attributes }}>
+      {{ region }}
+    </div>
+  {% endfor %}
+  </div>
+{% if container_type %}
+</div>
+{% endif %}

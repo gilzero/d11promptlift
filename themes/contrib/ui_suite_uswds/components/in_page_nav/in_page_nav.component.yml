@@ -1,0 +1,65 @@
+name: 'In page navigation'
+description: 'The in-page navigation allows navigation to specific sections on a lengthy content page.'
+group: Navigation
+links:
+  - 'https://designsystem.digital.gov/components/in-page-navigation/'
+slots:
+  content:
+    title: 'Content'
+    description: 'Page content.'
+props:
+  type: object
+  properties:
+    content_selector:
+      title: 'data-main-content-selector'
+      description: 'The element the component pulls headers from. Last part will be added to the main tag.'
+      type: string
+    title_heading_level:
+      title: 'data-title-heading-level'
+      description: 'The heading level of the navigation title header.'
+      type: integer
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      'meta:enum':
+        2: 'h2'
+        3: 'h3'
+        4: 'h4 (Default)'
+        5: 'h5'
+        6: 'h6'
+    title_text:
+      title: 'data-title-text'
+      description: 'The text of the navigation title header.'
+      type: string
+    scroll_offset:
+      title: 'data-scroll-offset'
+      description: 'Number of pixels scroll should offset from the top of the parent element.'
+      type: integer
+    root_margin:
+      title: 'data-root-margin'
+      description: 'Observable margin around the observed root used for calculating the current active section. Use values similar to CSS margin.'
+      type: string
+    threshold:
+      title: 'data-threshold'
+      description: 'Percentage of the scrolling section that must be in the observed area before the current section is triggered. Use a value between 0 and 1.'
+      type: integer
+    heading_selectors:
+      title: 'data-heading-elements'
+      description: 'The list of header levels that should be included in the link list.'
+      type: integer
+      items:
+        enum:
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+        'meta:enum':
+          2: 'h2'
+          3: 'h3'
+          4: 'h4'
+          5: 'h5'
+          6: 'h6'

@@ -1,0 +1,38 @@
+name: '(Accordion item)'
+description: "Internal: to be used in the 'Accordion' component."
+group: Accordion
+links:
+  - 'https://designsystem.digital.gov/components/accordion/'
+slots:
+  title:
+    title: Title
+    description: 'Accordion title.'
+  content:
+    title: Content
+    description: 'Accordion content.'
+props:
+  type: object
+  properties:
+    opened:
+      title: Opened
+      description: 'Add the aria-expanded="true" attribute to any usa-accordion__button to have that section open by default at page load.'
+      type: boolean
+    heading_level:
+      title: 'Heading level'
+      type: integer
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      'meta:enum':
+        2: 'h2 (Default)'
+        3: h3
+        4: h4
+        5: h5
+        6: h6
+    item_id:
+      title: ID
+      description: 'Unique ID for the accordion item. Randomly generated if empty.'
+      $ref: 'ui-patterns://identifier'

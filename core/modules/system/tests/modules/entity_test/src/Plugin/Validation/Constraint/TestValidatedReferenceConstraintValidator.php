@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\entity_test\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\Constraint;
@@ -19,7 +21,7 @@ class TestValidatedReferenceConstraintValidator extends ConstraintValidator {
     }
     foreach ($items as $item) {
       $violations = $item->entity->validate();
-      foreach ($violations as $violation) {
+      if ($violations->count()) {
         // Add the reason for the validation failure to the current context.
         $this->context->buildViolation($constraint->message)->addViolation();
       }

@@ -1,0 +1,16 @@
+name: Preview
+props:
+  first: "#"
+  prev: "#"
+  pages:
+    - title: "1"
+      url: "#page1"
+    - title: "2"
+      url: "#page2"
+    - title: "3"
+    - title: "4"
+      url: "#page4"
+    - title: "5"
+      url: "#page5"
+  next: "#"
+  last: "#"

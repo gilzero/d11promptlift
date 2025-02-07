@@ -1,0 +1,102 @@
+name: Button
+description: "Buttons allow the user to take actions or make choices."
+group: Actions
+links:
+  - "https://daisyui.com/components/button/"
+variants:
+  default:
+    title: Default
+  neutral:
+    title: Neutral
+  primary:
+    title: Primary
+  secondary:
+    title: Secondary
+  accent:
+    title: Accent
+  ghost:
+    title: Ghost
+  link:
+    title: Link
+  info:
+    title: Info
+  success:
+    title: Success
+  warning:
+    title: Warning
+  error:
+    title: Error
+slots:
+  label:
+    title: Label
+props:
+  type: object
+  properties:
+    active:
+      title: "Active?"
+      description: "It is possible to set button as active?"
+      type: boolean
+    outline:
+      title: "Outlined?"
+      description: "It is possible to outline any button?"
+      type: boolean
+    size:
+      title: Size
+      description: "It is possible to set the size of buttons."
+      type: string
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+      "meta:enum":
+        xs: "Extra small"
+        sm: Small
+        md: Medium
+        lg: Large
+    wide:
+      title: "Wide?"
+      description: "It is possible to display a wide button."
+      type: boolean
+    glass:
+      title: "Glass?"
+      description: "It is possible to display a glass button."
+      type: boolean
+    url:
+      title: URL
+      description: "The button URL. Optional."
+      $ref: "ui-patterns://url"
+    modal_id:
+      title: "Modal ID"
+      description: "To use in combination with Modal component, with same modal ID."
+      $ref: "ui-patterns://identifier"
+    disabled:
+      title: "Disable?"
+      description: "It is possible to set button as disabled?"
+      type: boolean
+    square:
+      title: "Square?"
+      description: "It is possible to display button as squared?"
+      type: boolean
+    circle:
+      title: "Circle?"
+      description: "It is possible to display button as circled?"
+      type: boolean
+    _block:
+      title: "Block?"
+      description: "It is possible to display button as a block?"
+      type: boolean
+    icon:
+      title: Icon
+      description: "Available button icons."
+      $ref: ui-patterns://icon
+    icon_position:
+      title: "Icon position"
+      type: string
+      default: right
+      enum:
+        - left
+        - right
+      "meta:enum":
+        left: Left
+        right: Right

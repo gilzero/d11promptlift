@@ -1,0 +1,17 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Nav Item
+slots:
+  nav_item:
+    title: Nav Item
+    examples:
+      - >
+        <ul class="list-unstyled"><li class="nav-item"><a href="#" class="nav-link">Navigation Link 1</a></li></ul>
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class' ]

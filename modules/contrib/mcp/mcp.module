@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for MCP module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mcp_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.mcp') {
+    return t('<p>This module enables Drupal to comply with the MCP standard, transforming it into an MCP server upon installation and configuration.</p>
+<p>Serving as a foundational layer, it not only provides MCP server APIs compatible with LLM applications but also allows developers and other modules to extend its capabilities by defining and exposing resources, tools, and prompts as MCP elements</p>
+<p><a href="https://mcp-77a54f.pages.drupalcode.org/">Here</a> you can check the full documentation.</p>');
+  }
+}

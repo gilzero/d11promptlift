@@ -1,0 +1,29 @@
+name: Preview
+slots:
+  accordions:
+    - type: component
+      component: "ui_suite_dsfr:accordion"
+      slots:
+        title: "Accordion 1"
+        content:
+          type: html_tag
+          tag: p
+          value: "Accordion 1 content"
+    - type: component
+      component: "ui_suite_dsfr:accordion"
+      slots:
+        title: "Accordion 2"
+        content:
+          type: html_tag
+          tag: p
+          value: "Accordion 2 content"
+    - type: component
+      component: "ui_suite_dsfr:accordion"
+      slots:
+        title: "Accordion 3"
+        content:
+          type: html_tag
+          tag: p
+          value: "Accordion 3 content"
+props:
+  grouped: true

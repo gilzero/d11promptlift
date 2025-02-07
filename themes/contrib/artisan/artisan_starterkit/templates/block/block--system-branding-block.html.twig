@@ -1,0 +1,8 @@
+{% embed 'artisan:navbar-brand' with {
+    image: site_logo,
+    width: '75px',
+    height: 'auto',
+    alt: elements.content.site_name['#markup'] ~ ' logo',
+    attributes: create_attribute({'class': ['d-inline-flex', 'align-items-center']})
+  } only %}
+{% endembed %}

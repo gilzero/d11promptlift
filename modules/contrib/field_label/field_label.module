@@ -1,0 +1,368 @@
+<?php
+
+/**
+ * @file
+ * Provides custom settings to format field labels.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Field\FormatterInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function field_label_theme_registry_alter(&$theme_registry) {
+  // Only override the field template if it comes from core. Allow theme
+  // overrides to take precedence.
+  if (strpos($theme_registry['field']['path'], 'core') !== 0) {
+    return;
+  }
+  // Retain Drupal 8 support for this branch.
+  // @todo Remove in the 2.0 branch.
+  if (\Drupal::hasService('extension.list.module')) {
+    $module_path = \Drupal::service('extension.list.module')->getPath('field_label');
+  }
+  else {
+    $module_path = drupal_get_path('module', 'field_label');
+  }
+  $theme_registry['field']['path'] = $module_path . '/templates';
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function field_label_field_formatter_settings_summary_alter(&$summary, $context) {
+  // Load formatter settings and module config.
+  $settings = $context['formatter']->getThirdPartySettings('field_label');
+  $config = \Drupal::config('field_label.settings');
+
+  if ($settings) {
+    if ($config->get('label_value_enabled') && !empty($settings['label_value'])) {
+      $summary[] = t('Label: @label', ['@label' => $settings['label_value']]);
+      if ($config->get('plural_label_enabled') && !empty($settings['plural_label'])) {
+        $summary[] = t('Plural label: @label', ['@label' => $settings['plural_label']]);
+      }
+    }
+    if ($config->get('label_class_select_enabled') && !empty($settings['label_class_select'])) {
+      $selected_style = $settings['label_class_select'];
+      // Ensure the selected style is still valid.
+      if ($valid_style = _field_label_is_valid_style($selected_style)) {
+        $summary[] = t('Label class: @class', ['@class' => $valid_style['label']]);
+      }
+    }
+    if ($config->get('label_class_enabled') && !empty($settings['label_class'])) {
+      $summary[] = t('Extra label classes: @class', ['@class' => $settings['label_class']]);
+    }
+    if ($config->get('label_tag_enabled') && !empty($settings['label_tag'])) {
+      $summary[] = t('Label wrapper: @tag', ['@tag' => $settings['label_tag']]);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_third_party_settings_form().
+ *
+ * Adds fields for modifying the class and label value for field that have
+ * a label.
+ */
+function field_label_field_formatter_third_party_settings_form(FormatterInterface $plugin, FieldDefinitionInterface $field_definition, $view_mode, $form, FormStateInterface $form_state) {
+  // Get the module config.
+  $config = \Drupal::config('field_label.settings');
+
+  // Get the current user.
+  $user = \Drupal::currentUser();
+
+  // Load the formatter settings.
+  $setting_keys = [
+    'label_class',
+    'label_class_select',
+    'label_value',
+    'label_tag',
+    'plural_label',
+  ];
+
+  // Ensure at least one feature enabled.
+  $has_enabled = FALSE;
+  // Ensure user has access to edit at least one setting.
+  $has_access = FALSE;
+  // Load up the settings array:
+  foreach ($setting_keys as $key) {
+    $settings[$key] = [
+      'enabled' => $config->get($key . '_enabled'),
+      'value' => $plugin->getThirdPartySetting('field_label', $key),
+      'access' => $user->hasPermission('edit_field_' . $key),
+    ];
+    $has_enabled = $has_enabled ?: $settings[$key]['enabled'];
+    $has_access = $has_access ?: $settings[$key]['access'];
+  }
+
+  // Bail out if nothing is enabled, or user has no access.
+  if (!$has_enabled || !$has_access) {
+    return [];
+  }
+
+  // Detial wrapper element to keep things tidy.
+  $elements['field_label'] = [
+    '#type' => 'details',
+    '#title' => t('Label settings'),
+    // Default to open if we have any values to show.
+    '#open' => $settings['label_class']['value'] || $settings['label_value']['value'] || $settings['label_tag']['value'],
+  ];
+
+  // For each available setting, build the full field if the user has access.
+  // If not, build a hidden field to retain any previous values.
+  // Label value field.
+  if ($settings['label_value']['enabled']) {
+    if ($settings['label_value']['access']) {
+      $elements['field_label']['label_value'] = [
+        '#type' => 'textfield',
+        '#title' => t('Label value'),
+        '#description' => t('Overwrite the default field label.'),
+        '#default_value' => $settings['label_value']['value'],
+      ];
+    }
+    else {
+      $elements['field_label']['label_value'] = [
+        '#type' => 'hidden',
+        '#value' => $settings['label_value']['value'],
+      ];
+    }
+    if ($settings['plural_label']['enabled'] && $field_definition->getFieldStorageDefinition()->isMultiple()) {
+      if ($settings['plural_label']['access']) {
+        $elements['field_label']['plural_label'] = [
+          '#type' => 'textfield',
+          '#title' => t('Plural label value'),
+          '#description' => t('Overwrite the default field label when there are muliple values.'),
+          '#default_value' => $settings['plural_label']['value'],
+        ];
+      }
+      else {
+        $elements['field_label']['plural_label'] = [
+          '#type' => 'hidden',
+          '#value' => $settings['plural_label']['value'],
+        ];
+      }
+    }
+  }
+
+  // Label class list.
+  if ($settings['label_class_select']['enabled']) {
+    // Ensure valid default value.
+    $default = '';
+    if ($settings['label_class_select']['access']) {
+      if ($valid_style = _field_label_is_valid_style($settings['label_class_select']['value'])) {
+        $default = $valid_style['selector'];
+      }
+
+      $elements['field_label']['label_class_select'] = [
+        '#type' => 'select',
+        '#title' => t('Label class'),
+        '#description' => t('Select a class to add to the label tag.'),
+        '#empty_value' => '',
+        // '#options' => _field_label_generate_styles(),
+        '#options' => _field_label_build_options(),
+        '#default_value' => $default,
+      ];
+    }
+    else {
+      $elements['field_label']['label_class_select'] = [
+        '#type' => 'hidden',
+        '#value' => $default,
+      ];
+    }
+  }
+
+  // Label class field.
+  if ($settings['label_class']['enabled']) {
+    if ($settings['label_class']['access']) {
+      $elements['field_label']['label_class'] = [
+        '#type' => 'textfield',
+        '#title' => t('Extra label classes'),
+        '#description' => t('Space-separated list of valid classnames (no dots). <b>Ex:</b> <code>class-one class__two</code>'),
+        '#default_value' => $settings['label_class']['value'],
+      ];
+    }
+    else {
+      $elements['field_label']['label_class'] = [
+        '#type' => 'hidden',
+        '#value' => $settings['label_class']['value'],
+      ];
+    }
+  }
+
+  // Label tag field.
+  if ($settings['label_tag']['enabled']) {
+    if ($settings['label_tag']['access']) {
+      $tag_options = [];
+
+      $allowed_tags = $config->get('allowed_tags');
+      foreach ($allowed_tags as $tag) {
+        $tag_options[$tag] = $tag;
+      }
+
+      $elements['field_label']['label_tag'] = [
+        '#type' => 'select',
+        '#title' => t('Label wrapper'),
+        '#description' => t('Select a tag to wrap the label value. Choose "Default" to use the wrapper provided by the theme.'),
+        '#empty_option' => '- Default -',
+        '#empty_value' => '',
+        '#options' => $tag_options,
+        '#default_value' => $settings['label_tag']['value'],
+      ];
+    }
+    else {
+      $elements['field_label']['label_tag'] = [
+        '#type' => 'hidden',
+        '#value' => $settings['label_tag']['value'],
+      ];
+    }
+  }
+
+  return $elements['field_label'];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field templates.
+ */
+function field_label_preprocess_field(&$variables) {
+
+  // Get the module config.
+  $config = \Drupal::config('field_label.settings');
+
+  if (isset($variables['element']['#third_party_settings']['field_label'])) {
+    $settings = $variables['element']['#third_party_settings']['field_label'];
+
+    // Update the label.
+    if ($config->get('label_value_enabled') && !empty($settings['label_value'])) {
+      $variables['label'] = $settings['label_value'];
+      if ($variables['multiple'] && count($variables['items']) > 1 && $config->get('plural_label_enabled') && !empty($settings['plural_label'])) {
+        $variables['label'] = $settings['plural_label'];
+      }
+    }
+
+    // Create the class attribute array if it doesn't already exisit.
+    if (!isset($variables['title_attributes']['class'])) {
+      $variables['title_attributes']['class'] = [];
+    }
+
+    // Add any free-form classes.
+    if ($config->get('label_class_enabled') && !empty($settings['label_class'])) {
+      $classes = explode(' ', $settings['label_class']);
+      foreach ($classes as $class) {
+        $variables['title_attributes']['class'][] = Html::cleanCssIdentifier($class);
+      }
+    }
+
+    // Add class selected from class list.
+    if ($config->get('label_class_select_enabled') && !empty($settings['label_class_select'])) {
+      if (_field_label_is_valid_style($settings['label_class_select'])) {
+        $classes = explode('.', $settings['label_class_select']);
+        foreach ($classes as $class) {
+          $variables['title_attributes']['class'][] = Html::cleanCssIdentifier($class);
+        }
+      }
+    }
+
+    // Add the wrapper tag if enabled and set.
+    if ($config->get('label_tag_enabled') && !empty($settings['label_tag'])) {
+      $variables['label_tag'] = $settings['label_tag'];
+    }
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function field_label_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.field_label':
+      $text = file_get_contents(__DIR__ . '/README.md');
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . Html::escape($text) . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return '';
+}
+
+/**
+ * Ensure a style selector is still available in the configured class list.
+ *
+ * @param string $selector
+ *   The CSS selector to check.
+ *
+ * @return array
+ *   An array with valid values, or empty array if invalid
+ */
+function _field_label_is_valid_style($selector) {
+  $styles = _field_label_generate_styles();
+  if (isset($styles[$selector])) {
+    return [
+      'selector' => $selector,
+      'label' => $styles[$selector],
+    ];
+  }
+  return [];
+}
+
+/**
+ * Create an array of classes suitable for use as Form API options.
+ *
+ * @return array
+ *   An array of classes with associated translatable/filtered label values.
+ */
+function _field_label_build_options() {
+  $styles = _field_label_generate_styles();
+  $options = [];
+  foreach ($styles as $class => $label) {
+    $options[$class] = t('@label', ['@label' => $label]);
+  }
+  return $options;
+}
+
+/**
+ * Create an array of validated key/value pairs of class selector and labels.
+ *
+ * @return array
+ *   An array with valid values.
+ */
+function _field_label_generate_styles() {
+  $class_list = \Drupal::config('field_label.settings')->get('class_list');
+  $styles = [];
+
+  // Return early if class list is emptty.
+  $class_list = trim($class_list);
+  if (empty($class_list)) {
+    return $styles;
+  }
+
+  // Handle newlines.
+  $class_list = str_replace(["\r\n", "\r"], "\n", $class_list);
+  foreach (explode("\n", $class_list) as $style) {
+
+    // Ignore empty lines in between non-empty lines.
+    if (empty($style)) {
+      continue;
+    }
+
+    // Validate syntax: [.class...]|label pattern expected.
+    if (!preg_match('@^(\.[a-zA-Z0-9_-]+)+\| *.+ *$@', $style)) {
+      // Skip invalid patterns.
+      continue;
+    }
+
+    [$selector, $label] = explode('|', $style);
+    $styles[$selector] = $label;
+  }
+  return $styles;
+}

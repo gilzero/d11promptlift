@@ -1,0 +1,35 @@
+name: Default
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:avatar"
+      slots:
+        image:
+          theme: image
+          uri: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+      props:
+        size: w-12
+    - type: component
+      component: "ui_suite_daisyui:avatar"
+      slots:
+        image:
+          theme: image
+          uri: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+      props:
+        size: w-12
+    - type: component
+      component: "ui_suite_daisyui:avatar"
+      slots:
+        image:
+          theme: image
+          uri: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+      props:
+        size: w-12
+    - type: component
+      component: "ui_suite_daisyui:avatar"
+      slots:
+        image:
+          theme: image
+          uri: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+      props:
+        size: w-12

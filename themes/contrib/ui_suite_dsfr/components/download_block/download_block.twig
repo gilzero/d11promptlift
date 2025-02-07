@@ -1,0 +1,27 @@
+{% if new_window %}
+  {% set attributes = attributes.setAttribute('target', '_blank') %}
+{% endif %}
+
+{% if direct_download %}
+  {% set attributes = attributes.setAttribute('download', true) %}
+{% endif %}
+
+{% if name %}
+  <div class="fr-download fr-enlarge-link fr-download--card">
+    {% if url %}
+    <a{{ attributes.setAttribute('href', url).addClass('fr-download__link') }}>
+    {% endif %}
+      {{ name }}
+      {% if detail %}
+      {% set detail_attributes = detail_attributes|default(create_attribute()) %}
+      {% set detail_attributes = detail_attributes.addClass(['fr-download__detail', detail_icon.icon_id ? 'fr-icon-' ~ detail_icon.icon_id|clean_class, (detail_icon.settings.size|default('md') != 'md') ? 'fr-icon--' ~ detail_icon.settings.size|clean_class, detail_icon.settings.color ? 'fr-text-' ~ detail_icon.settings.color|clean_class]) %}
+      <span{{ detail_attributes }}>{{ detail }}</span>
+      {% endif %}
+    {% if url %}
+    </a>
+    {% endif %}
+    {% if description %}
+      <p class="fr-download__desc">{{ description }}</p>
+    {% endif %}
+  </div>
+{% endif %}

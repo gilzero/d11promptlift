@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\form_test\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -730,6 +732,15 @@ class JavascriptStatesForm extends FormBase {
       '#title' => 'Enable textarea',
     ];
 
+    $form['password_confirm'] = [
+      '#title' => $this->t('Enter password'),
+      '#type' => 'password_confirm',
+      '#states' => [
+        'visible' => [
+          ':input[name="checkbox_trigger"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
     $form['test_select_visible_dependence']['select_visible_1'] = [
       '#type' => 'select',
       '#title' => 'Select visible 1',

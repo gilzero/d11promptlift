@@ -1,0 +1,93 @@
+# This is automatically extended with JavaScript and CSS for CDN based themes.
+framework:
+  css: {}
+  js: {}
+
+ui_pattern_library_overrides:
+  js:
+    assets/js/ui_pattern_library.js: {}
+  css:
+    theme:
+      assets/css/ui_pattern_library_overrides.css: {}
+  dependencies:
+    - core/jquery
+
+logo:
+  css:
+    component:
+      assets/css/custom/logo.css: {}
+
+# Custom libraries to fix issues caused by Drupal + USWDS.
+search-page:
+  css:
+    component:
+      assets/css/custom/search-page.css: {}
+
+# Libraries brought over from starterkit_theme.
+base:
+  css:
+    component:
+      assets/css/components/action-links.css:
+        weight: -10
+      assets/css/components/container-inline.css:
+        weight: -10
+      assets/css/components/details.css:
+        weight: -10
+      assets/css/components/exposed-filters.css:
+        weight: -10
+      assets/css/components/field.css:
+        weight: -10
+      assets/css/components/form.css:
+        weight: -10
+      assets/css/components/icons.css:
+        weight: -10
+      assets/css/components/inline-form.css:
+        weight: -10
+      assets/css/components/item-list.css:
+        weight: -10
+      assets/css/components/more-link.css:
+        weight: -10
+      assets/css/components/tabledrag.css:
+        weight: -10
+      assets/css/components/tabs.css:
+        weight: -10
+      assets/css/components/ui-dialog.css:
+        weight: -10
+dialog:
+  css:
+    component:
+      assets/css/components/dialog.css:
+        weight: -10
+dropbutton:
+  css:
+    component:
+      assets/css/components/dropbutton.css:
+        weight: -10
+file:
+  css:
+    component:
+      assets/css/components/file.css:
+        weight: -10
+image-widget:
+  css:
+    component:
+      assets/css/components/image-widget.css: {  }
+indented:
+  css:
+    component:
+      assets/css/components/indented.css: {  }
+node:
+  css:
+    component:
+      assets/css/components/node.css:
+        weight: -10
+progress:
+  css:
+    component:
+      assets/css/components/progress.css:
+        weight: -10
+user:
+  css:
+    component:
+      assets/css/components/user.css:
+        weight: -10

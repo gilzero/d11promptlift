@@ -14,7 +14,6 @@ use Drupal\user\RoleInterface;
  * Tests basic block functionality.
  *
  * @group block
- * @group #slow
  */
 class BlockTest extends BlockTestBase {
 
@@ -331,11 +330,11 @@ class BlockTest extends BlockTestBase {
     $this->drupalPlaceBlock('help_block', ['region' => 'help']);
     $this->drupalPlaceBlock('local_tasks_block');
     // Explicitly set the default and admin themes.
-    $theme = 'block_test_specialchars_theme';
+    $theme = 'block_test_special_chars_theme';
     \Drupal::service('theme_installer')->install([$theme]);
     $this->drupalGet('admin/structure/block');
     $this->assertSession()->assertEscaped('<"Cat" & \'Mouse\'>');
-    $this->drupalGet('admin/structure/block/list/block_test_specialchars_theme');
+    $this->drupalGet('admin/structure/block/list/block_test_special_chars_theme');
     $this->assertSession()->assertEscaped('Demonstrate block regions (<"Cat" & \'Mouse\'>)');
   }
 
@@ -389,7 +388,7 @@ class BlockTest extends BlockTestBase {
    *   The machine name of the theme region to move the block to, for example
    *   'header' or 'sidebar_first'.
    */
-  public function moveBlockToRegion(array $block, $region) {
+  public function moveBlockToRegion(array $block, $region): void {
     // Set the created block to a specific region.
     $block += ['theme' => $this->config('system.theme')->get('default')];
     $edit = [];
@@ -577,7 +576,7 @@ class BlockTest extends BlockTestBase {
     $this->drupalGet('<front>');
     $this->assertSession()->pageTextNotContains('Hello test world');
 
-    \Drupal::state()->set('test_block_access', TRUE);
+    \Drupal::keyValue('block_test')->set('access', TRUE);
     $this->drupalGet('<front>');
     $this->assertSession()->pageTextContains('Hello test world');
   }

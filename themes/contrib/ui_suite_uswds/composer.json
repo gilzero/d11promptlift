@@ -1,0 +1,31 @@
+{
+    "name": "drupal/ui_suite_uswds",
+    "description": "USWDS theme utilizing UI Patterns.",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/ui_suite_uswds",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/ui_suite_uswds",
+        "source": "https://git.drupalcode.org/project/ui_suite_uswds"
+    },
+    "authors": [
+        {
+            "name": "Stephen Mustgrave (smustgrave)",
+            "homepage": "https://www.drupal.org/u/smustgrave",
+            "role": "Maintainer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/ui_icons": "^1.0",
+        "drupal/ui_patterns": "^2.0@RC",
+        "drupal/ui_styles": "^1.13",
+        "twig/twig": "^3.11"
+    }
+}

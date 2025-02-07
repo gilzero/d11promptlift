@@ -1,0 +1,4 @@
+ui_skins_test_subtheme:
+  label: "Test subtheme"
+  default_values:
+    ".my-subtheme-class": "Test value"

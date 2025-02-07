@@ -1,0 +1,8 @@
+name: Code mockup
+description: "Code mockup is used to show a block of code in a box that looks like a code editor."
+group: Mockup
+links:
+  - "https://daisyui.com/components/mockup-code/"
+slots:
+  lines:
+    title: Lines

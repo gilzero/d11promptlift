@@ -186,13 +186,13 @@ function hook_ajax_render_alter(array &$data) {
  * hook_form_FORM_ID_alter(). So, for each module, the more general hooks are
  * called first followed by the more specific.
  *
- * @param $form
+ * @param array $form
  *   Nested array of form elements that comprise the form.
- * @param $form_state
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The current state of the form. The arguments that
  *   \Drupal::formBuilder()->getForm() was originally called with are available
  *   in the array $form_state->getBuildInfo()['args'].
- * @param $form_id
+ * @param string $form_id
  *   A string that is the unique ID of the form, set by
  *   Drupal\Core\Form\FormInterface::getFormId().
  *
@@ -201,7 +201,7 @@ function hook_ajax_render_alter(array &$data) {
  *
  * @ingroup form_api
  */
-function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id): void {
   if (isset($form['type']) && $form['type']['#value'] . '_node_settings' == $form_id) {
     $upload_enabled_types = \Drupal::config('my_module.settings')->get('upload_enabled_types');
     $form['workflow']['upload_' . $form['type']['#value']] = [
@@ -235,13 +235,13 @@ function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_stat
  * hook_form_FORM_ID_alter(). So, for each module, the more general hooks are
  * called first followed by the more specific.
  *
- * @param $form
+ * @param array $form
  *   Nested array of form elements that comprise the form.
- * @param $form_state
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The current state of the form. The arguments that
  *   \Drupal::formBuilder()->getForm() was originally called with are available
  *   in the array $form_state->getBuildInfo()['args'].
- * @param $form_id
+ * @param string $form_id
  *   String representing the name of the form itself. Typically this is the
  *   name of the function that generated the form.
  *
@@ -251,7 +251,7 @@ function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_stat
  *
  * @ingroup form_api
  */
-function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id): void {
   // Modification for the form with the given form ID goes here. For example, if
   // FORM_ID is "user_register_form" this code would run only on the user
   // registration form.
@@ -293,11 +293,11 @@ function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
  * hook_form_FORM_ID_alter(). So, for each module, the more general hooks are
  * called first followed by the more specific.
  *
- * @param $form
+ * @param array $form
  *   Nested array of form elements that comprise the form.
- * @param $form_state
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The current state of the form.
- * @param $form_id
+ * @param string $form_id
  *   String representing the name of the form itself. Typically this is the
  *   name of the function that generated the form.
  *
@@ -307,7 +307,7 @@ function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
  *
  * @ingroup form_api
  */
-function hook_form_BASE_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function hook_form_BASE_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id): void {
   // Modification for the form with the given BASE_FORM_ID goes here. For
   // example, if BASE_FORM_ID is "node_form", this code would run on every
   // node form, regardless of node type.

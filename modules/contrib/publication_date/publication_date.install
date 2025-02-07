@@ -1,0 +1,179 @@
+<?php
+
+/**
+ * @file
+ * Installation functions for the Publication Date module.
+ */
+
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\mysql\Driver\Database\mysql\Connection as MysqlConnection;
+use Drupal\pgsql\Driver\Database\pgsql\Connection as PgsqlConnection;
+
+/**
+ * Implements hook_install().
+ */
+function publication_date_install() {
+  // Populate the publication date field with the timestamp of the first
+  // published revision.
+  _publication_date_populate_database_field();
+
+  // This module must be called after some other modules (i.e. Scheduler).
+  module_set_weight('publication_date', 99);
+}
+
+/**
+ * Helper function to populate the published on date for unpublished nodes.
+ *
+ * This function makes sure that all existing nodes have the publication date
+ * set. The publication date is derived from the first published revision.
+ */
+function _publication_date_populate_database_field() {
+  $connection = \Drupal::database();
+
+  // The Drupal database API does not yet support update queries that use joins,
+  // meaning that this operation needs to be implemented using direct queries.
+  // It is currently tested only for MySQL, MariaDB, and Postgres.
+  if ($connection instanceof MysqlConnection) {
+    $queries = [
+      // Update nodes with multiple revisions that have at least one published
+      // revision so the publication date is set to the timestamp of the first
+      // published revision.
+      [
+        'query' => <<<SQL
+UPDATE
+  {node_field_revision} r,
+  {node_revision} s,
+  (
+    SELECT
+      nid,
+      MIN(vid) as vid
+    FROM {node_field_revision}
+    WHERE status = 1
+    GROUP BY nid
+    ORDER BY vid
+  ) t
+SET r.published_at = s.revision_timestamp
+WHERE
+  r.nid = t.nid
+  AND s.nid = t.nid
+  AND s.vid = t.vid
+  AND r.vid >= t.vid;
+SQL
+        ,
+        'arguments' => [],
+      ],
+
+      // Update the revisions table so that nodes that have a single published
+      // revision have the publication timestamp set to the creation timestamp.
+      [
+        'query' => <<<SQL
+UPDATE {node_field_revision} r, (
+  SELECT nid
+  FROM {node_field_revision}
+  GROUP BY nid
+  HAVING COUNT(*) = 1
+) s
+SET r.published_at = r.created
+WHERE
+  r.nid = s.nid
+  AND r.status = 1
+SQL
+        ,
+        'arguments' => [],
+      ],
+
+      // Copy the publication date from the revisions table to the node table.
+      [
+        'query' => <<<SQL
+UPDATE {node_field_data} d, {node_field_revision} r
+SET d.published_at = r.published_at
+WHERE d.vid = r.vid;
+SQL
+        ,
+        'arguments' => [],
+      ],
+    ];
+  }
+  elseif ($connection instanceof PgsqlConnection) {
+    $queries = [
+      // Update nodes with multiple revisions that have at least one published
+      // revision so the publication date is set to the timestamp of the first
+      // published revision.
+      [
+        'query' => <<<SQL
+UPDATE
+  {node_field_revision} r
+SET published_at = s.revision_timestamp
+FROM
+  {node_revision} s,
+  (
+    SELECT
+      nid,
+      MIN(vid) as vid
+    FROM {node_field_revision}
+    WHERE status = 1
+    GROUP BY nid
+    ORDER BY vid
+  ) t
+WHERE
+  r.nid = t.nid
+  AND s.nid = t.nid
+  AND s.vid = t.vid
+  AND r.vid >= t.vid;
+SQL
+        ,
+        'arguments' => [],
+      ],
+
+      // Update the revisions table so that nodes that have a single published
+      // revision have the publication timestamp set to the creation timestamp.
+      [
+        'query' => <<<SQL
+UPDATE {node_field_revision} r
+SET published_at = r.created
+FROM
+  (
+    SELECT nid
+    FROM {node_field_revision}
+    GROUP BY nid
+    HAVING COUNT(*) = 1
+  ) s
+WHERE
+  r.nid = s.nid
+  AND r.status = 1
+SQL
+        ,
+        'arguments' => [],
+      ],
+
+      // Copy the publication date from the revisions table to the node table.
+      [
+        'query' => <<<SQL
+UPDATE {node_field_data} d
+SET published_at = r.published_at
+FROM {node_field_revision} r
+WHERE d.vid = r.vid;
+SQL
+        ,
+        'arguments' => [],
+      ],
+    ];
+  }
+  else {
+    $message = t('Populating the publication date on existing nodes is currently only supported on MySQL and Postgres databases.');
+    \Drupal::messenger()->addMessage($message, MessengerInterface::TYPE_WARNING);
+    return;
+  }
+
+  // Perform the operations in a single atomic transaction.
+  $transaction = $connection->startTransaction();
+  try {
+    foreach ($queries as $query_data) {
+      \Drupal::database()->query($query_data['query'], $query_data['arguments']);
+    }
+  }
+  catch (Exception $e) {
+    $transaction->rollBack();
+    throw new Exception('Database error', 0, $e);
+  }
+}

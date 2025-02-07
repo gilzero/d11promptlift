@@ -1,0 +1,10 @@
+name: 'Social Links Group'
+description: 'Collection of social links.'
+group: Social
+props:
+  type: object
+  properties:
+    items:
+      title: 'Items'
+      description: 'Array of social links. Note key needs to be name of image.'
+      $ref: 'ui-patterns://links'

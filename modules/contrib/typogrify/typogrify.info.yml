@@ -1,0 +1,13 @@
+name: Typogrify
+type: module
+description: 'Adds typographic refinements.'
+package: 'Input filters'
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+
+dependencies:
+  - drupal:filter
+
+# Information added by Drupal.org packaging script on 2024-12-29
+version: '8.x-1.4'
+project: 'typogrify'
+datestamp: 1735514412

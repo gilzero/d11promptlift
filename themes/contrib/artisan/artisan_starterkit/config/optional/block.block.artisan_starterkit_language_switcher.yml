@@ -1,0 +1,18 @@
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - artisan_starterkit
+id: artisan_starterkit_language_switcher
+theme: artisan_starterkit
+region: header
+weight: 0
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: 'Language switcher'
+  label_display: '0'
+  provider: language
+visibility: {  }

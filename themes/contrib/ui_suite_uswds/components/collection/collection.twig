@@ -1,0 +1,16 @@
+{% if items %}
+  <ul{{ attributes.addClass('usa-collection') }}>
+    {% set items = items is sequence ? items : [items] %}
+    {% for item in items %}
+      {% if item.attributes %}
+        <li{{ item.attributes.addClass('usa-collection__item') }}>
+          {{ item.value }}
+        </li>
+      {% else %}
+        <li class="usa-collection__item">
+          {{ item }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}

@@ -22,16 +22,31 @@ export default class AiWriter extends Command {
 
     const editor = this.editor;
     const sourceEditing = editor.plugins.get('SourceEditing');
-    editor.enableReadOnlyMode( 'ai_ckeditor');
+    editor.enableReadOnlyMode('ai_ckeditor');
     sourceEditing.set("isSourceEditingMode", true);
     sourceEditing.isEnabled = false;
 
-    editor.model.change(async writer => {
-      const response = await fetch(drupalSettings.path.baseUrl + 'api/ai-ckeditor/request/' + request_parameters.editor_id + '/' + request_parameters.plugin_id, {
-        method: 'POST',
-        credentials: 'same-origin',
-        body: JSON.stringify(request_parameters),
-      });
+    // Locate the target field (sourceEditingTextarea or a custom field)
+    const sourceEditingTextarea = editor.editing.view.getDomRoot()?.nextSibling?.firstChild;
+
+    // Clear the field before writing new content
+    if (sourceEditingTextarea) {
+      sourceEditingTextarea.value = ''; // Clear the field
+    }
+
+    editor.model.change(async (writer) => {
+      const response = await fetch(
+        drupalSettings.path.baseUrl +
+          "api/ai-ckeditor/request/" +
+          request_parameters.editor_id +
+          "/" +
+          request_parameters.plugin_id,
+        {
+          method: "POST",
+          credentials: "same-origin",
+          body: JSON.stringify(request_parameters),
+        }
+      );
 
       if (!response.ok) {
         status.fire('ai_status', {
@@ -48,7 +63,6 @@ export default class AiWriter extends Command {
       });
 
       const reader = response.body.getReader();
-      const sourceEditingTextarea = editor.editing.view.getDomRoot()?.nextSibling?.firstChild;
 
       while (true) {
         const {value, done} = await reader.read();
@@ -78,8 +92,7 @@ export default class AiWriter extends Command {
 
       sourceEditing.set("isSourceEditingMode", false);
       sourceEditing.isEnabled = true;
-      editor.disableReadOnlyMode( 'ai_ckeditor');
+      editor.disableReadOnlyMode('ai_ckeditor');
     });
   }
-
 }

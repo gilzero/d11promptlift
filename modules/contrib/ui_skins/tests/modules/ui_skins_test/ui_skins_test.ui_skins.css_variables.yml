@@ -1,0 +1,7 @@
+test:
+  enabled: true
+  type: "textfield"
+  label: "Test label module"
+  description: "Test plugin from module."
+  default_values:
+    ":root": "Test value"

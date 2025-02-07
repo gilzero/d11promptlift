@@ -1,0 +1,31 @@
+<div{{ attributes.addClass('usa-collection__body') }}>
+  <h4 class="usa-collection__heading">
+    {{ header_text }}
+  </h4>
+  <div class="usa-collection__description">
+    {{ content }}
+  </div>
+
+  {% if meta_items_list %}
+    <ul class="usa-collection__meta">
+      {% set meta_items_list = meta_items_list is sequence ? meta_items_list : [meta_items_list] %}
+      {% for meta_item in meta_items_list -%}
+        <li class="usa-collection__meta-item">
+          {{ meta_item }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if meta_items_tags %}
+    <ul class="usa-collection__meta">
+      {% set meta_items_tags = meta_items_tags is sequence ? meta_items_tags : [meta_items_tags] %}
+      {% for meta_item in meta_items_tags -%}
+        <li class="usa-collection__meta-item usa-tag">
+          {{ meta_item }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</div>

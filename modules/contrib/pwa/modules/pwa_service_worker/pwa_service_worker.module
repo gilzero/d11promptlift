@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for PWA Service Worker module.
+ */
+
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme().
+ */
+function pwa_service_worker_theme() {
+  return [
+    'offline' => [
+      'variables' => [],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function pwa_service_worker_user_login(AccountInterface $account) {
+  \Drupal::service('session')->set('pwa_service_worker_reset', TRUE);
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pwa_service_worker_page_attachments(array &$attachments) {
+  if (!\Drupal::currentUser()->hasPermission('access pwa')) {
+    return;
+  }
+
+  $attachments['#attached']['library'][] = 'pwa_service_worker/serviceworker';
+
+  /** @var callable */
+  $getCacheVersionCallable = \Drupal::service('controller_resolver')
+    ->getControllerFromDefinition(
+      '\Drupal\pwa_service_worker\Controller\ServiceWorkerController::getCacheVersion'
+    );
+
+  // Add cache version to drupal settings.
+  // @todo The cache version is injected in the drupalSettings but never read
+  // from it. Instead, it is manually injected through the
+  // ServiceWorkerController line 265.
+  $attachments['#attached']['drupalSettings']['pwa_service_worker']['cache_version'] =
+    \call_user_func($getCacheVersionCallable);
+
+  $installPath = URL::fromRoute('pwa_service_worker.registration')->toString();
+  // @todo This isn't specified in the api docs:
+  \Drupal::moduleHandler()->alter('pwa_service_worker_install_path', $installPath);
+  $attachments['#attached']['drupalSettings']['pwa_service_worker']['installPath'] = $installPath;
+  // @todo Is there a use case, in which we would separate the service worker
+  // scope from the manifest scope? If so, create a separate service worker
+  // "scope" setting:
+  $scope = \Drupal::config('pwa.config')->get('scope');
+  $attachments['#attached']['drupalSettings']['pwa_service_worker']['scope'] = !empty($scope) ? $scope : NULL;
+}

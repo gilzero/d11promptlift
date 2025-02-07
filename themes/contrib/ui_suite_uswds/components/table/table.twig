@@ -1,0 +1,99 @@
+{# Create unique attribute objects for each table group. #}
+{% set thead_attributes = create_attribute() %}
+{% set tbody_attributes = create_attribute() %}
+{% set tfoot_attributes = create_attribute() %}
+
+{% set header_length = header ? header|length : 0 %}
+{% set header_columns = header_columns|default(header_length) %}
+
+{% set attributes = attributes.addClass('usa-table') %}
+
+{% if sticky %}
+  {% set attributes = attributes.addClass('usa-table--sticky-header') %}
+{% endif %}
+
+{% if striped %}
+  {% set attributes = attributes.addClass('usa-table--striped') %}
+{% endif %}
+
+{% if borderless %}
+  {% set attributes = attributes.addClass('usa-table--borderless') %}
+{% endif %}
+
+{% if stacked %}
+  {% set attributes = attributes.addClass('usa-table--stacked') %}
+{% endif %}
+
+{% if stacked_header %}
+  {% set attributes = attributes.addClass('usa-table--stacked-header') %}
+{% endif %}
+
+{% if sortable %}
+  {% set attributes = attributes.addClass('usa-table--sortable') %}
+{% endif %}
+
+{% if compact %}
+  {% set attributes = attributes.addClass('usa-table--compact') %}
+{% endif %}
+
+{% if scrollable %}
+<div class="usa-table-container--scrollable" tabindex="0">
+{% endif %}
+
+  <table{{ attributes }}>
+    {% if caption %}
+      <caption>{{ caption }}</caption>
+    {% endif %}
+
+    {% set colgroups = colgroups is sequence ? colgroups : [colgroups] %}
+    {% for colgroup in colgroups %}
+      {% if colgroup.cols %}
+        <colgroup{{ colgroup.attributes }}>
+          {% for col in colgroup.cols %}
+            <col{{ col.attributes }} />
+          {% endfor %}
+        </colgroup>
+      {% else %}
+        <colgroup{{ colgroup.attributes }} />
+      {% endif %}
+    {% endfor %}
+
+  {% if header %}
+    <thead{{ thead_attributes }}>
+      {{ include('ui_suite_uswds:table_row', {
+        cells: header,
+      }, with_context = false) }}
+    </thead>
+  {% endif %}
+
+  {% if rows %}
+    <tbody{{ tbody_attributes }}>
+      {{ rows }}
+    </tbody>
+  {% elseif empty %}
+    <tbody{{ tbody_attributes }}>
+    {{ include('ui_suite_uswds:table_row', {
+      cells: include('ui_suite_uswds:table_cell', {
+        content: empty,
+        attributes: create_attribute({
+          'colspan': header_columns,
+        })
+      }, with_context = false)
+    }, with_context = false) }}
+    </tbody>
+  {% endif %}
+
+  {% if footer %}
+    <tfoot{{ tfoot_attributes }}>
+      {{ footer }}
+    </tfoot>
+  {% endif %}
+</table>
+
+  {% if sortable %}
+    <div class="usa-sr-only usa-table__announcement-region" aria-live="polite"></div>
+  {% endif %}
+
+{% if scrollable %}
+</div>
+{% endif %}

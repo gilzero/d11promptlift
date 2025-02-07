@@ -1,0 +1,10 @@
+'edit_field_label_value':
+  title: 'Edit field label values'
+'edit_field_plural_label':
+  title: 'Edit field plural label'
+'edit_field_label_class':
+  title: 'Add "free-form" classes to field label tags'
+'edit_field_label_class_select':
+  title: 'Add a class to field label tags from a configured list'
+'edit_field_label_tag':
+  title: 'Select a wrapper tag for field labels'

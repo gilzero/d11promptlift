@@ -3,7 +3,6 @@ parameters:
   scanDirectories:
     - ../../../../vendor/drush/drush/src-symfony-compatibility
   ignoreErrors:
-    - '#Plugin definitions cannot be altered.#'
     - identifier: missingType.iterableValue
     - identifier: missingType.generics
   excludePaths:

@@ -1,0 +1,20 @@
+name: 'Input prefix or suffix'
+description: 'Use input prefixes and suffixes to show symbols or abbreviations that help users enter the right type of information in a form’s text input.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/input-prefix-suffix/'
+props:
+  type: object
+  properties:
+    icon_name:
+      title: 'Icon Name'
+      description: 'Will be pulled from sprite.svg.'
+      $ref: 'ui-patterns://icon'
+      properties:
+        pack_id:
+          enum:
+            - uswds
+    suffix:
+      title: 'Suffix'
+      description: 'Check to move icon to suffix.'
+      type: boolean

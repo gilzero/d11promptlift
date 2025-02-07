@@ -15,6 +15,9 @@ use Drupal\views\Views;
  */
 class FilterNumericTest extends ViewsKernelTestBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = ['system'];
 
   /**
@@ -527,7 +530,7 @@ class FilterNumericTest extends ViewsKernelTestBase {
     $this->assertTrue(isset($age_operators['not empty']));
   }
 
-  protected function getGroupedExposedFilters() {
+  protected function getGroupedExposedFilters(): array {
     $filters = [
       'age' => [
         'id' => 'age',

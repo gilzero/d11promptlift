@@ -1,0 +1,22 @@
+name: 'Navigation - Footer'
+description: 'Vertical navigation to place. To be used inside a footer component.'
+group: Navigation
+props:
+  type: object
+  properties:
+    nav_id:
+      title: 'ID'
+      description: 'Must start with a letter. Randomly generated if empty.'
+      $ref: 'ui-patterns://identifier'
+    first_level_only:
+      title: 'First level only'
+      description: 'Only the first row of menu should render based on footer variant.'
+      type: boolean
+    column_attributes:
+      title: 'Column attributes'
+      description: 'The attributes to columns in the footer.'
+      $ref: 'ui-patterns://attributes'
+    footer:
+      title: 'Footer navigation'
+      description: 'Full-height and lightweight navigation with dropdowns. 2 levels max. Links are ignored if children are present.'
+      $ref: 'ui-patterns://links'

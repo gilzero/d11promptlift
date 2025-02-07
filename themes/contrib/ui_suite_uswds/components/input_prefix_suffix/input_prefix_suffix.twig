@@ -1,0 +1,15 @@
+<div class="usa-input-group">
+  {% if not suffix and icon_name.icon_id %}
+    <div class="usa-input-prefix" aria-hidden="true">
+      {{ icon('uswds', icon_name.icon_id, icon_name.settings) }}
+    </div>
+  {% endif %}
+
+  <input{{ attributes.addClass('usa-input') }} />
+
+  {% if suffix and icon_name.icon_id %}
+    <div class="usa-input-suffix" aria-hidden="true">
+      {{ icon('uswds', icon_name.icon_id, icon_name.settings) }}
+    </div>
+  {% endif %}
+</div>

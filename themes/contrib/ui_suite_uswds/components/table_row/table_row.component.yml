@@ -1,0 +1,9 @@
+name: '(Table Row)'
+description: "Internal: to be used in the 'Table' component."
+group: Table
+links:
+  - 'https://designsystem.digital.gov/components/table/'
+slots:
+  cells:
+    title: 'Row cells'
+    description: 'A sequence of cell components.'

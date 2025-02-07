@@ -1,0 +1,17 @@
+{% if variant and variant != 'default' %}
+  {% set variants = variant|split('__')|map(v => v|replace({(v): 'fr-alert--' ~ v})) %}
+  {% set attributes = attributes.addClass(variants) %}
+{% endif %}
+
+{% set title_tag = title_tag|default('h3') %}
+
+<div{{ attributes.addClass('fr-alert') }}>
+  {% if title %}
+    <{{ title_tag }} class="fr-alert__title">{{ title }}</{{ title_tag }}>
+  {% endif %}
+    {{ message }}
+  {% if dismissible %}
+    {% set close_title = close_title|default('Close'|t) %}
+    <button{% if dismissible == 'core' %} onclick="const alert = this.parentNode; alert.parentNode.removeChild(alert);"{% endif %} class="fr-btn fr-btn--close" title="{{ close_title }}" type="button">{{ close_title }}</button>
+  {% endif %}
+</div>

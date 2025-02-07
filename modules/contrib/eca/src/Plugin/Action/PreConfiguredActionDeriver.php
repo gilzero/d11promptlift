@@ -27,7 +27,7 @@ final class PreConfiguredActionDeriver extends DeriverBase implements ContainerD
    *
    * @var bool
    */
-  static protected bool $recursion = FALSE;
+  protected static bool $recursion = FALSE;
 
   /**
    * The action plugin manager.

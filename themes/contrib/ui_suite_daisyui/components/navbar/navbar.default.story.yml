@@ -1,0 +1,20 @@
+name: Default
+slots:
+  start:
+    type: component
+    component: ui_suite_daisyui:button
+    slots:
+      label: daisyUI
+    props:
+      variant: ghost
+  center:
+    type: component
+    component: ui_suite_daisyui:menu
+    story: flat
+    props:
+      variant: horizontal__md
+  end:
+    type: component
+    component: ui_suite_daisyui:button
+    slots:
+      label: Button

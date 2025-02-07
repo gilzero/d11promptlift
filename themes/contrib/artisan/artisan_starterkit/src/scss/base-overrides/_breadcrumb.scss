@@ -1,0 +1,45 @@
+.breadcrumb { 
+  --breadcrumb-font-size: var(--theme-breadcrumb-font-size, var(--bs-breadcrumb-font-size)); 
+  --breadcrumb-font-family: var(--theme-breadcrumb-font-family, inherit);
+  --breadcrumb-font-weight: var(--theme-breadcrumb-font-weight, inherit);
+  --breadcrumb-padding-x: var(--theme-breadcrumb-padding-x, var(--bs-breadcrumb-padding-x)); 
+  --breadcrumb-padding-y: var(--theme-breadcrumb-padding-y, var(--bs-breadcrumb-padding-y)); 
+  --breadcrumb-divider: var(--theme-breadcrumb-divider, var(--bs-breadcrumb-divider, "/"));
+  --breadcrumb-color: var(--theme-breadcrumb-color, var(--theme-links-color)); 
+  --breadcrumb-background: var(--theme-breadcrumb-background, var(--bs-breadcrumb-bg)); 
+  --breadcrumb-accent-color: var(--theme-breadcrumb-accent-color, var(--bs-breadcrumb-item-active-color));
+  --breadcrumb-margin-y: var(--theme-breadcrumb-margin-y, var(--bs-breadcrumb-margin-bottom, 1rem));
+
+  font-size: var(--breadcrumb-font-size);
+  font-weight: var(--breadcrumb-font-weight);
+  font-family: var(--breadcrumb-font-family);
+  margin: var(--breadcrumb-margin-y) 0;
+  background-color: var(--breadcrumb-background);
+  color: var(--breadcrumb-color);
+  padding: var(--breadcrumb-padding-y) var(--breadcrumb-padding-x);
+
+  .breadcrumb-item {
+    a {
+      color: inherit;
+      font: inherit;
+      text-decoration: inherit;
+
+      &:focus,
+      &:hover {
+        color: var(--breadcrumb-accent-color, var(--breadcrumb-color));
+      }
+    }
+
+    + .breadcrumb-item {
+      &::before {
+        content: var(--breadcrumb-divider, "/");
+        color: var(--breadcrumb-color, var(--bs-breadcrumb-divider-color));
+      }
+    }
+
+    &.active,
+    &.active a {
+      color: var(--breadcrumb-accent-color, var(--breadcrumb-color));
+    }
+  }
+}

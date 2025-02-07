@@ -1,0 +1,19 @@
+name: Multisite Example - Sub ItaliaGov
+type: theme
+description: This is an example italiagov sub-theme
+package: Italia
+core_version_requirement: ^10.3 || ^11
+base theme: italiagov # <---- Check if theme name is correct
+
+libraries-override:
+  italiagov/global: false # <---- Check if theme name is correct
+
+hidden: true # <---- Remember to set false, comment or delete line
+
+logo: logo.svg
+screenshot: screenshot.png
+
+# Information added by Drupal.org packaging script on 2024-12-02
+version: '2.12.0'
+project: 'bootstrap_italia'
+datestamp: 1733160393

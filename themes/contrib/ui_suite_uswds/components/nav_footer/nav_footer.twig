@@ -1,0 +1,82 @@
+{% set nav_id = 'usa-nav-' ~ nav_id|default(random()) %}
+<nav {{ attributes.addClass("usa-footer__nav").setAttribute("role", "navigation") }}>
+  {% if first_level_only %}
+    {{ _self.menu_footer_single_level(footer, nav_id) }}
+  {% else %}
+    <div class="grid-row grid-gap-4">
+      {{ _self.menu_footer_multi_level(footer, nav_id) }}
+    </div>
+  {% endif %}
+</nav>
+
+{% macro menu_footer_multi_level(items, nav_id) %}
+  {% if items %}
+    {% set section_id = nav_id ~ "-section-" ~ loop_index %}
+    {% set attributes = create_attribute(item.attributes|default({})).addClass(['usa-footer__primary-content', 'usa-footer__primary-content--collapsible']) %}
+    {% set column_attributes = create_attribute(column_attributes|default({
+      'class': ['tablet:grid-col-fill', 'grid-col-auto']
+    })) %}
+
+    {% for item in items %}
+      <div{{ column_attributes }}>
+        <section{{ attributes }}>
+          {{ _self.menu_footer_sections(item, loop.index, nav_id) }}
+        </section>
+      </div>
+    {% endfor %}
+
+  {% endif %}
+{% endmacro %}
+
+{% macro menu_footer_single_level(items, nav_id) %}
+  {% if items %}
+    {% set section_id = nav_id ~ "-section-" ~ loop_index %}
+    {% set attributes = create_attribute(item.attributes|default({})).addClass(['usa-footer__primary-content', 'usa-footer__primary-content--collapsible']) %}
+    {% set column_attributes = create_attribute(column_attributes|default({
+      'class': 'grid-col-auto'
+    })) %}
+
+    <ul class="grid-row grid-gap">
+    {% for item in items %}
+      {{ _self.footer_menu_link(item) }}
+    {% endfor %}
+    </ul>
+
+  {% endif %}
+{% endmacro %}
+
+{% macro menu_footer_sections(item, loop_index, nav_id, first_level_only) %}
+  {% set header_attributes = create_attribute(item.link_attributes|default({})).addClass("usa-footer__primary-link") %}
+
+  <h4{{ header_attributes }}>{{ item.title }}</h4>
+
+  {% if item.below %}
+    {{ _self.submenu_simple(item.below, section_id) }}
+  {% endif %}
+{% endmacro %}
+
+{% macro submenu_simple(items, section_id) %}
+  <ul id="{{ section_id }}" class="usa-list usa-list--unstyled">
+    {% for item in items %}
+      {{ _self.submenu_link(item) }}
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro submenu_link(item) %}
+  {% set attributes = create_attribute(item.attributes|default({})).addClass("usa-footer__secondary-link") %}
+  {% set link_attributes = create_attribute(item.link_attributes|default({})) %}
+  {% set link_attributes = item.url ? link_attributes.setAttribute("href", item.url) : link_attributes %}
+
+  <li{{ attributes }}><a{{ link_attributes }}>{{ item.title }}</a></li>
+{% endmacro %}
+
+{% macro footer_menu_link(item) %}
+  {% set link_attributes = create_attribute(item.link_attributes|default({})).addClass("usa-footer__primary-link") %}
+  {% set link_attributes = item.url ? link_attributes.setAttribute("href", item.url) : link_attributes %}
+  {% set column_attributes = create_attribute(column_attributes|default({
+    'class': ['grid-col-auto', 'usa-footer__primary-content']
+  })) %}
+
+  <li{{ column_attributes }}><a{{ link_attributes }}>{{ item.title }}</a></li>
+{% endmacro %}

@@ -1,0 +1,11 @@
+name: Markdown Easy hook test
+type: module
+description: Test module for Markdown Easy hooks.
+core_version_requirement: ^9 || ^10 || ^11
+dependencies:
+  - markdown_easy:markdown_easy
+
+# Information added by Drupal.org packaging script on 2024-04-18
+version: '1.0.1'
+project: 'markdown_easy'
+datestamp: 1713470235

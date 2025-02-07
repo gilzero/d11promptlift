@@ -1,0 +1,12 @@
+name: Preview basic
+slots:
+  top:
+    type: component
+    component: 'ui_suite_uswds:logo'
+    story: default
+  nav:
+    type: component
+    component: 'ui_suite_uswds:nav'
+    story: slim
+props:
+  variant: 'basic'

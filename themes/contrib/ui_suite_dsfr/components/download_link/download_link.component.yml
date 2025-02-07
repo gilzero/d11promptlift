@@ -1,0 +1,25 @@
+name: "Download link"
+description: "One or more files available for download along with some text."
+group: Download
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/telechargement-de-fichier"
+slots:
+  name:
+    title: "File name"
+    description: "Text name of the file."
+  detail:
+    title: "File detail"
+    description: "File format and weight."
+props:
+  type: object
+  properties:
+    url:
+      title: "File url"
+      type: string
+    new_window:
+      title: "Open is a new window?"
+      type: boolean
+    direct_download:
+      title: "Direct download?"
+      description: "The attribute download allows the direct download of the resource, without opening it."
+      type: boolean

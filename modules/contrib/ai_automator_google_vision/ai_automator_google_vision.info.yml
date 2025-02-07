@@ -1,0 +1,14 @@
+name: AI Automator Google Vision
+description: Reads different document using Google Vision AI.
+package: AI Automators
+type: module
+core_version_requirement: ^10.2 || ^11
+configure: ai_automator_google_vision.settings
+
+dependencies:
+  - ai:ai_automator
+
+# Information added by Drupal.org packaging script on 2024-10-10
+version: '1.0.0-beta1'
+project: 'ai_automator_google_vision'
+datestamp: 1728570083

@@ -1,0 +1,6 @@
+name: Transcription expanded by default
+slots:
+  content: "<p>Transcription text : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus.</p>"
+  expanded: true
+  enlarge_text: "Agrandir le texte"
+  enlarge_aria_label: "Agrandir le texte de la transcription"

@@ -1,0 +1,21 @@
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-breadcrumb--' ~ variant) %}
+{% endif %}
+
+<nav {{ attributes.addClass('usa-breadcrumb') }} aria-label="Breadcrumbs">
+  <ol class="usa-breadcrumb__list">
+    {% for item in items %}
+      {% if item.url %}
+        <li class="usa-breadcrumb__list-item">
+          <a href="{{ item.url }}" class="usa-breadcrumb__link">
+            <span>{{ item.title }}</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+          <span>{{ item.title }}</span>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>

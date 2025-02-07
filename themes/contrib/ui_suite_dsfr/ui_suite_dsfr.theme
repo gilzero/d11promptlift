@@ -1,0 +1,390 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the UI Suite DSFR theme.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function ui_suite_dsfr_preprocess_page(&$variables) {
+  $variables['container'] = theme_get_setting('container') ?? 'fr-container';
+  $variables['logo_text'] = theme_get_setting('logo_text') ?? '';
+  $variables['logo_text'] = str_replace('\n', PHP_EOL, $variables['logo_text']);
+
+  // For the header & footer components.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['site_slogan'] = $config->get('slogan');
+
+  // Add menus.
+  if (theme_get_setting('dsfr_footer_top') !== NULL) {
+    $variables = _add_raw_menu($variables, "footer_top", theme_get_setting('dsfr_footer_top'));
+  }
+}
+
+/**
+ * Add single menu links in #menus.
+ *
+ * @return array
+ *   The altered renderable variables.
+ */
+function _add_raw_menu(array $variables, string $variable, string $menu_id): array {
+  $parameters = new MenuTreeParameters();
+  // Empty parameters because not configurable.
+  $menu_tree_builder = \Drupal::service('menu.link_tree');
+  $tree = $menu_tree_builder->load($menu_id, $parameters);
+  $manipulators = [
+      ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree_builder->transform($tree, $manipulators);
+  $tree = $menu_tree_builder->build($tree);
+  if (!isset($tree["#items"])) {
+    return $variables;
+  }
+  if (isset($tree["#cache"])) {
+    $variables["#cache"] = array_merge($variables["#cache"] ?? [], $tree["#cache"]);
+  }
+  $variables[$variable] = $tree["#items"];
+  return $variables;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function ui_suite_dsfr_form_alter(&$form, &$form_state, $form_id) {
+  // Style form buttons like button patterns.
+  if (isset($form['actions'])) {
+    $actions = Element::children($form['actions']);
+    foreach ($actions as $action) {
+      if (array_key_exists('#type', $form['actions'][$action]) && $form['actions'][$action]['#type'] == 'submit') {
+        $form['actions'][$action]['#attributes']['class'][] = 'fr-btn';
+        if ($form_id == 'search_block_form') {
+          continue;
+        }
+        if (!empty($form['actions'][$action]['#button_type'])) {
+          if ($form['actions'][$action]['#button_type'] !== 'primary') {
+            $form['actions'][$action]['#attributes']['class'][] = 'fr-btn--secondary';
+          }
+        }
+        else {
+          $form['actions'][$action]['#attributes']['class'][] = 'fr-btn--secondary';
+        }
+      }
+    }
+  }
+
+  if (!isset($form['ui_styles'])) {
+    return;
+  }
+
+  // Add ui styles for text and background from theme setting.
+  $colors = _ui_suite_dsfr_get_colors_settings();
+  $options = [];
+  foreach ($colors as $id => $color) {
+    foreach ($color['types'] as $type => $values) {
+      foreach ($values as $value) {
+        $options[$type]["fr-$type-$value--$id"] = ucfirst($value) . ' ' . $color['label'];
+      }
+    }
+  }
+
+  foreach (Element::children($form) as $key) {
+    if (str_starts_with($key, 'ui_styles') && isset($form[$key]['color'])) {
+      $form[$key]['color']['ui_styles_background']['#options'] += $options['background'];
+      $form[$key]['color']['ui_styles_text_color']['#options'] += $options['text'];
+      // Sort asc.
+      ksort($form[$key]['color']['ui_styles_background']['#options']);
+      ksort($form[$key]['color']['ui_styles_text_color']['#options']);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_input().
+ */
+function ui_suite_dsfr_preprocess_input(array &$variables) {
+  if (in_array($variables['element']['#type'],
+    ['hidden', 'submit', 'token', 'button'])) {
+    return;
+  }
+  $error_id = 'error-desc--';
+  if (isset($variables['element']['#name'])) {
+    $error_id .= $variables['element']['#name'];
+  }
+  // Here we need to add aria-describedby prop for single checkbox only.
+  if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
+    if (isset($variables['element']['#delta'])
+      && !empty($variables['element']['#errors'])) {
+      $variables['attributes']['aria-describedby'] = $error_id;
+    }
+    return;
+  }
+  $class = 'fr-input';
+  if ($variables['element']['#type'] == 'file') {
+    $class = 'fr-upload';
+  }
+  if ($variables['element']['#type'] == 'checkboxes') {
+    $class = 'fr-fieldset';
+  }
+
+  $variables['attributes']['class'][] = $class;
+  if (!empty($variables['element']['#errors'])) {
+    $variables['attributes']['class'][] = $class . '--error';
+    // Move error to input, so can be used in input template.
+    $variables['errors'] = $variables['element']['#errors'];
+    $variables['attributes']['aria-describedby'] = $error_id;
+    $variables['error_id'] = $error_id;
+  }
+}
+
+/**
+ * Implements hook_preprocess_select().
+ */
+function ui_suite_dsfr_preprocess_select(array &$variables) {
+  $class = 'fr-select';
+  $variables['attributes']['class'][] = $class;
+  if (!empty($variables['element']['#errors'])) {
+    $error_id = 'error-desc--' . $variables['element']['#name'];
+    $variables['attributes']['class'][] = $class . '--error';
+    // Move error to input, so can be used in select template.
+    $variables['errors'] = $variables['element']['#errors'];
+    $variables['attributes']['aria-describedby'] = $error_id;
+    $variables['error_id'] = $error_id;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_form_element_alter().
+ */
+function ui_suite_dsfr_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
+  if (isset($variables['element']['#id'])) {
+    $suggestions[] = $hook . '__' . $variables['element']['#id'];
+  }
+  if (isset($variables['element']['#type'])) {
+    $suggestions[] = $hook . '__' . $variables['element']['#type'];
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_form_element_alter().
+ */
+function ui_suite_dsfr_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  if (isset($variables['element']['#attributes']['data-twig-suggestion'])) {
+    $suggestions[] = 'input__' . $variables['element']['#type'] . '__' . $variables['element']['#attributes']['data-twig-suggestion'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ */
+function ui_suite_dsfr_preprocess_form_element(array &$variables) {
+  switch ($variables['element']['#type']) {
+    case 'checkbox':
+    case 'radio':
+      $class = $variables['element']['#type'] == 'radio' ? 'fr-radio-group' : 'fr-checkbox-group';
+      // Here we need to add error in form element template only for
+      // single checkbox. These vars can be used in form_element.twig.html.
+      $variables['add_error'] = !isset($variables['element']['#error_no_message']);
+      $variables['error_id'] = 'error-desc--';
+      if (isset($variables['element']['#name'])) {
+        $variables['error_id'] .= $variables['element']['#name'];
+      }
+      $error_class = $variables['add_error'] ? $class . '--error' : NULL;
+      break;
+
+    case 'managed_file':
+      $class = 'fr-upload-group';
+      $error_class = 'fr-upload-group--error';
+      break;
+
+    case 'select':
+      $class = 'fr-select-group';
+      $error_class = 'fr-select-group--error';
+      break;
+
+    default:
+      $class = 'fr-input-group';
+      $error_class = $class . '--error';
+  }
+  $variables['attributes']['class'][] = $class;
+
+  if (!empty($variables['errors']) && isset($error_class)) {
+    $variables['attributes']['class'][] = $error_class;
+  }
+
+  // We need to have description in form element label template.
+  $variables['label']['#description'] = $variables['description'] ?? [];
+}
+
+/**
+ * Implements hook_preprocess_fieldset().
+ */
+function ui_suite_dsfr_preprocess_fieldset(array &$variables) {
+  unset($variables['attributes']['aria-describedby']);
+  $variables['attributes']['class'][] = 'fr-fieldset';
+  $name = $variables['element']['#name'] = $variables['element']['#name'] ?? 'fs-' . Crypt::randomBytesBase64(8);
+  $legend_id = 'fs-legend--' . $name;
+  $variables['attributes']['aria-labelledby'] = $legend_id;
+  $variables['legend']['attributes']['id'] = $legend_id;
+  // In case of error we need additional attributes.
+  if (!empty($variables['errors'])) {
+    $variables['attributes']['class'][] = 'fr-fieldset--error';
+    $variables['error_id'] = 'error-desc--' . $name;
+    $variables['attributes']['aria-labelledby'] .= ' ' . $variables['error_id'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element_label().
+ */
+function ui_suite_dsfr_preprocess_form_element_label(array &$variables) {
+  // We need to have description in form element label template.
+  $variables['description'] = $variables['element']['#description'];
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function ui_suite_dsfr_preprocess_form(&$vars) {
+  if ($vars['element']['#form_id'] == 'search_block_form') {
+    $vars['attributes']['class'][] = 'fr-search-bar';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function ui_suite_dsfr_form_search_block_form_alter(&$form, &$form_state) {
+  $form['keys']['#attributes']['placeholder'][] = t('Search');
+  $form['actions']['submit']['#attributes']['data-twig-suggestion'] = 'search_submit';
+}
+
+/**
+ * Get theme name from theme settings form.
+ */
+function _ui_suite_dsfr_get_theme_name(array $form) {
+  if (isset($form['config_key']['#value']) && \is_string($form['config_key']['#value'])) {
+    $config_key = $form['config_key']['#value'];
+    $config_key_parts = \explode('.', $config_key);
+
+    if (isset($config_key_parts[0])) {
+      return $config_key_parts[0];
+    }
+  }
+}
+
+/**
+ * Return menu Settings.
+ */
+function _menu_settings_form($title, string $value): array {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  try {
+    $all_menus = $entity_type_manager->getStorage('menu')->loadMultiple();
+    $menus = [
+      "" => "(None)",
+    ];
+    foreach ($all_menus as $id => $menu) {
+      $menus[$id] = $menu->label();
+    }
+    asort($menus);
+    return [
+      '#type' => 'select',
+      '#title' => $title,
+      '#options' => $menus,
+      '#default_value' => $value,
+    ];
+  }
+  catch (InvalidPluginDefinitionException | PluginNotFoundException) {
+  }
+  return [];
+}
+
+/**
+ * Gets all colors options.
+ *
+ * @return array
+ *   Array with values.
+ */
+function _ui_suite_dsfr_get_colors_options(string $theme): array {
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_list */
+  $theme_list = \Drupal::service('extension.list.theme');
+  $info = $theme_list->getExtensionInfo($theme);
+  if (isset($info['colors'])) {
+    $colors_options = [];
+    foreach ($info['colors'] as $id => $color) {
+      $colors_options[$id] = $color['label'];
+    }
+    return $colors_options;
+  }
+  elseif (isset($info["base theme"])) {
+    return _ui_suite_dsfr_get_colors_options($info["base theme"]);
+  }
+  return [];
+}
+
+/**
+ * Gets all available colors settings.
+ *
+ * @param string|null $theme
+ *   The theme name (by default the currently active theme).
+ *
+ * @return array
+ *   Array with values.
+ */
+function _ui_suite_dsfr_get_colors_settings(?string $theme = NULL): array {
+  if (!$theme) {
+    // Get the current active theme.
+    $theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+  }
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_list */
+  $theme_list = \Drupal::service('extension.list.theme');
+  $info = $theme_list->getExtensionInfo($theme);
+  if (isset($info['colors'])) {
+    $theme_value = theme_get_setting('available_colors');
+    if (!$theme_value) {
+      return $info['colors'];
+    }
+    $colors = [];
+    foreach ($theme_value as $value) {
+      if (isset($info['colors'][$value])) {
+        $colors[$value] = $info['colors'][$value];
+      }
+    }
+    return $colors;
+  }
+  else {
+    return [];
+  }
+}
+
+/**
+ * Implements hook_preprocess_textarea().
+ */
+function ui_suite_dsfr_preprocess_textarea(array &$variables) {
+  if (!empty($variables['element']['#errors'])) {
+    $error_id = 'error-desc--';
+    if (isset($variables['element']['#name'])) {
+      $error_id .= $variables['element']['#name'];
+    }
+    $variables['attributes']['class'][] = 'fr-input--error';
+    // Move error to input, so can be used in input template.
+    $variables['errors'] = $variables['element']['#errors'];
+    $aria_describedby = [$error_id];
+    if (!empty($variables['attributes']['aria-describedby'])) {
+      $aria_describedby[] = $variables['attributes']['aria-describedby'];
+    }
+    $variables['attributes']['aria-describedby'] = implode(' ', $aria_describedby);
+    $variables['error_id'] = $error_id;
+  }
+}

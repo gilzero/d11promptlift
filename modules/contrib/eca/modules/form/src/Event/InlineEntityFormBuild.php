@@ -5,7 +5,6 @@ namespace Drupal\eca_form\Event;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\eca\Event\ContentEntityEventInterface;
-use Drupal\eca\Event\RenderEventInterface;
 use Drupal\eca\Plugin\DataType\DataTransferObject;
 
 /**
@@ -17,7 +16,7 @@ use Drupal\eca\Plugin\DataType\DataTransferObject;
  *
  * @package Drupal\eca_form\Event
  */
-class InlineEntityFormBuild extends FormBase implements RenderEventInterface, ContentEntityEventInterface {
+class InlineEntityFormBuild extends FormBuild implements ContentEntityEventInterface {
 
   /**
    * The embedded entity that belongs to the inline entity form.
@@ -86,14 +85,6 @@ class InlineEntityFormBuild extends FormBase implements RenderEventInterface, Co
     $this->fieldName = $field_name;
     $this->delta = $delta;
     $this->widgetPluginId = $widget_plugin_id;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function &getRenderArray(): array {
-    $form = &$this->getForm();
-    return $form;
   }
 
   /**

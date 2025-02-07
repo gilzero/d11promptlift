@@ -1,0 +1,48 @@
+name: Stepper
+description: "The stepper shows the user where they are in a form or process."
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/indicateur-d-etapes"
+slots:
+  title:
+    title: Title
+    description: "Title of the current step."
+  state:
+    title: State
+    description: "State of the process"
+  detail:
+    title: "Bottom detail"
+    description: "Title of the next step."
+props:
+  type: object
+  properties:
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        h1: h1
+        h2: "h2 (default)"
+        h3: h3
+        h4: h4
+        h5: h5
+        h6: h6
+      default: h2
+    current_step:
+      title: "Current step"
+      description: "Number of the current step."
+      type: number
+      minimum: 1
+      maximum: 8
+      default: 1
+    steps:
+      title: "Total steps"
+      description: "Number of steps in total."
+      type: number
+      minimum: 2
+      maximum: 8

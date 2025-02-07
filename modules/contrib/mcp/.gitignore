@@ -1,0 +1,9 @@
+.DS_Store
+
+/vendor/
+/.editorconfig
+/.gitattributes
+/web
+phpcs.xml.dist
+phpstan.neon
+phpstan-baseline.neon

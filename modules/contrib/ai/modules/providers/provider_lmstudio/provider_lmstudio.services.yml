@@ -1,4 +1,0 @@
-services:
-  provider_lmstudio.control_api:
-    class: Drupal\provider_lmstudio\LmStudioControlApi
-    arguments: ['@http_client']

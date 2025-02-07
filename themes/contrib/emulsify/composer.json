@@ -1,0 +1,37 @@
+{
+    "name": "emulsify-ds/emulsify-drupal",
+    "description": "The official Drupal 10 base theme for Emulsify that generates custom themes with Storybook development + Webpack Build",
+    "type": "drupal-theme",
+    "homepage": "http://emulsify.info",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Randy Oest",
+            "email": "randy@fourkitchens.com"
+        },
+        {
+            "name": "Callin Mullaney",
+            "email": "callin@fourkitchens.com"
+        }
+    ],
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "drupal/core": "^10 || ^11",
+        "drupal/components": "^3.0@beta",
+        "drupal/emulsify_tools": "^1.0"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10 || ^11"
+            }
+        }
+    }
+}

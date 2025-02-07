@@ -337,6 +337,28 @@ class PathBasedBreadcrumbBuilderTest extends UnitTestCase {
   }
 
   /**
+   * Tests the build method with an invalid path.
+   *
+   * @covers ::build
+   * @covers ::getRequestForPath
+   */
+  public function testBuildWithInvalidPath(): void {
+    // The parse_url() function returns FALSE for '/:123/foo' so the
+    // Request::create() method therefore considers it to be an invalid URI.
+    $this->context->expects($this->once())
+      ->method('getPathInfo')
+      ->willReturn('/:123/foo/bar');
+
+    $breadcrumb = $this->builder->build($this->createMock('Drupal\Core\Routing\RouteMatchInterface'));
+
+    // No path matched, though at least the frontpage is displayed.
+    $this->assertEquals([0 => new Link('Home', new Url('<front>'))], $breadcrumb->getLinks());
+    $this->assertEqualsCanonicalizing(['url.path.is_front', 'url.path.parent'], $breadcrumb->getCacheContexts());
+    $this->assertEqualsCanonicalizing([], $breadcrumb->getCacheTags());
+    $this->assertEquals(Cache::PERMANENT, $breadcrumb->getCacheMaxAge());
+  }
+
+  /**
    * Tests the applied method.
    *
    * @covers ::applies
@@ -391,13 +413,13 @@ class PathBasedBreadcrumbBuilderTest extends UnitTestCase {
   /**
    * Setup the access manager to always allow access to routes.
    */
-  public function setupAccessManagerToAllow() {
+  public function setupAccessManagerToAllow(): void {
     $this->accessManager->expects($this->any())
       ->method('check')
       ->willReturn((new AccessResultAllowed())->cachePerPermissions());
   }
 
-  protected function setupStubPathProcessor() {
+  protected function setupStubPathProcessor(): void {
     $this->pathProcessor->expects($this->any())
       ->method('processInbound')
       ->willReturnArgument(0);
@@ -417,7 +439,7 @@ class TestPathBasedBreadcrumbBuilder extends PathBasedBreadcrumbBuilder {
     return $this;
   }
 
-  public function setLinkGenerator(LinkGeneratorInterface $link_generator) {
+  public function setLinkGenerator(LinkGeneratorInterface $link_generator): void {
     $this->linkGenerator = $link_generator;
   }
 

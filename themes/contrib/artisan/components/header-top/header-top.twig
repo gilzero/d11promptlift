@@ -1,0 +1,7 @@
+{% if content %}
+  <nav {{ attributes.addClass(['header-top', 'navbar', 'navbar-expand']) }}>
+    <div {{ container_attributes }}>
+      {{ content }}
+    </div>
+  </nav>
+{% endif %}

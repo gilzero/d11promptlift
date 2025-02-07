@@ -38,7 +38,7 @@ class EntityLabel extends FieldPluginBase {
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
+   *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -111,10 +111,10 @@ class EntityLabel extends FieldPluginBase {
         $this->options['alter']['url'] = $entity->toUrl();
         $this->options['alter']['make_link'] = TRUE;
       }
-      catch (UndefinedLinkTemplateException $e) {
+      catch (UndefinedLinkTemplateException) {
         $this->options['alter']['make_link'] = FALSE;
       }
-      catch (EntityMalformedException $e) {
+      catch (EntityMalformedException) {
         $this->options['alter']['make_link'] = FALSE;
       }
     }

@@ -1,0 +1,14 @@
+name: Preview
+slots:
+  items:
+    - type: html_tag
+      tag: span
+      value: "Lorem ipsum"
+    - type: html_tag
+      tag: span
+      value: "Phasellus iaculis"
+    - type: html_tag
+      tag: span
+      value: "Nulla volutpat"
+props:
+  list_type: ul

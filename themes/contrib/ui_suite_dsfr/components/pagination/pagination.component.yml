@@ -1,0 +1,27 @@
+name: Pagination
+description: "Pagination allows the user to navigate between the different pages of a list of items."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/pagination"
+props:
+  type: object
+  properties:
+    first:
+      title: "First link"
+      description: "Should be empty when the user is on the first page. Will be printed desactivated if empty."
+      $ref: "ui-patterns://url"
+    prev:
+      title: "Previous link"
+      description: "Should be empty when the user is on the first page. Will be printed desactivated if empty."
+      $ref: "ui-patterns://url"
+    pages:
+      title: "Pages links"
+      description: "The current page has no url property.  It is recommended to limit the number of pages visible and displayed by default in the pagination to 5 or 7, the other pages being hidden by a truncation system."
+      $ref: "ui-patterns://links"
+    next:
+      title: "Next link"
+      description: "Should be empty when the user is on the last page. Will be printed desactivated if empty."
+      $ref: "ui-patterns://url"
+    last:
+      title: "Last link"
+      description: "Should be empty when the user is on the last page. Will be printed desactivated if empty."
+      $ref: "ui-patterns://url"

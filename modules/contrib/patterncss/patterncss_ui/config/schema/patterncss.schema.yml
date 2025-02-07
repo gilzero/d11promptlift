@@ -1,0 +1,55 @@
+patterncss.settings:
+  type: mapping
+  label: 'PatternCSS Settings'
+  mapping:
+    load:
+      type: boolean
+      label: 'Let module handle loading Pattern.css library'
+    method:
+      type: string
+      label: 'Loading Pattern.css library method'
+    build:
+      type: mapping
+      label: 'Build variant'
+      mapping:
+        variant:
+          type: integer
+          label: 'Variant'
+    request_path:
+      type: mapping
+      label: 'URL visibility'
+      mapping:
+        negate:
+          type: integer
+          label: 'Negate'
+        pages:
+          type: array
+          label: 'Pages'
+    options:
+      selector:
+        type: array
+        label: 'Selectors'
+      pattern:
+        type: string
+        label: 'Pattern'
+      color:
+        type: string
+        label: 'Color'
+      background:
+        type: string
+        label: 'Background color'
+      size:
+        type: string
+        label: 'Size'
+      custom:
+        type: string
+        label: 'Custom size'
+      opacity:
+        type: string
+        label: 'Opacity'
+      height:
+        type: string
+        label: 'Line height'
+      transform:
+        type: string
+        label: 'Container transform'

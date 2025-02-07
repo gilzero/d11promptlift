@@ -152,7 +152,7 @@ class MigrationLookup extends ProcessPluginBase implements ContainerFactoryPlugi
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
+   *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\migrate\Plugin\MigrationInterface $migration
@@ -250,10 +250,10 @@ class MigrationLookup extends ProcessPluginBase implements ContainerFactoryPlugi
       try {
         $destination_ids = $this->migrateStub->createStub($stub_migration, $source_id_values[$stub_migration], [], FALSE);
       }
-      catch (\LogicException $e) {
+      catch (\LogicException) {
         // For BC reasons, we must allow attempting to stub a derived migration.
       }
-      catch (PluginNotFoundException $e) {
+      catch (PluginNotFoundException) {
         // For BC reasons, we must allow attempting to stub a non-existent
         // migration.
       }

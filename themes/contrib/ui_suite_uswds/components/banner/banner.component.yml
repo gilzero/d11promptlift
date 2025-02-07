@@ -1,0 +1,20 @@
+name: Banner
+description: 'Banners identify official websites of government organizations in the United States. They also help visitors understand whether a website is official and secure.'
+group: 'Alerts / Banner'
+links:
+  - 'https://designsystem.digital.gov/components/banner/'
+props:
+  type: object
+  properties:
+    banner_id:
+      title: 'Banner ID'
+      description: 'Unique ID to be used by banner. Randomly generated if empty.'
+      $ref: 'ui-patterns://identifier'
+    icon_path:
+      title: 'Icon path'
+      description: 'Path to the icon to use in banner.'
+      type: string
+    mil:
+      title: '.mil site'
+      description: 'Is the site a .mil site? Some .mil websites do not belong to an official U.S. Department of Defense organization. These sites should adapt the Official websites use .mil section to use more technically accurate language: “A .mil website operates under the approval of the U.S. Department of Defense.”'
+      type: boolean

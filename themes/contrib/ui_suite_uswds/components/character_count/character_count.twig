@@ -1,0 +1,21 @@
+{% set input_attributes = create_attribute({
+  'class': [
+    'usa-character-count__field'
+  ],
+  'data-maxlength': max_length,
+  'name': field_name,
+  'aria-describedby': field_name ~ '-label'
+}) %}
+
+{{ include('ui_suite_uswds:label', {
+  label: field_label|default(''),
+  for_value: field_name,
+}, with_context = false) }}
+
+<div{{ attributes.addClass('usa-character-count').setAttribute('data-maxlength', max_length) }}>
+  <div class="usa-form-group">
+    <textarea{{ input_attributes }}>
+    </textarea>
+  </div>
+  <span id="{{ label }}-info" class="usa-character-count__message usa-sr-only">{{ 'You can enter up to ' ~ max_length ~ ' characters'|trans }}</span>
+</div>

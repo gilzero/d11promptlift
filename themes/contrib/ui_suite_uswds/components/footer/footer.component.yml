@@ -1,0 +1,48 @@
+name: Footer
+description: 'A footer serves site visitors who arrive at the bottom of a page without finding what they want.'
+group: Layout
+links:
+  - 'https://designsystem.digital.gov/components/footer/'
+variants:
+  big:
+    title: 'Big (Default)'
+  medium:
+    title: 'Medium'
+  slim:
+    title: 'Slim'
+slots:
+  footer_contact_region:
+    title: 'Footer contact region'
+    description: 'Separate pattern to house contact information.'
+  sign_up_block:
+    title: 'Sign up block'
+    description: 'Sign up block for footer.'
+  nav_footer:
+    title: 'Nav - Footer'
+    description: 'Expect a nav footer component'
+  footer_bottom:
+    title: 'Footer Bottom'
+    description: 'Region to render'
+props:
+  type: object
+  properties:
+    back_to_top:
+      title: 'Back to top'
+      description: "Check to make 'Back to top' link appear"
+      type: boolean
+    back_to_top_text:
+      title: 'Back to top text'
+      description: "If 'back to top' link is set to appear what should the text be"
+      type: string
+    agency_name:
+      title: 'Agency name'
+      description: 'Name of agency'
+      type: string
+    agency_url:
+      title: 'Agency URL'
+      description: 'Agency URL'
+      type: string
+    agency_logo:
+      title: 'Agency logo'
+      description: "Path to footer agency logo (from this theme's folder)."
+      type: string

@@ -1,0 +1,14 @@
+name: 'Lunr'
+type: module
+description: 'Provides a basic integration between Drupal and Lunr.js.'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+package: Tome
+dependencies:
+  - drupal:serialization
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2024-11-23
+version: '8.x-1.7'
+project: 'lunr'
+datestamp: 1732382861

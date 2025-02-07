@@ -3,6 +3,7 @@
 namespace Drupal\eca_content\Plugin\ECA\Condition;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\eca\EntityOriginalTrait;
 
 /**
  * Class for the original field value.
@@ -22,6 +23,8 @@ use Drupal\Core\Entity\EntityInterface;
  */
 class EntityOriginalFieldValue extends EntityFieldValue {
 
+  use EntityOriginalTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -29,7 +32,7 @@ class EntityOriginalFieldValue extends EntityFieldValue {
     if (!($entity = parent::getEntity())) {
       return NULL;
     }
-    return $entity->original ?? NULL;
+    return $this->getOriginal($entity);
   }
 
 }

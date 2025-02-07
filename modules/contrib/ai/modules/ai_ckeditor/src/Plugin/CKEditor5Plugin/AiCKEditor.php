@@ -175,7 +175,14 @@ class AiCKEditor extends CKEditor5PluginDefault implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
-
+    $definitions = $this->pluginManager->getDefinitions();
+    // Let the plugins validate their own configuration.
+    foreach ($definitions as $plugin_id => $definition) {
+      $subform = $form['plugins'][$plugin_id] ?? [];
+      $subform_state = SubformState::createForSubform($subform, $form, $form_state);
+      $instance = $this->pluginManager->createInstance($plugin_id, $this->configuration['plugins'][$plugin_id] ?? []);
+      $instance->validateConfigurationForm($subform, $subform_state);
+    }
   }
 
   /**
@@ -230,14 +237,20 @@ class AiCKEditor extends CKEditor5PluginDefault implements ContainerFactoryPlugi
         $all_disabled = FALSE;
       }
 
-      $static_plugin_config['ai_ckeditor_ai']['plugins'][$plugin_id] = [
-        'enabled' => $plugin['enabled'],
-        'provider' => $plugin['provider'] ?? NULL,
-        'meta' => [
-          'label' => $definition['label'],
-          'id' => $plugin_id,
-        ],
-      ];
+      // Load the plugin.
+      $instance = $this->pluginManager->createInstance($plugin_id, $plugin);
+      // Check the editors each plugin gives back.
+      foreach ($instance->availableEditors() as $id => $label) {
+        $static_plugin_config['ai_ckeditor_ai']['plugins'][$id] = [
+          'enabled' => $plugin['enabled'],
+          'provider' => $plugin['provider'] ?? NULL,
+          'meta' => [
+            'label' => $label,
+            'id' => $id,
+          ],
+        ];
+      }
+
     }
 
     foreach ($static_plugin_config['ai_ckeditor_ai']['plugins'] as $plugin_id => $plugin) {

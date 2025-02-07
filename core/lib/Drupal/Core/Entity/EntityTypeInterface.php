@@ -72,15 +72,14 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    * Gets an array of entity keys.
    *
    * @return array
-   *   An array describing how the Field API can extract certain information
-   *   from objects of this entity type:
+   *   An array describing how information can be extracted from entities of
+   *   this entity type:
    *   - id: The name of the property that contains the primary ID of the
-   *     entity. Every entity object passed to the Field API must have this
-   *     property and its value must be numeric.
+   *     entity. Entities that can be saved to storage must have this.
    *   - revision: (optional) The name of the property that contains the
-   *     revision ID of the entity. The Field API assumes that all revision IDs
-   *     are unique across all entities of a type. If this entry is omitted
-   *     the entities of this type are not revisionable.
+   *     revision ID of the entity. It is assumed that all revision IDs are
+   *     unique across all entities of a type. If this entry is omitted the
+   *     entities of this type are not revisionable.
    *   - bundle: (optional) The name of the property that contains the bundle
    *     name for the entity. The bundle name defines which set of fields are
    *     attached to the entity (e.g. what nodes call "content type"). This
@@ -424,7 +423,7 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    *   placeholder of {node_type} used on the Node class.
    *
    * Specific entity types may also expand upon this list by overriding the
-   * Entity::urlRouteParameters() method.
+   * EntityBase::urlRouteParameters() method.
    *
    * @link http://www.iana.org/assignments/link-relations/link-relations.xml @endlink
    * @link http://tools.ietf.org/html/rfc6570 @endlink
@@ -480,15 +479,15 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getBundleEntityType();
 
   /**
-   * Gets the entity type for which this entity provides bundles.
+   * Gets the entity type ID for which this entity provides bundles.
    *
    * It can be used by other modules to act accordingly; for example,
    * the Field UI module uses it to add operation links to manage fields and
    * displays.
    *
    * @return string|null
-   *   The entity type for which this entity provides bundles, or NULL if does
-   *   not provide bundles for another entity type.
+   *   The entity type ID for which this entity provides bundles, or NULL if
+   *   does not provide bundles for another entity type.
    */
   public function getBundleOf();
 

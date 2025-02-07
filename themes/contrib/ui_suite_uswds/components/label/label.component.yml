@@ -1,0 +1,17 @@
+name: Label
+description: 'Internal: Meant to be used in various places.'
+group: Forms
+slots:
+  label:
+    title: 'Label'
+    description: 'Label value.'
+  description:
+    title: 'Description'
+    description: 'Helper text to appear below label.'
+props:
+  type: object
+  properties:
+    for_value:
+      title: "'For' attribute value"
+      description: "Value for the 'for' attribute, for accessibility."
+      $ref: 'ui-patterns://identifier'

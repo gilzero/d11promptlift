@@ -1,0 +1,52 @@
+name: Default
+slots:
+  col_first:
+    type: component
+    component: "ui_suite_daisyui:card"
+    slots:
+      image:
+        theme: image
+        uri: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+        alt: Shoes
+      title: Shoes!
+      text:
+        type: html_tag
+        tag: p
+        value: "If a dog chews shoes whose shoes does he choose?"
+      actions:
+        type: component
+        component: "ui_suite_daisyui:button"
+        slots:
+          label: "Buy Now"
+        props:
+          variant: primary
+          size: sm
+    props:
+      attributes:
+        class: ["bg-base-100", "shadow-xl"]
+  col_second:
+    type: component
+    component: "ui_suite_daisyui:card"
+    slots:
+      image:
+        theme: image
+        uri: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+        alt: Shoes
+      title: Shoes!
+      text:
+        type: html_tag
+        tag: p
+        value: "If a dog chews shoes whose shoes does he choose?"
+      actions:
+        type: component
+        component: "ui_suite_daisyui:button"
+        slots:
+          label: "Buy Now"
+        props:
+          variant: primary
+          size: sm
+    props:
+      attributes:
+        class: ["bg-base-100", "shadow-xl"]
+props:
+  col_span: ["col-span-6", "col-span-6"]

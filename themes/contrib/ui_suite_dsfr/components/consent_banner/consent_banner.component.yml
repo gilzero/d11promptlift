@@ -1,0 +1,23 @@
+name: "Consent banner"
+description: "Allows the collection of the consent of users upon arrival on the site."
+group: Consent
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/gestionnaire-de-consentement"
+slots:
+  title:
+    title: Title
+  content:
+    title: Content
+  modal_title:
+    title: "Modal title"
+    description: "See 'Modal' component."
+  modal_text:
+    title: "Modal text"
+    description: "See 'Consent manager' component."
+props:
+  type: object
+  properties:
+    services:
+      title: "Modal services"
+      description: "See 'Consent manager' component."
+      $ref: "ui-patterns://links"

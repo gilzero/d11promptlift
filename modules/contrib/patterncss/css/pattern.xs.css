@@ -1,0 +1,74 @@
+.pattern-checks-xs {
+  background-image: repeating-linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%, currentColor), repeating-linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%, currentColor);
+  background-position: 0 0, 5px 5px;
+  background-size: calc(2 * 5px) calc(2 * 5px);
+}
+
+.pattern-grid-xs {
+  background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(to right, currentColor 1px, transparent 1px);
+  background-size: 5px 5px;
+}
+
+.pattern-dots-xs {
+  background-image: radial-gradient(currentColor 0.3px, transparent 0.3px);
+  background-size: calc(10 * 0.3px) calc(10 * 0.3px);
+}
+
+.pattern-cross-dots-xs {
+  background-image: radial-gradient(currentColor 1px, transparent 1px), radial-gradient(currentColor 1px, transparent 1px);
+  background-size: calc(20 * 0.3px) calc(20 * 0.3px);
+  background-position: 0 0, calc(10 * 0.3px) calc(10 * 0.3px);
+}
+
+.pattern-cross-dots-sm {
+  background-image: radial-gradient(currentColor 1px, transparent 1px), radial-gradient(currentColor 1px, transparent 1px);
+  background-size: calc(20 * 0.5px) calc(20 * 0.5px);
+  background-position: 0 0, calc(10 * 0.5px) calc(10 * 0.5px);
+}
+
+.pattern-vertical-lines-xs {
+  background-image: repeating-linear-gradient(to right, currentColor, currentColor 1px, transparent 1px, transparent);
+  background-size: 5px 5px;
+}
+
+.pattern-horizontal-lines-xs {
+  background-image: repeating-linear-gradient(0deg, currentColor, currentColor 1px, transparent 1px, transparent);
+  background-size: 5px 5px;
+}
+
+.pattern-diagonal-lines-xs {
+  background-image: repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, transparent 0, transparent 50%);
+  background-size: 5px 5px;
+}
+
+.pattern-vertical-stripes-xs {
+  background-image: linear-gradient(90deg, transparent 50%, currentColor 50%);
+  background-size: 5px 5px;
+}
+
+.pattern-horizontal-stripes-xs {
+  background-image: linear-gradient(0deg, transparent 50%, currentColor 50%);
+  background-size: 5px 5px;
+}
+
+.pattern-diagonal-stripes-xs {
+  background: repeating-linear-gradient(45deg, transparent, transparent 5px, currentColor 5px, currentColor calc(2 * 5px));
+}
+
+.pattern-zigzag-xs {
+  background: linear-gradient(135deg, currentColor 25%, transparent 25%) -5px 0, linear-gradient(225deg, currentColor 25%, transparent 25%) -5px 0, linear-gradient(315deg, currentColor 25%, transparent 25%), linear-gradient(45deg, currentColor 25%, transparent 25%);
+  background-size: calc(2 * 5px) calc(2 * 5px);
+}
+
+.pattern-triangles-xs {
+  background-image: linear-gradient(45deg, currentColor 50%, transparent 50%);
+  background-size: 5px 5px;
+}
+
+.pattern-w-xs {
+  width: 5px;
+}
+
+.pattern-h-xs {
+  height: 5px;
+}

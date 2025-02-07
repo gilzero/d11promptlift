@@ -218,24 +218,31 @@ class Processor {
 
         // Now that we have any required context, we may execute the logic.
         $this->logger->info('Start %eventlabel (%eventid) from ECA %ecalabel (%ecaid) for event %event.', $context);
-        $this->executeSuccessors($eca, $ecaEvent, $event, $context);
-        // At this point, no nested triggering of events happened or was
-        // prevented by something else. Therefore remove the last added
-        // item from the history stack as it's not needed anymore.
-        array_pop($this->executionHistory);
-
-        $pre_state = $before_event->getPrestate(NULL);
-        $this->eventDispatcher->dispatch(new AfterInitialExecutionEvent($eca, $ecaEvent, $event, $event_name, $pre_state), EcaEvents::AFTER_INITIAL_EXECUTION);
-
-        if ($is_root_execution) {
-          // Forget what we've done here. We only take care for nested
-          // triggering of events regarding possible infinite recursion.
-          // By resetting the array, all root-level executions will not know
-          // anything from each other.
-          $this->executionHistory = [];
+        try {
+          $this->executeSuccessors($eca, $ecaEvent, $event, $context);
         }
+        catch (\Exception $ex) {
+          throw $ex;
+        }
+        finally {
+          // At this point, no nested triggering of events happened or was
+          // prevented by something else. Therefore remove the last added
+          // item from the history stack as it's not needed anymore.
+          array_pop($this->executionHistory);
 
-        $this->logger->debug('Finished applying process for event %event defined by ECA ID %ecaid.', $context);
+          $pre_state = $before_event->getPrestate(NULL);
+          $this->eventDispatcher->dispatch(new AfterInitialExecutionEvent($eca, $ecaEvent, $event, $event_name, $pre_state), EcaEvents::AFTER_INITIAL_EXECUTION);
+
+          if ($is_root_execution) {
+            // Forget what we've done here. We only take care for nested
+            // triggering of events regarding possible infinite recursion.
+            // By resetting the array, all root-level executions will not know
+            // anything from each other.
+            $this->executionHistory = [];
+          }
+
+          $this->logger->debug('Finished applying process for event %event defined by ECA ID %ecaid.', $context);
+        }
       }
     }
   }
@@ -279,23 +286,30 @@ class Processor {
    */
   protected function executeSuccessors(Eca $eca, EcaObject $eca_object, Event $event, array $context): void {
     $executedSuccessorIds = [];
-    foreach ($eca->getSuccessors($eca_object, $event, $context) as $successor) {
-      $context['%actionlabel'] = $successor->getLabel();
-      $context['%actionid'] = $successor->getId();
-      if (in_array($successor->getId(), $executedSuccessorIds, TRUE)) {
-        $this->logger->debug('Prevent duplicate execution of %actionlabel (%actionid) from ECA %ecalabel (%ecaid) for event %event.', $context);
-        continue;
-      }
-      $this->logger->info('Execute %actionlabel (%actionid) from ECA %ecalabel (%ecaid) for event %event.', $context);
-      if ($successor->execute($eca_object, $event, $context)) {
-        $executedSuccessorIds[] = $successor->getId();
-        $this->executeSuccessors($eca, $successor, $event, $context);
+    try {
+      foreach ($eca->getSuccessors($eca_object, $event, $context) as $successor) {
+        $context['%actionlabel'] = $successor->getLabel();
+        $context['%actionid'] = $successor->getId();
+        if (in_array($successor->getId(), $executedSuccessorIds, TRUE)) {
+          $this->logger->debug('Prevent duplicate execution of %actionlabel (%actionid) from ECA %ecalabel (%ecaid) for event %event.', $context);
+          continue;
+        }
+        $this->logger->info('Execute %actionlabel (%actionid) from ECA %ecalabel (%ecaid) for event %event.', $context);
+        if ($successor->execute($eca_object, $event, $context)) {
+          $executedSuccessorIds[] = $successor->getId();
+          $this->executeSuccessors($eca, $successor, $event, $context);
+        }
       }
     }
-    if ($eca_object instanceof ObjectWithPluginInterface) {
-      $plugin = $eca_object->getPlugin();
-      if ($plugin instanceof CleanupInterface) {
-        $plugin->cleanupAfterSuccessors();
+    catch (\Exception $ex) {
+      throw $ex;
+    }
+    finally {
+      if ($eca_object instanceof ObjectWithPluginInterface) {
+        $plugin = $eca_object->getPlugin();
+        if ($plugin instanceof CleanupInterface) {
+          $plugin->cleanupAfterSuccessors();
+        }
       }
     }
   }

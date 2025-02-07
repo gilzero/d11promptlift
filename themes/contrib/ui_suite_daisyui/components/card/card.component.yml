@@ -1,0 +1,60 @@
+name: Card
+description: "Cards are used to group and display content in a way that is easily readable."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/card/"
+variants:
+  default:
+    title: Default
+  compact:
+    title: Compact
+  side:
+    title: Side
+  responsive:
+    title: Responsive
+slots:
+  image:
+    title: Image
+    description: "Card image."
+  title:
+    title: Title
+    description: "Card title. Plain text."
+  text:
+    title: Text
+    description: "Card text."
+  actions:
+    title: Actions
+props:
+  type: object
+  properties:
+    heading_level:
+      title: "Heading level"
+      type: integer
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      "meta:enum":
+        2: "h2 (Default)"
+        3: h3
+        4: h4
+        5: h5
+        6: h6
+    image_bottom:
+      title: "Image bottom"
+      description: "Do you want to display image at bottom of the card?"
+      type: boolean
+    centered:
+      title: Centered
+      description: "Do you want to display centered card body?"
+      type: boolean
+    image_full:
+      title: "Image full"
+      description: "Do you want to display image full?"
+      type: boolean
+    actions_top:
+      title: "Actions top"
+      description: "Do you want to display actions on top of the card body?"
+      type: boolean

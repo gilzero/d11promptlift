@@ -1,0 +1,15 @@
+ui_skins.overview:
+  path: '/admin/appearance/css-variables'
+  defaults:
+    _controller: 'Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'CSS variables'
+  requirements:
+    _permission: 'administer themes'
+
+ui_skins.css_variables.theme_settings:
+  path: '/admin/appearance/css-variables/{theme}'
+  defaults:
+    _form: 'Drupal\ui_skins\Form\CssVariablesThemeSettingsForm'
+    _title_callback: 'theme_handler:getName'
+  requirements:
+    _permission: 'administer themes'

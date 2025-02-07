@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * UI Patterns components menu.
+ */
+#}
+{% if groups %}
+  <nav class="fr-sidemenu" role="navigation">
+    <h2 class="ui_patterns_quicklinks__title hidden">{{ 'Available components'|t }}</h2>
+    {% if groups|length > 1 %}
+      {% for group_name, components in groups %}
+        <h3 class="ui_patterns_quicklinks__group fr-h5"">{{ group_name }}</h3>
+        <ul class="fr-sidemenu__list fr-mb-5v fr-mt-5v">
+          {% for component in components %}
+            <li class="fr-sidemenu__item">
+              <a class="fr-sidemenu__link" href="#{{ component.id }}">{{ component.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    {% else %}
+      <ul class="fr-sidemenu__list fr-mb-5v fr-mt-5v">
+        {% for component in components %}
+          <li class="fr-sidemenu__item">
+            <a class="fr-sidemenu__link" href="#{{ component.id }}">{{ component.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </nav>
+{% endif %}

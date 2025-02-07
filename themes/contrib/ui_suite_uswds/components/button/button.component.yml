@@ -1,0 +1,59 @@
+name: Button
+description: 'A button draws attention to important actions with a large selectable surface.'
+group: Buttons
+links:
+  - 'https://designsystem.digital.gov/components/button/'
+variants:
+  default:
+    title: Default
+  secondary:
+    title: Secondary
+    description: 'Button uses secondary color.'
+  accent_cool:
+    title: Accent-cool
+    description: 'Button uses accent-cool color.'
+  accent_warm:
+    title: Accent-warm
+    description: 'Button uses accent-warm color.'
+  base:
+    title: Base
+    description: 'Button uses base color.'
+  outline:
+    title: Outline
+    description: 'Transparent button with a color stroke.'
+  inverse:
+    title: 'Outline Inverse'
+    description: 'Light color button for dark backgrounds.'
+  unstyled:
+    title: Unstyled
+    description: 'A button that looks like a link.'
+  default__big:
+    title: 'Primary (Big)'
+    description: 'Primary. A bigger button.'
+  secondary__big:
+    title: 'Secondary (Big)'
+    description: 'Button uses secondary color. A bigger button.'
+  accent_cool__big:
+    title: 'Accent-cool (Big)'
+    description: 'Button uses accent-cool color. A bigger button.'
+  accent_warm__big:
+    title: 'Accent-warm (Big)'
+    description: 'Button uses accent-warm color. A bigger button.'
+  base__big:
+    title: 'Base (Big)'
+    description: 'Button uses base color. A bigger button.'
+slots:
+  label:
+    title: Label
+    description: 'The button text'
+props:
+  type: object
+  properties:
+    disabled:
+      title: 'Disabled?'
+      description: 'Is the button disabled?'
+      type: boolean
+    url:
+      title: URL
+      description: '(Optional) The button URL.'
+      $ref: 'ui-patterns://url'

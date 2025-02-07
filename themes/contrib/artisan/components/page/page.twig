@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ */
+#}
+{% set attributes = attributes ?: create_attribute() %}
+{% set header_attributes = header_attributes ?: create_attribute() %}
+{% set main_attributes = main_attributes ?: create_attribute() %}
+{% set footer_attributes = footer_attributes ?: create_attribute() %}
+{% set distraction_free = distraction_free ?: false %}
+
+<div {{ attributes.addClass('page') }}>
+ {% if not distraction_free %}
+    {% block header %}
+      {% embed 'artisan:header' with {
+        top: header.top,
+        content: header|without('top'),
+        attributes: header_attributes,
+      } only %}
+      {% endembed %}
+    {% endblock %}
+  {% endif %}
+
+  <main {{ main_attributes.addClass('content').setAttribute('id', 'main-content') }} >
+    {% block main_content %}
+      {{ main_content }}
+    {% endblock %}
+  </main>
+
+  {% if not distraction_free %}
+    {% block footer %}
+      {% embed 'artisan:footer' with {
+        top: footer.top,
+        content: footer.bottom,
+        attributes: footer_attributes,
+      } only %}
+      {% endembed %}
+    {% endblock %}
+  {% endif %}
+</div>

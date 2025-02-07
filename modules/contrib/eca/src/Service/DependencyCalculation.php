@@ -62,7 +62,7 @@ class DependencyCalculation {
    *
    * @var string[]|null
    */
-  static protected ?array $enabledCalculations = NULL;
+  protected static ?array $enabledCalculations = NULL;
 
   /**
    * Constructs the dependency calculation service.

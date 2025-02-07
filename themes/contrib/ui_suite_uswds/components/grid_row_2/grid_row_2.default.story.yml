@@ -1,0 +1,26 @@
+name: Preview
+slots:
+  first:
+    - type: component
+      settings:
+        variant: default
+      component: 'ui_suite_uswds:card'
+      story: default
+  second:
+    - type: component
+      settings:
+        variant: default
+      component: 'ui_suite_uswds:card'
+      story: default
+props:
+  with_container: true
+  gutters: 'grid-gap-1'
+  first_column_attributes:
+    class:
+      - 'test'
+  second_column_attributes:
+    class:
+      - 'test2'
+  desktop:
+    - '4'
+    - '8'

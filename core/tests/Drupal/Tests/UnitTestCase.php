@@ -19,6 +19,14 @@ use Symfony\Component\VarDumper\VarDumper;
 /**
  * Provides a base class and helpers for Drupal unit tests.
  *
+ * Module tests extending UnitTestCase must exist in the
+ * Drupal\Tests\your_module\Unit namespace and live in the
+ * modules/your_module/tests/src/Unit directory.
+ *
+ * Tests for core/lib/Drupal classes extending UnitTestCase must exist in the
+ * \Drupal\Tests\Core namespace and live in the core/lib/tests/Drupal/Tests/Core
+ * directory.
+ *
  * Using Symfony's dump() function in Unit tests will produce output on the
  * command line.
  *

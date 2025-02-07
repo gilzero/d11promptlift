@@ -1,0 +1,99 @@
+.artisan-theme-form-color-clear {
+  font-size: .8em;
+  margin: 1em;
+}
+
+.artisan-theme-form-color-clear--cleared {
+  display: none;
+}
+
+details.artisan-theme-form-group > .details-wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+details.artisan-theme-form-group > .details-wrapper > div {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+details.artisan-theme-form-group > .details-wrapper > div[class*="form-item"] {
+  width: 15rem;
+  flex-grow: 0;
+  max-width: none;
+}
+
+details.artisan-theme-form-group > .details-wrapper > div[class*="form-item"][class*="checkbox"] input[type="checkbox"]{
+  margin-inline-start: 0;
+  margin-right: .5rem;
+}
+
+.artisan-theme-form-customizations > details > div > div {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.artisan-theme-form-customizations > details > div > div > div:not([class*="wrapper"], [class*="tabs"]) {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.artisan-theme-form-customizations > details > div > div > details {
+  width: calc(33.33% - 1.5em);
+  margin: 0;
+  min-width: 20rem;
+  flex-grow: 1;
+}
+
+.artisan-theme-form__widget-extra-wrapper {
+  display: flex;
+  gap: .5rem;
+  margin: .5rem 0;
+}
+
+.artisan-theme-form__widget-extra-wrapper input[type="text"],
+.artisan-theme-form__widget-extra-wrapper input[type="number"] {
+  width: 40%;
+  flex-grow: 1;
+}
+
+.artisan-theme-form__widget-extra-wrapper select {
+  width: 60%;
+  flex-grow: 1;
+}
+
+.artisan-theme-form__influenced[readonly] {
+  /*background: repeating-linear-gradient(45deg, transparent, transparent 15px, #cccccc80 15px, #cccccc80 25px);*/
+  background: repeating-linear-gradient(45deg, transparent, transparent 25px, #cccccc80 20px, #cccccc80 50px);
+}
+
+.artisan-theme-form__autofocus .artisan-theme-form__widget-extra-wrapper {
+  visibility: hidden;
+}
+
+.artisan-theme-form__autofocus:focus-within .artisan-theme-form__widget-extra-wrapper {
+  visibility: visible;
+}
+
+.artisan-theme-form-presets-inner-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: .5rem 0;
+  padding: 1rem 0;
+  align-items: center;
+}
+
+.artisan-theme-form-presets-inner-wrapper input,
+.artisan-theme-form-presets-inner-wrapper select,
+.artisan-theme-form-presets-inner-wrapper button {
+  width: 30%;
+  flex-grow: 1;
+  margin: 0;
+}

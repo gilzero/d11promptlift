@@ -1,0 +1,18 @@
+status: true
+dependencies:
+  theme:
+    - artisancustom
+id: artisancustom_secondary_local_tasks
+theme: artisancustom
+region: content
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  provider: core
+  label_display: '0'
+  primary: false
+  secondary: true
+visibility: {  }

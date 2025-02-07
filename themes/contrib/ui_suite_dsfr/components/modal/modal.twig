@@ -1,0 +1,39 @@
+{% if not variant or variant == 'default' %}
+  {% set attributes = attributes.addClass('fr-col-md-6') %}
+{% endif %}
+{% if variant == 'sm' %}
+  {% set attributes = attributes.addClass('fr-col-md-4') %}
+{% endif %}
+{% if variant == 'lg' %}
+  {% set attributes = attributes.addClass('fr-col-md-8') %}
+{% endif %}
+{% set modal_id = id|default('modal-' ~ random()) %}
+<dialog aria-labelledby="{{ modal_id ~ '-title' }}" aria-modal="true" role="dialog" id="{{ modal_id }}" class="fr-modal">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div{{ attributes.addClass('fr-col-12') }}>
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn fr-btn--close" aria-controls="{{ modal_id }}" title="{{ close_title|default('Close'|t) }}" type="button">{{ 'Close'|t }}</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="{{ modal_id ~ '-title' }}" class="fr-modal__title">
+              {% if icon.icon_id %}
+                {% set icon_attributes = icon_attributes|default(create_attribute()) %}
+                {% set icon_attributes = icon_attributes.addClass([icon.icon_id ? 'fr-icon-' ~ icon.icon_id|clean_class, 'fr-icon--lg', icon.settings.color ? 'fr-text-' ~ icon.settings.color|clean_class]).setAttribute('aria-hidden', 'true') %}
+                <span{{ icon_attributes }}></span>
+              {% endif %}
+              {{ title }}
+            </h1>
+            {{ body }}
+          </div>
+          {% if actions %}
+            <div class="fr-modal__footer">
+              {{ actions }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>

@@ -3,7 +3,11 @@
 namespace Drupal\eca_queue\Plugin\QueueWorker;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Queue\DelayableQueueInterface;
+use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueWorkerBase;
+use Drupal\Core\Queue\DelayedRequeueException;
+use Drupal\Core\Queue\RequeueException;
 use Drupal\eca\Token\TokenInterface;
 use Drupal\eca_queue\Event\ProcessingTaskEvent;
 use Drupal\eca_queue\Exception\NotYetDueForProcessingException;
@@ -39,6 +43,13 @@ final class TaskWorker extends QueueWorkerBase implements ContainerFactoryPlugin
   protected TokenInterface $tokenService;
 
   /**
+   * The queue factory.
+   *
+   * @var \Drupal\Core\Queue\QueueFactory
+   */
+  protected QueueFactory $queueFactory;
+
+  /**
    * Constructs a TaskWorker object.
    *
    * @param array $configuration
@@ -51,11 +62,14 @@ final class TaskWorker extends QueueWorkerBase implements ContainerFactoryPlugin
    *   The event dispatcher.
    * @param \Drupal\eca\Token\TokenInterface $token_service
    *   The Token services.
+   * @param \Drupal\Core\Queue\QueueFactory $queue_factory
+   *   The queue factory.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, TokenInterface $token_service) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, TokenInterface $token_service, QueueFactory $queue_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->eventDispatcher = $event_dispatcher;
     $this->tokenService = $token_service;
+    $this->queueFactory = $queue_factory;
   }
 
   /**
@@ -67,7 +81,8 @@ final class TaskWorker extends QueueWorkerBase implements ContainerFactoryPlugin
       $plugin_id,
       $plugin_definition,
       $container->get('event_dispatcher'),
-      $container->get('eca.token_services')
+      $container->get('eca.token_services'),
+      $container->get('queue')
     );
   }
 
@@ -82,9 +97,18 @@ final class TaskWorker extends QueueWorkerBase implements ContainerFactoryPlugin
     if (!$task->isDueForProcessing()) {
       throw new NotYetDueForProcessingException($task->getDelay(), 'Task is not yet due for processing.');
     }
-    $this->tokenService->addTokenDataProvider($task);
-    $this->eventDispatcher->dispatch(new ProcessingTaskEvent($task), QueueEvents::PROCESSING_TASK);
-    $this->tokenService->removeTokenDataProvider($task);
+    try {
+      $this->tokenService->addTokenDataProvider($task);
+      $this->eventDispatcher->dispatch(new ProcessingTaskEvent($task), QueueEvents::PROCESSING_TASK);
+      $this->tokenService->removeTokenDataProvider($task);
+    }
+    catch (\Exception $e) {
+      $queue = $this->queueFactory->get('dummy');
+      if ($queue instanceof DelayableQueueInterface) {
+        throw new DelayedRequeueException(600, $e->getMessage(), $e->getCode());
+      }
+      throw new RequeueException($e->getMessage(), $e->getCode());
+    }
   }
 
   /**

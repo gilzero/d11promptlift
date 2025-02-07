@@ -1,0 +1,13 @@
+name: '(Graphic list item)'
+description: "An variation of 'media block' component. To be used with 'Graphic list' component. Not found in the upstream documentation, but found in the USWDS examples."
+group: Layout
+slots:
+  image:
+    title: 'Image'
+    description: 'Expects a renderable image.'
+  heading:
+    title: 'Heading'
+    description: 'Will render as an H2.'
+  content:
+    title: 'Body'
+    description: 'Small snippet of content to appear below title.'

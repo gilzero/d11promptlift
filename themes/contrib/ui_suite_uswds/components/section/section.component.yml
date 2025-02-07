@@ -1,0 +1,13 @@
+name: Section
+description: 'Not found in the upstream documentation, but found in the USWDS examples.'
+group: Layout
+variants:
+  default:
+    title: 'No background (default)'
+  light:
+    title: 'Light background'
+  dark:
+    title: 'Dark background'
+slots:
+  content:
+    title: 'Content'

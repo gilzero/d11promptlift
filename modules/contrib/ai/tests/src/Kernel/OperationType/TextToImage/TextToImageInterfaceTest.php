@@ -6,7 +6,6 @@ namespace Drupal\Tests\ai\Kernel\OperationType\TextToImage;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
-use Drupal\ai\Exception\AiRequestErrorException;
 use Drupal\ai\OperationType\GenericType\ImageFile;
 use Drupal\ai\OperationType\TextToImage\TextToImageInput;
 use Drupal\ai\OperationType\TextToImage\TextToImageOutput;
@@ -30,7 +29,7 @@ class TextToImageInterfaceTest extends KernelTestBase {
    */
   protected static $modules = [
     'ai',
-    'provider_openai',
+    'ai_test',
     'key',
     'file',
     'media',
@@ -46,28 +45,6 @@ class TextToImageInterfaceTest extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    // Create an OpenAI mockup key.
-    /** @var \Drupal\key\Entity\Key */
-    $key = \Drupal::entityTypeManager()
-      ->getStorage('key')
-      ->create([
-        'id' => 'mockup_openai',
-        'label' => 'Mockup OpenAI',
-        'key_provider' => 'config',
-      ]);
-    $key->setKeyValue('abc123');
-    $key->save();
-
-    // DDEV or local.
-    $host = getenv('DDEV_PROJECT') ? 'http://mockoon:3010/v1' : 'http://localhost:3010/v1';
-
-    // Setup OpenAI as the provider.
-    \Drupal::configFactory()
-      ->getEditable('provider_openai.settings')
-      ->set('host', $host)
-      ->set('api_key', 'mockup_openai')
-      ->save();
-
     // Install entity schemas.
     $this->installEntitySchema('user');
     $this->installEntitySchema('file');
@@ -82,16 +59,16 @@ class TextToImageInterfaceTest extends KernelTestBase {
   }
 
   /**
-   * Test the text to image service with mockup OpenAI Provider.
+   * Test the text to image service with mockup EchoAI Provider.
    */
   public function testTextToImageNormalized(): void {
     $text = 'A cow';
-    $provider = \Drupal::service('ai.provider')->createInstance('openai');
+    $provider = \Drupal::service('ai.provider')->createInstance('echoai');
     $input = new TextToImageInput($text);
     $provider->setConfiguration([
       'response_format' => 'url',
       'n' => 2,
-      'size' => '256x256',
+      'size' => '1024x1024',
     ]);
     $image_file = $provider->textToImage($input, 'dall-e-2');
     // Should be a TextToImageOutput object.
@@ -107,7 +84,7 @@ class TextToImageInterfaceTest extends KernelTestBase {
 
     // It should be possible to get as a binary.
     $binary = $normalized[0]->getAsBinary();
-    $file_binary = file_get_contents(__DIR__ . '../../../../../assets/mockoon/image-256x256.png');
+    $file_binary = file_get_contents(\Drupal::service('module_handler')->getModule('ai_test')->getPath() . '/assets/image-1024x1024.png');
     $this->assertIsString($binary);
     $this->assertSame($file_binary, $binary);
 
@@ -125,7 +102,7 @@ class TextToImageInterfaceTest extends KernelTestBase {
     $file_binary = file_get_contents($file->getFileUri());
     $this->assertSame($file_binary, $binary);
     $resolution = getimagesize($file->getFileUri());
-    $this->assertSame([256, 256], [$resolution[0], $resolution[1]]);
+    $this->assertSame([1024, 1024], [$resolution[0], $resolution[1]]);
     // Remove the actual file on disk, since testing framework doesn't.
     unlink($file->getFileUri());
 
@@ -143,7 +120,7 @@ class TextToImageInterfaceTest extends KernelTestBase {
    */
   public function testTextToImageNormalizedOtherModel(): void {
     $text = 'A cow';
-    $provider = \Drupal::service('ai.provider')->createInstance('openai');
+    $provider = \Drupal::service('ai.provider')->createInstance('echoai');
     $input = new TextToImageInput($text);
     $provider->setConfiguration([
       'response_format' => 'url',
@@ -156,7 +133,7 @@ class TextToImageInterfaceTest extends KernelTestBase {
     // Normalized output should be an array.
     $this->assertIsArray($normalized);
     // The array should have 2 elements.
-    $this->assertCount(1, $normalized);
+    $this->assertCount(2, $normalized);
   }
 
   /**
@@ -164,7 +141,7 @@ class TextToImageInterfaceTest extends KernelTestBase {
    */
   public function testTextToImageRaw(): void {
     $text = 'A cow';
-    $provider = \Drupal::service('ai.provider')->createInstance('openai');
+    $provider = \Drupal::service('ai.provider')->createInstance('echoai');
     $provider->setConfiguration([
       'response_format' => 'url',
       'size' => '1024x1024',
@@ -175,27 +152,6 @@ class TextToImageInterfaceTest extends KernelTestBase {
     $raw = $image_file->getRawOutput();
     // Raw output should be a string.
     $this->assertIsArray($raw);
-  }
-
-  /**
-   * Test that dynamic authentication works and exception is thrown on failure.
-   */
-  public function testDynamicAuthenticationAndAuthenticationException(): void {
-    $text = 'A cow';
-    $provider = \Drupal::service('ai.provider')->createInstance('openai');
-    $input = new TextToImageInput($text);
-    $provider->setConfiguration([
-      'response_format' => 'url',
-      'size' => '1024x1024',
-    ]);
-    $provider->setAuthentication('faulty_key');
-    $this->expectException(AiRequestErrorException::class);
-    $provider->textToImage($input, 'dall-e-3');
-
-    // Set back to the correct key.
-    $provider->setAuthentication('abc123');
-    $image = $provider->textToImage($input, 'dall-e-3');
-    $this->assertInstanceOf(TextToImageOutput::class, $image);
   }
 
 }

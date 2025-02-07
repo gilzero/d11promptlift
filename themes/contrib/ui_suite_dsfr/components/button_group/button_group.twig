@@ -1,0 +1,25 @@
+{% if variant and variant != 'default' %}
+  {% set variants = variant|split('__')|map(v => v|replace({(v): 'fr-btns-group--' ~ v})) %}
+  {% set attributes = attributes.addClass(variants) %}
+{% endif %}
+
+{% if inline_from %}
+  {% set attributes = attributes.addClass('fr-btns-group--inline-' ~ inline_from) %}
+{% endif %}
+
+{% if icon_position %}
+  {% set attributes = attributes.addClass('fr-btns-group--icon-' ~ icon_position) %}
+{% endif %}
+
+{% if equisized %}
+  {% set attributes = attributes.addClass('fr-btns-group--' ~ equisized) %}
+{% endif %}
+
+{% if buttons %}
+  <ul{{ attributes.addClass('fr-btns-group') }}>
+    {% set buttons = buttons and buttons is not sequence ? [buttons] : buttons %}
+    {% for button in buttons %}
+      <li>{{ button }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

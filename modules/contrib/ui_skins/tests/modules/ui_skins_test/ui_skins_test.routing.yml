@@ -1,0 +1,8 @@
+ui_skins_test.alpha_color:
+  path: '/ui-skins-test/alpha-color'
+  defaults:
+    _form:  '\Drupal\ui_skins_test\Form\AlphaColorElementTestForm'
+    _title: 'Alpha color test'
+  requirements:
+    # For testing only.
+    _access: 'TRUE'

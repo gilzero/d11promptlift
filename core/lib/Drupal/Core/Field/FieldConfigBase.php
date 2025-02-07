@@ -118,6 +118,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * Default field value.
    *
+   * @var array
    * The default value is used when an entity is created, either:
    * - through an entity creation form; the form elements for the field are
    *   prepopulated with the default value.
@@ -141,8 +142,6 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    *   ['value' => 2],
    * ]
    * @endcode
-   *
-   * @var array
    */
   protected $default_value = [];
 
@@ -329,7 +328,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
-  #[ActionMethod(adminLabel: new TranslatableMarkup('Change field label'))]
+  #[ActionMethod(adminLabel: new TranslatableMarkup('Set field label'), pluralize: FALSE)]
   public function setLabel($label) {
     $this->label = $label;
     return $this;
@@ -345,6 +344,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
+  #[ActionMethod(adminLabel: new TranslatableMarkup('Set field description'), pluralize: FALSE)]
   public function setDescription($description) {
     $this->description = $description;
     return $this;
@@ -361,6 +361,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
+  #[ActionMethod(adminLabel: new TranslatableMarkup('Set whether field is translatable'), pluralize: FALSE)]
   public function setTranslatable($translatable) {
     $this->translatable = $translatable;
     return $this;
@@ -376,6 +377,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
+  #[ActionMethod(adminLabel: new TranslatableMarkup('Set field settings'), pluralize: FALSE)]
   public function setSettings(array $settings) {
     $this->settings = $settings + $this->settings;
     return $this;
@@ -411,6 +413,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
+  #[ActionMethod(adminLabel: new TranslatableMarkup('Set whether field is required'), pluralize: FALSE)]
   public function setRequired($required) {
     $this->required = $required;
     return $this;
@@ -443,6 +446,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
+  #[ActionMethod(adminLabel: new TranslatableMarkup('Set default value'), pluralize: FALSE)]
   public function setDefaultValue($value) {
     $this->default_value = $this->normalizeValue($value, $this->getFieldStorageDefinition()->getMainPropertyName());
     return $this;

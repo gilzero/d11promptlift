@@ -49,7 +49,7 @@ class EnqueueTask extends ConfigurableActionBase {
    *
    * @var string
    */
-  static protected string $queueName = 'eca_task';
+  protected static string $queueName = 'eca_task';
 
   /**
    * {@inheritdoc}

@@ -1,0 +1,24 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set container_attributes = container_attributes ?: create_attribute() %}
+
+<footer {{ attributes.addClass(['footer']) }}>
+  {% block top %}
+    {% if top %}
+      {% embed 'artisan:footer-top' with {
+        container_attributes: container_attributes.addClass(['container']),
+        content: top
+      } only %}
+      {% endembed %}
+    {% endif %}
+  {% endblock %}
+
+  {% block content %}
+    {% if content %}
+      {% embed 'artisan:footer-bottom' with {
+        container_attributes: container_attributes.addClass(['container']),
+        content: content
+      } only %}
+      {% endembed %}
+    {% endif %}
+  {% endblock %}
+</footer>

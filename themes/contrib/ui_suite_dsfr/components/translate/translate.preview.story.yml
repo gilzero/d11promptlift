@@ -1,0 +1,18 @@
+name: Preview
+slots:
+  title: 'FR<span class="fr-hidden-lg"> - Français</span>'
+props:
+  links:
+    - title: Français
+      url: "#"
+      attributes:
+        lang: fr
+      in_active_trail: true
+    - title: English
+      url: "#"
+      attributes:
+        lang: en
+    - title: Español
+      url: "#"
+      attributes:
+        lang: es

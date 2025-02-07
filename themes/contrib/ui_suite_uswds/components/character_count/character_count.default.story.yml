@@ -1,0 +1,7 @@
+name: Preview
+slots:
+  label: 'Text input'
+props:
+  max_length: 50
+  field_name: character_count_test
+  field_label: 'Character Count test'

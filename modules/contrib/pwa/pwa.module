@@ -1,0 +1,117 @@
+<?php
+
+/**
+ * @file
+ * PWA hooks.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function pwa_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.pwa':
+      $output = '';
+      $output .= '<h2>' . t('What is a Progressive Web App?') . '</h2>';
+      $output .= '<p>' . t('A progressive web app (PWA) is a web application that uses modern web technologies to deliver a user experience equal to any mobile app.
+                        An active open source community, in conjunction with tech leaders like Google and Microsoft, pushes the PWA agenda forward in an effort to "bridge the app gap."') . '</p>';
+      $output .= '<p>' . t('Basically, a PWA runs your app in a web browser. Because theres essentially a two-party system of the Play and App stores,
+                        the focus is on two browsers: Google Chrome and Apple Safari (built on top of the open-source Chromium and WebKit, respectively).') . '</p>';
+      $output .= '<p>' . t('PWAs are built the same way as any website or web app. They use the latest mobile technologies and implement UX best practices.
+                        PWAs can also hook the browser in with native code to improve the experience.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Whether the manifest.json should be added on the current page.
+ *
+ * @return bool
+ *   Returns TRUE if the manifest.json should be added to the current page. Or
+ *   if the paths are empty.
+ */
+function pwa_manifest_should_be_added() {
+  $config = \Drupal::config('pwa.config');
+
+  // Cache tracking result if function is called more than once.
+  $manifestPathMode = $config->get('manifest_path_mode');
+  $manifestPaths = $config->get('manifest_paths');
+
+  $manifestShouldBeAdded = FALSE;
+
+  // Match path if necessary.
+  if (!empty($manifestPaths)) {
+    // Convert path to lowercase. This allows comparison of the same path
+    // with different case. Ex: /Page, /page, /PAGE.
+    $pages = mb_strtolower($manifestPaths);
+
+    $path = Drupal::service('path.current')->getPath();
+    $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($path);
+    if (empty($path_alias)) {
+      $path_alias = mb_strtolower($path);
+    }
+    else {
+      $path_alias = mb_strtolower($path_alias);
+    }
+    $page_match = \Drupal::service('path.matcher')->matchPath($path_alias, $pages) || (($path != $path_alias) && \Drupal::service('path.matcher')->matchPath($path, $pages));
+    // When $visible_path_mode has a value of 'all_pages', the tracking
+    // code is displayed on all pages except those listed in $pages. When set
+    // to 'all_listed', it is displayed only on those pages listed in $pages.
+    $track_all_paths = ($manifestPathMode == 'all_except_listed');
+    $manifestShouldBeAdded = ($track_all_paths xor $page_match);
+  }
+  else {
+    $manifestShouldBeAdded = TRUE;
+  }
+  return $manifestShouldBeAdded;
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pwa_page_attachments(array &$attachments) {
+  if (!\Drupal::currentUser()->hasPermission('access pwa')) {
+    return;
+  }
+
+  $config = \Drupal::config('pwa.config');
+  $cross_origin = $config->get('cross_origin');
+
+  if (pwa_manifest_should_be_added()) {
+    $manifest_link = [
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'manifest',
+        'href' => Url::fromRoute('pwa.manifest')->toString(),
+      ],
+    ];
+
+    // Pass credentials if the site is behind HTTP auth.
+    if ($cross_origin) {
+      $manifest_link['#attributes']['crossorigin'] = 'use-credentials';
+    }
+
+    $attachments['#attached']['html_head'][] = [$manifest_link, 'manifest'];
+  }
+
+  $theme_color = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'theme-color',
+      'content' => $config->get('theme_color'),
+    ],
+  ];
+  $attachments['#attached']['html_head'][] = [$theme_color, 'theme_color'];
+}
+
+/**
+ * Check data from input.
+ */
+function pwa_str_to_list($string) {
+  $list = $string ? explode("\n", $string) : [];
+  $list = array_map('trim', $list);
+  return array_filter($list, 'strlen');
+}

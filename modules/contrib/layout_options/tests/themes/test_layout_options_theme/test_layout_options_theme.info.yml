@@ -1,0 +1,10 @@
+name: 'Test Layout Options Theme'
+type: theme
+description: 'Theme for testing a theme-provided Layout Options.'
+base theme: false
+package: 'Testing'
+
+# Information added by Drupal.org packaging script on 2024-10-16
+version: '8.x-1.7'
+project: 'layout_options'
+datestamp: 1729077850

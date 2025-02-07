@@ -1,0 +1,11 @@
+ui_skins.overview:
+  title: 'CSS variables'
+  description: 'Configure themes CSS variables.'
+  route_name: ui_skins.overview
+  parent: system.themes_page
+
+ui_skins.css_variables.theme_settings:
+  title: 'Theme name'
+  route_name: ui_skins.css_variables.theme_settings
+  parent: ui_skins.overview
+  deriver: Drupal\ui_skins\Plugin\Derivative\CssVariables

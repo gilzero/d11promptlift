@@ -1,0 +1,53 @@
+field_label.settings:
+  type: config_object
+  mapping:
+    label_tag_enabled:
+      type: boolean
+      label: 'Enable label tag selection'
+    label_class_enabled:
+      type: boolean
+      label: 'Enable free-form label classes'
+    label_class_select_enabled:
+      type: boolean
+      label: 'Enable label class select list'
+    label_value_enabled:
+      type: boolean
+      label: 'Enable label value update'
+    plural_label_enabled:
+      type: boolean
+      label: 'Enable plural label'
+    allowed_tags:
+      type: sequence
+      label: 'Allowed label tags'
+      sequence:
+        type: string
+        label: 'HTML tag'
+    class_list:
+      type: string
+      label: 'Class list'
+    label_class:
+      type: string
+      label: 'Label classes'
+    label_value:
+      type: label
+      label: 'Label value'
+
+field.formatter.third_party.field_label:
+  type: mapping
+  label: 'Field Label Formatter entity display settings'
+  mapping:
+    label_class:
+      type: string
+      label: 'Extra classes for the wrapper element'
+    label_class_select:
+      type: string
+      label: 'Class selection for the wrapper element'
+    label_value:
+      type: label
+      label: 'New value for the label'
+    plural_label:
+      type: label
+      label: 'Plural label variation for multiple cardinality field'
+    label_tag:
+      type: string
+      label: 'Custom label wrapper tag'

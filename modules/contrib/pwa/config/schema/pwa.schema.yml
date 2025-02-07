@@ -1,0 +1,65 @@
+pwa.config:
+  type: config_object
+  label: 'PWA config'
+  mapping:
+    name:
+      type: label
+      label: 'Web app name'
+    short_name:
+      type: label
+      label: 'Short name'
+    app_id:
+      type: label
+      label: 'App id'
+    description:
+      type: text
+      label: 'Description'
+    start_url:
+      type: label
+      label: 'Start url'
+    scope:
+      type: label
+      label: 'Scope'
+    lang:
+      type: label
+      label: 'Language'
+    dir:
+      type: label
+      label: 'Text direction'
+    orientation:
+      type: string
+      label: 'Orientation'
+    categories:
+      type: sequence
+      label: 'Categories'
+      sequence:
+        type: string
+        label: 'Category'
+    theme_color:
+      type: string
+      label: 'Theme color'
+    background_color:
+      type: string
+      label: 'Background color'
+    display:
+      type: string
+      label: 'Display type'
+    cross_origin:
+      type: boolean
+      label: 'The site is behind HTTP basic authentication'
+      translatable: false
+    image_fid:
+      type: integer
+      label: 'Image ID'
+    image_small_fid:
+      type: integer
+      label: 'Small Image ID'
+    image_very_small_fid:
+      type: integer
+      label: 'Very Small Image ID'
+    manifest_path_mode:
+      type: string
+      label: 'Manifest path inclusion mode'
+    manifest_paths:
+      type: string
+      label: 'Paths to add the manifest on'

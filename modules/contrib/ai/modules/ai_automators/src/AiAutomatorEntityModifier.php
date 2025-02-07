@@ -237,7 +237,7 @@ class AiAutomatorEntityModifier {
     $rule = $this->fieldRules->findRule($automatorConfig['rule']);
     // Check if a value exists.
     $value = $entity->get($automatorConfig['field_name'])->getValue();
-    $value = $rule->checkIfEmpty($value);
+    $value = $rule->checkIfEmpty($value, $automatorConfig);
 
     // Get prompt.
     if (!empty($value) && !empty($value[0])) {
@@ -258,7 +258,7 @@ class AiAutomatorEntityModifier {
 
     // Get the rule to check the value.
     $rule = $this->fieldRules->findRule($automatorConfig['rule']);
-    $value = $rule->checkIfEmpty($value);
+    $value = $rule->checkIfEmpty($value, $automatorConfig);
 
     // If the base field is not filled out.
     if (!empty($value) && !empty($value[0])) {

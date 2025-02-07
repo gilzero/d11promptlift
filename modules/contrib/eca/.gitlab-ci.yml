@@ -7,9 +7,10 @@ include:
       - '/includes/include.drupalci.workflows.yml'
 variables:
   _CSPELL_IGNORE_PATHS: '"**/eca.eca.*.yml", "**/eca.model.*.yml", "**/empty.bpmn"'
+  OPT_IN_TEST_PREVIOUS_MAJOR: 1
   OPT_IN_TEST_NEXT_MINOR: 1
-  OPT_IN_TEST_NEXT_MAJOR: 1
-  RUN_JOB_UPGRADE_STATUS: 1
+  OPT_IN_TEST_NEXT_MAJOR: 0
+  RUN_JOB_UPGRADE_STATUS: 0
 cspell:
   allow_failure: false
 phpcs:
@@ -17,8 +18,10 @@ phpcs:
 phpstan:
   allow_failure: false
 phpstan (next minor):
-  allow_failure: false
+  allow_failure: true
 phpstan (next major):
+  allow_failure: false
+phpunit (previous major):
   allow_failure: false
 phpunit (next minor):
   allow_failure: false

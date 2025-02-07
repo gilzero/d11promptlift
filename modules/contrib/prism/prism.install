@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks for prism module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function prism_requirements($phase) {
+  if ($phase != 'runtime') {
+    return [];
+  }
+
+  $library = \Drupal::service('library.discovery')->getLibraryByName('prism', 'prism');
+  $js_file_exists = file_exists(DRUPAL_ROOT . '/' . $library['js'][0]['data']);
+  $css_file_exists = file_exists(DRUPAL_ROOT . '/' . $library['css'][0]['data']);
+
+  $library_exists = $css_file_exists && $js_file_exists;
+
+  return [
+    'prism_library_downloaded' => [
+      'title' => t('Prism.js library'),
+      'value' => $library_exists ? t('Installed') : t('Not installed'),
+      'description' => $library_exists ? '' : t('The prism.js and prism.css files need to be <a href="@url">downloaded</a> and add to the /libraries/prism folder in your Drupal installation directory.', ['@url' => 'https://prismjs.com/download.html']),
+      'severity' => $library_exists ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+    ],
+  ];
+}

@@ -1,0 +1,31 @@
+<div{{ attributes.addClass('fr-share') }}>
+  <p class="fr-share__title">{{ title }}</p>
+  <ul class="fr-btns-group">
+    {% for link in links %}
+      <li>
+        {% set link_attributes = link.attributes|default({}) %}
+        {% set link_attributes = create_attribute(link_attributes) %}
+        {% set link_attributes = link_attributes.setAttribute('target', '_blank').setAttribute('rel', 'noopener') %}
+        {% if link.url %}
+          {% set link_attributes = link_attributes.setAttribute('href', link.url).setAttribute('title', '@title - new window'|t({'@title': link.title})).setAttribute('onclick', 'window.open(this.href,' ~ link.title ~ ",'toolbar=no,location=yes,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=450'); event.preventDefault();") %}
+        {% else %}
+          {% set link_attributes = link_attributes.setAttribute('role', 'link').setAttribute('aria-disabled', 'true') %}
+        {% endif %}
+        <a{{ link_attributes.addClass(['fr-btn', 'fr-btn--' ~ link.id]) }}>
+          {{ link.title }}
+        </a>
+      </li>
+    {% endfor %}
+    {# Mandatory element goes here. #}
+    <li>
+      {% set copy_label = 'Copy page address to clipboard'|t %}
+      {% set copy_attributes = create_attribute().setAttribute('title', copy_label).setAttribute('onclick', "navigator.clipboard.writeText(window.location);alert('" ~ 'Page address copied to clipboard.'|t ~ "');") %}
+      <button{{ copy_attributes.addClass(['fr-btn', 'fr-btn--copy']).setAttribute('type', 'button') }}>
+        {{ copy_label }}
+      </button>
+    </li>
+  </ul>
+  {% if text %}
+    <p class="fr-share__text">{{ text }}</p>
+  {% endif %}
+</div>

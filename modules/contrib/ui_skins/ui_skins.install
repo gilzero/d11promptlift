@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the ui_skins module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\ui_skins\UiSkinsInterface;
+
+/**
+ * Implements hook_uninstall().
+ */
+function ui_skins_uninstall(): void {
+  $themeHandler = \Drupal::service('theme_handler');
+  $configFactory = \Drupal::configFactory();
+  foreach ($themeHandler->listInfo() as $theme) {
+    $config = $configFactory->getEditable($theme->getName() . '.settings');
+    $cssVariablesSettings = $config->get(UiSkinsInterface::CSS_VARIABLES_THEME_SETTING_KEY);
+    $themeSettings = $config->get(UiSkinsInterface::THEME_THEME_SETTING_KEY);
+    if ($cssVariablesSettings == NULL && $themeSettings == NULL) {
+      continue;
+    }
+    /** @var array $settings */
+    $settings = $config->get();
+    if (isset($settings[UiSkinsInterface::CSS_VARIABLES_THEME_SETTING_KEY])) {
+      unset($settings[UiSkinsInterface::CSS_VARIABLES_THEME_SETTING_KEY]);
+    }
+
+    if (isset($settings[UiSkinsInterface::THEME_THEME_SETTING_KEY])) {
+      unset($settings[UiSkinsInterface::THEME_THEME_SETTING_KEY]);
+    }
+
+    $config->setData($settings)->save();
+  }
+}

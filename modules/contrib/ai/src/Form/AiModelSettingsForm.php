@@ -93,22 +93,22 @@ class AiModelSettingsForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Check trigger if its delete.
     $values = $form_state->getValues();
-    $config = $this->configFactory()->getEditable('ai_models.settings')->get('models') ?? [];
+    $config = $this->configFactory()->getEditable('ai.settings')->get('models');
     if ($form_state->getTriggeringElement()['#id'] == 'edit-delete') {
       unset($config[$values['provider']][$values['operation_type']][$values['model_id']]);
-      $this->configFactory()->getEditable('ai_models.settings')->set('models', $config)->save();
+      $this->configFactory()->getEditable('ai.settings')->set('models', $config)->save();
       return;
     }
 
     // Unset the following.
-    foreach (['submit', 'form_build_id', 'form_token', 'form_id', 'op', 'base_on'] as $key) {
+    foreach (['submit', 'delete', 'form_build_id', 'form_token', 'form_id', 'op', 'base_on'] as $key) {
       unset($values[$key]);
     }
     if (empty($values['label'])) {
       $values['label'] = $values['model_id'];
     }
     $config[$values['provider']][$values['operation_type']][$values['model_id']] = $values;
-    $this->configFactory()->getEditable('ai_models.settings')->set('models', $config)->save();
+    $this->configFactory()->getEditable('ai.settings')->set('models', $config)->save();
   }
 
   /**

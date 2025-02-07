@@ -1,0 +1,5 @@
+prompt_field_styles:
+  version: 1.x
+  css:
+    theme:
+      css/prompt_field_manager.css: {}

@@ -1,0 +1,17 @@
+{% set title_tag = title_tag|default('h2') %}
+
+<div{{ attributes.addClass('fr-stepper') }}>
+  <{{ title_tag }} class="fr-stepper__title">
+    {{ title }}
+    <span class="fr-stepper__state">{{ state }}</span>
+  </{{ title_tag }}>
+
+  {% set current_step = current_step|default(1) %}
+  {% set steps = steps|default(2) %}
+  <div class="fr-stepper__steps" data-fr-current-step="{{ current_step }}" data-fr-steps="{{ steps }}"></div>
+  {% if detail and current_step < steps %}
+    <p class="fr-stepper__details">
+      <span class="fr-text--bold">{{ 'Next step:'|t }}</span> {{ detail }}
+    </p>
+  {% endif %}
+</div>

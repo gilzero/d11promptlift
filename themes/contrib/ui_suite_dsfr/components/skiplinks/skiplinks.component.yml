@@ -1,0 +1,15 @@
+name: Skiplinks
+description: "Skiplinks allow users with keyboard navigation or with screen readers to access specific areas of the page more quickly. Hidden by default."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/lien-d-evitement"
+slots:
+  items:
+    title: Items
+    description: "A list of 'links' components."
+props:
+  type: object
+  properties:
+    label:
+      title: Label
+      description: "Used for aria-label attribute."
+      type: string

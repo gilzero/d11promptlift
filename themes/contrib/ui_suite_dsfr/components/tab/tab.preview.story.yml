@@ -1,0 +1,8 @@
+name: Preview
+slots:
+  title: "Tab label"
+props:
+  icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: checkbox-circle-line

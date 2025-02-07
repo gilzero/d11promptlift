@@ -1,0 +1,38 @@
+a {
+  --link-font-family: var(--theme-links-font-family, var(--body-font-family, Roboto));
+  --link-font-weight: var(--theme-links-font-weight, var(--body-font-weight, 400));
+  --link-color: var(--theme-links-color, var(--bs-link-color, blue));
+  --link-accent-color: var(--theme-links-accent-color, var(--bs-link-hover-color-rgb, darkblue));
+  --link-decoration: var(--theme-links-decoration, underline);
+
+  font-family: var(--link-font-family);
+  font-weight: var(--link-font-weight);
+  color: var(--link-color);
+  text-decoration: var(--link-decoration);
+  transition: color .25s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--link-accent-color);
+  }
+}
+
+body .toolbar a,
+a.js-layout-builder-block-link,
+a.layout-builder__link {
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.vlsuite-block .field a:not([class]) {
+  --link-color: var(--theme-links-color, var(--bs-link-color, blue));
+  --link-accent-color: var(--theme-links-accent-color, var(--bs-link-hover-color-rgb, darkblue));
+  color: var(--link-color);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--link-accent-color);
+  }
+}

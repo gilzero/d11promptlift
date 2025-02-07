@@ -1,0 +1,61 @@
+ui_suite_dsfr_layout_options_layout_options:
+  type: layout_plugin.settings
+  label: "UI Suite DSFR layout options"
+  mapping:
+    with_container:
+      type: layout_options.single_valued_option
+    fluid_container:
+      type: layout_options.single_valued_option
+    with_gutters:
+      type: layout_options.single_valued_option
+
+ui_suite_dsfr_layout_options_region_options:
+  type: mapping
+  label: "UI Suite DSFR region options"
+  mapping:
+    fr_col:
+      type: layout_options.single_valued_option
+    fr_col_sm:
+      type: layout_options.single_valued_option
+    fr_col_md:
+      type: layout_options.single_valued_option
+    fr_col_lg:
+      type: layout_options.single_valued_option
+    fr_col_xl:
+      type: layout_options.single_valued_option
+
+layout_plugin.settings.dsfr_grid_row_1:
+  type: ui_suite_dsfr_layout_options_layout_options
+  mapping:
+    main:
+      type: ui_suite_dsfr_layout_options_region_options
+
+layout_plugin.settings.dsfr_grid_row_2:
+  type: ui_suite_dsfr_layout_options_layout_options
+  mapping:
+    main:
+      type: ui_suite_dsfr_layout_options_region_options
+    second:
+      type: ui_suite_dsfr_layout_options_region_options
+
+layout_plugin.settings.dsfr_grid_row_3:
+  type: ui_suite_dsfr_layout_options_layout_options
+  mapping:
+    main:
+      type: ui_suite_dsfr_layout_options_region_options
+    second:
+      type: ui_suite_dsfr_layout_options_region_options
+    third:
+      type: ui_suite_dsfr_layout_options_region_options
+
+layout_plugin.settings.dsfr_grid_row_4:
+  type: ui_suite_dsfr_layout_options_layout_options
+  mapping:
+    main:
+      type: ui_suite_dsfr_layout_options_region_options
+    second:
+      type: ui_suite_dsfr_layout_options_region_options
+    third:
+      type: ui_suite_dsfr_layout_options_region_options
+    fourth:
+      type: ui_suite_dsfr_layout_options_region_options

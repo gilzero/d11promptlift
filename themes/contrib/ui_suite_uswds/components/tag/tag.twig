@@ -1,0 +1,5 @@
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-tag--' ~ variant) %}
+{% endif %}
+
+<span{{ attributes.addClass('usa-tag')}}>{{ text }}</span>

@@ -1,0 +1,51 @@
+# Schema for the configuration files of the Typogrify module.
+
+filter_settings.typogrify:
+  type: mapping
+  label: 'Typogrify'
+  mapping:
+    smartypants_enabled:
+      type: integer
+      label: 'Use typographers quotation marks and dashes (<a href="http://daringfireball.net/projects/smartypants">SmartyPants</a>'
+    smartypants_hyphens:
+      type: integer
+      label: 'Dash replacement settings for SmartyPants'
+    space_hyphens:
+      type: integer
+      label: 'Replace stand-alone dashes (normal dashes between whitespace) em-dashes.'
+    wrap_ampersand:
+      type: integer
+      label: 'Wrap ampersands'
+    widont_enabled:
+      type: integer
+      label: 'Remove widows'
+    space_to_nbsp:
+      type: integer
+      label: 'Replace normal spaces with non-breaking spaces before "double punctuation marks" <code>!?:;</code>.'
+    hyphenate_shy:
+      type: integer
+      label: 'Words may be broken at the hyphenation points marked by “=”.'
+    wrap_abbr:
+      type: integer
+      label: 'Wraps abbreviations with <code><span class="abbr">…</span></code> and inserts space after the dots.'
+    wrap_caps:
+      type: integer
+      label: 'Wrap caps'
+    wrap_initial_quotes:
+      type: integer
+      label: 'Wrap quotation marks'
+    wrap_numbers:
+      type: integer
+      label: 'Wraps numbers with <code><span class="number">…</span></code> and inserts thin space for digit grouping.'
+    ligatures:
+      type: string
+      label: 'Ligatures'
+    arrows:
+      type: string
+      label: 'Arrows'
+    fractions:
+      type: string
+      label: 'Fractions'
+    quotes:
+      type: string
+      label: 'Quotes'

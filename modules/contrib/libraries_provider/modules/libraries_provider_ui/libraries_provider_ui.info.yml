@@ -1,0 +1,14 @@
+name: Libraries Provider UI
+type: module
+description: Provides an interface for the libraries provider module.
+Package: Libraries
+core_version_requirement: ^10 || ^11
+configure: entity.library.collection
+dependencies:
+  - libraries_provider:libraries_provider
+  - form_options_attributes:form_options_attributes
+
+# Information added by Drupal.org packaging script on 2024-08-10
+version: '2.0.4'
+project: 'libraries_provider'
+datestamp: 1723290502

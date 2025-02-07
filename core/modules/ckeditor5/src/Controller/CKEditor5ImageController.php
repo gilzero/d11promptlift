@@ -82,8 +82,11 @@ class CKEditor5ImageController extends ControllerBase {
    */
   public function upload(Request $request): Response {
     // Getting the UploadedFile directly from the request.
-    /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $upload */
+    /** @var \Symfony\Component\HttpFoundation\File\UploadedFile|null $upload */
     $upload = $request->files->get('upload');
+    if ($upload === NULL || !$upload->isValid()) {
+      throw new HttpException(500, $upload?->getErrorMessage() ?: 'Invalid file upload');
+    }
     $filename = $upload->getClientOriginalName();
 
     /** @var \Drupal\editor\EditorInterface $editor */
@@ -115,10 +118,10 @@ class CKEditor5ImageController extends ControllerBase {
         throw new UnprocessableEntityHttpException((string) $uploadResult->getViolations());
       }
     }
-    catch (FileException $e) {
+    catch (FileException) {
       throw new HttpException(500, 'File could not be saved');
     }
-    catch (LockAcquiringException $e) {
+    catch (LockAcquiringException) {
       throw new HttpException(503, sprintf('File "%s" is already locked for writing.', $upload->getClientOriginalName()), NULL, ['Retry-After' => 1]);
     }
 

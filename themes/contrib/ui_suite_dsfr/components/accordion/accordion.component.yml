@@ -1,0 +1,32 @@
+name: Accordion
+description: "Used to condense space by hiding content and revealing it as needed."
+group: Accordion
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/accordeon"
+slots:
+  title:
+    title: Title
+  content:
+    title: Content
+    description: "The accordion renderable content."
+props:
+  type: object
+  properties:
+    id:
+      title: ID
+      description: "Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    expanded:
+      title: "Expanded?"
+      description: "Accordion will be expanded on page load"
+      type: boolean
+      default: false

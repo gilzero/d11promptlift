@@ -1,0 +1,4 @@
+ui_skins_test_theme1:
+  label: "Test theme 1"
+  default_values:
+    ":root": "Test value"

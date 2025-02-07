@@ -1,0 +1,44 @@
+# <html data-test="test_1">
+test_1:
+  label: "HTML data attribute"
+  target: html
+  key: data-test
+
+# <html class="test-2">
+test_2:
+  label: "HTML class"
+  target: html
+
+# <body data-test="test_3">
+test_3:
+  label: "(implicit) Body data attribute"
+  key: data-test
+
+# <body class="test-4">
+test_4:
+  label: "(implicit) Body class"
+
+# body data-test="test_5">
+test_5:
+  label: "(explicit) Body data attribute"
+  target: body
+  key: data-test
+
+# <body class="test-6">
+test_6:
+  label: "(explicit) Body class"
+  target: body
+
+# <body class="test-7">
+# Test CSS file present.
+test_7:
+  label: "(implicit) Body class with library"
+  library: "ui_skins_test_themes/theme"
+
+# <body class="test-7 test-8">
+# Test dependency.
+test_8:
+  label: "Test dependency"
+  library: "ui_skins_test_themes/test_8"
+  dependencies:
+    - test_7

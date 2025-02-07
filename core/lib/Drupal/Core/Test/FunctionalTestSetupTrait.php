@@ -63,9 +63,9 @@ trait FunctionalTestSetupTrait {
   /**
    * Set to TRUE to make user 1 a super user.
    *
-   * @see \Drupal\Core\Session\SuperUserAccessPolicy
-   *
    * @var bool
+   *
+   * @see \Drupal\Core\Session\SuperUserAccessPolicy
    */
   protected bool $usesSuperUserAccessPolicy;
 
@@ -78,7 +78,7 @@ trait FunctionalTestSetupTrait {
     // installation.
     // Not using File API; a potential error must trigger a PHP warning.
     $directory = DRUPAL_ROOT . '/' . $this->siteDirectory;
-    copy(DRUPAL_ROOT . '/sites/default/default.settings.php', $directory . '/settings.php');
+    copy(DRUPAL_ROOT . '/core/assets/scaffold/files/default.settings.php', $directory . '/settings.php');
 
     // The public file system path is created during installation. Additionally,
     // during tests:
@@ -136,7 +136,7 @@ trait FunctionalTestSetupTrait {
     $settings_services_file = DRUPAL_ROOT . '/' . $this->originalSite . '/testing.services.yml';
     if (!file_exists($settings_services_file)) {
       // Otherwise, use the default services as a starting point for overrides.
-      $settings_services_file = DRUPAL_ROOT . '/sites/default/default.services.yml';
+      $settings_services_file = DRUPAL_ROOT . '/core/assets/scaffold/files/default.services.yml';
     }
 
     // Put the testing-specific service overrides in place.

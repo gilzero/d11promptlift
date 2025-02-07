@@ -6,7 +6,7 @@ use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
-use Drupal\Core\Access\AccessibleInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -482,11 +482,11 @@ abstract class FieldUpdateActionBase extends ActionBase implements ConfigurableI
    */
   public function access($object, ?AccountInterface $account = NULL, $return_as_object = FALSE): bool|AccessResultInterface {
     $result = AccessResult::forbidden();
-    if (!($object instanceof AccessibleInterface)) {
+    if (!($object instanceof EntityInterface)) {
+      $result->setReason('No entity provided.');
       return $return_as_object ? $result : $result->isAllowed();
     }
 
-    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $object;
     $entity_op = 'update';
 

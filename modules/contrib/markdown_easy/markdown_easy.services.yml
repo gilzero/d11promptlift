@@ -1,0 +1,3 @@
+services:
+  markdown_easy.utility:
+    class: Drupal\markdown_easy\MarkdownUtility

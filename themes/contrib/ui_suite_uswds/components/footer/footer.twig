@@ -1,0 +1,83 @@
+{% if variant and variant != 'medium' %}
+  {% set attributes = attributes.addClass('usa-footer--' ~ variant) %}
+{% endif %}
+
+<footer{{ attributes.addClass('usa-footer').setAttribute('role', 'contentinfo') }}>
+  {% if back_to_top %}
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">{{ back_to_top_text|default('Return to top') }}</a>
+    </div>
+  {% endif %}
+
+  {% if nav_footer %}
+    <div class="usa-footer__primary-section">
+      {% if variant == 'slim' %}
+        <div class="usa-footer__primary-container grid-row">
+          <div class="grid-col-auto">
+            {{ nav_footer }}
+          </div>
+        </div>
+      {% elseif variant == 'medium' %}
+        {{ nav_footer }}
+      {% else %}
+        <div class="grid-container">
+          <div class="grid-row grid-gap">
+            {% if sign_up_block %}
+              <div class="tablet:grid-col-8">
+                {{ nav_footer }}
+              </div>
+              <div class="tablet:grid-col-4">
+                {{ sign_up_block }}
+              </div>
+            {% else %}
+              <div class="grid-col">
+                {{ nav_footer }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+
+          {% if agency_logo %}
+            <div class="mobile-lg:grid-col-auto display-inline-flex">
+              {% if agency_url %}
+                <a href="{{ agency_url }}" class="display-inline-flex">
+                  <img class="usa-footer__logo-img" src="{{ agency_logo }}" alt="{{ 'Agency logo'|t }}">
+                </a>
+              {% else %}
+                <img class="usa-footer__logo-img" src="{{ agency_logo }}" alt="{{ 'Agency logo'|t }}">
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if agency_name and variant != 'slim' %}
+            <div class="mobile-lg:grid-col-auto">
+              <h3 class="usa-footer__logo-heading">
+                {{ agency_name }}
+              </h3>
+            </div>
+          {% endif %}
+        </div>
+
+        {{ footer_contact_region }}
+
+      </div>
+
+      {% if footer_bottom %}
+        <div class="grid-row grid-gap">
+          <div class="grid-col-fill">
+            {{ footer_bottom }}
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</footer>

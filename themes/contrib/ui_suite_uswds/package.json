@@ -1,0 +1,16 @@
+{
+  "name": "ui_suite_uswds",
+  "version": "1.0.0",
+  "author": "Stephen Mustgrave",
+  "description": "Packages to help check css/js for ui_suite_uswds.",
+  "license": "ISC",
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "prettier": "prettier . --write"
+  },
+  "devDependencies": {
+    "prettier": "3.3.2"
+  }
+}

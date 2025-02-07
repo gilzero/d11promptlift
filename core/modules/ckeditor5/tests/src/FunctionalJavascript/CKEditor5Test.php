@@ -14,7 +14,7 @@ use Drupal\node\Entity\Node;
 use Drupal\Tests\ckeditor5\Traits\CKEditor5TestTrait;
 use Drupal\Tests\TestFileCreationTrait;
 use Drupal\user\RoleInterface;
-use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 
 // cspell:ignore esque māori sourceediting splitbutton upcasted
 
@@ -22,7 +22,6 @@ use Symfony\Component\Validator\ConstraintViolation;
  * Tests for CKEditor 5.
  *
  * @group ckeditor5
- * @group #slow
  * @internal
  */
 class CKEditor5Test extends CKEditor5TestBase {
@@ -182,7 +181,7 @@ class CKEditor5Test extends CKEditor5TestBase {
   /**
    * Helper to configure CKEditor5 with Language plugin.
    */
-  public function languageOfPartsPluginInitialConfigurationHelper($page, $assert_session) {
+  public function languageOfPartsPluginInitialConfigurationHelper($page, $assert_session): void {
     $this->createNewTextFormat($page, $assert_session);
     // Press arrow down key to add the button to the active toolbar.
     $this->assertNotEmpty($assert_session->waitForElement('css', '.ckeditor5-toolbar-item-textPartLanguage'));
@@ -220,7 +219,7 @@ JS;
   /**
    * Helper to set language list option for CKEditor.
    */
-  public function languageOfPartsPluginConfigureLanguageListHelper($page, $assert_session, $option) {
+  public function languageOfPartsPluginConfigureLanguageListHelper($page, $assert_session, $option): void {
     $this->drupalGet('admin/config/content/formats/manage/ckeditor5');
     $this->assertNotEmpty($assert_session->waitForElement('css', 'a[href^="#edit-editor-settings-plugins-ckeditor5-language"]'));
 
@@ -239,7 +238,7 @@ JS;
   /**
    * Validate expected languages available in editor.
    */
-  public function languageOfPartsPluginTestHelper($page, $assert_session, $configured_languages) {
+  public function languageOfPartsPluginTestHelper($page, $assert_session, $configured_languages): void {
     $this->drupalGet('node/add/page');
     $this->assertNotEmpty($assert_session->waitForText('Choose language'));
 
@@ -584,7 +583,7 @@ JS;
       ],
     ])->save();
     $this->assertSame([], array_map(
-      function (ConstraintViolation $v) {
+      function (ConstraintViolationInterface $v) {
         return (string) $v->getMessage();
       },
       iterator_to_array(CKEditor5::validatePair(
@@ -674,7 +673,7 @@ JS;
       ],
     ])->save();
     $this->assertSame([], array_map(
-      function (ConstraintViolation $v) {
+      function (ConstraintViolationInterface $v) {
         return (string) $v->getMessage();
       },
       iterator_to_array(CKEditor5::validatePair(
@@ -695,7 +694,7 @@ JS;
       ],
     ])->save();
     $this->assertSame([], array_map(
-      function (ConstraintViolation $v) {
+      function (ConstraintViolationInterface $v) {
         return (string) $v->getMessage();
       },
       iterator_to_array(CKEditor5::validatePair(

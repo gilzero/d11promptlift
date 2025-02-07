@@ -1,0 +1,21 @@
+pwa_service_worker.config:
+  type: config_object
+  label: 'PWA Service Worker config'
+  mapping:
+    urls_to_cache:
+      type: string
+      label: 'URLs to cache'
+    urls_to_exclude:
+      type: string
+      label: 'URLs exclude'
+    offline_page:
+      type: label
+      label: 'Offline page path'
+    cache_version:
+      type: string
+      label: 'Cache version'
+    skip_waiting:
+      type: boolean
+      label: 'An updated SW immediately activates after installing'
+      translatable: false
+

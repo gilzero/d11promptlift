@@ -1,0 +1,48 @@
+name: Modal
+description: 'A modal disables page content and focuses the user’s attention on a single task or message.'
+group: Dialog
+links:
+  - 'https://designsystem.digital.gov/components/modal/'
+variants:
+  default:
+    title: 'Default'
+  lg:
+    title: 'Large'
+slots:
+  title:
+    title: 'Title'
+    description: 'Modal title.'
+  body:
+    title: 'Body'
+    description: 'The content of the modal.'
+props:
+  type: object
+  properties:
+    button_text:
+      title: 'Button text'
+      description: 'Text to display on button that will open modal.'
+      type: string
+    forced_action:
+      title: 'Forced Action'
+      description: 'Force user to make a selection (removed close button).'
+      type: boolean
+    modal_id:
+      title: ID
+      description: 'ID used by external buttons to toggle the visibility. Randomly generated if empty.'
+      $ref: 'ui-patterns://identifier'
+    yes_text:
+      title: 'Yes Text'
+      description: "Text 'Yes' button should go to. Defaults to Save changes"
+      type: string
+    yes_url:
+      title: 'Yes URL'
+      description: "URL 'Yes' button should go to."
+      type: string
+    no_text:
+      title: 'No Text'
+      description: "Text 'No' button should go to."
+      type: string
+    no_url:
+      title: 'No URL'
+      description: "URL 'No' button should go to."
+      type: string

@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * UI Pattern variant meta information.
+ */
+#}
+
+{% if variant is not empty %}
+<div>
+  <span class="margin-bottom-0" style="font-size: 20px;">{{ variant.label }}</span>{% if variant.description %} - {{ variant.description }} {% endif %}
+  <div><span style="font-size: 14px;">{{ 'Machine name:' }}</span> <code style="font-size: 14px;">{{ variant.name }}</code></div>
+</div>
+{% endif %}

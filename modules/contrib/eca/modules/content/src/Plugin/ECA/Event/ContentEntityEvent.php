@@ -35,6 +35,7 @@ use Drupal\eca_content\Event\ContentEntityTranslationCreate;
 use Drupal\eca_content\Event\ContentEntityTranslationDelete;
 use Drupal\eca_content\Event\ContentEntityTranslationInsert;
 use Drupal\eca_content\Event\ContentEntityUpdate;
+use Drupal\eca_content\Event\ContentEntityValidate;
 use Drupal\eca_content\Event\ContentEntityView;
 use Drupal\eca_content\Event\ContentEntityViewModeAlter;
 use Drupal\eca_content\Event\FieldSelectionBase;
@@ -223,6 +224,14 @@ class ContentEntityEvent extends EventBase implements CleanupInterface {
         'event_name' => ContentEntityEvents::PREPAREFORM,
         'event_class' => ContentEntityPrepareForm::class,
         'tags' => Tag::CONTENT | Tag::RUNTIME | Tag::VIEW | Tag::BEFORE,
+      ],
+      'validate' => [
+        'label' => 'Validate content entity',
+        'description' => 'When an entity is undergoing validation.',
+        'event_name' => ContentEntityEvents::VALIDATE,
+        'event_class' => ContentEntityValidate::class,
+        'tags' => Tag::RUNTIME | Tag::CONTENT,
+        'eca_version_introduced' => '2.1.0',
       ],
       'fieldvaluesinit' => [
         'label' => 'Init content entity field values',
@@ -549,6 +558,27 @@ class ContentEntityEvent extends EventBase implements CleanupInterface {
       new Token(name: 'ids', description: 'The IDs of the entities.'),
     ],
   )]
+  #[Token(
+    name: 'event',
+    description: 'The event.',
+    classes: [
+      ContentEntityViewModeAlter::class,
+    ],
+    properties: [
+      new Token(name: 'view_mode', description: 'The view mode machine name.'),
+    ],
+  )]
+  #[Token(
+    name: 'event',
+    description: 'The event.',
+    classes: [
+      ContentEntityBaseBundle::class,
+    ],
+    properties: [
+      new Token(name: 'entity_type_id', description: 'The entity type.'),
+      new Token(name: 'bundle', description: 'The bundle machine name.'),
+    ],
+  )]
   protected function buildEventData(): array {
     $event = $this->event;
     $data = [];
@@ -562,6 +592,12 @@ class ContentEntityEvent extends EventBase implements CleanupInterface {
     elseif ($event instanceof ContentEntityViewModeAlter) {
       $data += [
         'view_mode' => $event->getViewMode(),
+      ];
+    }
+    elseif ($event instanceof ContentEntityBaseBundle) {
+      $data += [
+        'entity_type_id' => $event->getEntityTypeId(),
+        'bundle' => $event->getBundle(),
       ];
     }
 

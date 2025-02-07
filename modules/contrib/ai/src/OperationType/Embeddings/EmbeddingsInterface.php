@@ -33,9 +33,23 @@ interface EmbeddingsInterface extends OperationTypeInterface {
   /**
    * Max input string length for Embedding LLM.
    *
+   * @param string $model_id
+   *   The model id to use.
+   *
    * @return int
    *   Max input string length in bytes.
    */
   public function maxEmbeddingsInput(string $model_id = ''): int;
+
+  /**
+   * Embedding vector size.
+   *
+   * @param string $model_id
+   *   The model id to use.
+   *
+   * @return int
+   *   Max input string length in bytes.
+   */
+  public function embeddingsVectorSize(string $model_id): int;
 
 }

@@ -1,0 +1,106 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the PatternCSS module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_schema().
+ */
+function patterncss_ui_schema() {
+  $schema['patterncss'] = [
+    'description' => 'Stores pattern css selectors.',
+    'fields' => [
+      'pid' => [
+        'description' => 'Primary Key: unique ID for pattern css selectors.',
+        'type'        => 'serial',
+        'unsigned'    => TRUE,
+        'not null'    => TRUE,
+      ],
+      'selector' => [
+        'description' => 'Pattern css selector.',
+        'type'        => 'varchar',
+        'length'      => 255,
+        'not null'    => TRUE,
+        'default'     => '',
+      ],
+      'label' => [
+        'description' => 'Label of pattern css.',
+        'type'        => 'varchar',
+        'length'      => 255,
+        'not null'    => TRUE,
+        'default'     => '',
+      ],
+      'segment' => [
+        'description' => 'Pattern type.',
+        'type'        => 'varchar',
+        'length'      => 255,
+        'not null'    => TRUE,
+        'default'     => '',
+      ],
+      'comment' => [
+        'description' => 'Comment for pattern css.',
+        'type'        => 'text',
+        'size'        => 'big',
+        'not null'    => TRUE,
+      ],
+      'changed' => [
+        'description' => 'Timestamp when the pattern was most recently modified.',
+        'type'        => 'int',
+        'unsigned'    => TRUE,
+        'not null'    => TRUE,
+        'default'     => 0,
+        'size'        => 'big',
+      ],
+      'status' => [
+        'description' => 'Boolean indicating whether the pattern is enabled.',
+        'type'        => 'int',
+        'not null'    => FALSE,
+        'default'     => 0,
+        'size'        => 'tiny',
+      ],
+      'options' => [
+        'type'        => 'blob',
+        'not null'    => TRUE,
+        'size'        => 'big',
+        'description' => 'The options data in serialized form.',
+      ],
+    ],
+    'indexes' => [
+      'label'    => ['label'],
+      'segment'  => ['segment'],
+      'selector' => ['selector'],
+      'changed'  => ['changed'],
+    ],
+    'primary key' => ['pid'],
+  ];
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function patterncss_ui_install() {
+  // Add PatternCSS settings link status.
+  \Drupal::messenger()->addStatus(t('Configure PatternCSS <a href=":settings">global settings</a>.', [
+    ':settings' => Url::fromRoute('patterncss.settings')->toString(),
+  ]));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function patterncss_ui_uninstall() {
+  // If uninstall and re-install patterncss_ui module will show error:
+  // Unable to install PatternCSS UI, patterncss.settings already
+  // exists in active configuration.
+  $query = \Drupal::database()->delete('config');
+  // Delete set variables in patterncss_ui uninstall, because
+  // of name "patterncss.settings" it will delete in "patterncss"
+  // module uninstall, will not delete in "patterncss_ui" uninstall.
+  $query->condition('name', 'patterncss.settings');
+  $query->execute();
+}

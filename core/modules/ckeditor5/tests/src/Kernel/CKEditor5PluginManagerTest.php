@@ -28,7 +28,6 @@ use Symfony\Component\Yaml\Yaml;
  * Tests different ways of enabling CKEditor 5 plugins.
  *
  * @group ckeditor5
- * @group #slow
  * @internal
  */
 class CKEditor5PluginManagerTest extends KernelTestBase {
@@ -94,7 +93,7 @@ class CKEditor5PluginManagerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function enableModules(array $modules) {
+  protected function enableModules(array $modules): void {
     parent::enableModules($modules);
     // Ensure the CKEditor 5 plugin manager instance on the test reflects the
     // status after the module is installed.

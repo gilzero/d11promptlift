@@ -1,0 +1,46 @@
+name: Footer
+description: "Provides information on the site and secondary navigation for the user to continue his journey. It is flexible according to the needs and requirements of the site."
+group: Footer
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/pied-de-page"
+slots:
+  operator_logo:
+    title: "Operator logo"
+    description: "Operator logo image render."
+  content:
+    title: "Content region"
+    description: "Can host a footer content menu."
+  content_desc:
+    title: "Content description"
+    description: "A special area of bottom."
+  partners:
+    title: Partners
+    description: "Partners slot. Still unused."
+  bottom:
+    title: "Bottom region"
+    description: "Can host a footer bottom menu."
+  bottom_copy:
+    title: "Bottom copy"
+    description: "A special area of bottom region (should use p tag(s) for text, for accessibility)."
+props:
+  type: object
+  properties:
+    top:
+      title: "Top menu"
+      description: "A 2 levels links list. It is recommended to choose the full footer for deep sites that need to reintegrate bounced link lists from the navigation."
+      $ref: "ui-patterns://links"
+    service_title:
+      title: "Service title"
+      description: "Will be the site name if empty"
+      type: string
+    logo_text:
+      title: "Logo text"
+      description: "Default: 'République\\n Française'"
+      type: string
+    operator_logo_alt:
+      title: "Operator logo alt text"
+      description: "Should match the visible text of the operator logo"
+      type: string
+    home_url:
+      title: "Homepage URL"
+      $ref: "ui-patterns://url"

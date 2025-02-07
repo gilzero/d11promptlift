@@ -1,0 +1,25 @@
+name: "(Timeline item)"
+description: "Timeline item shows an events."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/timeline/"
+slots:
+  timeline_start:
+    title: "Timeline start"
+  timeline_end:
+    title: "Timeline end"
+props:
+  type: object
+  properties:
+    timeline_box_start:
+      title: "Boxed start?"
+      description: "It is possible to box the timeline start?"
+      type: boolean
+    timeline_box_end:
+      title: "Boxed end?"
+      description: "It is possible to box the timeline end?"
+      type: boolean
+    icon:
+      title: Icon
+      description: "Available timeline item icons."
+      $ref: ui-patterns://icon

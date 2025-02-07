@@ -375,7 +375,7 @@ trait PerformanceTestTrait {
     // 'encodedDataLength' for network requests, however in the case that the
     // file has already been requested by the browser, this will be the length
     // of a HEAD response for 304 not modified or similar. Additionally, core's
-    // aggregation adds the basepath to CSS aggregates, resulting in slightly
+    // aggregation adds the base path to CSS aggregates, resulting in slightly
     // different file sizes depending on whether tests run in a subdirectory or
     // not.
     foreach ($stylesheet_urls as $url) {
@@ -386,7 +386,7 @@ trait PerformanceTestTrait {
       }
       else {
         $filename = str_replace($GLOBALS['base_path'], '', parse_url($url, PHP_URL_PATH));
-        // Strip the basepath from the contents of the file so that tests
+        // Strip the base path from the contents of the file so that tests
         // running in a subdirectory get the same results.
         $stylesheet_bytes += strlen(str_replace($GLOBALS['base_path'], '/', file_get_contents($filename)));
       }
@@ -471,7 +471,7 @@ trait PerformanceTestTrait {
       ResourceAttributes::SERVICE_NAME => $service_name,
       ResourceAttributes::SERVICE_INSTANCE_ID => 1,
       ResourceAttributes::SERVICE_VERSION => \Drupal::VERSION,
-      ResourceAttributes::DEPLOYMENT_ENVIRONMENT => 'local',
+      ResourceAttributes::DEPLOYMENT_ENVIRONMENT_NAME => 'local',
     ])));
 
     $otel_collector_headers = getenv('OTEL_COLLECTOR_HEADERS') ?: [];

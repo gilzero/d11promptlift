@@ -1,0 +1,9 @@
+name: "Badge group"
+description: "The group of badges allows to highlight information."
+group: Badge
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/badge"
+slots:
+  badges:
+    title: Badges
+    description: "A list of 'badge' components."

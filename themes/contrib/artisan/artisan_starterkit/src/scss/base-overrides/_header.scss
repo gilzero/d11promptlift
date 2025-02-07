@@ -1,0 +1,177 @@
+header.header {
+  --header-color: var(--theme-header-color, var(--body-color, black));
+  --header-background: var(--theme-header-background, var(--body-background, white));
+  --header-height: var(--theme-header-height, unset);
+  --header-opacity: var(--theme-header-opacity, 1);
+  --header-position: var(--theme-header-static, sticky);
+  --header-z-index: var(--theme-header-z-index, 501);
+
+  color: var(--header-color);
+  background-color: var(--header-background);
+  height: var(--header-height);
+  opacity: var(--header-opacity);
+  position: var(--header-position);
+  top: var(--drupal-displace-offset-top, 0);
+  z-index: var(--header-z-index);
+
+  .navbar .navbar-nav .nav-link,
+  a {
+    --header-nav-link-font-family: var(--theme-header-links-font-family, var(--link-font-family));
+    --header-nav-link-font-size: var(--theme-header-links-font-size, var(--bs-nav-link-font-size, 1rem));
+    --header-nav-link-font-weight: var(--theme-header-links-font-weight, var(--bs-nav-link-font-weight, 400));
+    --header-nav-link-color: var(--theme-header-links-color, var(--bs-nav-link-color, #{$primary}));
+    --header-nav-link-decoration: var(--theme-header-links-decoration, unset);
+
+    font-family: var(--header-nav-link-font-family);
+    font-size: var(--header-nav-link-font-size);
+    font-weight: var(--header-nav-link-font-weight);
+    color: var(--header-nav-link-color);
+    text-decoration: var(--header-nav-link-decoration);
+    &:hover,
+    &:active,
+    &:focus {
+      --header-nav-link-accent-color: var(--theme-header-links-accent-color, var(--bs-nav-link-hover-color, #{$secondary}));
+
+      color: var(--header-nav-link-accent-color);
+    }
+  }
+
+  // Uncomment this rules for logo tint & non transparency auto correction.
+  .navbar-brand__logo {
+    /*overflow: hidden;*/
+    img[src$=".png"],
+    img[src$=".svg"] {
+      /*filter: drop-shadow(0px 200px 0 var(--header-color, var(--body-color)));*/
+      /*transform: translateY(-200px);*/
+    }
+    img[src$=".jpg"] {
+      /*mix-blend-mode: multiply;*/
+    }
+  }
+
+  .dropdown-menu {
+    color: var(--header-color);
+    background-color: var(--header-background);
+    box-shadow: unset;
+    border: var(--bs-dropdown-border-width, 1px) solid;
+    .dropdown-item.active,
+    .dropdown-item:active,
+    .dropdown-item:hover,
+    .dropdown-item.active:hover,
+    .dropdown-item:active:hover {
+      background-color: unset;
+    }
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link.dropdown-toggle-split {
+    padding-left: 0;
+  }
+
+  .navbar-toggler {
+    color: inherit;
+    border: var(--bs-border-width) solid;
+    overflow: hidden;
+  }
+
+  .navbar-toggler-icon {
+    filter: drop-shadow(0px 100px 0 var(--header-color, $navbar-light-color));
+    transform: translateY(-100px);
+  }
+
+  .navbar-collapse {
+    --collapse-background: var(--theme-responsive-accent-background, transparent);
+    --collapse-color: var(--theme-responsive-accent-color, var(--body-color));
+
+    @include media-breakpoint-down(lg) {
+      background-color: var(--collapse-background);
+      color: var(--collapse-color);
+      .navbar-nav .nav-item .nav-link,
+      a {
+        color: var(--collapse-color);
+      }
+      .dropdown {
+        > .btn-group {
+          flex-wrap: wrap;
+          width: 100%;
+        }
+      }
+      .navbar-nav .nav-link.dropdown-toggle-split {
+        padding-left: var(--bs-navbar-nav-link-padding-x);
+      }
+      .dropdown-menu {
+        background-color: var(--collapse-background);
+        color: var(--collapse-color);
+        width: 100%;
+        box-shadow: unset;
+        border: var(--bs-dropdown-border-width, 1px) solid;
+        .dropdown-item.nav-link,
+        .dropdown-item,
+        a {
+          padding-left: var(--bs-navbar-nav-link-padding-x);
+          padding-right: var(--bs-navbar-nav-link-padding-x);
+        }
+      }
+    }
+  }
+}
+
+.header-top {
+  --header-top-color: var(--theme-header-top-color, var(--body-color, black));
+  --header-top-background: var(--theme-header-top-background, var(--body-background, white));
+
+  color: var(--header-top-color);
+  background-color: var(--header-top-background);
+
+  .nav .nav-item .nav-link,
+  a {
+    --header-top-nav-link-font-family: var(--theme-header-top-links-font-family, var(--link-font-family));
+    --header-top-nav-link-font-size: var(--theme-header-top-links-font-size, var(--bs-nav-link-font-size, 1rem));
+    --header-top-nav-link-font-weight: var(--theme-header-top-links-font-weight, var(--bs-nav-link-font-weight, 400));
+    --header-top-nav-link-color: var(--theme-header-top-links-color, var(--bs-nav-link-color, #{$primary}));
+    --header-top-nav-link-decoration: var(--theme-header-top-links-decoration, unset);
+
+    font-family: var(--header-top-nav-link-font-family);
+    font-size: var(--header-top-nav-link-font-size);
+    font-weight: var(--header-top-nav-link-font-weight);
+    color: var(--header-top-nav-link-color);
+    text-decoration: var(--header-top-nav-link-decoration);
+    &:hover,
+    &:active,
+    &:focus {
+      --header-top-nav-link-accent-color: var(--theme-header-top-links-accent-color, var(--bs-nav-link-hover-color, #{$secondary}));
+
+      color: var(--header-top-nav-link-accent-color);
+    }
+  }
+
+  &.navbar-expand .navbar-nav .nav-link.dropdown-toggle-split {
+    padding-left: 0;
+  }
+
+  .dropdown-menu {
+    color: var(--header-top-color);
+    background-color: var(--header-top-background);
+    box-shadow: unset;
+    border: var(--bs-dropdown-border-width, 1px) solid;
+    .dropdown-item.nav-link,
+    a,
+    .dropdown-item {
+      padding-left: var(--bs-navbar-nav-link-padding-x);
+      padding-right: var(--bs-navbar-nav-link-padding-x);
+    }
+    .dropdown-item.active,
+    .dropdown-item:active,
+    .dropdown-item:hover,
+    .dropdown-item.active:hover,
+    .dropdown-item:active:hover {
+      background-color: unset;
+    }
+  }
+}
+
+header.header,
+.header-top {
+  form[class*="search"] {
+    @include inline-form(10rem);
+  }
+}

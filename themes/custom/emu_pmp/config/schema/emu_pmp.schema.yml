@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the Aeon base theme.
+
+emu_pmp.settings:
+  type: theme_settings
+  label: 'emu_pmp settings'

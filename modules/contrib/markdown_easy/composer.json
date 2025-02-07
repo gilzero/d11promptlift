@@ -1,0 +1,16 @@
+{
+    "name": "drupal/markdown_easy",
+    "description": "A simple Markdown text filter for Drupal.",
+    "type": "drupal-module",
+    "require": {
+        "league/commonmark": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "Michael Anello",
+            "email": "michael@anelloconsulting.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

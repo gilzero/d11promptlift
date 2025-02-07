@@ -1,0 +1,10 @@
+{#
+/**
+ * @file
+ * Default theme implementation for pwa_service_worker offline page.
+ *
+ */
+#}
+<p data-drupal-pwa-offline="true">{{ 'You are offline.'|t }}</p>
+{# .button class is needed for consistent styling by themes. #}
+<button type="button" class="button button--primary" onClick="document.location.reload(true)">{{ 'Reload page'|t }}</button>

@@ -28,7 +28,7 @@ class CustomField extends RuleBase {
   /**
    * {@inheritDoc}
    */
-  public function checkIfEmpty($value) {
+  public function checkIfEmpty($value, array $automatorConfig = []) {
     return isset($value[0]) && $value[0][key($value[0])] ? [1] : FALSE;
   }
 

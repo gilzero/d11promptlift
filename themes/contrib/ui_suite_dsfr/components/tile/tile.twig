@@ -1,0 +1,64 @@
+{% if variant and variant != 'default' %}
+  {% set variants = variant|split('__')|map(v => v|replace({(v): 'fr-tile--' ~ v})) %}
+  {% set attributes = attributes.addClass(variants) %}
+{% endif %}
+
+{% if enlarge_link %}
+  {% set attributes = attributes.addClass('fr-enlarge-link') %}
+{% endif %}
+
+{% if display_md %}
+  {% set attributes = attributes.addClass('fr-tile--' ~ display_md ~ '@md') %}
+{% endif %}
+
+{% if display_lg %}
+  {% set attributes = attributes.addClass('fr-tile--' ~ display_lg ~ '@lg') %}
+{% endif %}
+
+{% if shadow %}
+  {% set attributes = attributes.addClass('fr-tile--shadow') %}
+{% endif %}
+
+{% if not icon %}
+  {% set attributes = attributes.addClass('fr-tile--no-icon') %}
+{% endif %}
+
+{% if not border %}
+  {% set attributes = attributes.addClass('fr-tile--no-border') %}
+{% endif %}
+
+{% if background and background|lower != 'default' %}
+  {% set attributes = attributes.addClass('fr-tile--' ~ background|lower) %}
+{% endif %}
+
+{% set title_tag = title_tag|default('h3') %}
+
+{% if title %}
+  <div{{ attributes.addClass('fr-tile') }}>
+    <div class="fr-tile__body">
+      <div class="fr-tile__content">
+        <{{ title_tag }} class="fr-tile__title">
+          {{ title|add_class('fr-tile__link') }}
+        </{{ title_tag }}>
+        {% if description %}
+          <p class="fr-tile__desc">{{ description }}</p>
+        {% endif %}
+        {% if tags_badges %}
+          <div class="fr-tile__start">
+            {{ tags_badges }}
+          </div>
+        {% endif %}
+        {% if detail %}
+          <div class="fr-tile__detail">{{ detail }}</div>
+        {% endif %}
+      </div>
+    </div>
+    {% if image %}
+      <div class="fr-tile__header">
+        <div class="fr-tile__pictogram">
+          {{ image|add_class('fr-responsive-img') }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

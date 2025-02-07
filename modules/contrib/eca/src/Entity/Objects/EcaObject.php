@@ -103,6 +103,16 @@ abstract class EcaObject {
   }
 
   /**
+   * Provides the ECA config entity.
+   *
+   * @return \Drupal\eca\Entity\Eca
+   *   The ECA config entity.
+   */
+  public function getEca(): Eca {
+    return $this->eca;
+  }
+
+  /**
    * Provides ECA event object which started the process towards this item.
    *
    * @return \Drupal\eca\Entity\Objects\EcaEvent

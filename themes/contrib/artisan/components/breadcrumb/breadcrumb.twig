@@ -1,0 +1,22 @@
+{% if breadcrumb %}
+
+  {% set attributes = attributes ?: create_attribute() %}
+  {% set breadcrumb_attributes = breadcrumb_attributes ?: create_attribute() %}
+  {% set breadcrumb_item_attributes = breadcrumb_item ?: create_attribute() %}
+
+  <nav {{ attributes.setAttribute('role', 'navigation').setAttribute('aria-labelledby', 'system-breadcrumb') }}>
+    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+    <ol {{ breadcrumb_attributes.addClass(['breadcrumb']) }}>
+      {% for item in breadcrumb %}
+        <li {{ breadcrumb_item_attributes.addClass(['breadcrumb-item', not item.url ? 'active' ]) }}>
+          {% if item.url %}
+            <a href="{{ item.url }}">{{ item.text }}</a>
+          {% else %}
+            {{ item.text }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+
+{% endif %}

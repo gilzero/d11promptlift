@@ -1,0 +1,21 @@
+name: Collapsible, closed by default
+props:
+  collapsible: "closed"
+  items:
+    - title: "Item 1"
+      url: "#"
+    - title: Parent
+      below:
+        - title: "Submenu 1"
+          url: "#"
+        - title: "Submenu 2"
+          url: "#"
+        - title: "Parent with link"
+          url: "#"
+          below:
+            - title: "Submenu 1"
+              url: "#"
+            - title: "Submenu 2"
+              url: "#"
+    - title: "Item 3"
+      url: "#"

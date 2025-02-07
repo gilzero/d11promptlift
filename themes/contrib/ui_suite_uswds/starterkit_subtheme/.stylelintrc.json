@@ -1,0 +1,17 @@
+{
+  "extends":[
+    "../../../core/.stylelintrc.json",
+    "stylelint-config-recommended",
+    "stylelint-config-sass-guidelines"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "selector-attribute-quotes": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": "^[a-z][-_a-z0-9]*$"
+  },
+  "ignoreFiles": [""]
+}

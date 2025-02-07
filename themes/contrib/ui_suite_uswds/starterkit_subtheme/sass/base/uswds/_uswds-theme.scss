@@ -1,0 +1,29 @@
+/*
+----------------------------------------
+USWDS with settings overrides
+----------------------------------------
+Uncomment the following lines and add a list of changed settings
+in the form $setting: value,
+----------------------------------------
+See full list of settings in folder "settings-list". Note these were copied directly
+from USWDS with no changes.
+----------------------------------------
+Example usage.
+@use "uswds-core" with (
+$theme-show-notifications: false,
+$theme-utility-breakpoints: (
+    "card": false,
+    "card-lg": false,
+    "mobile": false,
+    "mobile-lg": true,
+    "tablet": true,
+    "tablet-lg": false,
+    "desktop": true,
+    "desktop-lg": false,
+    "widescreen": false,
+    ),
+);
+*/
+
+//@use "uswds-core" with (
+//);

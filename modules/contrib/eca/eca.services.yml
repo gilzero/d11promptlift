@@ -111,6 +111,10 @@ services:
     tags:
       - { name: eca.token_data_provider, priority: -50 }
 
+  eca.update:
+    class: Drupal\eca\EcaUpdate
+    arguments: ['@entity_type.manager', '@eca.service.modeller', '@messenger']
+
   eca.export.recipe:
     class: Drupal\eca\Service\ExportRecipe
     arguments:

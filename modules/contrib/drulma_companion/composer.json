@@ -1,0 +1,22 @@
+{
+    "name": "drupal/drulma_companion",
+    "description": "Extends Drulma theme with module functionalities",
+    "homepage": "https://www.drupal.org/project/drulma_companion",
+    "support": {
+        "source": "https://git.drupalcode.org/project/drulma_companion",
+        "issues": "https://www.drupal.org/project/issues/drulma_companion"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/block_class": "^2 || ^4",
+        "drupal/drulma": "^2",
+        "drupal/hook_event_dispatcher": "^4"
+    },
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later"
+}

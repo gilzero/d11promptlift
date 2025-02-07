@@ -1,0 +1,8 @@
+
+Publication Date 3.0.x, xxxx-xx-xx
+------------------------------------------
+#3478606 by mably: Drupal 11 compatibility fixes
+
+Publication Date 8.x-.x, xxxx-xx-xx
+------------------------------------------
+#2606820 by webflo, jstoller: Port publication_date-7.x-2.x to Drupal 8.

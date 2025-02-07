@@ -1,0 +1,14 @@
+/* Remove button of selected medias. */
+button[name$="media-library-remove-button"] {
+  position: absolute;
+  z-index: 1;
+  right: var(--bs-card-spacer-x);
+  margin: 0.25rem;
+}
+
+/* Remove button when creating a media. */
+.media-added-remove-button {
+  position: absolute;
+  right: calc(var(--bs-gutter-x) * 0.5 * 3);
+  width: auto;
+}

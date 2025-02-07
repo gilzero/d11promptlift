@@ -1,0 +1,22 @@
+daisyui_cdn:
+  remote: https://daisyui.com/
+  license:
+    name: MIT
+    url: https://github.com/saadeghi/daisyui/blob/master/LICENSE
+    gpl-compatible: false
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css:
+        { minified: true }
+  js:
+    https://cdn.tailwindcss.com?plugins=typography: {}
+
+daisyui:
+  css:
+    theme:
+      /libraries/daisyui/daisyui.css: { minified: true }
+
+custom_css:
+  css:
+    theme:
+      dist/css/custom/custom.css: {}

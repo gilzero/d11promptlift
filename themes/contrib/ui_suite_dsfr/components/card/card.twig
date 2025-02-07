@@ -1,0 +1,68 @@
+{% if variant and variant != 'default' %}
+  {% set variants = variant|split('__')|map(v => v|replace({(v): 'fr-card--' ~ v})) %}
+  {% set attributes = attributes.addClass(variants) %}
+  {% if 'fr-card--horizontal' in variants and horizontal_ratio %}
+    {% set attributes = attributes.addClass('fr-card--horizontal-' ~ horizontal_ratio) %}
+  {% endif %}
+{% endif %}
+
+{% if enlarge_link and not footer %}
+  {% set attributes = attributes.addClass('fr-enlarge-link') %}
+{% endif %}
+
+{% if no_arrow %}
+  {% set attributes = attributes.addClass('fr-card--no-arrow') %}
+{% endif %}
+
+{% if bg_boxes %}
+  {% set attributes = attributes.addClass('fr-card--' ~ bg_boxes) %}
+{% endif %}
+
+{% set title_tag = title_tag|default('h3') %}
+
+{% if title %}
+  <div{{ attributes.addClass('fr-card') }}>
+    <div class="fr-card__body">
+      <div class="fr-card__content">
+        <{{ title_tag }} class="fr-card__title">
+          {{ title|add_class('fr-card__link') }}
+        </{{ title_tag }}>
+        {% if description %}<div class="fr-card__desc">{{ description }}</div>{% endif %}
+        {% if detail or tags_badges %}
+          <div class="fr-card__start">
+            {{ tags_badges }}
+            {% if detail %}
+              {% set detail_attributes = detail_attributes|default(create_attribute()) %}
+              {# color is skipped, size may not apply properly #}
+              {% set detail_attributes = detail_attributes.addClass(['fr-card__detail', detail_icon.icon_id ? 'fr-icon-' ~ detail_icon.icon_id|clean_class, (detail_icon.settings.size|default('md') != 'md') ? 'fr-icon--' ~ detail_icon.settings.size]) %}
+              <div{{ detail_attributes }}>{{ detail }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if detail_end %}
+          <div class="fr-card__end">
+            {% if detail_end %}
+              {% set detail_end_attributes = detail_end_attributes|default(create_attribute()) %}
+              {# color is skipped, size may not apply properly #}
+              {% set detail_end_attributes = detail_end_attributes.addClass(['fr-card__detail', detail_end_icon.icon_id ? 'fr-icon-' ~ detail_end_icon.icon_id|clean_class, (detail_end_icon.settings.size|default('md') != 'md') ? 'fr-icon--' ~ detail_end_icon.settings.size|clean_class]) %}
+              <div{{ detail_end_attributes }}>{{ detail_end }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      {% if footer %}
+        <div class="fr-card__footer">
+          {{ footer }}
+        </div>
+      {% endif %}
+    </div>
+    {% if image %}
+      <div class="fr-card__header">
+        <div class="fr-card__img">
+          {{ image|add_class('fr-responsive-img') }}
+        </div>
+        {{ image_badges }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

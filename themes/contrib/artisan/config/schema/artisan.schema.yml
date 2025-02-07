@@ -1,0 +1,614 @@
+artisan.settings:
+  type: theme_settings
+  label: 'Artisan settings'
+  mapping:
+    dark_mode:
+      type: boolean
+    presets:
+      type: string
+    palette_branding_primary:
+      type: color_hex
+    palette_branding_secondary:
+      type: color_hex
+    palette_primary:
+      type: color_hex
+    palette_secondary:
+      type: color_hex
+    palette_success:
+      type: color_hex
+    palette_info:
+      type: color_hex
+    palette_warning:
+      type: color_hex
+    palette_danger:
+      type: color_hex
+    palette_light:
+      type: color_hex
+    palette_dark:
+      type: color_hex
+    palette_white:
+      type: color_hex
+    palette_black:
+      type: color_hex
+    base_font_size:
+      type: string
+    base_font_weight:
+      type: string
+    base_font_family:
+      type: string
+    base_font_line_height:
+      type: string
+    body_color:
+      type: color_hex
+    body_background:
+      type: color_hex
+    headings_font_family:
+      type: string
+    headings_font_weight:
+      type: string
+    headings_color:
+      type: color_hex
+    headings_decoration:
+      type: string
+    h1_font_size:
+      type: string
+    h1_font_size_lg:
+      type: string
+    h1_font_family:
+      type: string
+    h1_font_weight:
+      type: string
+    h1_color:
+      type: color_hex
+    h1_decoration:
+      type: string
+    h2_font_size:
+      type: string
+    h2_font_size_lg:
+      type: string
+    h2_font_family:
+      type: string
+    h2_font_weight:
+      type: string
+    h2_color:
+      type: color_hex
+    h2_decoration:
+      type: string
+    h3_font_size:
+      type: string
+    h3_font_size_lg:
+      type: string
+    h3_font_family:
+      type: string
+    h3_font_weight:
+      type: string
+    h3_color:
+      type: color_hex
+    h3_decoration:
+      type: string
+    h4_font_size:
+      type: string
+    h4_font_size_lg:
+      type: string
+    h4_font_family:
+      type: string
+    h4_font_weight:
+      type: string
+    h4_color:
+      type: color_hex
+    h4_decoration:
+      type: string
+    h5_font_size:
+      type: string
+    h5_font_size_lg:
+      type: string
+    h5_font_family:
+      type: string
+    h5_font_weight:
+      type: string
+    h5_color:
+      type: color_hex
+    h5_decoration:
+      type: string
+    h6_font_size:
+      type: string
+    h6_font_size_lg:
+      type: string
+    h6_font_family:
+      type: string
+    h6_font_weight:
+      type: string
+    h6_color:
+      type: color_hex
+    h6_decoration:
+      type: string
+    displays_font_family:
+      type: string
+    displays_font_weight:
+      type: string
+    displays_color:
+      type: color_hex
+    displays_decoration:
+      type: string
+    display1_font_size:
+      type: string
+    display1_font_size_lg:
+      type: string
+    display1_font_family:
+      type: string
+    display1_font_weight:
+      type: string
+    display1_color:
+      type: color_hex
+    display1_decoration:
+      type: string
+    display2_font_size:
+      type: string
+    display2_font_size_lg:
+      type: string
+    display2_font_family:
+      type: string
+    display2_font_weight:
+      type: string
+    display2_color:
+      type: color_hex
+    display2_decoration:
+      type: string
+    display3_font_size:
+      type: string
+    display3_font_size_lg:
+      type: string
+    display3_font_family:
+      type: string
+    display3_font_weight:
+      type: string
+    display3_color:
+      type: color_hex
+    display3_decoration:
+      type: string
+    display4_font_size:
+      type: string
+    display4_font_size_lg:
+      type: string
+    display4_font_family:
+      type: string
+    display4_font_weight:
+      type: string
+    display4_color:
+      type: color_hex
+    display4_decoration:
+      type: string
+    display5_font_size:
+      type: string
+    display5_font_size_lg:
+      type: string
+    display5_font_family:
+      type: string
+    display5_font_weight:
+      type: string
+    display5_color:
+      type: color_hex
+    display5_decoration:
+      type: string
+    display6_font_size:
+      type: string
+    display6_font_size_lg:
+      type: string
+    display6_font_family:
+      type: string
+    display6_font_weight:
+      type: string
+    display6_color:
+      type: color_hex
+    display6_decoration:
+      type: string
+    breadcrumb_font_size:
+      type: string
+    breadcrumb_font_family:
+      type: string
+    breadcrumb_font_weight:
+      type: string
+    breadcrumb_padding_x:
+      type: string
+    breadcrumb_padding_y:
+      type: string
+    breadcrumb_margin_y:
+      type: string
+    breadcrumb_divider:
+      type: string
+    breadcrumb_color:
+      type: color_hex
+    breadcrumb_background:
+      type: color_hex
+    breadcrumb_accent_color:
+      type: color_hex
+    links_color:
+      type: color_hex
+    links_accent_color:
+      type: color_hex
+    links_decoration:
+      type: string
+    links_font_family:
+      type: string
+    links_font_weight:
+      type: string
+    header_links_font_size:
+      type: string
+    header_top_links_font_size:
+      type: string
+    header_links_color:
+      type: color_hex
+    header_links_accent_color:
+      type: color_hex
+    header_links_decoration:
+      type: string
+    header_links_font_family:
+      type: string
+    header_links_font_weight:
+      type: string
+    footer_links_color:
+      type: color_hex
+    footer_links_accent_color:
+      type: color_hex
+    footer_links_decoration:
+      type: string
+    footer_links_font_family:
+      type: string
+    footer_links_font_weight:
+      type: string
+    footer_links_font_size:
+      type: string
+    layout_content_max_width:
+      type: string
+    layout_global_max_width:
+      type: string
+    layout_spacing:
+      type: string
+    header_static:
+      type: boolean
+    header_color:
+      type: color_hex
+    header_background:
+      type: color_hex
+    header_opacity:
+      type: string
+    header_height:
+      type: string
+    header_z_index:
+      type: integer
+    footer_padding_y:
+      type: string
+    footer_color:
+      type: color_hex
+    footer_background:
+      type: color_hex
+    header_top_color:
+      type: color_hex
+    header_top_background:
+      type: color_hex
+    header_top_links_font_family:
+      type: string
+    header_top_links_font_weight:
+      type: string
+    header_top_links_decoration:
+      type: string
+    header_top_links_color:
+      type: color_hex
+    header_top_links_accent_color:
+      type: color_hex
+    footer_top_color:
+      type: color_hex
+    footer_top_background:
+      type: color_hex
+    footer_top_links_color:
+      type: color_hex
+    footer_top_links_accent_color:
+      type: color_hex
+    footer_top_links_font_family:
+      type: string
+    footer_top_links_font_size:
+      type: string
+    footer_top_links_font_weight:
+      type: string
+    footer_top_links_decoration:
+      type: string
+    responsive_accent_color:
+      type: color_hex
+    responsive_accent_background:
+      type: color_hex
+    btn_border_width:
+      type: string
+    btn_border_radius:
+      type: string
+    btn_font_weight:
+      type: string
+    btn_padding_x:
+      type: string
+    btn_padding_x_sm:
+      type: string
+    btn_padding_x_lg:
+      type: string
+    btn_padding_y:
+      type: string
+    btn_padding_y_sm:
+      type: string
+    btn_padding_y_lg:
+      type: string
+    btn_line_height:
+      type: string
+    btn_font_family:
+      type: string
+    btn_font_size:
+      type: string
+    btn_font_size_sm:
+      type: string
+    btn_font_size_lg:
+      type: string
+    btn_disabled_opacity:
+      type: string
+    btn_shadow:
+      type: string
+    btn_primary_color:
+      type: color_hex
+    btn_primary_background:
+      type: color_hex
+    btn_primary_border_color:
+      type: color_hex
+    btn_primary_accent_color:
+      type: color_hex
+    btn_primary_accent_background:
+      type: color_hex
+    btn_primary_accent_border_color:
+      type: color_hex
+    btn_outline_primary_color:
+      type: color_hex
+    btn_outline_primary_background:
+      type: color_hex
+    btn_outline_primary_border_color:
+      type: color_hex
+    btn_outline_primary_accent_color:
+      type: color_hex
+    btn_outline_primary_accent_background:
+      type: color_hex
+    btn_outline_primary_accent_border_color:
+      type: color_hex
+    btn_secondary_color:
+      type: color_hex
+    btn_secondary_background:
+      type: color_hex
+    btn_secondary_border_color:
+      type: color_hex
+    btn_secondary_accent_color:
+      type: color_hex
+    btn_secondary_accent_background:
+      type: color_hex
+    btn_secondary_accent_border_color:
+      type: color_hex
+    btn_outline_secondary_color:
+      type: color_hex
+    btn_outline_secondary_background:
+      type: color_hex
+    btn_outline_secondary_border_color:
+      type: color_hex
+    btn_outline_secondary_accent_color:
+      type: color_hex
+    btn_outline_secondary_accent_background:
+      type: color_hex
+    btn_outline_secondary_accent_border_color:
+      type: color_hex
+    btn_success_color:
+      type: color_hex
+    btn_success_background:
+      type: color_hex
+    btn_success_border_color:
+      type: color_hex
+    btn_success_accent_color:
+      type: color_hex
+    btn_success_accent_background:
+      type: color_hex
+    btn_success_accent_border_color:
+      type: color_hex
+    btn_outline_success_color:
+      type: color_hex
+    btn_outline_success_background:
+      type: color_hex
+    btn_outline_success_border_color:
+      type: color_hex
+    btn_outline_success_accent_color:
+      type: color_hex
+    btn_outline_success_accent_background:
+      type: color_hex
+    btn_outline_success_accent_border_color:
+      type: color_hex
+    btn_danger_color:
+      type: color_hex
+    btn_danger_background:
+      type: color_hex
+    btn_danger_border_color:
+      type: color_hex
+    btn_danger_accent_color:
+      type: color_hex
+    btn_danger_accent_background:
+      type: color_hex
+    btn_danger_accent_border_color:
+      type: color_hex
+    btn_outline_danger_color:
+      type: color_hex
+    btn_outline_danger_background:
+      type: color_hex
+    btn_outline_danger_border_color:
+      type: color_hex
+    btn_outline_danger_accent_color:
+      type: color_hex
+    btn_outline_danger_accent_background:
+      type: color_hex
+    btn_outline_danger_accent_border_color:
+      type: color_hex
+    btn_warning_color:
+      type: color_hex
+    btn_warning_background:
+      type: color_hex
+    btn_warning_border_color:
+      type: color_hex
+    btn_warning_accent_color:
+      type: color_hex
+    btn_warning_accent_background:
+      type: color_hex
+    btn_warning_accent_border_color:
+      type: color_hex
+    btn_outline_warning_color:
+      type: color_hex
+    btn_outline_warning_background:
+      type: color_hex
+    btn_outline_warning_border_color:
+      type: color_hex
+    btn_outline_warning_accent_color:
+      type: color_hex
+    btn_outline_warning_accent_background:
+      type: color_hex
+    btn_outline_warning_accent_border_color:
+      type: color_hex
+    btn_info_color:
+      type: color_hex
+    btn_info_background:
+      type: color_hex
+    btn_info_border_color:
+      type: color_hex
+    btn_info_accent_color:
+      type: color_hex
+    btn_info_accent_background:
+      type: color_hex
+    btn_info_accent_border_color:
+      type: color_hex
+    btn_outline_info_color:
+      type: color_hex
+    btn_outline_info_background:
+      type: color_hex
+    btn_outline_info_border_color:
+      type: color_hex
+    btn_outline_info_accent_color:
+      type: color_hex
+    btn_outline_info_accent_background:
+      type: color_hex
+    btn_outline_info_accent_border_color:
+      type: color_hex
+    btn_light_color:
+      type: color_hex
+    btn_light_background:
+      type: color_hex
+    btn_light_border_color:
+      type: color_hex
+    btn_light_accent_color:
+      type: color_hex
+    btn_light_accent_background:
+      type: color_hex
+    btn_light_accent_border_color:
+      type: color_hex
+    btn_outline_light_color:
+      type: color_hex
+    btn_outline_light_background:
+      type: color_hex
+    btn_outline_light_border_color:
+      type: color_hex
+    btn_outline_light_accent_color:
+      type: color_hex
+    btn_outline_light_accent_background:
+      type: color_hex
+    btn_outline_light_accent_border_color:
+      type: color_hex
+    btn_dark_color:
+      type: color_hex
+    btn_dark_background:
+      type: color_hex
+    btn_dark_border_color:
+      type: color_hex
+    btn_dark_accent_color:
+      type: color_hex
+    btn_dark_accent_background:
+      type: color_hex
+    btn_dark_accent_border_color:
+      type: color_hex
+    btn_outline_dark_color:
+      type: color_hex
+    btn_outline_dark_background:
+      type: color_hex
+    btn_outline_dark_border_color:
+      type: color_hex
+    btn_outline_dark_accent_color:
+      type: color_hex
+    btn_outline_dark_accent_background:
+      type: color_hex
+    btn_outline_dark_accent_border_color:
+      type: color_hex
+    btn_link_color:
+      type: color_hex
+    btn_link_accent_color:
+      type: color_hex
+    form_element_floating_label:
+      type: boolean
+    form_element_switches:
+      type: boolean
+    form_element_inline:
+      type: boolean
+    form_element_margin_bottom:
+      type: string
+    form_input_border_width:
+      type: string
+    form_input_border_radius:
+      type: string
+    form_input_font_weight:
+      type: string
+    form_input_padding_x:
+      type: string
+    form_input_padding_x_sm:
+      type: string
+    form_input_padding_x_lg:
+      type: string
+    form_input_padding_y:
+      type: string
+    form_input_padding_y_sm:
+      type: string
+    form_input_padding_y_lg:
+      type: string
+    form_input_line_height:
+      type: string
+    form_input_font_family:
+      type: string
+    form_input_font_size:
+      type: string
+    form_input_font_size_sm:
+      type: string
+    form_input_font_size_lg:
+      type: string
+    form_input_shadow:
+      type: string
+    form_input_color:
+      type: color_hex
+    form_input_placeholder_color:
+      type: color_hex
+    form_input_background:
+      type: color_hex
+    form_input_border_color:
+      type: color_hex
+    form_input_disabled_background:
+      type: color_hex
+    form_input_accent_color:
+      type: color_hex
+    form_input_accent_background:
+      type: color_hex
+    form_input_accent_border_color:
+      type: color_hex
+    form_label_font_family:
+      type: string
+    form_label_font_size:
+      type: string
+    form_label_font_weight:
+      type: string
+    form_label_line_height:
+      type: string
+    form_label_margin_bottom:
+      type: string
+    example_font_size:
+      type: string
+    example_color:
+      type: color_hex

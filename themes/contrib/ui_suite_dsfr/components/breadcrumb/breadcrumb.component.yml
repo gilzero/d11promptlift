@@ -1,0 +1,15 @@
+name: Breadcrumb
+description: "Provides information on the site's architecture. It indicates to the user his current position and allows him  to locate himself in the tree structure of the site."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/fil-d-ariane"
+props:
+  type: object
+  properties:
+    items:
+      title: Items
+      description: "Each item can contain: title, url, attributes."
+      $ref: "ui-patterns://links"
+    id:
+      title: ID
+      description: "Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"

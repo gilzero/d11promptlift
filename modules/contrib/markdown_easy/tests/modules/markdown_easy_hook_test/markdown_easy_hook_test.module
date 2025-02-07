@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Markdown Easy module.
+ */
+
+declare(strict_types=1);
+
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\MarkdownConverter;
+
+/**
+ * Implements hook_markdown_easy_config_modify().
+ */
+function markdown_easy_hook_test_markdown_easy_config_modify(MarkdownConverter &$converter): void {
+  $converter = new CommonMarkConverter([
+    // Configure the Markdown processor to be not-so-secure.
+    'html_input' => 'allow',
+    'allow_unsafe_links' => TRUE,
+  ]);
+}

@@ -1,0 +1,5 @@
+name: Preview
+props:
+  variant: default
+  disabled: false
+  aria_label: Close

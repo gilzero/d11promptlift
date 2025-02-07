@@ -1,0 +1,31 @@
+name: Footer Bottom Component
+slots:
+  content:
+    title: Footer bottom content
+    description: Slot for footer bottom content that can include HTML or other components
+    examples:
+      - >
+        {% embed 'artisan:nav' with {
+          attributes: create_attribute().addClass(['navbar-nav']),
+          items: [
+                { "url": "internal:/", "title": "Example Footer Bottom Link1" },
+                { "url": "internal:/", "title": "Example Footer Bottom Link2" },
+                { "url": "internal:/", "title": "Example Footer Bottom Link3" }
+              ]
+        } only %}
+        {% endembed %}
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+      - class: [ 'example-attributes-class' ]
+    container_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+      - class: [ 'example-container-attributes-class' ]

@@ -735,7 +735,7 @@ class ContainerTest extends TestCase {
    * @return array
    *   Associated array with parameters and services.
    */
-  protected function getMockContainerDefinition() {
+  protected function getMockContainerDefinition(): array {
     $fake_service = new \stdClass();
     $parameters = [];
     $parameters['some_parameter_class'] = get_class($fake_service);
@@ -1196,7 +1196,7 @@ class MockService {
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *   The container to inject via setter injection.
    */
-  public function setContainer(ContainerInterface $container) {
+  public function setContainer(ContainerInterface $container): void {
     $this->container = $container;
   }
 
@@ -1236,7 +1236,7 @@ class MockService {
    * @param string $some_other_parameter
    *   The setter injected parameter.
    */
-  public function setOtherConfigParameter($some_other_parameter) {
+  public function setOtherConfigParameter($some_other_parameter): void {
     $this->someOtherParameter = $some_other_parameter;
   }
 

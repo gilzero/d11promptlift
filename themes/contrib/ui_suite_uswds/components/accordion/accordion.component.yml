@@ -1,0 +1,20 @@
+name: Accordion
+description: 'An accordion is a list of headers that hide or reveal additional content when selected.'
+group: Accordion
+links:
+  - 'https://designsystem.digital.gov/components/accordion/'
+slots:
+  content:
+    title: Content
+    description: 'Accordion items'
+props:
+  type: object
+  properties:
+    bordered:
+      title: Border
+      description: 'Display a border around accordion content.'
+      type: boolean
+    multiselect:
+      title: Multiselect
+      description: 'Add the data-allow-multiple attribute to any usa-accordion to create a multiselectable accordion group.'
+      type: boolean

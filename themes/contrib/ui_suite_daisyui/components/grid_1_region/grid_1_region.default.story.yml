@@ -1,0 +1,33 @@
+name: Default
+slots:
+  col_first:
+    type: component
+    component: "ui_suite_daisyui:card"
+    slots:
+      image:
+        theme: image
+        uri: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+        alt: Shoes
+      title: Shoes!
+      text:
+        type: html_tag
+        tag: p
+        value: "If a dog chews shoes whose shoes does he choose?"
+      actions:
+        type: component
+        component: "ui_suite_daisyui:button"
+        slots:
+          label: "Buy Now"
+        props:
+          variant: primary
+          size: sm
+    props:
+      attributes:
+        class: ["bg-base-100", "shadow-xl"]
+props:
+  container_type: "container mx-auto"
+  grid_cols: "grid-cols-6"
+  col_span: "col-span-4"
+  col_start: "col-start-2"
+  attributes:
+    class: p-16

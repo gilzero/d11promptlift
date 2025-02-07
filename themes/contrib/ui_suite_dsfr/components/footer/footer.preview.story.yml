@@ -1,0 +1,88 @@
+name: Preview
+slots:
+  operator_logo:
+    theme: image
+    uri: "data:image/svg+xml;charset=UTF-8,%3csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='2' y='2' width='146' height='146' style='fill:%23dedede;stroke:%23555555;stroke-width:2'/%3e%3ctext x='50%25' y='50%25' font-size='18' text-anchor='middle' alignment-baseline='middle' font-family='monospace, sans-serif' fill='%23555555'%3eoperator logo%3c/text%3e%3c/svg%3e"
+    alt: Logo
+  content:
+    type: component
+    component: "ui_suite_dsfr:footer_menu"
+    props:
+      items:
+        - title: legifrance.gouv.fr
+          url: "https://legifrance.gouv.fr"
+        - title: gouvernement.fr
+          url: "https://gouvernement.fr"
+        - title: service-public.fr
+          url: "https://service-public.fr"
+        - title: data.gouv.fr
+          url: "https://data.gouv.fr"
+      variant: content
+  content_desc: "Lorem ipsum dolor sit amet, consectetur adipiscing, <strong>incididunt</strong>, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est."
+  bottom:
+    type: component
+    component: "ui_suite_dsfr:footer_menu"
+    props:
+      items:
+        - title: Sitemap
+          url: "#"
+        - title: Accessibility
+          url: "#"
+        - title: "Legal Notice"
+          url: "#"
+        - title: "Personal data"
+          url: "#"
+        - title: Cook
+      variant: bottom
+  bottom_copy: '<p>Unless otherwise stated, all content on this site is licensed under <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank">etalab-2.0 license</a></p>'
+props:
+  top:
+    - title: "Nom de la catégorie"
+      below:
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+    - title: "Nom de la catégorie"
+      below:
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+    - title: "Nom de la catégorie"
+      below:
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+    - title: "Nom de la catégorie"
+      below:
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+    - title: "Nom de la catégorie"
+      below:
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+    - title: "Nom de la catégorie"
+      below:
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+        - title: "Lien de navigation"
+          url: "#"
+  home_url: /

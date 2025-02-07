@@ -11,7 +11,6 @@ use Drupal\node\Entity\NodeType;
  * JSON:API integration test for the "NodeType" config entity type.
  *
  * @group jsonapi
- * @group #slow
  */
 class NodeTypeTest extends ConfigEntityResourceTestBase {
 
@@ -45,7 +44,7 @@ class NodeTypeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUpAuthorization($method) {
+  protected function setUpAuthorization($method): void {
     $this->grantPermissionsToTestedRole(['administer content types', 'access content']);
   }
 
@@ -68,7 +67,7 @@ class NodeTypeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedDocument() {
+  protected function getExpectedDocument(): array {
     $self_url = Url::fromUri('base:/jsonapi/node_type/node_type/' . $this->entity->uuid())->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     return [
       'jsonapi' => [
@@ -107,7 +106,7 @@ class NodeTypeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getPostDocument() {
+  protected function getPostDocument(): array {
     // @todo Update in https://www.drupal.org/node/2300677.
     return [];
   }
@@ -115,7 +114,7 @@ class NodeTypeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedUnauthorizedAccessMessage($method) {
+  protected function getExpectedUnauthorizedAccessMessage($method): string {
     return "The 'access content' permission is required.";
   }
 

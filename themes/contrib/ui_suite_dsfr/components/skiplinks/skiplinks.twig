@@ -1,0 +1,12 @@
+{% if items %}
+  <div{{ attributes.addClass('fr-skiplinks') }}>
+    <nav class="fr-container" role="navigation" aria-label="{{ label }}">
+      <ul class="fr-skiplinks__list">
+        {% set items = items and items is not sequence ? [items] : items %}
+        {% for item in items %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+{% endif %}

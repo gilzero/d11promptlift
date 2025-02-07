@@ -1,0 +1,32 @@
+.font-awesome-icon-picker-preview {
+  width: 55px;
+  height: 55px;
+  margin: 0 15px 0 0;
+  border-radius: 5px;
+  background: #fff;
+  text-align: center;
+  font-size: 30px;
+  line-height: 55px;
+  color: #1e1e1e;
+}
+
+#drupal-off-canvas-wrapper .font-awesome-icon-picker-button {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  padding: 4px 20px;
+  cursor: pointer;
+  transition: background 0.5s ease;
+  text-align: center;
+  color: #f5f5f5;
+  border: 0;
+  border-radius: 20em;
+  background: #777;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#IconPickerModal .ip-icons-content .ip-icons-search {
+  display: flex;
+}

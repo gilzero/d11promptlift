@@ -22,7 +22,6 @@ use Drupal\user\RoleInterface;
  * Tests the Node Translation UI.
  *
  * @group node
- * @group #slow
  */
 class NodeTranslationUITest extends ContentTranslationUITestBase {
 
@@ -130,21 +129,21 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getTranslatorPermissions() {
+  protected function getTranslatorPermissions(): array {
     return array_merge(parent::getTranslatorPermissions(), ['administer nodes', "edit any $this->bundle content"]);
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function getEditorPermissions() {
+  protected function getEditorPermissions(): array {
     return ['administer nodes', 'create article content'];
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function getAdministratorPermissions() {
+  protected function getAdministratorPermissions(): array {
     return array_merge(parent::getAdministratorPermissions(), ['access administration pages', 'administer content types', 'administer node fields', 'access content overview', 'bypass node access', 'administer languages', 'administer themes', 'view the administration theme']);
   }
 
@@ -158,7 +157,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-  protected function doTestPublishedStatus() {
+  protected function doTestPublishedStatus(): void {
     $storage = $this->container->get('entity_type.manager')
       ->getStorage($this->entityTypeId);
     $storage->resetCache([$this->entityId]);
@@ -196,7 +195,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-  protected function doTestAuthoringInfo() {
+  protected function doTestAuthoringInfo(): void {
     $storage = $this->container->get('entity_type.manager')
       ->getStorage($this->entityTypeId);
     $storage->resetCache([$this->entityId]);
@@ -402,7 +401,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
    * @param array $values
    *   The translation values to be found.
    */
-  protected function doTestTranslations($path, array $values) {
+  protected function doTestTranslations($path, array $values): void {
     $languages = $this->container->get('language_manager')->getLanguages();
     foreach ($this->langcodes as $langcode) {
       $this->drupalGet($path, ['language' => $languages[$langcode]]);
@@ -416,7 +415,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
    * @param \Drupal\node\Entity\Node $node
    *   The node to be tested.
    */
-  protected function doTestAlternateHreflangLinks(Node $node) {
+  protected function doTestAlternateHreflangLinks(Node $node): void {
     $url = $node->toUrl();
     $languages = $this->container->get('language_manager')->getLanguages();
     $url->setAbsolute();
@@ -455,7 +454,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getFormSubmitSuffix(EntityInterface $entity, $langcode) {
+  protected function getFormSubmitSuffix(EntityInterface $entity, $langcode): string {
     if (!$entity->isNew() && $entity->isTranslatable()) {
       $translations = $entity->getTranslationLanguages();
       if ((count($translations) > 1 || !isset($translations[$langcode])) && ($field = $entity->getFieldDefinition('status'))) {
@@ -468,7 +467,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
   /**
    * Tests uninstalling content_translation.
    */
-  protected function doUninstallTest() {
+  protected function doUninstallTest(): void {
     // Delete all the nodes so there is no data.
     $nodes = Node::loadMultiple();
     foreach ($nodes as $node) {
@@ -483,7 +482,7 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
   /**
    * {@inheritdoc}
    */
-  protected function doTestTranslationEdit() {
+  protected function doTestTranslationEdit(): void {
     $storage = $this->container->get('entity_type.manager')
       ->getStorage($this->entityTypeId);
     $storage->resetCache([$this->entityId]);
@@ -612,6 +611,68 @@ class NodeTranslationUITest extends ContentTranslationUITestBase {
       $this->drupalGet("{$this->langcodes[2]}/admin/content");
       $this->assertSession()->linkByHrefExists("{$this->langcodes[2]}/node/{$article->id()}");
     }
+  }
+
+  /**
+   * Test deletion of translated content from search and index rebuild.
+   */
+  public function testSearchIndexRebuildOnTranslationDeletion(): void {
+    \Drupal::service('module_installer')->install(['search']);
+    $admin_user = $this->drupalCreateUser([
+      'administer site configuration',
+      'access administration pages',
+      'administer content types',
+      'delete content translations',
+      'administer content translation',
+      'translate any entity',
+      'administer search',
+      'search content',
+      'delete any article content',
+    ]);
+    $this->drupalLogin($admin_user);
+
+    // Create a node.
+    $node = $this->drupalCreateNode([
+      'type' => $this->bundle,
+    ]);
+
+    // Add a French translation.
+    $translation = $node->addTranslation('fr');
+    $translation->title = 'First rev fr title';
+    $translation->setNewRevision(FALSE);
+    $translation->save();
+
+    // Check if 1 page is listed for indexing.
+    $this->drupalGet('admin/config/search/pages');
+    $this->assertSession()->pageTextContains('There is 1 item left to index.');
+
+    // Run cron.
+    $this->drupalGet('admin/config/system/cron');
+    $this->getSession()->getPage()->pressButton('Run cron');
+
+    // Assert no items are left for indexing.
+    $this->drupalGet('admin/config/search/pages');
+    $this->assertSession()->pageTextContains('There are 0 items left to index.');
+
+    // Search for French content.
+    $this->drupalGet('search/node', ['query' => ['keys' => urlencode('First rev fr title')]]);
+    $this->assertSession()->pageTextContains('First rev fr title');
+
+    // Delete translation.
+    $this->drupalGet('fr/node/' . $node->id() . '/delete');
+    $this->getSession()->getPage()->pressButton('Delete French translation');
+
+    // Run cron.
+    $this->drupalGet('admin/config/system/cron');
+    $this->getSession()->getPage()->pressButton('Run cron');
+
+    // Assert no items are left for indexing.
+    $this->drupalGet('admin/config/search/pages');
+    $this->assertSession()->pageTextContains('There are 0 items left to index.');
+
+    // Search for French content.
+    $this->drupalGet('search/node', ['query' => ['keys' => urlencode('First rev fr title')]]);
+    $this->assertSession()->pageTextNotContains('First rev fr title');
   }
 
 }

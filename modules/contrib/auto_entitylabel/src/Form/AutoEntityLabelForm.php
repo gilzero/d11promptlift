@@ -219,7 +219,7 @@ class AutoEntityLabelForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Pattern for the label'),
       '#description' => $this->t('Leave blank for using the per default generated label. Otherwise this string will be used as label. Use the syntax [token] if you want to insert a replacement pattern.
-      <br>Pattern string can be translated via User interface translation by searching fot the string <b>@pattern</b>.'),
+      <br>Pattern string can be translated via User interface translation by searching for the string <b>@pattern</b>.'),
       '#default_value' => $config->get('pattern') ?: '',
       '#attributes' => ['class' => ['pattern-label']],
       '#states' => $invisible_state,

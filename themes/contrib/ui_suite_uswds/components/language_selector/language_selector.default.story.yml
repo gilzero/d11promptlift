@@ -1,0 +1,19 @@
+name: Preview
+props:
+  language_label: 'Test language selector'
+  items:
+    -
+      label: English
+      url: /
+      attributes:
+        lang: en
+    -
+      label: Spanish
+      url: /es
+      attributes:
+        lang: es
+    -
+      label: French
+      url: /fr
+      attributes:
+        lang: fr

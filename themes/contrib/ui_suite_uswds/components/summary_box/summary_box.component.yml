@@ -1,0 +1,19 @@
+name: 'Summary box'
+description: 'A summary box highlights key information from a longer page or displays next steps.'
+group: 'Summary box'
+links:
+  - 'https://designsystem.digital.gov/components/summary-box/'
+slots:
+  summary_heading:
+    title: 'Summary heading'
+    description: 'Used as heading in summary box.'
+  content:
+    title: Content
+    description: 'Page content.'
+props:
+  type: object
+  properties:
+    summary_box_id:
+      title: 'Summary box ID'
+      description: 'ID for the summary box.'
+      $ref: 'ui-patterns://identifier'

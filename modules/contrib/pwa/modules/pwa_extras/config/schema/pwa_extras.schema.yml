@@ -1,0 +1,28 @@
+pwa_extras.settings.apple:
+  type: config_object
+  label: 'Apple Specific settings'
+  mapping:
+    touch_icons:
+      type: sequence
+      label: 'Touch Icons'
+      sequence:
+        type: string
+        label: 'Touch Icon'
+    mask_color:
+      type: string
+      label: 'Mask icon color'
+    meta_tags:
+      type: sequence
+      label: 'Meta Tags'
+      sequence:
+        type: string
+        label: 'Meta tag'
+    color_select:
+      type: string
+      label: 'Status Bar selected color'
+    home_screen_icons:
+      type: sequence
+      label: 'Home screen icons'
+      sequence:
+        type: string
+        label: 'Home screen icon'

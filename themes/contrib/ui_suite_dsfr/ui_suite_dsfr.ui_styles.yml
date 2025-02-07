@@ -1,0 +1,405 @@
+typography:
+  label: Text titles & styles
+  description: "To give greater editorial and graphic freedom, without harming the information hierarchy and referencing, we offer several levels of alternative titles (display)."
+  category: Typography
+  options:
+    fr-display--xl: Alt title XL
+    fr-display--lg: Alt title LG
+    fr-display--md: Alt title MD
+    fr-display--sm: Alt title SM
+    fr-display--xs: Alt title XS
+    fr-h1: Title 1
+    fr-h2: Title 2
+    fr-h3: Title 3
+    fr-h4: Title 4
+    fr-h5: Title 5
+    fr-h6: Title 6
+    fr-text--lead: Lead
+    fr-text--lg: Article
+    fr-text--md: Standard
+    fr-text--sm: Detail
+    fr-text--xs: Mention
+
+alternative-font:
+  label: Alternative font
+  description: "Use of the Spectral is limited to secondary, minor, or distinguishable information."
+  category: Typography
+  options:
+    fr-text--alt: Spectral typography
+
+spacing_margin:
+  label: Margin
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-m-0: 0
+    fr-m-auto: auto
+    fr-m-0-5v: 0.5v
+    fr-m-1v: 1v
+    fr-m-1-5v: 1.5v
+    fr-m-1w: 1w
+    fr-m-3v: 3v
+    fr-m-2w: 2w
+    fr-m-5v: 5v
+    fr-m-3w: 3w
+    fr-m-4w: 4w
+    fr-m-5w: 5w
+    fr-m-6w: 6w
+    fr-m-7w: 7w
+    fr-m-8w: 8w
+    fr-m-9w: 9w
+    fr-m-12w: 12w
+    fr-m-15w: 15w
+
+spacing_margin_top:
+  label: Margin top
+  category: Spacing
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-mt-0: 0
+    fr-mt-auto: auto
+    fr-mt-0-5v: 0.5v
+    fr-mt-1v: 1v
+    fr-mt-1-5v: 1.5v
+    fr-mt-1w: 1w
+    fr-mt-3v: 3v
+    fr-mt-2w: 2w
+    fr-mt-5v: 5v
+    fr-mt-3w: 3w
+    fr-mt-4w: 4w
+    fr-mt-5w: 5w
+    fr-mt-6w: 6w
+    fr-mt-7w: 7w
+    fr-mt-8w: 8w
+    fr-mt-9w: 9w
+    fr-mt-12w: 12w
+    fr-mt-15w: 15w
+
+spacing_margin_bottom:
+  label: Margin bottom
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-mb-0: 0
+    fr-mb-auto: auto
+    fr-mb-0-5v: 0.5v
+    fr-mb-1v: 1v
+    fr-mb-1-5v: 1.5v
+    fr-mb-1w: 1w
+    fr-mb-3v: 3v
+    fr-mb-2w: 2w
+    fr-mb-5v: 5v
+    fr-mb-3w: 3w
+    fr-mb-4w: 4w
+    fr-mb-5w: 5w
+    fr-mb-6w: 6w
+    fr-mb-7w: 7w
+    fr-mb-8w: 8w
+    fr-mb-9w: 9w
+    fr-mb-12w: 12w
+    fr-mb-15w: 15w
+
+spacing_margin_left:
+  label: Margin left
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-ml-0: 0
+    fr-ml-auto: auto
+    fr-ml-0-5v: 0.5v
+    fr-ml-1v: 1v
+    fr-ml-1-5v: 1.5v
+    fr-ml-1w: 1w
+    fr-ml-3v: 3v
+    fr-ml-2w: 2w
+    fr-ml-5v: 5v
+    fr-ml-3w: 3w
+    fr-ml-4w: 4w
+    fr-ml-5w: 5w
+    fr-ml-6w: 6w
+    fr-ml-7w: 7w
+    fr-ml-8w: 8w
+    fr-ml-9w: 9w
+    fr-ml-12w: 12w
+    fr-ml-15w: 15w
+
+spacing_margin_right:
+  label: Margin right
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-mr-0: 0
+    fr-mr-auto: auto
+    fr-mr-0-5v: 0.5v
+    fr-mr-1v: 1v
+    fr-mr-1-5v: 1.5v
+    fr-mr-1w: 1w
+    fr-mr-3v: 3v
+    fr-mr-2w: 2w
+    fr-mr-5v: 5v
+    fr-mr-3w: 3w
+    fr-mr-4w: 4w
+    fr-mr-5w: 5w
+    fr-mr-6w: 6w
+    fr-mr-7w: 7w
+    fr-mr-8w: 8w
+    fr-mr-9w: 9w
+    fr-mr-12w: 12w
+    fr-mr-15w: 15w
+
+spacing_padding:
+  label: Padding
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-p-0: 0
+    fr-p-auto: auto
+    fr-p-0-5v: 0.5v
+    fr-p-1v: 1v
+    fr-p-1-5v: 1.5v
+    fr-p-1w: 1w
+    fr-p-3v: 3v
+    fr-p-2w: 2w
+    fr-p-5v: 5v
+    fr-p-3w: 3w
+    fr-p-4w: 4w
+    fr-p-5w: 5w
+    fr-p-6w: 6w
+    fr-p-7w: 7w
+    fr-p-8w: 8w
+    fr-p-9w: 9w
+    fr-p-12w: 12w
+    fr-p-15w: 15w
+
+spacing_padding_top:
+  label: Padding top
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-pt-0: 0
+    fr-pt-auto: auto
+    fr-pt-0-5v: 0.5v
+    fr-pt-1v: 1v
+    fr-pt-1-5v: 1.5v
+    fr-pt-1w: 1w
+    fr-pt-3v: 3v
+    fr-pt-2w: 2w
+    fr-pt-5v: 5v
+    fr-pt-3w: 3w
+    fr-pt-4w: 4w
+    fr-pt-5w: 5w
+    fr-pt-6w: 6w
+    fr-pt-7w: 7w
+    fr-pt-8w: 8w
+    fr-pt-9w: 9w
+    fr-pt-12w: 12w
+    fr-pt-15w: 15w
+
+spacing_padding_bottom:
+  label: Padding bottom
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-pb-0: 0
+    fr-pb-auto: auto
+    fr-pb-0-5v: 0.5v
+    fr-pb-1v: 1v
+    fr-pb-1-5v: 1.5v
+    fr-pb-1w: 1w
+    fr-pb-3v: 3v
+    fr-pb-2w: 2w
+    fr-pb-5v: 5v
+    fr-pb-3w: 3w
+    fr-pb-4w: 4w
+    fr-pb-5w: 5w
+    fr-pb-6w: 6w
+    fr-pb-7w: 7w
+    fr-pb-8w: 8w
+    fr-pb-9w: 9w
+    fr-pb-12w: 12w
+    fr-pb-15w: 15w
+
+spacing_padding_left:
+  label: Padding left
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-pl-0: 0
+    fr-pl-auto: auto
+    fr-pl-0-5v: 0.5v
+    fr-pl-1v: 1v
+    fr-pl-1-5v: 1.5v
+    fr-pl-1w: 1w
+    fr-pl-3v: 3v
+    fr-pl-2w: 2w
+    fr-pl-5v: 5v
+    fr-pl-3w: 3w
+    fr-pl-4w: 4w
+    fr-pl-5w: 5w
+    fr-pl-6w: 6w
+    fr-pl-7w: 7w
+    fr-pl-8w: 8w
+    fr-pl-9w: 9w
+    fr-pl-12w: 12w
+    fr-pl-15w: 15w
+
+spacing_padding_right:
+  label: Padding right
+  description: A spacing and margin dimension system that relies on multiples of 8.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+  category: Spacing
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-pr-0: 0
+    fr-pr-auto: auto
+    fr-pr-0-5v: 0.5v
+    fr-pr-1v: 1v
+    fr-pr-1-5v: 1.5v
+    fr-pr-1w: 1w
+    fr-pr-3v: 3v
+    fr-pr-2w: 2w
+    fr-pr-5v: 5v
+    fr-pr-3w: 3w
+    fr-pr-4w: 4w
+    fr-pr-5w: 5w
+    fr-pr-6w: 6w
+    fr-pr-7w: 7w
+    fr-pr-8w: 8w
+    fr-pr-9w: 9w
+    fr-pr-12w: 12w
+    fr-pr-15w: 15w
+
+container_type:
+  label: Container type
+  description: External margins and gutters.
+  previewed_with:
+    - fr-background-alt--grey
+  options:
+    fr-container: Default
+    fr-container--fluid: Fluid
+
+background:
+  label: Background color
+  description: The color palette helps create consistency between interfaces and provide an optimal user experience.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/couleurs-palette
+  category: Color
+  previewed_with:
+    - fr-p-1w
+  options:
+    fr-background-action-high--blue-france:
+      label: Action-high blue France
+      previewed_with:
+        - fr-text-inverted--blue-france
+    fr-background-action-high--red-marianne: Action-high red Marianne
+    fr-background-action-high--grey: Action-high grey
+    fr-background-alt--blue-france: Alt Blue France
+    fr-background-alt--grey: Alt gray
+    fr-background-alt--red-marianne: Alt red Marianne
+    fr-background-contrast--blue-france: Contrast blue France
+    fr-background-contrast--error: Contrast error
+    fr-background-contrast--grey: Contrast gray
+    fr-background-contrast--info: Contrast info
+    fr-background-contrast--red-marianne: Contrast red Marianne
+    fr-background-contrast--success: Contrast success
+    fr-background-contrast--warning: Contrast warning
+    fr-background-default--grey: Default gray
+    fr-background-flat--error: Flat error
+    fr-background-flat--grey:
+      label: Flat grey
+      previewed_with:
+        - fr-text-inverted--grey
+    fr-background-flat--info: Flat info
+    fr-background-flat--success: Flat success
+    fr-background-flat--warning: Flat warning
+
+text_color:
+  label: Text color
+  description: The color palette helps create consistency between interfaces and provide an optimal user experience.
+  links:
+    - https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/couleurs-palette
+  category: Color
+  previewed_with:
+    - fr-p-1v
+  options:
+    fr-text-action-high--blue-france: Action-high blue France
+    fr-text-action-high--grey: Action-high grey
+    fr-text-action-high--red-marianne: Action-high red Marianne
+    fr-text-default--error: Default error
+    fr-text-default--grey: Default grey
+    fr-text-default--info: Default info
+    fr-text-default--success: Default success
+    fr-text-default--warning: Default warning
+    fr-text-inverted--blue-france:
+      label: Inverted blue France
+      previewed_with:
+        - fr-background-action-high--blue-france
+    fr-text-inverted--error:
+      label: Inverted error
+      previewed_with:
+        - fr-background-flat--error
+    fr-text-inverted--grey:
+      label: Inverted grey
+      previewed_with:
+        - fr-background-flat--grey
+    fr-text-inverted--info:
+      label: Inverted info
+      previewed_with:
+        - fr-background-flat--info
+    fr-text-inverted--red-marianne:
+      label: Inverted red Marianne
+      previewed_with:
+        - fr-background-action-high--red-marianne
+    fr-text-inverted--success:
+      label: Inverted success
+      previewed_with:
+        - fr-background-flat--success
+    fr-text-inverted--warning:
+      label: Inverted warning
+      previewed_with:
+        - fr-background-flat--warning
+    fr-text-label--blue-france: Label blue France
+    fr-text-label--grey: Label grey
+    fr-text-label--red-marianne: Label red Marianne
+    fr-text-mention--grey: Mention grey
+    fr-text-title--blue-france: Title blue France
+    fr-text-title--grey: Title g  rey
+    fr-text-title--red-marianne: Title red Marianne

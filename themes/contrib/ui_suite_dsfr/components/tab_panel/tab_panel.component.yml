@@ -1,0 +1,20 @@
+name: "(Tabs panel)"
+description: "Invisible by default. Only used with 'tabs' component."
+group: Tabs
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/onglet"
+variants:
+  default:
+    title: Default
+  selected:
+    title: Selected
+slots:
+  content:
+    title: Content
+props:
+  type: object
+  properties:
+    id:
+      title: "Unique ID"
+      description: "Must be unique in the scope of a Web page. The same ID will be passed to the corresponding tab."
+      $ref: "ui-patterns://identifier"

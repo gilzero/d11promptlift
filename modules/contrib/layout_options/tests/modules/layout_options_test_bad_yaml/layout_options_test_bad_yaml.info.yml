@@ -1,0 +1,9 @@
+name: 'Layout Options Test Bad Yaml'
+type: module
+description: 'Support module for testing Layout Options handling of yaml syntax errors.'
+package: 'Testing'
+
+# Information added by Drupal.org packaging script on 2024-10-16
+version: '8.x-1.7'
+project: 'layout_options'
+datestamp: 1729077850

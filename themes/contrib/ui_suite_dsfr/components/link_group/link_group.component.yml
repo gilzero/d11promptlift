@@ -1,0 +1,9 @@
+name: "Link group"
+description: "Group of links. https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/lien"
+group: Link
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/lien"
+slots:
+  links:
+    title: Links
+    description: "A list of 'link' components."

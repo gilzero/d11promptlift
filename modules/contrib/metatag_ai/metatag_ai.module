@@ -1,0 +1,125 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for "Metatag AI" module.
+ */
+
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Ajax\MessageCommand;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeForm;
+
+/**
+ * Implements hook_form_alter() for node form alter to add the Generator button.
+ */
+function metatag_ai_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_object = $form_state->getFormObject();
+  $isNodeForm = $form_object instanceof NodeForm;
+  if ($isNodeForm) {
+    $node = $form_object->getEntity();
+    $content_type = $node->getType();
+    $config = \Drupal::config('metatag_ai.content_settings');
+    $selected_content_types = $config->get('metatag_ai.metadata_content_types');
+
+    if (!empty($selected_content_types) && in_array($content_type, $selected_content_types)) {
+      $form['actions']['generate_metadata'] = [
+        '#type' => 'button',
+        '#value' => t('Generate Metatag'),
+        '#weight' => 4,
+        '#ajax' => [
+          'callback' => 'metatag_ai_generate_submit_form',
+          'event' => 'click',
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Ajax function to call the metatag generator.
+ *
+ * @param array $form
+ *   Nested array of form elements that comprise the entity form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state of the parent form.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The ajax data in the response.
+ */
+function metatag_ai_generate_submit_form(array &$form, FormStateInterface $form_state) {
+  $response = new AjaxResponse();
+  $data = $form_state->getValues();
+
+  $config = \Drupal::config('metatag_ai.content_settings');
+  $metadata_field_id = $config->get('metatag_ai.metadata_field_id') ?: 'field_metatag';
+  $elem_id = strtr($metadata_field_id, '_', '-');
+
+  if (!isset($data[$metadata_field_id])) {
+    $response->addCommand(new MessageCommand('Metatag field is missing.', NULL, ['type' => 'error'], TRUE));
+    return $response;
+  }
+
+  $text = '';
+  if (isset($data['title']) && isset($data['title'][0]['value'])) {
+    $text .= $data['title'][0]['value'];
+  }
+
+  if (isset($data['body']) && isset($data['body'][0]['value'])) {
+    $text .= ' ' . $data['body'][0]['value'];
+  }
+
+  $text = trim($text);
+  if (!$text) {
+    $response->addCommand(new MessageCommand('Please provide a title and description before proceeding. Unable to process with empty title and description.', NULL, ['type' => 'error'], TRUE));
+    return $response;
+  }
+
+  $generator = \Drupal::service('metatag_ai.generator');
+  $result = $generator->generate($text);
+  if ($generator->hasErrors()) {
+    foreach ($generator->getErrors() as $errMessage) {
+      $response->addCommand(new MessageCommand($errMessage, NULL, ['type' => 'error'], TRUE));
+    }
+    return $response;
+  }
+
+  if ($result['title']) {
+    $pattern = '';
+    if (isset($data[$metadata_field_id][0]['basic']['title'])) {
+      $pattern = $data[$metadata_field_id][0]['basic']['title'];
+      if (strstr($pattern, '[node:title]')) {
+        $result['title'] = str_replace('[node:title]', $result['title'], $pattern);
+      }
+    }
+    $response->addCommand(new InvokeCommand('#edit-'.$elem_id.'-0-basic-title', 'val', [$result['title']]));
+  }
+  else {
+    $response->addCommand(new MessageCommand('AI Generator returned an empty title.', NULL, ['type' => 'error'], TRUE));
+  }
+
+  if ($result['description']) {
+    $pattern = '';
+    if (isset($data[$metadata_field_id][0]['basic']['description'])) {
+      $pattern = $data[$metadata_field_id][0]['basic']['description'];
+      if (strstr($pattern, '[node:summary]')) {
+        $result['description'] = str_replace('[node:summary]', $result['description'], $pattern);
+      }
+    }
+    $response->addCommand(new InvokeCommand('#edit-'.$elem_id.'-0-basic-description', 'val', [$result['description']]));
+  }
+  else {
+    $response->addCommand(new MessageCommand('AI Generator returned an empty description.', NULL, ['type' => 'error'], TRUE));
+  }
+
+  if ($result['abstract']) {
+    $response->addCommand(new InvokeCommand('#edit-'.$elem_id.'-0-basic-abstract', 'val', [$result['abstract']]));
+  }
+
+  if ($result['keywords']) {
+    $response->addCommand(new InvokeCommand('#edit-'.$elem_id.'-0-basic-keywords', 'val', [$result['keywords']]));
+  }
+
+  return $response;
+}

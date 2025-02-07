@@ -1,0 +1,25 @@
+{% set start_attributes = attributes.addClass('timeline-start') %}
+
+{% if timeline_box_start %}
+    {% set start_attributes = start_attributes.addClass('timeline-box') %}
+{% endif %}
+
+{% set end_attributes = create_attribute().addClass('timeline-end') %}
+
+{% if timeline_box_end %}
+    {% set end_attributes = end_attributes.addClass('timeline-box') %}
+{% endif %}
+
+{% if timeline_start %}
+<div{{ start_attributes }}>{{ timeline_start }}</div>
+{% endif %}
+
+{% if icon %}
+<div class="timeline-middle">
+{{ icon(icon.pack_id, icon.icon_id, icon.settings) }}
+</div>
+{% endif %}
+
+{% if timeline_end %}
+<div{{ end_attributes }}>{{ timeline_end }}</div>
+{% endif %}

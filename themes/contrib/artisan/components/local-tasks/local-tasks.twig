@@ -1,0 +1,16 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set secondary_tabs_attributes = secondary_tabs_attributes ?: create_attribute() %}
+
+{% apply spaceless %}
+  {% block primary_tabs %}
+    {% if primary_tabs %}
+      <ul {{ attributes.addClass(['nav', 'nav-tabs', 'mb-3']) }}>{{ primary_tabs }}</ul>
+    {% endif %}
+  {% endblock %}
+
+  {% block secondary_tabs %}
+    {% if secondary_tabs %}
+      <ul {{ secondary_tabs_attributes.addClass(['nav', 'nav-pills']) }}>{{ secondary_tabs }}</ul>
+    {% endif %}
+  {% endblock %}
+{% endapply %}

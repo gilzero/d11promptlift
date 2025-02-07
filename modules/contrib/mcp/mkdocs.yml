@@ -1,0 +1,10 @@
+site_name: Documentation for MCP Drupal Module
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Quick Start: quick-start/setup.md
+  - Plugins: developers/extend.md
+docs_dir: docs
+site_dir: site
+

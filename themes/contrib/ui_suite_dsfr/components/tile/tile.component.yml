@@ -1,0 +1,93 @@
+name: Tile
+description: "A shortcut or entry point that redirects users to pages of content. It is usually part of a collection or list of similar tiles. The tile is never presented in isolation."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/tuile"
+variants:
+  default:
+    title: Vertical
+  horizontal:
+    title: Horizontal
+  sm:
+    title: "Vertical small"
+  horizontal__sm:
+    title: "Horizontal small"
+slots:
+  image:
+    title: Image
+  title:
+    title: Title
+    description: "May contain a link"
+  tags_badges:
+    title: "Tags or badges groups"
+  description:
+    title: Text
+  detail:
+    title: Detail
+props:
+  type: object
+  properties:
+    enlarge_link:
+      title: "Enlarge link?"
+      description: "Extend the link to the whole tile."
+      type: boolean
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        h2: h2
+        h3: "h3 (default)"
+        h4: h4
+        h5: h5
+        h6: h6
+    display_md:
+      title: "Display MD"
+      description: "Can be vertical or horizontal from the MD breakpoint."
+      type: string
+      enum:
+        - horizontal
+        - vertical
+      "meta:enum":
+        horizontal: Horizontal
+        vertical: Vertical
+    display_lg:
+      title: "Display LG"
+      description: "Can be vertical or horizontal from the LG breakpoint."
+      type: string
+      enum:
+        - horizontal
+        - vertical
+      "meta:enum":
+        horizontal: Horizontal
+        vertical: Vertical
+    background:
+      title: "Background color"
+      type: string
+      enum:
+        - default
+        - grey
+        - no-background
+      "meta:enum":
+        default: "Default (default)"
+        grey: Grey
+        no-background: None
+    icon:
+      title: "Display icon?"
+      description: "Add arrow icon in the corner."
+      type: boolean
+      default: true
+    border:
+      title: "Display borders?"
+      description: "Add borders."
+      type: boolean
+      default: true
+    shadow:
+      title: "Display shadow?"
+      description: "Replace borders with a shadow."
+      type: boolean
+      default: false

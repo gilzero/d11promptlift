@@ -8,7 +8,7 @@
 /**
  * Implements hook_schema().
  */
-function dblog_schema() {
+function dblog_schema(): array {
   $schema['watchdog'] = [
     'description' => 'Table that contains logs of all system events.',
     'fields' => [
@@ -96,6 +96,6 @@ function dblog_schema() {
 /**
  * Implements hook_update_last_removed().
  */
-function dblog_update_last_removed() {
+function dblog_update_last_removed(): int {
   return 10101;
 }

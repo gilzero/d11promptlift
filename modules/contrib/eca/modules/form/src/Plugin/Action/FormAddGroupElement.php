@@ -64,6 +64,13 @@ class FormAddGroupElement extends FormActionBase {
       '#open' => $this->configuration['open'],
     ];
 
+    if ($this->configuration['group'] !== '') {
+      $group = (string) $this->tokenService->replaceClear($this->configuration['group']);
+      if ($group !== '') {
+        $group_element['#group'] = $group;
+      }
+    }
+
     if ($this->configuration['introduction_text'] !== '') {
       $introduction_text = (string) $this->tokenService->replaceClear($this->configuration['introduction_text']);
       if ($introduction_text !== '') {
@@ -137,6 +144,7 @@ class FormAddGroupElement extends FormActionBase {
       'fields' => '',
       'introduction_text' => '',
       'summary_value' => '',
+      'group' => '',
     ] + parent::defaultConfiguration();
   }
 
@@ -196,6 +204,14 @@ class FormAddGroupElement extends FormActionBase {
       '#weight' => -4,
       '#default_value' => $this->configuration['summary_value'],
     ];
+    $form['group'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Group'),
+      '#description' => $this->t('Here you can set this element to be a part of a parent group.'),
+      '#weight' => -4,
+      '#default_value' => $this->configuration['group'],
+      '#eca_token_replacement' => TRUE,
+    ];
     return parent::buildConfigurationForm($form, $form_state);
   }
 
@@ -211,6 +227,7 @@ class FormAddGroupElement extends FormActionBase {
     $this->configuration['fields'] = $form_state->getValue('fields');
     $this->configuration['introduction_text'] = $form_state->getValue('introduction_text');
     $this->configuration['summary_value'] = $form_state->getValue('summary_value');
+    $this->configuration['group'] = $form_state->getValue('group');
   }
 
 }

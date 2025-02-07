@@ -323,6 +323,13 @@ abstract class EventBase extends EcaPluginBase implements EventInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function handleExceptions(): bool {
+    return FALSE;
+  }
+
+  /**
    * Builds up associative data of the "event" token.
    *
    * At least this should provide a "machine_name" property, so that this may

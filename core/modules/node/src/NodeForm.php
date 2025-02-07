@@ -92,6 +92,10 @@ class NodeForm extends ContentEntityForm {
     // parent::form().
     $store = $this->tempStoreFactory->get('node_preview');
 
+    // Because of the temp store integration, this is not cacheable.
+    // @todo add the correct cache contexts in https://www.drupal.org/project/drupal/issues/3397987
+    $form['#cache']['max-age'] = 0;
+
     // Attempt to load from preview when the uuid is present unless we are
     // rebuilding the form.
     $request_uuid = \Drupal::request()->query->get('uuid');
@@ -244,9 +248,9 @@ class NodeForm extends ContentEntityForm {
   /**
    * Form submission handler for the 'preview' action.
    *
-   * @param $form
+   * @param array $form
    *   An associative array containing the structure of the form.
-   * @param $form_state
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */
   public function preview(array $form, FormStateInterface $form_state) {

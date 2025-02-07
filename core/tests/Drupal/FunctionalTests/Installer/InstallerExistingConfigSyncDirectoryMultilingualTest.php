@@ -43,14 +43,14 @@ class InstallerExistingConfigSyncDirectoryMultilingualTest extends InstallerConf
   /**
    * {@inheritdoc}
    */
-  protected function getConfigLocation() {
+  protected function getConfigLocation(): string {
     return __DIR__ . '/../../../fixtures/config_install/multilingual';
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function prepareEnvironment() {
+  protected function prepareEnvironment(): void {
     parent::prepareEnvironment();
     // Place custom local translations in the translations directory and fix up
     // configuration.
@@ -195,7 +195,7 @@ PO;
    * @return string
    *   Contents for the test .po file.
    */
-  protected function getPo($langcode) {
+  protected function getPo($langcode): string {
     return <<<PO
 msgid ""
 msgstr ""

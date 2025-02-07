@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the theme.
+ */
+
+declare(strict_types=1);
+
+use Drupal\ui_suite_bootstrap_starterkit\HookHandler\GinLayoutBuilder;
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function ui_suite_bootstrap_starterkit_element_info_alter(array &$info): void {
+  /** @var \Drupal\ui_suite_bootstrap_starterkit\HookHandler\GinLayoutBuilder $instance */
+  $instance = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(GinLayoutBuilder::class);
+  $instance->elementInfoAlter($info);
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function ui_suite_bootstrap_starterkit_theme_registry_alter(array &$theme_registry): void {
+  /** @var \Drupal\ui_suite_bootstrap_starterkit\HookHandler\GinLayoutBuilder $instance */
+  $instance = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(GinLayoutBuilder::class);
+  $instance->themeRegistryAlter($theme_registry);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for 'input'.
+ */
+function ui_suite_bootstrap_starterkit_theme_suggestions_input_alter(array &$suggestions, array $variables): void {
+  /** @var \Drupal\ui_suite_bootstrap_starterkit\HookHandler\GinLayoutBuilder $instance */
+  $instance = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(GinLayoutBuilder::class);
+  $instance->themeSuggestionsInputAlter($suggestions, $variables);
+}

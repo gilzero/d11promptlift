@@ -1,0 +1,5 @@
+pwa_service_worker.config:
+  title: 'PWA Service worker translatable config'
+  base_route_name: pwa_service_worker.config
+  names:
+    - pwa_service_worker.config

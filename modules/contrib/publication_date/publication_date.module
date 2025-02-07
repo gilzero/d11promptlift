@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Add a field to nodes containing the publication date.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Default publication date used when a node was unpublished.
+ *
+ * Define the value stored in the database when a node is unpublished and no
+ * publication date has been set. We use the largest number that the database
+ * field can hold so unpublished nodes will appear newer than published nodes
+ * when sorted by publication date.
+ *
+ * @note: This is going to trigger the Year 2038 problem.
+ *
+ * @deprecated in publication_date:2.0.0-beta6 and is removed from publication_date:2.0.0.
+ * The behaviour of the module for unpublished entities has been changed:
+ * @see https://www.drupal.org/project/publication_date/issues/3066446
+ */
+const PUBLICATION_DATE_DEFAULT = 2147483647;
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function publication_date_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
+  if ($entity_type->id() == 'node') {
+    $fields['published_at'] = BaseFieldDefinition::create('published_at')
+      ->setLabel(t('Published on'))
+      ->setDescription(t('Keep the publication timestamp for each node.'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'region' => 'hidden',
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'publication_date_timestamp',
+        'weight' => 10,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+  }
+
+  return $fields;
+}
+
+/**
+ * Implements hook_form_BASE_ID_alter().
+ *
+ * Display the publication date on the node edit form.
+ *
+ * @note: This won't work where you have Display Suite/REL enabled.
+ */
+function publication_date_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $account = \Drupal::currentUser();
+  $node = $form_state->getFormObject()->getEntity();
+
+  if (isset($form['published_at'])) {
+    // Check if the user has permission to edit the publication date.
+    $form['published_at']['#access'] = $account->hasPermission('set any published on date') || $account->hasPermission('set ' . $node->bundle() . ' published on date');
+    $form['published_at']['#group'] = 'revision_information';
+  }
+}
+
+/**
+ * Implements hook_clone_node_alter().
+ *
+ * Reset the publication date when a node is cloned using the Node Clone module.
+ *
+ * @see clone.api.php
+ */
+function publication_date_clone_node_alter(&$node, $context) {
+  $node->published_at->value = NULL;
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function publication_date_field_formatter_info_alter(array &$info) {
+  $info['timestamp']['field_types'][] = 'published_at';
+  $info['timestamp_ago']['field_types'][] = 'published_at';
+}

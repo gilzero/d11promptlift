@@ -1,0 +1,18 @@
+status: true
+dependencies:
+  theme:
+    - artisan_starterkit
+id: artisan_starterkit_primary_local_tasks
+theme: artisan_starterkit
+region: content
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

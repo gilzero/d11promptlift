@@ -1,0 +1,57 @@
+name: Preview
+slots:
+  items:
+    - type: component
+      component: "ui_suite_dsfr:tab"
+      slots:
+        title: "Tab label 1"
+      props:
+        icon:
+          pack_id: dsfr
+          icon_id: checkbox-circle-line
+          settings: {}
+        unique_id: e9759ba9-1
+        variant: selected
+    - type: component
+      component: "ui_suite_dsfr:tab"
+      slots:
+        title: "Tab label 2"
+      props:
+        unique_id: e9759ba9-2
+    - type: component
+      component: "ui_suite_dsfr:tab"
+      slots:
+        title: "Tab label 3"
+      props:
+        unique_id: e9759ba9-3
+  panels:
+    - type: component
+      component: "ui_suite_dsfr:tab_panel"
+      slots:
+        content:
+          type: html_tag
+          tag: p
+          value: "Tab content 1"
+      props:
+        unique_id: e9759ba9-1
+        variant: selected
+    - type: component
+      component: "ui_suite_dsfr:tab_panel"
+      slots:
+        content:
+          type: html_tag
+          tag: p
+          value: "Tab content 2"
+      props:
+        unique_id: e9759ba9-2
+    - type: component
+      component: "ui_suite_dsfr:tab_panel"
+      slots:
+        content:
+          type: html_tag
+          tag: p
+          value: "Tab content 3"
+      props:
+        unique_id: e9759ba9-3
+props:
+  label: "Tabs label"

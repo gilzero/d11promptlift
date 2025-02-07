@@ -1,0 +1,42 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Dropdown
+props:
+  type: object
+  properties:
+    items:
+      title: Dropdown menu items
+      description: Contains dropdown menu items
+      type: array
+      items:
+        type: object
+      minItems: 1
+      uniqueItems: true
+      examples:
+        -
+          - { link: Dropdown Link 1 }
+          - { link: Dropdown Link 2 }
+          - { link: Dropdown Link 3 }
+    toggle:
+      type: string
+      title: Dropdown toggle
+      examples:
+        - Dropdown toggle
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+    dropdown_toggle_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+    dropdown_menu_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+    dropdown_menu_item_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+libraryOverrides:
+  dependencies:
+    - artisancustom/bs-dropdown

@@ -84,13 +84,13 @@ class GraphTest extends TestCase {
   /**
    * Normalizes a graph.
    *
-   * @param $graph
+   * @param array $graph
    *   A graph array processed by \Drupal\Component\Graph\Graph::searchAndSort()
    *
    * @return array
    *   The normalized version of a graph.
    */
-  protected function normalizeGraph($graph) {
+  protected function normalizeGraph($graph): array {
     $normalized_graph = [];
     foreach ($graph as $vertex => $edges) {
       // Create vertex even if it hasn't any edges.
@@ -186,12 +186,12 @@ class GraphTest extends TestCase {
   /**
    * Helper function to output vertices as comma-separated list.
    *
-   * @param $paths
+   * @param array $paths
    *   An array containing a list of vertices.
-   * @param $keys
+   * @param bool $keys
    *   (optional) Whether to output the keys of $paths instead of the values.
    */
-  protected function displayArray($paths, $keys = FALSE) {
+  protected function displayArray($paths, $keys = FALSE): string {
     if (!empty($paths)) {
       return implode(', ', $keys ? array_keys($paths) : $paths);
     }

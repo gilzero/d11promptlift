@@ -1,0 +1,32 @@
+{% set container_type = container_type|default('container mx-auto') %}
+
+{% set grid_cols = grid_cols|default('grid-cols-12') %}
+{% set gap = gap|default('gap-4') %}
+{% set grid_classes = ['grid', gap, gap_lg, gap_md, gap_sm, grid_cols, grid_cols_lg, grid_cols_md, grid_cols_sm] %}
+{% set grid_classes_attributes = create_attribute().addClass(grid_classes) %}
+
+{% set col_first_classes = [col_span[0], col_start[0], col_end[0], col_span_lg[0], col_start_lg[0], col_end_lg[0], col_span_md[0], col_start_md[0], col_end_md[0], col_span_sm[0], col_start_sm[0], col_end_sm[0]] %}
+{% set col_first_attributes = create_attribute().addClass(col_first_classes) %}
+{% set col_second_classes = [col_span[1], col_start[1], col_end[1], col_span_lg[1], col_start_lg[1], col_end_lg[1], col_span_md[1], col_start_md[1], col_end_md[1], col_span_sm[1], col_start_sm[1], col_end_sm[1]] %}
+{% set col_second_attributes = create_attribute().addClass(col_second_classes) %}
+
+{% set attributes = attributes.addClass(background_size, background_position, background_repeat) %}
+
+{% if background_image %}
+  {% set attributes = attributes.setAttribute('style', 'background-image: url(' ~ background_image ~ ')') %}
+{% endif %}
+
+<section {{ attributes.addClass(container_type != 'bg-breakout' ? grid_classes, container_type) }} >
+{% if container_type == 'bg-breakout' %}
+  <div {{ grid_classes_attributes.addClass('container', 'mx-auto') }} >
+{% endif %}
+  <div {{ col_first_attributes }}>
+    {{ col_first }}
+  </div>
+  <div  {{ col_second_attributes }}>
+    {{ col_second }}
+  </div>
+{% if container_type == 'bg-breakout' %}
+  </div>
+{% endif %}
+</section>

@@ -1,0 +1,27 @@
+{% set variant = variant|default('info') %}
+{% if permanent_state and dismissible %}
+{% set attributes = attributes.setAttribute('data-permanent-state', 'true') %}
+{% endif %}
+{% if notice %}
+{% set attributes = attributes.setAttribute('role', 'notice') %}
+{% endif %}
+<div{{ attributes.addClass('fr-notice').addClass('fr-notice--' ~ variant) }}>
+  <div class="fr-container">
+    {% if title or description or link %}
+    <div class="fr-notice__body">
+      <p>
+        {% if title %}<span class="fr-notice__title">{{ title }}</span>{% endif %}
+        {% if description %}<span class="fr-notice__desc">{{ description }}</span>{% endif %}
+        {{ link|add_class('fr-notice__link') }}
+      </p>
+    {% endif %}
+    {% if dismissible %}
+      {{ include('ui_suite_dsfr:button', {
+          label: close_title|default('Close'|t),
+          title: close_title|default('Close'|t),
+          attributes: create_attribute().addClass('fr-btn--close'),
+      }, with_context: false) }}
+    {% endif %}
+    </div>
+  </div>
+</div>

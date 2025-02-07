@@ -1,0 +1,13 @@
+name: Field Label
+type: module
+description: "Provides custom settings to format and/or override field labels."
+core_version_requirement: ^8.8 || ^9 || ^10 || ^11
+package: Field Formatters
+configure: field_label.module_config_form
+dependencies:
+  - drupal:field
+
+# Information added by Drupal.org packaging script on 2024-07-31
+version: '8.x-1.5'
+project: 'field_label'
+datestamp: 1722439718

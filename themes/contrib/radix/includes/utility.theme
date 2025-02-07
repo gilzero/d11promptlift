@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Utility functions.
+ */
+
+/**
+ * Cleans identifier to be used in theme suggestions.
+ *
+ * Unfortunately the core Html::cleanCssIdentifier() method is not doing that
+ * well.
+ *
+ * @param string|null $identifier
+ *   The identifier to clean.
+ *
+ * @return string
+ *   The cleaned identifier.
+ */
+function radix_clean_identifier($identifier) {
+  // If the identifier is null or not a string, return an empty string.
+  if ($identifier === NULL || !is_string($identifier)) {
+    return '';
+  }
+
+  // Remove any non-alphanumeric characters and replace them with underscores.
+  return preg_replace('/[^a-zA-Z0-9_]+/', '_', $identifier);
+}

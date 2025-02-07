@@ -1,0 +1,15 @@
+name: 'Select item (option)'
+description: "Internal: Meant to be used by a select list or combo box."
+group: List
+props:
+  type: object
+  properties:
+    selected:
+      title: 'Is current option selected?'
+      type: boolean
+    value:
+      title: 'Select value'
+      $ref: 'ui-patterns://identifier'
+    label:
+      title: 'Select label'
+      type: string

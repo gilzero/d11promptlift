@@ -59,7 +59,7 @@ abstract class AbstractModelFormBase implements ModelFormInterface {
     $form['model_data']['model_id'] = [
       '#type' => 'textfield',
       '#title' => t('Model ID'),
-      '#description' => t('The model ID to use.'),
+      '#description' => t('The model ID of the model you are using that you are using. This is for Drupal’s internals only and is not used with the provider. If no extra label is provided this will be the label.'),
       '#default_value' => $config['model_id'] ?? '',
       '#required' => TRUE,
       '#disabled' => !empty($config['has_predefined_models']) || (empty($config['new_model'])&& empty($config['has_overriden_settings'])),
@@ -77,7 +77,7 @@ abstract class AbstractModelFormBase implements ModelFormInterface {
 
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $config['new_model'] ? t('Create Model') : t('Edit Model'),
+      '#value' => $config['new_model'] ? t('Create Model') : t('Save Model'),
       '#weight' => 50,
       '#disabled' => !empty($config['has_predefined_models']) && empty($config['has_overriden_settings']),
       '#attributes' => [

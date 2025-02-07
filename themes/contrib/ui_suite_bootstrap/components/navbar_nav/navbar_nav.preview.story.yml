@@ -1,0 +1,19 @@
+name: Preview
+props:
+  items:
+    - title: Home
+      url: "https://example.com"
+    - title: Library
+      url: "https://example.com"
+      below:
+        - title: "Dropdown header"
+          link_attributes:
+            class:
+              - dropdown-header
+        - title: "Sub 1"
+          url: "https://example.com"
+        - {}
+        - title: "Sub 2 after divider"
+          url: "https://example.com"
+        - title: "Dropdown text"
+    - title: Data

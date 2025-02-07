@@ -1,0 +1,18 @@
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - artisancustom
+id: artisancustom_messages
+theme: artisancustom
+region: content
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

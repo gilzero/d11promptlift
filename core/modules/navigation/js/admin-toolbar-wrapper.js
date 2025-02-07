@@ -68,7 +68,7 @@
                 newState ? 'locked' : 'unlocked',
               );
 
-              doc.querySelector('.admin-toolbar').dispatchEvent(
+              doc.querySelector('.admin-toolbar')?.dispatchEvent(
                 new CustomEvent(SIDEBAR_CONTENT_EVENT, {
                   detail: {
                     state: newState,
@@ -134,7 +134,9 @@
         const toggleTriggers = (toState) => {
           triggers.forEach((trigger) => {
             trigger.setAttribute('aria-expanded', toState);
-            const text = trigger.querySelector('[data-text]');
+            const text =
+              trigger.querySelector('[data-toolbar-text]') ||
+              trigger.querySelector('[data-toolbar-action]');
             if (text) {
               text.textContent = toState
                 ? Drupal.t('Collapse sidebar')

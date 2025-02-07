@@ -18,6 +18,7 @@ use Drupal\eca_render\Event\EcaRenderEntityEvent;
 use Drupal\eca_render\Event\EcaRenderEntityOperationsEvent;
 use Drupal\eca_render\Event\EcaRenderExtraFieldEvent;
 use Drupal\eca_render\Event\EcaRenderLazyEvent;
+use Drupal\eca_render\Event\EcaRenderLocalTasksEvent;
 use Drupal\eca_render\Event\EcaRenderViewsFieldEvent;
 use Drupal\eca_render\RenderEvents;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -93,6 +94,13 @@ class RenderEvent extends EventBase implements PluginUsageInterface {
       'event_name' => RenderEvents::CONTEXTUAL_LINKS,
       'event_class' => EcaRenderContextualLinksEvent::class,
       'tags' => Tag::RUNTIME | Tag::CONFIG | Tag::CONTENT,
+    ];
+    $definitions['local_tasks'] = [
+      'label' => 'ECA local tasks',
+      'event_name' => RenderEvents::LOCAL_TASKS,
+      'event_class' => EcaRenderLocalTasksEvent::class,
+      'tags' => Tag::RUNTIME | Tag::CONFIG | Tag::CONTENT,
+      'eca_version_introduced' => '2.1.0',
     ];
     $definitions['entity'] = [
       'label' => 'ECA entity',
@@ -644,6 +652,17 @@ class RenderEvent extends EventBase implements PluginUsageInterface {
           $v = $entity;
         }
         return $v;
+      }
+      if ($key === 'entity') {
+        $definitions = $this->entityTypeManager->getDefinitions();
+        foreach ($routeParameters as $name => $v) {
+          if (isset($definitions[$name])) {
+            if (is_scalar($v) && ($entity = $this->entityTypeManager->getStorage($name)->load($v))) {
+              $v = $entity;
+            }
+            return $v;
+          }
+        }
       }
     }
     elseif ($event instanceof EcaRenderLazyEvent) {

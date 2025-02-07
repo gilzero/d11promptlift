@@ -1,0 +1,122 @@
+hero_solid_16:
+  label: Hero solid 16
+  description: "Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS."
+  extractor: svg
+  config:
+    sources:
+      - "/libraries/heroicons/16/solid/{icon_id}.svg"
+  settings:
+    size:
+      title: Size
+      type: "integer"
+      minimum: 12
+      maximum: 128
+      multipleOf: 4
+      default: 16
+    color:
+      title: Fill color
+      type: "string"
+      format: "color"
+  template: >
+    <svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      height="{{ size|default(16) }}"
+      width="{{ size|default(16) }}"
+      fill="{{ color|default('currentColor') }}"
+    >
+      {{ content }} 
+    </svg>
+
+hero_solid_20:
+  label: Hero solid 20
+  description: "Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS."
+  extractor: svg
+  config:
+    sources:
+      - "/libraries/heroicons/20/solid/{icon_id}.svg"
+  settings:
+    size:
+      title: Size
+      type: "integer"
+      minimum: 12
+      maximum: 128
+      multipleOf: 4
+      default: 20
+    color:
+      title: Fill color
+      type: "string"
+      format: "color"
+  template: >
+    <svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      height="{{ size|default(20) }}"
+      width="{{ size|default(20) }}"
+      fill="{{ color|default('currentColor') }}"
+    >
+      {{ content }} 
+    </svg>
+
+hero_solid_24:
+  label: Hero solid 24
+  description: "Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS."
+  extractor: svg
+  config:
+    sources:
+      - "/libraries/heroicons/24/solid/{icon_id}.svg"
+  settings:
+    size:
+      title: Size
+      type: "integer"
+      minimum: 12
+      maximum: 128
+      multipleOf: 4
+      default: 24
+    color:
+      title: Fill color
+      type: "string"
+      format: "color"
+  template: >
+    <svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      height="{{ size|default(24) }}"
+      width="{{ size|default(24) }}"
+      fill="{{ color|default('currentColor') }}"
+    >
+      {{ content }} 
+    </svg>
+
+hero_outline_24:
+  label: Hero outline 24
+  description: "Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS."
+  extractor: svg
+  config:
+    sources:
+      - "/libraries/heroicons/24/outline/{icon_id}.svg"
+  settings:
+    stroke_width:
+      title: Stroke width
+      type: "integer"
+      enum: [0, 1, 2, 3, 4, 5, 6]
+      default: 2
+    size:
+      title: Size
+      type: "integer"
+      minimum: 12
+      maximum: 128
+      multipleOf: 4
+      default: 24
+    color:
+      title: Fill color
+      type: "string"
+      format: "color"
+  template: >
+    <svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      height="{{ size|default(24) }}"
+      width="{{ size|default(24) }}"
+      fill="none"
+      stroke="{{ color|default('currentColor') }}"
+      stroke-width="{{ stroke_width|default(2) }}"
+    >
+      {{ content }} 
+    </svg>

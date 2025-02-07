@@ -27,7 +27,7 @@ class ImageAltText extends RuleBase {
   /**
    * {@inheritDoc}
    */
-  public function checkIfEmpty($value) {
+  public function checkIfEmpty($value, array $automatorConfig = []) {
     // Check if the alt is empty.
     return !empty($value[0]['alt']) ? [$value[0]['alt']] : NULL;
   }

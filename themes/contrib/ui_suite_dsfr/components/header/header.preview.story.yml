@@ -1,0 +1,69 @@
+name: Preview
+slots:
+  operator_logo:
+    theme: image
+    uri: "data:image/svg+xml;charset=UTF-8,%3csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='2' y='2' width='146' height='146' style='fill:%23dedede;stroke:%23555555;stroke-width:2'/%3e%3ctext x='50%25' y='50%25' font-size='18' text-anchor='middle' alignment-baseline='middle' font-family='monospace, sans-serif' fill='%23555555'%3eoperator logo%3c/text%3e%3c/svg%3e"
+    alt: Logo
+  tools_links:
+    type: component
+    component: "ui_suite_dsfr:link_group"
+    slots:
+      links:
+        - type: component
+          component: "ui_suite_dsfr:link"
+          slots:
+            label: "Create a space"
+            url: "#"
+          props:
+            icon:
+              pack_id: dsfr
+              settings: {}
+              icon_id: add-circle-line
+        - type: component
+          component: "ui_suite_dsfr:link"
+          slots:
+            label: Login
+            url: "#"
+          props:
+            icon:
+              pack_id: dsfr
+              settings: {}
+              icon_id: lock-line
+        - type: component
+          component: "ui_suite_dsfr:link"
+          slots:
+            label: Register
+            url: "#"
+          props:
+            icon:
+              pack_id: dsfr
+              settings: {}
+              icon_id: account-line
+  navbar:
+    type: component
+    component: "ui_suite_dsfr:nav_menu"
+    props:
+      menu_name: "Main menu"
+      html_id: header-navigation
+      items:
+        - title: Home
+          url: /
+        - title: Library
+          url: "#"
+          in_active_trail: true
+          below:
+            - title: "Sub 1"
+              url: "#"
+              below:
+                - title: "Sub 1.1"
+                  url: "#"
+            - title: "Sub 2"
+              url: "#"
+              below:
+                - title: "Sub 2.1"
+                  url: "#"
+        - title: Data
+      is_mega_menu: false
+props:
+  home_url: /
+  service_tagline: "baseline - organization details"

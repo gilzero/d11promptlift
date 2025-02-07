@@ -19,7 +19,6 @@ use Prophecy\Argument;
  * @coversDefaultClass \Drupal\jsonapi\Query\Filter
  * @group jsonapi
  * @group jsonapi_query
- * @group #slow
  *
  * @internal
  */
@@ -195,7 +194,7 @@ class FilterTest extends JsonapiKernelTestBase {
   /**
    * Simply provides test data to keep the actual test method tidy.
    */
-  protected function queryConditionData() {
+  protected function queryConditionData(): array {
     // ((RED or CIRCLE) or (YELLOW and SQUARE))
     $query = $this->nodeStorage->getQuery()->accessCheck(FALSE);
 
@@ -269,7 +268,7 @@ class FilterTest extends JsonapiKernelTestBase {
   /**
    * Sets up the schemas.
    */
-  protected function setUpSchemas() {
+  protected function setUpSchemas(): void {
     $this->installSchema('node', ['node_access']);
     $this->installSchema('user', ['users_data']);
 
@@ -282,7 +281,7 @@ class FilterTest extends JsonapiKernelTestBase {
   /**
    * Creates a painting node type.
    */
-  protected function savePaintingType() {
+  protected function savePaintingType(): void {
     NodeType::create([
       'type' => 'painting',
       'name' => 'Painting',
@@ -303,7 +302,7 @@ class FilterTest extends JsonapiKernelTestBase {
   /**
    * Creates painting nodes.
    */
-  protected function savePaintings($paintings) {
+  protected function savePaintings($paintings): void {
     foreach ($paintings as $painting) {
       Node::create(array_merge([
         'type' => 'painting',

@@ -1,0 +1,128 @@
+{% set header_id = id|default('fr-header-' ~ random()) %}
+{% set menu_id = header_id ~ '--menu' %}
+{% set mobile_menu_bid = header_id ~ '--mobile-menu-btn' %}
+{% set search_id = header_id ~ '--search' %}
+{% set search_bid = header_id ~ '--search-btn' %}
+{# titleLinkPlaceholder #}
+{% set home_text = home_text|default('Retour à l\'accueil du site') %}
+{% set logo_text = logo_text|default('République\nFrançaise') %}
+{% set full_title = [home_text] %}
+{% if service_title %}
+{% set full_title = full_title|merge([service_title]) %}
+{% endif %}
+{% if operator_logo and link_title %}
+{% set full_title = full_title|merge([link_title]) %}
+{% endif %}
+{% set full_title = full_title|merge([logo_text]) %}
+{% set full_link_title = full_title|join(' - ') %}
+{# see https://github.com/GouvernementFR/dsfr/blob/main/src/dsfr/component/header/template/ejs/header-brand.ejs #}
+{# see https://storybook.systeme-de-design.gouv.fr/?path=/docs/header--docs #}
+{% set link_position = 'logo' %}
+{% if service_title %}
+{% set link_position = 'service' %}
+{% elseif operator_logo %}
+{% set link_position = 'operator' %}
+{% endif %}
+
+<header{{ attributes.addClass('fr-header').setAttribute('role', 'banner') }}>
+  <div class="fr-header__body">
+    <div class="fr-container">
+      <div class="fr-header__body-row">
+        <div class="fr-header__brand fr-enlarge-link">
+          <div class="fr-header__brand-top">
+            {# Main logo #}
+            <div class="fr-header__logo">
+              {# Operator logo #}
+              {% if link_position == 'logo' %}
+                <a href="{{ home_url|default('/') }}" title="{{ full_link_title }}">
+              {% endif %}
+              <p class="fr-logo">
+                {{ logo_text|nl2br }}
+              </p>
+              {% if link_position == 'logo' %}
+                </a>
+              {% endif %}
+            </div>
+
+            {# Operator logo #}
+            {% if operator_logo %}
+              <div class="fr-header__operator">
+                {% if link_position == 'operator' %}
+                  <a href="{{ home_url|default('/') }}" title="{{ full_link_title }}">
+                {% endif %}
+                {{ operator_logo }}
+                {% if link_position == 'operator' %}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {# Header navbar #}
+            {% if tools_search or navbar %}
+              <div class="fr-header__navbar">
+                {% if tools_search %}
+                  <button class="fr-btn--search fr-btn" data-fr-opened="false" aria-controls="{{ search_id }}" title="{{ 'Search'|t }}" id="{{ search_bid }}" type="button">
+                    {{ 'Search'|t }}
+                  </button>
+                {% endif %}
+                {% if navbar %}
+                  <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="{{ menu_id }}" aria-haspopup="dialog" title="{{ 'Menu'|t }}" id="{{ mobile_menu_bid }}" type="button">
+                    {{ 'Menu'|t }}
+                  </button>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          {# Header service #}
+          {% if service_title %}
+            <div class="fr-header__service">
+              {# Header service title #}
+              {% if link_position == 'service' %}
+              <a href="{{ home_url|default('/') }}" title="{{ 'Homepage'|t }} - {{ service_title }} - {{ logo_text }}">
+              {% endif %}
+                <p class="fr-header__service-title">{{ service_title }}</p>
+              {% if link_position == 'service' %}
+              </a>
+              {% endif %}
+              {# Header service tagline #}
+              {% if service_tagline %}
+                <p class="fr-header__service-tagline">{{ service_tagline }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        {# Header tools #}
+        {% if tools_links or tools_search %}
+          <div class="fr-header__tools">
+            {# Header tools links #}
+            {% if tools_links %}
+              <div class="fr-header__tools-links">
+                {{ tools_links }}
+              </div>
+            {% endif %}
+            {# Header tools bottom (can be used for search bar) #}
+            {% if tools_search %}
+              <div class="fr-header__search fr-modal" id="{{ search_id }}" aria-labelledby="{{ search_bid }}">
+                <div class="fr-container fr-container-lg--fluid">
+                  <button class="fr-btn fr-btn--close" aria-controls="{{ search_id }}" title="{{ 'Close search'|t }}" type="button">{{ 'Close'|t }}</button>
+                  {{ tools_search }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% if navbar %}
+    <div class="fr-header__menu fr-modal" id="{{ menu_id }}" aria-labelledby="{{ mobile_menu_bid }}">
+      <div class="fr-container">
+        <button class="fr-btn fr-btn--close" aria-controls="{{ menu_id }}" title="{{ 'Close menu'|t }}" type="button">{{ 'Close'|t }}</button>
+        <div class="fr-header__menu-links"></div>
+        {{ navbar }}
+      </div>
+    </div>
+  {% endif %}
+</header>

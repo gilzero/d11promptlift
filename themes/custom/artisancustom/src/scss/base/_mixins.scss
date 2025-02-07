@@ -1,0 +1,16 @@
+
+@function map-get-last-key($map) {
+  $last: null;
+  @each $map-key, $map-value in $map {
+    $last: $map-key;
+  }
+  @return $last;
+}
+
+@function map-get-last-value($map) {
+  $last: null;
+  @each $map-key, $map-value in $map {
+    $last: $map-value;
+  }
+  @return $last;
+}

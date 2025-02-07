@@ -1,0 +1,12 @@
+name: Preview
+slots:
+  col_1_content:
+    - type: component
+      component: "ui_suite_bootstrap:card"
+      story: preview
+      props:
+        variant: default
+props:
+  gutters: g-0
+  col_xs: 12
+  col_md: 3

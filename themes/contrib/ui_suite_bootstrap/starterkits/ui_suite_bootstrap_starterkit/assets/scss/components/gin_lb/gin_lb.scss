@@ -1,0 +1,24 @@
+.glb-form-boolean--type-radio:checked {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  &:hover {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    &:focus {
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+  }
+  &:active {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  &:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  &:hover {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}

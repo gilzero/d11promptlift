@@ -1,0 +1,43 @@
+name: 'Time Picker'
+description: 'A time picker helps users select a specific time.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/time-picker/'
+props:
+  type: object
+  properties:
+    field_name:
+      title: 'Field name'
+      description: 'Field name, keep short with no punctuation'
+      type: string
+    field_label:
+      title: 'Field label'
+      type: string
+    data_filter:
+      title: 'data-filter'
+      description: 'The time picker will use this regular expression to filter the time picker options. You are declaring a case insensitive match over the entire option text, which means ^ and $ are added automatically. You can specify the inputted query with {{query}}. You can also declare a custom query filter as a data property as well, which can be used in the custom filter (data-number-filter="[0-9]" and then using data-filter="{{numberFilter}}.*"). The default filter is .*{{query}}.*, which is a simple “find anywhere within the option” text.'
+      type: string
+    min_date:
+      title: 'data-min-date'
+      description: 'The date picker will not allow a date selection before this date. The date should be in the format YYYY-MM-DD. Typing in an earlier date will cause native form validation error. A default min date or 0000-01-01 is used as a default.'
+      type: string
+    max_date:
+      title: 'data-max-date'
+      description: 'The date picker will not allow a date selection after this date. The date should be in the format YYYY-MM-DD. Typing in a later date will cause native form validation error. There is no default maximum date.'
+      type: string
+    data_step:
+      title: 'data-step'
+      description: 'The number of minutes between options. The minimum is 1 minute and the default is 30 minutes.'
+      type: string
+    hint:
+      title: 'Hint'
+      description: 'Hint for input into date field'
+      type: string
+    disabled:
+      title: 'Disabled'
+      description: 'The date picker component will be disabled/readonly. You can re-enable by executing the enable procedure on the component.'
+      type: boolean
+    default_value:
+      title: 'Default value'
+      description: 'The date picker input will set this value if it is a valid date. The date should be in the format YYYY-MM-DD.'
+      type: string

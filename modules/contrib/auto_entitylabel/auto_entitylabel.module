@@ -176,7 +176,7 @@ function auto_entitylabel_entity_presave(EntityInterface $entity) {
       //
       // There's a few cases we need to handle.
       // I'm going to lay these out explicitly so that the logic is
-      // clear. I expect we can optimise these at a later point.
+      // clear. I expect we can optimize these at a later point.
       //
       // Two of the scenarios need the placeholder label, so
       // always generate it.

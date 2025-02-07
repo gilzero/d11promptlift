@@ -1,0 +1,16 @@
+{% set attributes = attributes.setAttribute("style", "background-image: " ~ bg_image|default("none")) %}
+<section{{ attributes.addClass('usa-hero').setAttribute('aria-label', aria_label|default('Introduction')) }}>
+  <div class="grid-container">
+    <div class="usa-hero__callout">
+      <h1 class="usa-hero__heading">
+        {% if title_alt %}
+          <span class="usa-hero__heading--alt">
+            {{ title_alt }}
+          </span>
+        {% endif %}
+        {{ title }}
+      </h1>
+      {{ body }}
+    </div>
+  </div>
+</section>

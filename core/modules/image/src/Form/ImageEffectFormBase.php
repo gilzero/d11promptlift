@@ -58,7 +58,7 @@ abstract class ImageEffectFormBase extends FormBase {
     try {
       $this->imageEffect = $this->prepareImageEffect($image_effect);
     }
-    catch (PluginNotFoundException $e) {
+    catch (PluginNotFoundException) {
       throw new NotFoundHttpException("Invalid effect id: '$image_effect'.");
     }
     $request = $this->getRequest();
@@ -122,7 +122,10 @@ abstract class ImageEffectFormBase extends FormBase {
     $this->imageEffect->submitConfigurationForm($form['data'], SubformState::createForSubform($form['data'], $form, $form_state));
 
     $this->imageEffect->setWeight($form_state->getValue('weight'));
-    if (!$this->imageEffect->getUuid()) {
+    if ($uuid = $this->imageEffect->getUuid()) {
+      $this->imageStyle->getEffect($uuid)->setConfiguration($this->imageEffect->getConfiguration());
+    }
+    else {
       $this->imageStyle->addImageEffect($this->imageEffect->getConfiguration());
     }
     $this->imageStyle->save();

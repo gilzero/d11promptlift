@@ -1,0 +1,19 @@
+{% set aria_expanded = expanded ? 'true' : 'false' %}
+
+{% if title %}
+  <section{{ attributes.addClass('fr-accordion') }}>
+    {% set accordion_id = id|default('accordion-' ~ random()) %}
+    {% set title_tag = title_tag|default('h3') %}
+    <{{ title_tag }} class="fr-accordion__title">
+      <button class="fr-accordion__btn"
+              aria-expanded="{{ aria_expanded }}"
+              aria-controls="{{ accordion_id }}"
+              type="button">
+        {{ title }}
+      </button>
+    </{{ title_tag }}>
+    <div class="fr-collapse" id="{{ accordion_id }}">
+      {{ content }}
+    </div>
+  </section>
+{% endif %}

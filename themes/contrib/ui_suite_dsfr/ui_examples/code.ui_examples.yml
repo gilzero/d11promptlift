@@ -1,0 +1,151 @@
+id: "code"
+label: "Codes sources du secteur public"
+links:
+  - "https://code.gouv.fr/fr/"
+render:
+  type: "html_tag"
+  tag: "div"
+  attributes:
+    class:
+      - fr-container--fluid
+      - fr-pb-6w
+  0:
+    type: "html_tag"
+    tag: "div"
+    attributes:
+      style: "background: var(--background-alt-green-archipel);"
+    0:
+      type: "html_tag"
+      tag: "div"
+      attributes:
+        class:
+          - fr-container
+          - fr-pt-8w
+          - fr-pb-6w
+          - fr-mb-6w
+      0:
+        type: "component"
+        component: "ui_suite_dsfr:grid_row"
+        props:
+          col: 12
+          col_sm: 12
+          col_md: 6
+        slots:
+          content:
+            - - type: "html_tag"
+                tag: "h1"
+                value: "Le Service Public du logiciel libre"
+              - type: "html_tag"
+                tag: "p"
+                attributes:
+                  class:
+                    - fr-text--lead
+                0:
+                  markup: <strong>Accompagner </strong>les administrations pour renforcer leur <strong>utilisation </strong>de logiciels libres et soutenir leurs démarches de <strong>publication </strong>des codes sources.
+            - type: "html_tag"
+              tag: "img"
+              attributes:
+                src: "https://code.gouv.fr/illustrations/Programmer.png"
+                style: "display: block; margin: auto;"
+  1:
+    type: "html_tag"
+    tag: "div"
+    attributes:
+      class:
+        - fr-container
+    0:
+      type: "component"
+      component: "ui_suite_dsfr:grid_row"
+      props:
+        col: 12
+      slots:
+        content:
+          - type: "html_tag"
+            tag: "h2"
+            value: "Le plan d’action logiciels libres et communs numériques"
+          - markup: <p class="fr-text--lg">La <strong>mission logiciels libres </strong>est née du <strong>plan d'action logiciels libres et communs numériques </strong>dont les trois axes sont soutenir le <strong>recours</strong> aux logiciels libres dans l'administration&nbsp;; développer l'<strong>ouverture</strong> des codes sources du secteur public&nbsp;; renforcer l'<strong>attractivité</strong> de l'Etat-employeur en s'appuyant sur l'open source.</p>
+          - type: "html_tag"
+            tag: "p"
+            0:
+              type: "component"
+              component: "ui_suite_dsfr:link"
+              props:
+                url: "#"
+                icon:
+                  pack_id: 'dsfr'
+                  icon_id: 'arrow-right-line'
+                icon_position: right
+              slots:
+                label: Consulter le plan d'action
+    1:
+      type: "component"
+      component: "ui_suite_dsfr:grid_row"
+      props:
+        col: 12
+        col_md: 4
+        with_gutters: true
+      slots:
+        content:
+          - type: "component"
+            component: "ui_suite_dsfr:tile"
+            props:
+              enlarge_link: true
+            slots:
+              title: Utiliser
+              description: Mieux connaître, utiliser et concevoir les logiciels libres et les communs numériques.
+          - type: "component"
+            component: "ui_suite_dsfr:tile"
+            props:
+              enlarge_link: true
+            slots:
+              title: Publier
+              description: Développer et accompagner l’ouverture et la libération des codes sources de l'administration.
+          - type: "component"
+            component: "ui_suite_dsfr:tile"
+            props:
+              enlarge_link: true
+            slots:
+              title: Attirer
+              description: S’appuyer sur les logiciels libres et open source et sur les communs numériques pour renforcer l’attractivité de l’État-employeur auprès des talents du numériques.
+    2:
+      type: "component"
+      component: "ui_suite_dsfr:grid_row"
+      attributes:
+        class:
+          - fr-grid-row--center
+          - fr-pt-6w
+          - fr-pb-8v
+      props:
+        col: 10
+      slots:
+        content:
+          - - type: "html_tag"
+              tag: "h2"
+              attributes:
+                class:
+                  - fr-h3
+              value: "Vos contributions sont les bienvenues !"
+            - type: "component"
+              component: "ui_suite_dsfr:accordion_group"
+              slots:
+                accordions:
+                  - type: "component"
+                    component: "ui_suite_dsfr:accordion"
+                    slots:
+                      title: Vous êtes un agent public et souhaitez référencer dans le SILL un logiciel libre utilisé dans votre administration ?
+                      content:
+                        markup: '<p><a href="https://code.gouv.fr/sill/add-software" target="_blank">Inscrivez-vous !</a></p>'
+                  - type: "component"
+                    component: "ui_suite_dsfr:accordion"
+                    slots:
+                      title: Vous êtes une mission de service public et souhaitez référencer vos dépôts de code source ?
+                      content:
+                        - markup: '<p>Pour ajouter une forge, un compte d''organisation GitHub ou un groupe GitLab, écrivez à <strong><a href="mailto:contact@code.gouv.fr">contact@code.gouv.fr</a></strong> ou envoyez un correctif sur <a href="https://git.sr.ht/~codegouvfr/codegouvfr-sources/tree/main/item/comptes-organismes-publics.yml" target="_blank">ce dépôt</a>.</p>'
+                        - markup: "<p></p>"
+                        - markup: "<p><strong>Attention : </strong>Nous ne référençons pas les comptes personnels.</p>"
+                  - type: "component"
+                    component: "ui_suite_dsfr:accordion"
+                    slots:
+                      title: Vous êtes un BlueHat et souhaitez proposer un atelier ou un article ?
+                      content:
+                        markup: '<p>Écrivez à <strong><a href="mailto:contact@code.gouv.fr">contact@code.gouv.fr</a></strong>.</p>'

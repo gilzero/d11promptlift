@@ -188,6 +188,15 @@ final class ContentEntityEvents {
   public const PREPAREFORM = 'eca.content_entity.prepareform';
 
   /**
+   * Identifies \Drupal\eca_content\Event\ContentEntityValidate event.
+   *
+   * @Event
+   *
+   * @var string
+   */
+  public const VALIDATE = 'eca.content_entity.validate';
+
+  /**
    * Identifies \Drupal\eca_content\Event\ContentEntityFieldValuesInit event.
    *
    * @Event

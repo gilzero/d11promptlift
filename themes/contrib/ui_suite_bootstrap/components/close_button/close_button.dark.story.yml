@@ -1,0 +1,6 @@
+name: Dark
+props:
+  variant: default
+  disabled: false
+  aria_label: Close
+library_wrapper: "<div class=\"bg-dark\" data-bs-theme=\"dark\">{{ _story }}</div"

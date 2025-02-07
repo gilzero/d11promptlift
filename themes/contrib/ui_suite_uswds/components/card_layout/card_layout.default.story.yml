@@ -1,0 +1,33 @@
+name: Preview
+slots:
+  cards:
+    -
+      type: component
+      component: 'ui_suite_uswds:card'
+      attributes:
+        class:
+          - grid-col-6
+      settings:
+        variant: default
+        list: true
+      story: default
+    -
+      type: component
+      component: 'ui_suite_uswds:card'
+      attributes:
+        class:
+          - grid-col-6
+      settings:
+        variant: default
+        list: true
+      story: default
+    -
+      type: component
+      component: 'ui_suite_uswds:card'
+      attributes:
+        class:
+          - grid-col-6
+      settings:
+        variant: default
+        list: true
+      story: default

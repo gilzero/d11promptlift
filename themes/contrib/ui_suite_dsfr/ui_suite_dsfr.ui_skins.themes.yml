@@ -1,0 +1,38 @@
+system:
+  label: "System"
+  key: data-fr-scheme
+  target: html
+
+light:
+  label: "Light"
+  key: data-fr-scheme
+  target: html
+
+dark:
+  label: "Dark"
+  key: data-fr-scheme
+  target: html
+
+mourning_system:
+  label: "Mourning system"
+  key: data-fr-mourning
+  target: html
+  value: ""
+  dependencies:
+    - system
+
+mourning_light:
+  label: "Mourning light"
+  key: data-fr-mourning
+  target: html
+  value: ""
+  dependencies:
+    - light
+
+mourning_dark:
+  label: "Mourning dark"
+  key: data-fr-mourning
+  target: html
+  value: ""
+  dependencies:
+    - dark

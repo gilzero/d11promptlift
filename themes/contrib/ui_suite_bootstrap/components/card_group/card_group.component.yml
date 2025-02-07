@@ -1,0 +1,9 @@
+name: "Card group"
+description: "Use card groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use display: flex; to become attached with uniform dimensions starting at the sm breakpoint. When using card groups with footers, their content will automatically line up."
+group: Card
+links:
+  - "https://getbootstrap.com/docs/5.3/components/card/#card-groups"
+slots:
+  cards:
+    title: Cards
+    description: "An array of card patterns."

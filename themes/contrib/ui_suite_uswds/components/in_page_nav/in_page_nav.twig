@@ -1,0 +1,24 @@
+{% set headings = [] %}
+{% if heading_selectors %}
+  {% for heading_selector in heading_selectors %}
+    {% set headings = headings|merge(['h' ~ heading_selector]) %}
+  {% endfor %}
+{% endif %}
+
+<div{{ attributes.addClass('usa-in-page-nav-container') }}>
+  <aside
+    class="usa-in-page-nav"
+    data-heading-elements="{{ headings|join(' ') }}"
+    data-title-text="{{ title_text }}"
+    data-title-heading-level="h{{ title_heading_level }}"
+    data-scroll-offset="{{ scroll_offset }}"
+    data-root-margin="{{ root_margin }}"
+    data-threshold="{{ threshold }}"
+    data-main-content-selector="{{ content_selector }}"
+  >
+  </aside>
+
+  <main id="main-content" class="main-content">
+    {{ content }}
+  </main>
+</div>

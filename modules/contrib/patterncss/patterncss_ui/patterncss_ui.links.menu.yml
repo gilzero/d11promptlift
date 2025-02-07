@@ -1,0 +1,5 @@
+patterncss.admin:
+  title: Pattern CSS
+  description: 'Configure global settings to use the Pattern.css library.'
+  parent: system.admin_config_ui
+  route_name: patterncss.admin

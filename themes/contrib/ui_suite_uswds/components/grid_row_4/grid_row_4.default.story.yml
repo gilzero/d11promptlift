@@ -1,0 +1,34 @@
+name: Preview
+slots:
+  first:
+    - type: component
+      settings:
+        variant: default
+      component: 'ui_suite_uswds:card'
+      story: default
+  second:
+    - type: component
+      settings:
+        variant: default
+      component: 'ui_suite_uswds:card'
+      story: default
+  third:
+    - type: component
+      settings:
+        variant: default
+      component: 'ui_suite_uswds:card'
+      story: default
+  fourth:
+    - type: component
+      settings:
+        variant: default
+      component: 'ui_suite_uswds:card'
+      story: default
+props:
+  with_container: true
+  gutters: 'grid-gap-1'
+  desktop:
+    - '3'
+    - '3'
+    - '3'
+    - '3'

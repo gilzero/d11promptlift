@@ -1,0 +1,49 @@
+
+@function map-get-last-key($map) {
+  $last: null;
+  @each $map-key, $map-value in $map {
+    $last: $map-key;
+  }
+  @return $last;
+}
+
+@function map-get-last-value($map) {
+  $last: null;
+  @each $map-key, $map-value in $map {
+    $last: $map-value;
+  }
+  @return $last;
+}
+
+@mixin inline-form($input-width: 100%) {
+  display: flex;
+  align-items: flex-end;
+
+  input[type="search"],
+  input[type="textfield"],
+  select {
+    width: $input-width;
+    max-width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  input[type="submit"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-item {
+    margin-bottom: 0;
+  }
+}
+
+@mixin stretched-link {
+  &::after {
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+}

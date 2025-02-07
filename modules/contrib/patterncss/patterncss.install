@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update, uninstall functions for the PatternCSS module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function patterncss_install() {
+  \Drupal::messenger()->addStatus(t('Thanks for installing PatternCSS module.'));
+}

@@ -1,0 +1,105 @@
+name: Card
+description: "The card is a link to an editorial page of which it gives an overview. It is usually part of a collection or list of similar content previews. The card is never presented in isolation."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/carte"
+variants:
+  default:
+    title: Vertical
+  horizontal:
+    title: Horizontal
+  sm:
+    title: "Vertical Small"
+  horizontal__sm:
+    title: "Horizontal Small"
+  lg:
+    title: "Vertical Large"
+  horizontal__lg:
+    title: "Horizontal Large"
+slots:
+  image:
+    title: Image
+  image_badges:
+    title: "Image badges"
+  title:
+    title: Title
+    description: "May contain a link"
+  tags_badges:
+    title: "Tags or badges groups"
+  detail:
+    title: "Top detail"
+  detail_end:
+    title: "Bottom detail"
+  description:
+    title: Text
+  footer:
+    title: "Card footer"
+    description: "Should be button or link group."
+props:
+  type: object
+  properties:
+    horizontal_ratio:
+      title: "Ratio for horizontal cards"
+      description: "The default ratio is 40% for the image. Can also be 33/66 or 50/50."
+      type: string
+      enum:
+        - tier
+        - ""
+        - half
+      "meta:enum":
+        tier: 33/66
+        "": "40/60 (default)"
+        half: 50/50
+    enlarge_link:
+      title: "Enlarge link?"
+      description: "Extend the link to the whole card. Will not be used for cards with footer."
+      type: boolean
+    no_arrow:
+      title: "Hide an arrow?"
+      description: "Hides an arrow in the card bottom."
+      type: boolean
+    bg_boxes:
+      title: "Backgrounds and boxes"
+      description: "Card offers different variations in terms of background and box. Optional."
+      type: string
+      enum:
+        - grey
+        - no-border
+        - no-background
+        - shadow
+      "meta:enum":
+        grey: "Gray background"
+        no-border: "No border"
+        no-background: "Transparent background"
+        shadow: "With shadow"
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        h2: h2
+        h3: "h3 (default)"
+        h4: h4
+        h5: h5
+        h6: h6
+    detail_icon:
+      title: "Top detail icon"
+      description: "Top detail icon. Optional."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr
+
+    detail_end_icon:
+      title: "Bottom detail icon"
+      description: "Bottom detail icon. Optional."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr

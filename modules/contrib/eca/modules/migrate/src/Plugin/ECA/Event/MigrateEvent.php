@@ -93,7 +93,7 @@ class MigrateEvent extends EventBase {
    */
   #[Token(
     name: 'migration',
-    description: 'The migration entity being run.',
+    description: 'The migration plugin being run.',
     classes: [
       MigrateImportEvent::class,
       MigratePreRowSaveEvent::class,

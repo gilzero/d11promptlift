@@ -1,0 +1,137 @@
+{% set nav_id = 'usa-nav-' ~ nav_id|default(random()) %}
+<nav {{ attributes.addClass("usa-nav").setAttribute("role", "navigation") }}>
+  {% if is_slim %}
+      <button type="button" class="usa-nav__close">
+        <img src="{{ close_icon }}" alt="{{ "Close"|t }}"/>
+      </button>
+
+    {{ _self.menu_primary(primary, nav_id, use_megamenu, is_slim) }}
+
+      {% if secondary or search %}
+        <div class="display-flex flex-column flex-align-end">
+          {% if secondary %}
+            <ul class="usa-nav__secondary-links margin-bottom-1 ">
+              {% for item in secondary %}
+                {{ _self.menu_secondary_item(item) }}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if search %}
+            <section aria-label="{{ "Search"|t }}">
+              {{ search }}
+            </section>
+          {% endif %}
+        </div>
+      {% endif %}
+  {% else %}
+    <div class="usa-nav__inner">
+      <button type="button" class="usa-nav__close">
+        <img src="{{ close_icon }}" alt="{{ "Close"|t }}"/>
+      </button>
+
+      {# Secondary comes first because USWDS is crazy and moves components up with CSS #}
+      {% if secondary or search %}
+        <div class="usa-nav__secondary">
+          {% if secondary %}
+            <ul class="usa-nav__secondary-links">
+              {% for item in secondary %}
+                {{ _self.menu_secondary_item(item) }}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if search %}
+            <section aria-label="{{ "Search"|t }}">
+              {{ search }}
+            </section>
+          {% endif %}
+        </div>
+      {% endif %}
+      {{ _self.menu_primary(primary, nav_id, use_megamenu) }}
+    </div>
+  {% endif %}
+</nav>
+
+{% macro menu_secondary_item(item) %}
+  {% set attributes = create_attribute(item.attributes|default({})) %}
+  {% set link_attributes = create_attribute(item.link_attributes|default({})) %}
+  <li {{ attributes.addClass("usa-nav__secondary-item") }}>
+    {% set link_attributes = item.url ? link_attributes.setAttribute("href", item.url) : link_attributes %}
+    <a {{ link_attributes }}>{{ item.title }}</a>
+  </li>
+{% endmacro %}
+
+{% macro menu_primary(items, nav_id, use_megamenu, is_slim) %}
+  {% if items %}
+    <ul class="usa-nav__primary usa-accordion{% if is_slim %} flex-align-self-end{% endif %}">
+    {% for item in items %}
+      {{ _self.menu_primary_item(item, loop.index, nav_id, use_megamenu, is_slim) }}
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{% macro menu_primary_item(item, loop_index, nav_id, use_megamenu, is_slim) %}
+  {% set section_id = nav_id ~ "-section-" ~ loop_index %}
+  {% set attributes = create_attribute(item.attributes|default({})).addClass("usa-nav__primary-item") %}
+
+  <li{{ attributes }}>
+    {% set link_attributes = create_attribute(item.link_attributes|default({})).addClass("usa-nav__link") %}
+    {% set link_attributes = item.in_active_trail ? link_attributes.addClass("usa-current") : link_attributes %}
+
+    {% if item.below %}
+      {% set link_attributes = link_attributes.addClass("usa-accordion__button").setAttribute("type", "button") %}
+      <button{{ link_attributes.setAttribute("aria-expanded", "false").setAttribute("aria-controls", section_id) }}>
+        <span>{{ item.title }}</span>
+      </button>
+      {{ use_megamenu ? _self.submenu_mega(item.below, section_id) : _self.submenu_simple(item.below, section_id) }}
+    {% else %}
+      {% set attributes = item.url ? link_attributes.setAttribute("href", item.url) : attributes %}
+      <a{{ attributes }}>
+        <span>{{ item.title }}</span>
+      </a>
+    {% endif %}
+  </li>
+{% endmacro %}
+
+{% macro submenu_simple(items, section_id) %}
+  <ul id="{{ section_id }}" class="usa-nav__submenu" hidden="hidden">
+    {% for item in items %}
+      {{ _self.submenu_link(item) }}
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro submenu_mega(items, section_id) %}
+  <div id="{{ section_id }}" class="usa-nav__submenu usa-megamenu" hidden="hidden">
+    <div class="grid-row grid-gap-4">
+      {% for submenu in items %}
+        <div class="usa-col grid-col-auto">
+          <ul class="usa-nav__submenu-list">
+            {{ _self.submenu_link(submenu) }}
+            {% if submenu.below %}
+              <ul class="usa-nav__submenu-list">
+                {% for submenu_links in submenu.below %}
+                  {{ _self.submenu_link(submenu_links) }}
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro submenu_link(item) %}
+  {% set attributes = create_attribute(item.attributes|default({})).addClass("usa-nav__submenu-item") %}
+  {% set link_attributes = create_attribute(item.link_attributes|default({})) %}
+  {% set link_attributes = item.url ? link_attributes.setAttribute("href", item.url) : link_attributes %}
+
+  <li{{ attributes }}>
+    {% if link_attributes.hasAttribute('href') %}
+      <a{{ link_attributes }}>{{ item.title }}</a>
+    {% else %}
+      <strong{{ link_attributes }}>{{ item.title }}</strong>
+    {% endif %}
+  </li>
+{% endmacro %}

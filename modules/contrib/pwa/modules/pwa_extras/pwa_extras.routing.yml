@@ -1,0 +1,7 @@
+pwa_extras.settings:
+  path: '/admin/config/pwa/pwa_extras'
+  defaults:
+    _form: '\Drupal\pwa_extras\Form\PwaExtrasSettingsForm'
+    _title: 'PWA Extras Configuration'
+  requirements:
+    _permission: 'administer pwa'

@@ -1,5 +1,5 @@
 entity.ai_assistant.collection:
-  path: '/admin/structure/ai-assistant'
+  path: '/admin/config/ai/ai-assistant'
   defaults:
     _entity_list: 'ai_assistant'
     _title: 'AI Assistant configuration'
@@ -7,7 +7,7 @@ entity.ai_assistant.collection:
     _permission: 'administer ai_assistant'
 
 entity.ai_assistant.add_form:
-  path: '/admin/structure/ai_assistant/add'
+  path: '/admin/config/ai/ai-assistant/add'
   defaults:
     _entity_form: 'ai_assistant.add'
     _title: 'Add an AI Assistant'
@@ -15,7 +15,7 @@ entity.ai_assistant.add_form:
     _permission: 'administer ai_assistant'
 
 entity.ai_assistant.edit_form:
-  path: '/admin/structure/ai-assistant/{ai_assistant}'
+  path: '/admin/config/ai/ai-assistant/{ai_assistant}'
   defaults:
     _entity_form: 'ai_assistant.edit'
     _title: 'Edit an AI Assistant'
@@ -23,7 +23,7 @@ entity.ai_assistant.edit_form:
     _permission: 'administer ai_assistant'
 
 entity.ai_assistant.delete_form:
-  path: '/admin/structure/ai-assistant/{ai_assistant}/delete'
+  path: '/admin/config/ai/ai-assistant/{ai_assistant}/delete'
   defaults:
     _entity_form: 'ai_assistant.delete'
     _title: 'Delete an AI Assistant'

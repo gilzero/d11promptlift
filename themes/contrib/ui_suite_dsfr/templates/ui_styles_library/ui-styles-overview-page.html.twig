@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Styles page template, override this in your theme.
+ */
+#}
+
+{% if styles is not empty %}
+<div class="fr-grid-row">
+<div class="fr-col-lg-2">
+
+  <nav class="fr-sidemenu" role="navigation">
+  <h2 class="hidden">{{ 'Available styles'|t }}</h2>
+
+  {# List of available styles with anchor links. #}
+    {% for group_name, group_styles in styles %}
+      {% if styles|length > 1 %}
+        <h3 class="fr-h5">{{ group_name }}</h3>
+      {% endif %}
+    <ul class="fr-sidemenu__list fr-mb-5v fr-mt-5v">
+        {% for style in group_styles %}
+          <li class="fr-sidemenu__item">
+            <a class="fr-sidemenu__link" href="#{{ style.id }}">{{ style.label }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </nav>
+
+</div>
+<div class="fr-col-lg-10">
+
+{% for group_styles in styles %}
+  {% for style in group_styles %}
+    <h3 id="{{ style.id }}" class="fr-display-lg">{{ style.label }}</h3>
+    {% if style.description %}
+      <p>{{ style.description }}</p>
+    {% endif %}
+    {% if style.render_links %}
+      <ul class="fr-mb-3w">
+        {% for renderLink in style.render_links %}
+          <li>
+            {{ renderLink }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% for id, option in style.preview_options %}
+      {% set option_attributes = create_attribute()
+        .addClass(id)
+        .addClass(option.previewed_with) %}
+      {% set previewed_as = option.previewed_as %}
+      {% set label = option.label %}
+
+      {% if previewed_as == 'aside' %}
+        <p>{{ label }} ({{ id }})</p>
+        <div{{ option_attributes }}>{{ 'Example'|t }}</div>
+      {% elseif previewed_as == 'hidden' %}
+        <p>{{ label }} ({{ id }})</p>
+      {% else %}
+        <p{{ option_attributes }}>{{ label }} ({{ id }})</p>
+      {% endif %}
+
+      {% if option.description is not empty %}
+        <p>{{ option.description }}</p>
+      {% endif %}
+    {% endfor %}
+    <hr>
+  {% endfor %}
+{% endfor %}
+
+</div>
+</diV>
+{% endif %}

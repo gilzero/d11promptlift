@@ -22,6 +22,20 @@ use Symfony\Contracts\EventDispatcher\Event;
 abstract class ActionBase extends CoreActionBase implements ContainerFactoryPluginInterface, ActionInterface {
 
   /**
+   * The ID of the containing ECA model.
+   *
+   * @var string
+   */
+  protected string $ecaModelId;
+
+  /**
+   * The ID of the action within the ECA model.
+   *
+   * @var string
+   */
+  protected string $actionId;
+
+  /**
    * Triggered event leading to this action.
    *
    * @var \Symfony\Contracts\EventDispatcher\Event
@@ -114,6 +128,15 @@ abstract class ActionBase extends CoreActionBase implements ContainerFactoryPlug
   /**
    * {@inheritdoc}
    */
+  public function setEcaActionIds(string $ecaModelId, string $actionId): ActionInterface {
+    $this->ecaModelId = $ecaModelId;
+    $this->actionId = $actionId;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function setEvent(object $event): ActionInterface {
     $this->event = $event;
     return $this;
@@ -131,6 +154,20 @@ abstract class ActionBase extends CoreActionBase implements ContainerFactoryPlug
    */
   public function defaultConfiguration(): array {
     return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function handleExceptions(): bool {
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function logExceptions(): bool {
+    return TRUE;
   }
 
   /**

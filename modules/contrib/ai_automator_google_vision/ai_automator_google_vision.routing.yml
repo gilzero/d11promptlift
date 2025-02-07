@@ -1,0 +1,7 @@
+ai_automator_google_vision.settings:
+  path: '/admin/config/google_vision/settings'
+  defaults:
+    _form: '\Drupal\ai_automator_google_vision\Form\GoogleVisionConfigForm'
+    _title: 'Setup Google Vision'
+  requirements:
+    _permission: 'administer site configuration'

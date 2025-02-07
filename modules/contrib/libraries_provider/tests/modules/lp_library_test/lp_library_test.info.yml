@@ -1,0 +1,10 @@
+name: Libraries Provider Test Library
+type: module
+description: Defines fontawesome as library to be used with libraries provider.
+Package: Libraries
+core_version_requirement: ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2024-08-10
+version: '2.0.4'
+project: 'libraries_provider'
+datestamp: 1723290502

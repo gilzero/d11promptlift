@@ -1,0 +1,9 @@
+name: FranceConnect
+description: "The FranceConnect button allows an administration (or a software supplier acting on behalf of an administration) to offer a connection or a simplified account creation."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton-franceconnect"
+variants:
+  default:
+    title: Default
+  plus:
+    title: Plus

@@ -1,0 +1,73 @@
+name: Card
+description: 'Cards contain content and actions about a single subject.'
+group: Card
+links:
+  - 'https://designsystem.digital.gov/components/card/'
+variants:
+  default:
+    title: Default
+  flag:
+    title: flag
+slots:
+  header:
+    title: Header
+    description: 'Card header.'
+  image:
+    title: Image
+    description: 'Card image.'
+  content:
+    title: Content
+    description: 'Card body.'
+  footer:
+    title: Footer
+    description: 'Card footer.'
+props:
+  type: object
+  properties:
+    list:
+      title: List
+      description: 'Is this card part of a group of cards'
+      type: boolean
+    header_first:
+      title: 'Header First'
+      description: 'Displays the header element before the media element.'
+      type: boolean
+    header_exdent:
+      title: 'Header Exdent'
+      description: 'Extends the header element out over the card border. Useful for light-bordered cards.'
+      type: boolean
+    heading_level:
+      title: 'Heading level'
+      type: integer
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      'meta:enum':
+        2: 'h2 (Default)'
+        3: h3
+        4: h4
+        5: h5
+        6: h6
+    media_inset:
+      title: 'Media Inset'
+      description: 'Indents the media element so it doesn’t extend to the edge of the card.'
+      type: boolean
+    media_exdent:
+      title: 'Media Exdent'
+      description: 'Extends the media element out over the card border. Useful for light-bordered cards.'
+      type: boolean
+    body_exdent:
+      title: 'Body Exdent'
+      description: 'Extends the body element out over the card border. Useful for light-bordered cards.'
+      type: boolean
+    footer_url:
+      title: 'Footer URL'
+      description: 'Card footer URL.'
+      $ref: 'ui-patterns://url'
+    footer_exdent:
+      title: 'Footer Exdent'
+      description: 'Extends the footer element out over the card border. Useful for light-bordered cards.'
+      type: boolean

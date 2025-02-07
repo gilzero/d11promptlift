@@ -1,0 +1,35 @@
+{% set column_attributes = [
+  create_attribute(first_column_attributes|default({})),
+] %}
+
+{% if with_container %}
+<div class="grid-container">
+  {% endif %}
+
+  {% set attributes = gutters ? attributes.addClass(gutters) : attributes %}
+  {% set attributes = offsetting ? attributes.addClass(offsetting) : attributes %}
+
+  <div{{ attributes.addClass('grid-row') }}>
+    {% for region in [first] %}
+      {% set col_attributes = column_attributes[loop.index0].addClass([
+        card[loop.index0] ? 'card:grid-col-' ~ card[loop.index0],
+        card_lg[loop.index0] ? 'card-lg:grid-col-' ~ card_lg[loop.index0],
+        mobile[loop.index0] ? 'grid-col-' ~ mobile[loop.index0],
+        mobile_lg[loop.index0] ? 'mobile-lg:grid-col-' ~ mobile_lg[loop.index0],
+        tablet[loop.index0] ? 'tablet:grid-col-' ~ tablet[loop.index0],
+        tablet_lg[loop.index0] ? 'tablet-lg:grid-col-' ~ tablet_lg[loop.index0],
+        desktop[loop.index0] ? 'desktop:grid-col-' ~ desktop[loop.index0],
+        desktop_lg[loop.index0] ? 'desktop-lg:grid-col-' ~ desktop_lg[loop.index0],
+        widescreen[loop.index0] ? 'widescreen:grid-col-' ~ widescreen[loop.index0],
+      ]) %}
+
+      <div{{ col_attributes.addClass('grid-col') }}>
+        {{ region }}
+      </div>
+
+    {% endfor %}
+  </div>
+
+  {% if with_container %}
+</div>
+{% endif %}

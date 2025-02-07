@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+{% set classes = [
+  'search-form',
+  'search-block-form',
+  'usa-search',
+  'usa-search--big'
+] %}
+
+{{ attach_library('ui_suite_uswds/search-page') }}
+<form{{ attributes.addClass(classes) }}>
+  {{ children }}
+</form>

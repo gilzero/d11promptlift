@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\views_test_cacheable_metadata_calculation\Plugin\views\access;
 
 use Drupal\Core\Cache\Cache;
@@ -35,7 +37,7 @@ class CacheableMetadataCalculationTest extends AccessPluginBase implements Cache
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
+   *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\State\StateInterface $state

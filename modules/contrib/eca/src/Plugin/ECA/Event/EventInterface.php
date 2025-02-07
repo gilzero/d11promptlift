@@ -111,4 +111,14 @@ interface EventInterface extends PluginFormInterface, ConfigurableInterface, Plu
    */
   public function getTokens(): array;
 
+  /**
+   * Returns whether this event plugin handles exceptions.
+   *
+   * If so, ECA should not catch them. Defaults to false.
+   *
+   * @return bool
+   *   Whether or not this event plugin handles exceptions.
+   */
+  public function handleExceptions(): bool;
+
 }

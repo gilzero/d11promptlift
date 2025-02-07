@@ -1,0 +1,14 @@
+services:
+  plugin.manager.ui_skins.css_variable:
+    class: Drupal\ui_skins\CssVariable\CssVariablePluginManager
+    arguments:
+      - '@cache.discovery'
+      - '@module_handler'
+      - '@theme_handler'
+
+  plugin.manager.ui_skins.theme:
+    class: Drupal\ui_skins\Theme\ThemePluginManager
+    arguments:
+      - '@cache.discovery'
+      - '@module_handler'
+      - '@theme_handler'

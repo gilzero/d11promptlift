@@ -66,13 +66,16 @@
   <rule ref="Drupal.Commenting.DocCommentLongArraySyntax"/>
   <rule ref="Drupal.Commenting.DocCommentStar"/>
   <rule ref="Drupal.Commenting.FileComment"/>
+
   <rule ref="Drupal.Commenting.FunctionComment">
     <exclude name="Drupal.Commenting.FunctionComment.InvalidNoReturn"/>
     <exclude name="Drupal.Commenting.FunctionComment.Missing"/>
-    <exclude name="Drupal.Commenting.FunctionComment.MissingParamType"/>
     <exclude name="Drupal.Commenting.FunctionComment.MissingReturnComment"/>
     <exclude name="Drupal.Commenting.FunctionComment.ParamCommentFullStop"/>
     <exclude name="Drupal.Commenting.FunctionComment.TypeHintMissing"/>
+  </rule>
+  <rule ref="Drupal.Commenting.FunctionComment.MissingParamType">
+    <include-pattern>core/lib/Component/*</include-pattern>
   </rule>
   <rule ref="Drupal.Commenting.GenderNeutralComment"/>
   <rule ref="Drupal.Commenting.HookComment"/>
@@ -80,18 +83,15 @@
     <!-- Sniff for: NoSpaceBefore, SpacingBefore, WrongStyle -->
     <exclude name="Drupal.Commenting.InlineComment.DocBlock"/>
     <exclude name="Drupal.Commenting.InlineComment.InvalidEndChar"/>
-    <exclude name="Drupal.Commenting.InlineComment.NotCapital"/>
     <exclude name="Drupal.Commenting.InlineComment.SpacingAfter"/>
   </rule>
   <rule ref="Drupal.Commenting.InlineVariableComment"/>
   <rule ref="Drupal.Commenting.PostStatementComment"/>
   <rule ref="Drupal.Commenting.TodoComment" />
   <rule ref="Drupal.Commenting.VariableComment">
-    <!-- Sniff for: DuplicateVar, EmptyVar, InlineVariableName, WrongStyle -->
-    <exclude name="Drupal.Commenting.VariableComment.IncorrectVarType"/>
+    <!-- Sniff for: DuplicateVar, EmptyVar, IncorrectVarType, InlineVariableName, WrongStyle -->
     <exclude name="Drupal.Commenting.VariableComment.Missing"/>
     <exclude name="Drupal.Commenting.VariableComment.MissingVar"/>
-    <exclude name="Drupal.Commenting.VariableComment.VarOrder"/>
   </rule>
   <rule ref="Drupal.ControlStructures.ControlSignature"/>
   <rule ref="Drupal.ControlStructures.ElseIf"/>
@@ -147,8 +147,10 @@
 
   <!-- Drupal Practice sniffs -->
   <rule ref="DrupalPractice.CodeAnalysis.VariableAnalysis">
-    <!-- @todo exclude tests -->
-    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/Functional/*</exclude-pattern>
+    <exclude-pattern>*/FunctionalJavascript/*</exclude-pattern>
+    <exclude-pattern>*/core/tests/*</exclude-pattern>
+    <exclude-pattern>*/core/profiles/*/tests/*</exclude-pattern>
     <!-- Do not run this sniff on API files or transliteration data. -->
     <exclude-pattern>*.api.php</exclude-pattern>
     <exclude-pattern>core/lib/Drupal/Component/Transliteration/data/*.php</exclude-pattern>
@@ -169,6 +171,7 @@
   <rule ref="DrupalPractice.InfoFiles.NamespacedDependency"/>
   <rule ref="DrupalPractice.Objects.GlobalFunction">
     <include-pattern>*/Plugin/*</include-pattern>
+    <include-pattern>*/ListBuilder/*</include-pattern>
   </rule>
 
   <!-- Generic sniffs -->
@@ -266,20 +269,13 @@
     </properties>
   </rule>
   <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
+  <rule ref="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch" />
   <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
     <properties>
       <property name="spacesCountAroundEqualsSign" value="0" />
     </properties>
-    <!-- @todo Broaden this in https://www.drupal.org/project/drupal/issues/3400434 -->
-    <!-- <include-pattern>*/tests/*</include-pattern> -->
-    <include-pattern>*/tests/src/*</include-pattern>
-    <include-pattern>./tests/Drupal/*</include-pattern>
-    <include-pattern>./tests/TestSuites/*</include-pattern>
-    <include-pattern>./modules/system/src/Tests/Routing/*</include-pattern>
-    <exclude-pattern>./tests/Drupal/Tests/*/Fixture/*</exclude-pattern>
-    <exclude-pattern>./tests/Drupal/Tests/*/fixtures/*</exclude-pattern>
-    <!-- @todo remove this in https://www.drupal.org/project/drupal/issues/3402707 -->
-    <exclude-pattern>./tests/Drupal/KernelTests/AssertContentTrait.php</exclude-pattern>
+    <include-pattern>*/tests/*</include-pattern>
+    <exclude-pattern>*/fixtures/*</exclude-pattern>
   </rule>
   <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
 

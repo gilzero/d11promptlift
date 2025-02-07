@@ -1,0 +1,20 @@
+name: Preview
+slots:
+  title: "Preferences for all services."
+props:
+  services:
+    - title: Youtube
+      attributes:
+        id: youtube
+        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nulla arcu, imperdiet vel rutrum sed, dapibus et diam."
+    - title: Google
+      attributes:
+        id: google
+        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nulla arcu, imperdiet vel rutrum sed, dapibus et diam."
+      below:
+        - title: "Google Analytics"
+          attributes:
+            id: analitycs
+        - title: "Google Maps"
+          attributes:
+            id: maps

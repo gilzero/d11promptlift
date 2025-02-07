@@ -14,7 +14,6 @@ use Drupal\user\Entity\User;
 /**
  * Runs UpdatePathTestBase with a dump filled with content.
  *
- * @group #slow
  * @group Update
  */
 class UpdatePathTestBaseFilledTest extends UpdatePathTestBase {
@@ -27,7 +26,7 @@ class UpdatePathTestBaseFilledTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setDatabaseDumpFiles() {
+  protected function setDatabaseDumpFiles(): void {
     $this->databaseDumpFiles[] = __DIR__ . '/../../../../tests/fixtures/update/drupal-10.3.0.filled.standard.php.gz';
     $this->databaseDumpFiles[] = __DIR__ . '/../../../../tests/fixtures/update/drupal-8.update-test-schema-enabled.php';
     $this->databaseDumpFiles[] = __DIR__ . '/../../../../tests/fixtures/update/drupal-8.update-test-semver-update-n-enabled.php';
@@ -401,7 +400,7 @@ class UpdatePathTestBaseFilledTest extends UpdatePathTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function replaceUser1() {
+  protected function replaceUser1(): void {
     // Do not replace the user from our dump.
   }
 

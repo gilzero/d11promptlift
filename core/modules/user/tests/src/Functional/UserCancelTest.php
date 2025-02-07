@@ -17,7 +17,6 @@ use Drupal\user\Entity\User;
  * Ensure that account cancellation methods work as expected.
  *
  * @group user
- * @group #slow
  */
 class UserCancelTest extends BrowserTestBase {
 
@@ -734,7 +733,7 @@ class UserCancelTest extends BrowserTestBase {
     $this->assertEquals($anonymous_user->getDisplayName(), $comment_translation->getAuthorName());
 
     // Confirm that the confirmation message made it through to the end user.
-    $this->assertSession()->responseContains(t('%name has been deleted.', ['%name' => $account->getAccountName()]));
+    $this->assertSession()->pageTextContains($account->getAccountName() . ' has been deleted.');
   }
 
 }

@@ -1,0 +1,22 @@
+{% import _self as navbar_brand %}
+{% set attributes = attributes ?: create_attribute() %}
+{% set navbar_brand_logo_wrapper_attributes = navbar_brand_logo_wrapper_attributes ?: create_attribute() %}
+
+<a {{ attributes.setAttribute('href', path('<front>')) }}>
+  <div  {{ navbar_brand_logo_wrapper_attributes.addClass(['navbar-brand__logo'])}}>
+    {% if image %}
+      {{ navbar_brand.image(image, width, height, alt, webp ?? false) }}
+    {% endif %}
+  </div>
+</a>
+
+{% macro image(src, width, height, alt, webp) %}
+  {% if webp %}
+    <picture>
+      <source type="image/webp" srcset="{{ src|replace({'.jpg': '.webp', '.png': '.webp'}) }}" width="{{ width|default(140) }}" height="{{ height|default('auto') }}">
+      <img src="{{ src }}" width="{{ width|default(140) }}" height="{{ height|default('auto') }}" alt="{{ alt|default('') }}" />
+    </picture>
+  {% else %}
+    <img src="{{ src }}" width="{{ width|default(140) }}" height="{{ height|default('auto') }}" alt="{{ alt|default('') }}" />
+  {% endif %}
+{% endmacro %}

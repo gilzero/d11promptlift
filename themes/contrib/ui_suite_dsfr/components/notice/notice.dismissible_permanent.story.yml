@@ -1,0 +1,7 @@
+name: Dismissible with permanent state
+props:
+  title: "Title of an notice"
+  description: "This is a notice description."
+  dismissible: true
+  permanent_state: true
+  close_title: "Hide message"

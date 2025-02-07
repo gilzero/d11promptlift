@@ -1,0 +1,56 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Field
+props:
+  type: object
+  properties:
+    field_name:
+      title: Field name
+      type: string
+      examples:
+        - field_text
+    field_type:
+      title: Field type
+      type: string
+      examples:
+        - plain_text
+    label_display:
+      title: Label display
+      type: string
+      examples:
+        - above
+    label_hidden:
+      title: Label hidden
+      type: boolean
+      examples:
+        - false
+    label:
+      title: Label
+      type: string
+      examples:
+        - Example label
+    items:
+      title: Items
+      type: array
+      items:
+        type: object
+      examples:
+        -
+          - { content: Tetris, attributes: {'class': ['example-tetris']}}
+          - { content: Potato, attributes: {'class': ['example-potato']}}
+    multiple:
+      title: Multiple
+      type: boolean
+      examples:
+        - true
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: ['example-attributes-class']
+    title_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Title attributes
+      title: Title attributes
+      examples:
+        - class: ['example-attributes-class']

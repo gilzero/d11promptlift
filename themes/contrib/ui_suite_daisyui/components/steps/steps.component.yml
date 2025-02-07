@@ -1,0 +1,23 @@
+name: Steps
+description: "Steps can be used to show a list of steps in a process."
+group: Navigation
+links:
+  - "https://daisyui.com/components/steps/"
+variants:
+  default:
+    title: Default
+  vertical:
+    title: Vertical
+  vertical_responsive:
+    title: "Vertical responsive"
+slots:
+  items:
+    title: Items
+    description: "Expect a list of steps"
+props:
+  type: object
+  properties:
+    scrollable:
+      title: "Scrollable wrapper?"
+      description: "With scrollable wrapper."
+      type: boolean

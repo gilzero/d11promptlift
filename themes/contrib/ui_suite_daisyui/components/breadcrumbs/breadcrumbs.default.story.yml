@@ -1,0 +1,13 @@
+name: Default
+props:
+  items:
+    - title: Home
+      url: "#"
+    - title: Library
+      url: "#"
+    - title: Data
+    - title: Data
+    - title: Data
+    - title: Data
+    - title: Data
+  max_width: true

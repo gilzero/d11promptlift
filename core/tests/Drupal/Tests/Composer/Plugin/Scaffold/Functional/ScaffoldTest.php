@@ -90,7 +90,7 @@ class ScaffoldTest extends TestCase {
    * @return string
    *   The path to the created System-Under-Test.
    */
-  protected function createSut($fixture_name, array $replacements = []) {
+  protected function createSut($fixture_name, array $replacements = []): string {
     $sut = $this->fixturesDir . '/' . $fixture_name;
     // Erase just our sut, to ensure it is clean. Recopy all of the fixtures.
     $this->fileSystem->remove($sut);
@@ -284,7 +284,7 @@ include __DIR__ . "/settings-custom-additions.php";',
    * @param bool $is_link
    *   Whether or not symlinking should be used.
    */
-  protected static function scaffoldAppendTestValuesToPermute($is_link) {
+  protected static function scaffoldAppendTestValuesToPermute($is_link): array {
     return [
       [
         'drupal-drupal-test-append',

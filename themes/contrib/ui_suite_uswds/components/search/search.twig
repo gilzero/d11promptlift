@@ -1,0 +1,27 @@
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-search--' ~ variant) %}
+{% endif %}
+
+<form{{ attributes.addClass('usa-search') }}>
+  <div role="search">
+
+    {{ include('ui_suite_uswds:label', {
+      label: label,
+      for_value: search_id,
+      attributes: create_attribute({
+        'class': [
+          'usa-sr-only',
+        ]
+      }),
+    }, with_context = false) }}
+
+    <input class="usa-input" id="{{ search_id }}" type="search" name="{{ name }}" placeholder="Search"/>
+
+    <button class="usa-button" type="submit">
+      {% if variant != 'small' %}
+        <span class="usa-search__submit-text">{{ 'Search'|trans }}</span>
+      {% endif %}
+      <img src="{{ search_icon }}" class="usa-search__submit-icon" alt="Search">
+    </button>
+  </div>
+</form>

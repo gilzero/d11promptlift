@@ -67,6 +67,7 @@ class EcaAction extends EcaObject implements ObjectWithPluginInterface {
     $access_granted = FALSE;
     $exception_thrown = FALSE;
     if ($this->plugin instanceof ActionInterface) {
+      $this->plugin->setEcaActionIds($this->getEca()->id(), $this->getId());
       $this->plugin->setEvent($event);
     }
     elseif (($this->plugin instanceof ConfigurableInterface) && !empty($this->plugin->getConfiguration()['replace_tokens'])) {
@@ -120,10 +121,17 @@ class EcaAction extends EcaObject implements ObjectWithPluginInterface {
         if ($ex instanceof FormAjaxException) {
           throw $ex;
         }
-
         $context['%exception_msg'] = $ex->getMessage();
         $context['%exception_trace'] = $ex->getTraceAsString();
-        $this->logger()->error('Failed execution of %actionlabel (%actionid) from ECA %ecalabel (%ecaid) for event %event: %exception_msg.\n\n%exception_trace', $context);
+        if (!($this->plugin instanceof ActionInterface) || $this->plugin->logExceptions()) {
+          $this->logger()->error('Failed execution of %actionlabel (%actionid) from ECA %ecalabel (%ecaid) for event %event: %exception_msg.\n\n%exception_trace', $context);
+        }
+        if ($this->plugin instanceof ActionInterface && $this->plugin->handleExceptions()) {
+          throw $ex;
+        }
+        if ($predecessor !== NULL && $predecessor->event->getPlugin()->handleExceptions()) {
+          throw $ex;
+        }
         $exception_thrown = TRUE;
       }
       finally {

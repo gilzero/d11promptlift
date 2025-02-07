@@ -11,6 +11,7 @@ use Drupal\Core\Link;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\ai\AiProviderPluginManager;
 use Drupal\ai\AiVdbProviderPluginManager;
+use Drupal\ai\OperationType\Embeddings\EmbeddingsInput;
 use Drupal\ai\Utility\TokenizerInterface;
 use Drupal\ai_search\Backend\AiSearchBackendPluginBase;
 use Drupal\ai_search\EmbeddingStrategyPluginManager;
@@ -119,6 +120,24 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
   /**
    * {@inheritdoc}
    */
+  public function getDiscouragedProcessors(): array {
+    return [
+      // We convert to markdown which LLMs understand.
+      'html_filter',
+      // Boosting does not apply here.
+      'number_field_boost',
+      // There is no point, vectors inherently do not need this.
+      'stemmer',
+      // We use our own more advanced embedding strategies.
+      'tokenizer',
+      // Boosting does not apply here.
+      'type_boost',
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function defaultConfiguration(): array {
     $config = parent::defaultConfiguration();
     if (!isset($config['database'])) {
@@ -145,7 +164,8 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
     // If no provider is installed we can't do anything.
     $errors = [];
     if (!$this->aiProviderManager->hasProvidersForOperationType('embeddings')) {
-      $errors[] = '<div class="ai-error">' . $this->t('No AI providers are installed for Embeddings calls, please %install and %configure one first.', [
+      $errors[] = '<div class="ai-error">' . $this->t('No AI providers are installed for Embeddings calls. Choose a provider from the <a href="@ai">AI module homepage</a>, add it to your project, then %install and %configure it first.', [
+        '%ai' => 'https://www.drupal.org/project/ai',
         '%install' => Link::createFromRoute($this->t('install'), 'system.modules_list')->toString(),
         '%configure' => Link::createFromRoute($this->t('configure'), 'ai.admin_providers')->toString(),
       ]) . '</div>';
@@ -178,7 +198,6 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
       '#description' => $this->t('This is recommended to ensure the right number of tokens is calculated for the embeddings. Depending on the vector database and dimensions, the number of Tokens allowed per chunk of content differs. This service is used to count the number of tokens in your content as accurately as possible to better make use of the available space.'),
       '#default_value' => $this->configuration['chat_model'] ?? $default_model,
       '#options' => $this->tokenizer->getSupportedModels(),
-      '#required' => TRUE,
       '#weight' => 2,
     ];
 
@@ -242,6 +261,15 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+    $values = $form_state->getValues();
+    if (
+      !empty($values['embeddings_engine'])
+      && isset($values['embeddings_engine_configuration']['dimensions'])
+      && $values['embeddings_engine_configuration']['dimensions'] <= 0
+    ) {
+      $form_state->setErrorByName('embeddings_engine_configuration][dimensions', $this->t('Embeddings engine configuration "dimensions" must be provided and must be greater than 0'));
+    }
+
     if (!empty($form_state->getValue('database'))) {
       try {
         $vdb_client = $this->vdbProviderManager->createInstance($form_state->getValue('database'));
@@ -367,6 +395,11 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
     // Get query.
     $results = $query->getResults();
 
+    // Determine default relevance order. Typically, this is in descending order
+    // but a search could specify that it wants the least relevant.
+    $sorts = $query->getSorts();
+    $relevance_order = $sorts['search_api_relevance'] ?? 'DESC';
+
     // Prepare params.
     $params = [
       'collection_name' => $this->configuration['database_settings']['collection'],
@@ -384,8 +417,11 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
     // Conduct the search.
     $real_results = [];
     $meta_data = $this->doSearch($query, $params, $bypass_access, $real_results, $params['limit'], $params['offset']);
+
     // Keep track of items already added so existing result items do not get
-    // overwritten by later records containing the same item.
+    // overwritten by later records containing the same item. Store by ID
+    // as key, and score as value. This is more efficient than checking if the
+    // item already exists in the result set.
     $stored_items = [];
 
     // Obtain results.
@@ -394,12 +430,33 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
       $item = $this->getFieldsHelper()->createItem($index, $id);
       $item->setScore($match['distance'] ?? 1);
       $this->extractMetadata($match, $item);
-      if (!$get_chunked && !in_array($item->getId(), $stored_items)) {
-        $stored_items[] = $item->getId();
-        $results->addResultItem($item);
+
+      // Adding result items always overwrites, see the Result Set class in
+      // Search API. Ensure that the items with the desired highest or lowest
+      // score are what get stored.
+      if (array_key_exists($item->getId(), $stored_items)) {
+
+        // In this scenario, we have already added the item. Decide whether to
+        // overwrite based on score.
+        if ($relevance_order === 'DESC' && $item->getScore() > $stored_items[$item->getId()]) {
+
+          // Store only the highest score.
+          $results->addResultItem($item);
+          $stored_items[$item->getId()] = $item->getScore();
+        }
+        elseif ($relevance_order === 'ASC' && $item->getScore() < $stored_items[$item->getId()]) {
+
+          // Store only the lowest score.
+          $results->addResultItem($item);
+          $stored_items[$item->getId()] = $item->getScore();
+        }
       }
       else {
+
+        // This is a new result in the result set, not previously found in other
+        // chunks: store it.
         $results->addResultItem($item);
+        $stored_items[$item->getId()] = $item->getScore();
       }
     }
     $results->setExtraData('real_offset', $meta_data['real_offset']);
@@ -408,8 +465,7 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
     $results->setExtraData('current_vector_score', $meta_data['vector_score'] ?? 0);
 
     // Sort results.
-    $sorts = $query->getSorts();
-    if (!empty($sorts["search_api_relevance"])) {
+    if (!empty($sorts['search_api_relevance'])) {
       $result_items = $results->getResultItems();
       usort($result_items, function ($a, $b) use ($sorts) {
         $distance_a = $a->getScore();
@@ -450,7 +506,8 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
           }
           $search_words = implode(' ', $search_words);
         }
-        $params['vector_input'] = $embedding_llm->embeddings($search_words, $model_id)->getNormalized();
+        $input = new EmbeddingsInput($search_words);
+        $params['vector_input'] = $embedding_llm->embeddings($input, $model_id)->getNormalized();
       }
       $response = $this->getClient()->vectorSearch(...$params);
     }
@@ -461,6 +518,9 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
     // Obtain results.
     $i = 0;
     foreach ($response as $match) {
+      if (is_object($match)) {
+        $match = (array) $match;
+      }
       $i++;
       // Do access checks.
       if (!$bypass_access && !$this->checkEntityAccess($match['drupal_entity_id'])) {
@@ -474,7 +534,7 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
         return [
           'real_offset' => $start_offset + ($iteration * $start_limit * 2) + $i,
           'reason' => 'limit',
-          'vector_score' => $match->distance ?? 0,
+          'vector_score' => $match['distance'] ?? 0,
         ];
       }
     }
@@ -484,7 +544,7 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
       return [
         'real_offset' => $iteration * $start_limit * 2 + $i,
         'reason' => 'max_retries',
-        'vector_score' => $match->distance ?? 0,
+        'vector_score' => $match['distance'] ?? 0,
       ];
     }
     // If we got less then limit back, it reached the end.
@@ -492,7 +552,7 @@ class SearchApiAiSearchBackend extends AiSearchBackendPluginBase implements Plug
       return [
         'real_offset' => $iteration * $start_limit * 2 + $i,
         'reason' => 'reached_end',
-        'vector_score' => $match->distance ?? 0,
+        'vector_score' => $match['distance'] ?? 0,
       ];
     }
     // Else we need to continue.

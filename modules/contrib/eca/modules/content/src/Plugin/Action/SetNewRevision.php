@@ -4,6 +4,7 @@ namespace Drupal\eca_content\Plugin\Action;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessibleInterface;
+use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -80,6 +81,10 @@ class SetNewRevision extends ConfigurableActionBase {
     }
     $new_revision = $this->configuration['new_revision'];
     $entity->setNewRevision($new_revision);
+    if ($new_revision && $entity instanceof RevisionLogInterface) {
+      $entity->setRevisionUserId($this->currentUser->id());
+      $entity->setRevisionCreationTime($this->time->getRequestTime());
+    }
   }
 
 }

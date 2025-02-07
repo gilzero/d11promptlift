@@ -1,0 +1,13 @@
+global-styling:
+  version: 1.0.0
+  css:
+    base:
+      assets/css/base/styles.css: { weight: -1 }
+      assets/css/base/variables.css: { }
+      assets/css/base/elements.css: { }
+  js:
+    assets/uswds/js/uswds.min.js: { }
+    assets/uswds/js/uswds-init.min.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery

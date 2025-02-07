@@ -1,0 +1,19 @@
+name: Tabs
+description: "Groups different content in a limited space and allows dense content to be divided into individually accessible sections to make it easier for the user to read."
+group: Tabs
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/onglet"
+slots:
+  items:
+    title: "Tabs items"
+    description: "Each tabs must have an ID unique in the scope of the page."
+  panels:
+    title: Panels
+    description: "Each panels must have an ID related to its tab."
+props:
+  type: object
+  properties:
+    label:
+      title: "Tabs label"
+      description: "Used for aria-label."
+      type: string

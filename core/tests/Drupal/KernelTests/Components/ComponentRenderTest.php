@@ -9,7 +9,6 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Theme\ComponentPluginManager;
 use Drupal\Core\Render\Component\Exception\InvalidComponentDataException;
-use Drupal\Tests\Core\Theme\Component\ComponentKernelTestBase;
 
 /**
  * Tests the correct rendering of components.
@@ -156,7 +155,7 @@ class ComponentRenderTest extends ComponentKernelTestBase {
       $this->renderComponentRenderArray($build);
       $this->fail('Invalid prop did not cause an exception');
     }
-    catch (\Throwable $e) {
+    catch (\Throwable) {
       $this->addToAssertionCount(1);
     }
 
@@ -170,7 +169,7 @@ class ComponentRenderTest extends ComponentKernelTestBase {
       $this->renderComponentRenderArray($build);
       $this->fail('Invalid prop did not cause an exception');
     }
-    catch (\Throwable $e) {
+    catch (\Throwable) {
       $this->addToAssertionCount(1);
     }
   }
@@ -189,7 +188,7 @@ class ComponentRenderTest extends ComponentKernelTestBase {
       $this->renderComponentRenderArray($build);
       $this->addToAssertionCount(1);
     }
-    catch (\Throwable $e) {
+    catch (\Throwable) {
       $this->fail('Empty array was not converted to object');
     }
   }
@@ -207,7 +206,7 @@ class ComponentRenderTest extends ComponentKernelTestBase {
       $this->renderComponentRenderArray($build);
       $this->fail('Invalid prop did not cause an exception');
     }
-    catch (\Throwable $e) {
+    catch (\Throwable) {
       $this->addToAssertionCount(1);
     }
   }

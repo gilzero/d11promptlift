@@ -1,0 +1,19 @@
+name: Preview
+slots:
+  items:
+    -
+      type: component
+      component: 'ui_suite_uswds:graphic_list_item'
+      story: default
+    -
+      type: component
+      component: 'ui_suite_uswds:graphic_list_item'
+      story: default
+    -
+      type: component
+      component: 'ui_suite_uswds:graphic_list_item'
+      story: preview
+    -
+      type: component
+      component: 'ui_suite_uswds:graphic_list_item'
+      story: default

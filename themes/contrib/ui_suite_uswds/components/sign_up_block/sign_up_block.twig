@@ -1,0 +1,26 @@
+<div{{ attributes.addClass('usa-sign-up') }}>
+  <a id="sign-up" class="usa-anchor"></a>
+
+  {% if heading %}
+    <h3 class="usa-sign-up__heading">
+      {{ heading }}
+    </h3>
+  {% endif %}
+
+  {% set form_attributes = create_attribute({
+    'class': [
+      'usa-form'
+    ],
+    'action': form_url
+  }) %}
+
+  <form{{ form_attributes }}>
+    <label class="usa-label" for="email" id="">
+      {{ label }}
+    </label>
+    <input class="usa-input" id="email" name="email" type="email">
+    <button class="usa-button" type="submit">
+      {{ button_label }}
+    </button>
+  </form>
+</div>

@@ -55,3 +55,28 @@ function eca_form_update_8001(): void {
 function eca_form_update_8002(): void {
   module_set_weight('eca_form', 1);
 }
+
+/**
+ * Create default value for "group" configuration in form fieldsets.
+ */
+function eca_form_update_8003(): void {
+  $storage = \Drupal::entityTypeManager()->getStorage('eca');
+  /** @var \Drupal\eca\Entity\Eca $eca */
+  foreach ($storage->loadMultiple() as $eca) {
+    $save_eca = FALSE;
+    $items = $eca->get('actions') ?? [];
+    foreach ($items as &$item) {
+      if ($item['plugin'] !== 'eca_form_add_group_element') {
+        continue;
+      }
+      if (!isset($item['configuration']['group'])) {
+        $item['configuration']['group'] = '';
+        $save_eca = TRUE;
+      }
+    }
+    if ($save_eca) {
+      $eca->set('actions', $items);
+      $eca->save();
+    }
+  }
+}

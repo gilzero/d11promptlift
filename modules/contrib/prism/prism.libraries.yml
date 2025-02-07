@@ -1,0 +1,18 @@
+prism:
+  version: VERSION
+  js:
+    /libraries/prism/prism.js: {}
+  css:
+    component:
+      /libraries/prism/prism.css: {}
+
+drupal.prism:
+  version: VERSION
+  js:
+    js/prism.js: {}
+  css:
+    component:
+      css/prism.wrapper.css: {}
+  dependencies:
+    - core/drupal
+    - prism/prism

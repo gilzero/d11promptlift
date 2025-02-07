@@ -1,0 +1,18 @@
+name: Default
+slots:
+  title: "New message!"
+  message: "12 unread messages. Tap to see."
+  buttons:
+    - type: component
+      component: "ui_suite_daisyui:button"
+      slots:
+        label: Deny
+      props:
+        size: sm
+    - type: component
+      component: "ui_suite_daisyui:button"
+      slots:
+        label: Accept
+      props:
+        variant: primary
+        size: sm

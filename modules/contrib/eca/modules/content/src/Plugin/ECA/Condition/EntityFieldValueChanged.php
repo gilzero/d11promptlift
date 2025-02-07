@@ -4,10 +4,11 @@ namespace Drupal\eca_content\Plugin\ECA\Condition;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldConfigInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\eca\EntityOriginalTrait;
 use Drupal\eca\Plugin\ECA\Condition\ConditionBase;
 use Drupal\eca\TypedData\PropertyPathTrait;
-use Drupal\field\Entity\FieldConfig;
 
 /**
  * Plugin implementation of the ECA condition for changed entity field value.
@@ -24,6 +25,7 @@ use Drupal\field\Entity\FieldConfig;
  */
 class EntityFieldValueChanged extends ConditionBase {
 
+  use EntityOriginalTrait;
   use PropertyPathTrait;
 
   /**
@@ -33,7 +35,8 @@ class EntityFieldValueChanged extends ConditionBase {
     $entity = $this->getValueFromContext('entity');
     $field_name = $this->tokenService->replaceClear($this->configuration['field_name']);
     $options = ['access' => FALSE, 'auto_item' => FALSE];
-    if (($entity instanceof EntityInterface) && isset($entity->original) && ($entity->original instanceof EntityInterface) && ($property = $this->getTypedProperty($entity->getTypedData(), $field_name, $options)) && ($original_property = $this->getTypedProperty($entity->original->getTypedData(), $field_name, $options))) {
+    $original = $this->getOriginal($entity);
+    if (($entity instanceof EntityInterface) && isset($original) && ($original instanceof EntityInterface) && ($property = $this->getTypedProperty($entity->getTypedData(), $field_name, $options)) && ($original_property = $this->getTypedProperty($original->getTypedData(), $field_name, $options))) {
       $value = $property->getValue();
       $original_value = $original_property->getValue();
       if (is_countable($value) && count($value) !== count($original_value)) {
@@ -41,7 +44,7 @@ class EntityFieldValueChanged extends ConditionBase {
       }
 
       $dataDefinition = $property->getDataDefinition();
-      if ($dataDefinition instanceof FieldConfig || $dataDefinition instanceof BaseFieldDefinition) {
+      if ($dataDefinition instanceof FieldConfigInterface || $dataDefinition instanceof BaseFieldDefinition) {
         $type = $dataDefinition->getFieldStorageDefinition()->getType();
         if (in_array($type, ['boolean', 'entity_reference'], TRUE)) {
           foreach ($value as $key => $item) {

@@ -1,0 +1,8 @@
+name: Preview
+slots:
+  label: Label
+props:
+  percent: 50
+  min: 0
+  max: 100
+  stacked: false

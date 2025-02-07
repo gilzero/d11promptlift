@@ -54,10 +54,13 @@ interface AiAutomatorTypeInterface {
   /**
    * Return the Tokens.
    *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity being worked on.
+   *
    * @return array
    *   Token with replacement as key and description as value.
    */
-  public function tokens();
+  public function tokens(ContentEntityInterface $entity);
 
   /**
    * Adds extra form fields to configuration.
@@ -108,11 +111,13 @@ interface AiAutomatorTypeInterface {
    *
    * @param array $value
    *   The value response.
+   * @param array $automatorConfig
+   *   The automator config.
    *
    * @return mixed
    *   Return empty array if empty.
    */
-  public function checkIfEmpty(array $value);
+  public function checkIfEmpty(array $value, array $automatorConfig = []);
 
   /**
    * Check if the rule is allowed based on config.

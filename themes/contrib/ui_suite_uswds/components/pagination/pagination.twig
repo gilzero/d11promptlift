@@ -1,0 +1,52 @@
+{% if items %}
+  <nav{{ attributes.addClass('usa-pagination').setAttribute('aria-label', 'Pagination'|t) }}>
+    <ul class="usa-pagination__list js-pager__items">
+      {% for item in items %}
+        {% set item_attributes = create_attribute(item.attributes|default({})) %}
+
+        {% if item.link and item.title %}
+          {% set aria_label = item_attributes['aria-label'] %}
+          {% if display_bound_buttons and (aria_label == 'First' or aria_label == 'Last') %}
+            <li class="usa-pagination__item usa-pagination__page-no">
+              <a{{ item_attributes.addClass('usa-pagination__button').removeClass(['usa-pagination__previous-page', 'usa-pagination__next-page']).setAttribute('href', item.url).setAttribute('aria-label', 'Page ' ~ aria_label) }}>
+                {% if aria_label == 'First' %}
+                  {{ '1' }}
+                {% elseif aria_label == 'Last' %}
+                  {{ total_pages }}
+                {% endif %}
+              </a>
+            </li>
+          {% else %}
+            <li class="usa-pagination__item usa-pagination__arrow">
+              <a{{ item_attributes.addClass('usa-pagination__link').setAttribute('href', item.url) }}>
+                {% if 'next' in item.icon_name %}
+                  <span class="usa-pagination__link-text">{{ item.title }}</span>
+                  {{ icon('uswds', item.icon_name) }}
+                {% else %}
+                  {{ icon('uswds', item.icon_name) }}
+                  <span class="usa-pagination__link-text">{{ item.title }}</span>
+                {% endif %}
+              </a>
+            </li>
+          {% endif %}
+        {% elseif item.url and item.title and not item.attributes['aria-current'] %}
+          <li class="usa-pagination__item usa-pagination__page-no">
+            <a{{ item_attributes.addClass('usa-pagination__button').setAttribute('href', item.url).setAttribute('aria-label', 'Page ' ~ item.title) }}>
+              {{ item.title }}
+            </a>
+          </li>
+        {% elseif item.ellipses %}
+          <li class="usa-pagination__item usa-pagination__overflow" aria-label="ellipsis indicating non-visible pages">
+            <span>…</span>
+          </li>
+        {% elseif item.title %}
+          <li class="usa-pagination__item usa-pagination__page-no">
+            <a{{ item_attributes.addClass('usa-pagination__button').addClass('usa-current').setAttribute('href', item.url).setAttribute('aria-label', 'Page ' ~ item.title) }}>
+              {{- item.title|default('Current page'|t) -}}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

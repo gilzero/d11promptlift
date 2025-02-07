@@ -1,0 +1,24 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Select
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class', 'form-select' ]
+    options:
+      title: Options
+      description: Contains option items
+      type: array
+      items:
+        type: object
+      minItems: 1
+      uniqueItems: true
+      examples:
+        -
+          - { label: 'Option 1', type: 'option', value: 'Option 1'}
+          - { label: 'Option 2', type: 'option', value: 'Option 2'}
+          - { label: 'Option 3', type: 'option', value: 'Option 3'}

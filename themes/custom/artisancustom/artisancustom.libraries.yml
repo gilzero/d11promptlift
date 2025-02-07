@@ -1,0 +1,15 @@
+style:
+  css:
+    theme:
+      build/css/style.css: {}
+  js:
+    build/js/script.js: {}
+  dependencies:
+    - core/drupal
+
+bs-dropdown:
+  css:
+    theme:
+      build/css/bs-dropdown.css: {}
+  js:
+    build/js/bs-dropdown.js: {}

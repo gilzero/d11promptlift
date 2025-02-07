@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Contains prism.module.
+ */
+
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function prism_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the prism module.
+    case 'help.page.prism':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Formatter and Widget for the prism code highlighting library') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_field_info_alter()
+ *
+ * @todo Remove once minimum version supported is at least 10.2.0.
+ */
+function prism_field_info_alter(array &$info): void {
+  // Allow module to work with Drupal Core < 10.2.0,
+  // see https://www.drupal.org/node/3375748
+  if (\version_compare(\Drupal::VERSION, '10.1.9999', '<')) {
+    $info['text_long_prism']['category'] = new TranslatableMarkup("Text");
+  }
+}

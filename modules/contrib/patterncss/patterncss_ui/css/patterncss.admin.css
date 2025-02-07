@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:700');
+/*
+ * Pattern.css preview!
+ */
+.pattern__preview {
+  position: relative;
+  padding: 30px 15px;
+  overflow: hidden;
+  background-color: #f8fafe;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+.gin--dark-mode .pattern__preview {
+  background-color: #3e3e3e;
+  background-blend-mode: color-burn;
+}
+.pattern__preview p {
+  display: block;
+  font-family: 'Oswald', serif;
+  font-weight: 700;
+  font-size: 36px;
+  margin: 60px auto;
+  text-align: center;
+  line-height: normal;
+  vertical-align: middle;
+}
+/*
+ * PatternCSS fields wrapper!
+ */
+.patterncss-wrapper {
+  margin-bottom: 0px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+.patterncss-wrapper .form-item__label {
+  display: flex;
+}
+.patterncss-wrapper .form-item {
+  margin-right: 6px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+[dir="rtl"] .patterncss-wrapper .form-item {
+  margin-left: 6px;
+  margin-right: 0;
+}
+.patterncss-wrapper .form-element {
+  display: inline-flex;
+}
+.patterncss-wrapper .form-item__description {
+  display: block !important;
+}
+/* Pattern field suffix */
+.patterncss-form .form-item__suffix,
+.patterncss-settings-form  .form-item__suffix {
+  display: inline-flex;
+  align-self: center;
+  margin-right: -14px;
+  margin-left: 0;
+  transform: rotate(90deg);
+}
+/* Library status report */
+.library-status-report {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding-block: 1em;
+  padding-inline: 3em 1em;
+  font-weight: 400;
+  font-size: 14px;
+  color: #545454;
+  background-color: #f6f6f6;
+  border-radius: .45rem;
+}
+.library-status-report::before {
+  position: absolute;
+  inset-block-start: 1em;
+  inset-inline-start: 0.625rem;
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-inline-end: 0.625rem;
+  content: "";
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3csvg fill='%23e29700' height='16' width='16' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m14.66 12.316-5.316-10.633c-.738-1.476-1.946-1.476-2.685 0l-5.317 10.633c-.738 1.477.008 2.684 1.658 2.684h10.002c1.65 0 2.396-1.207 1.658-2.684zm-7.66-8.316h2.002v5h-2.002zm2.252 8.615c0 .344-.281.625-.625.625h-1.25c-.345 0-.626-.281-.626-.625v-1.239c0-.344.281-.625.626-.625h1.25c.344 0 .625.281.625.625z'/%3e%3c/svg%3e");
+}
+
+/*
+ * Pattern administration overview page!
+ */
+.patterncss-filter.views-exposed-form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: var(--space-l);
+  padding: var(--space-xs) var(--space-l) var(--space-l) var(--space-l);
+  border: var(--details-border-size) solid var(--details-border-color);
+  border-radius: var(--details-border-size-radius);
+  background-color: var(--color-white);
+  box-shadow: var(--details-box-shadow);
+}
+.patterncss-filter {
+  margin-bottom: 24px !important;
+  padding-top: 12px !important;
+  padding-bottom: 9px !important;
+}
+.patterncss-filter .form-item {
+  margin-right: 6px;
+}
+[dir="rtl"] .patterncss-filter .form-item {
+  margin-left: 6px;
+  margin-right: 0;
+}
+.patterncss-filter .form-element {
+  display: table;
+}
+.patterncss-filter .form-submit {
+  margin-right: 6px;
+}
+[dir="rtl"] .patterncss-filter .form-submit {
+  margin-left: 6px;
+  margin-right: 0;
+}
+.patterncss-filter .form-submit:last-child {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* List status marker */
+.patterncss-list .marker {
+  font-size: .75rem;
+  font-weight: 525;
+  display: inline-block;
+  padding: .125em .75em;
+  vertical-align: .125em;
+  border: 1px solid transparent;
+  border-radius: .125rem;
+  color: #777;
+  background: #eee;
+}
+.gin-layer-wrapper .patterncss-list .marker {
+  color: #777;
+  background: #eee;
+  border-radius: .75rem;
+}
+.patterncss-list .marker--enabled {
+  color: #fff;
+  background-color: #26a769;
+}
+.gin-layer-wrapper .patterncss-list .marker--enabled {
+  color: #39b77b;
+  background-color: #26a76930;
+}
+/* Gin theme fix delete icon color */
+#block-gin-content .action-link--icon-trash.action-link--danger:before,
+#block-gin-content .button.button--danger:before,
+#block-gin-content a.button.button--danger:before {
+  background-color: #cc3d3d !important;
+}
+#block-gin-content .action-link--icon-trash.action-link--danger:hover:before,
+#block-gin-content .action-link--icon-trash.action-link--danger:focus:before,
+#block-gin-content .action-link--icon-trash.action-link--danger:active:before,
+#block-gin-content .button.button--danger:hover:before,
+#block-gin-content .button.button--danger:focus:before,
+#block-gin-content .button.button--danger:active:before,
+#block-gin-content a.button.button--danger:hover:before,
+#block-gin-content a.button.button--danger:focus:before,
+#block-gin-content a.button.button--danger:active:before {
+  background-color: #ffffff !important;
+}

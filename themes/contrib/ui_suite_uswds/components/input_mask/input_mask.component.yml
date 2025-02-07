@@ -1,0 +1,54 @@
+name: 'Input Mask'
+description: 'An input mask is a string expression that constrains input to support valid input values.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/input-mask/'
+slots:
+  label:
+    title: 'Label'
+    description: 'Label value'
+  placeholder:
+    title: 'Placeholder/data-mask'
+    description: 'May use punctuation literals like [space], -, /, or ( to help format your mask'
+  children:
+    title: 'Children renderable'
+    description: 'Optional additional rendered elements.'
+props:
+  type: object
+  properties:
+    accessibility_value:
+      title: 'Accessibility attributes'
+      description: "Value for the 'for' attribute, for accessibility."
+      $ref: 'ui-patterns://identifier'
+    hint:
+      title: 'Field hint'
+      description: 'Make sure any hint text helps users understand what they need to input.'
+      type: string
+    pattern:
+      title: 'Pattern'
+      description: 'Pattern that should be used by the input mask.'
+      type: string
+    input_mode:
+      title: 'Input Mode'
+      description: 'Global attribute is an enumerated attribute that hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.'
+      type: string
+      enum:
+        - text
+        - decimal
+        - numeric
+        - tel
+        - search
+        - email
+        - url
+      'meta:enum':
+        text: 'Text (default)'
+        decimal: 'Decimal'
+        numeric: 'Numeric'
+        tel: 'Tel'
+        search: 'Search'
+        email: 'Email'
+        url: 'URL'
+    max_length:
+      title: 'Max length'
+      description: 'Max length of the input field'
+      type: integer

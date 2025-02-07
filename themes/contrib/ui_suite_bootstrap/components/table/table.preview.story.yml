@@ -1,0 +1,959 @@
+name: Preview
+slots:
+  header:
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head (active)"
+      props:
+        tag: th
+        active: true
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+    - type: component
+      component: "ui_suite_bootstrap:table_cell"
+      slots:
+        content: "Table head"
+      props:
+        tag: th
+  rows:
+    - type: component
+      component: "ui_suite_bootstrap:table_row"
+      slots:
+        cells:
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 1"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 2"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 3"
+            props:
+              active: true
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 4"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 5"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 6"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 7"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 8"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 9"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 10"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 11"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 12"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 13"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 14"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 15"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 16"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 17"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 18"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 19"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 20"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 21"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 22"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 23"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 24"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 25"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 26"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 27"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 28"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 29"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 30"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 31"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 32"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 33"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 34"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 35"
+      props:
+        color: success
+    - type: component
+      component: "ui_suite_bootstrap:table_row"
+      slots:
+        cells:
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 1"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 2"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 3"
+            props:
+              active: true
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 4"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 5"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 6"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 7"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 8"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 9"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 10"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 11"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 12"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 13"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 14"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 15"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 16"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 17"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 18"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 19"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 20"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 21"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 22"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 23"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 24"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 25"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 26"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 27"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 28"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 29"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 30"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 31"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 32"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 33"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 34"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 35"
+      props:
+        color: warning
+    - type: component
+      component: "ui_suite_bootstrap:table_row"
+      slots:
+        cells:
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 1"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 2"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 3"
+            props:
+              active: true
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 4"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 5"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 6"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 7"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 8"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 9"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 10"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 11"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 12"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 13"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 14"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 15"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 16"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 17"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 18"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 19"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 20"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 21"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 22"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 23"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 24"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 25"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 26"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 27"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 28"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 29"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 30"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 31"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 32"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 33"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 34"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 35"
+    - type: component
+      component: "ui_suite_bootstrap:table_row"
+      slots:
+        cells:
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 1"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 2"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 3"
+            props:
+              active: true
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 4"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 5"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 6"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 7"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 8"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 9"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 10"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 11"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 12"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 13"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 14"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 15"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 16"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 17"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 18"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 19"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 20"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 21"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 22"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 23"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 24"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 25"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 26"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 27"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 28"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 29"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 30"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 31"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 32"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 33"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 34"
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: "Cell 35"
+  footer:
+    - type: component
+      component: "ui_suite_bootstrap:table_row"
+      slots:
+        cells:
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+            props:
+              active: true
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+          - type: component
+            component: "ui_suite_bootstrap:table_cell"
+            slots:
+              content: Footer
+  caption: "Example table (caption)"
+props:
+  header_color: light
+  stripes:
+    - striped
+  hover: true
+  divider:
+    - tbody
+  responsive: responsive

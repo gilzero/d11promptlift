@@ -1,0 +1,23 @@
+/* Only hide in add form context */
+.node-prompt-form:not(.node-form--edit-mode) .visually-hidden-field,
+.node-prompt-form:not(.node-form--edit-mode) .form-item-field-enhanced-prompt,
+.node-prompt-form:not(.node-form--edit-mode) div[data-drupal-selector*="edit-field-enhanced-prompt"],
+.node-prompt-form:not(.node-form--edit-mode) .field--name-field-enhanced-prompt,
+.node-prompt-form:not(.node-form--edit-mode) div[id*="edit-field-enhanced-prompt"] {
+  display: none !important;
+}
+
+/* Preserve functionality while hiding visually */
+.node-prompt-form:not(.node-form--edit-mode) .visually-hidden-field textarea,
+.node-prompt-form:not(.node-form--edit-mode) .visually-hidden-field input {
+  display: block !important;
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}

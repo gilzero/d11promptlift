@@ -1,0 +1,37 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media
+props:
+  type: object
+  properties:
+    bundle:
+      title: Bundle
+      type: string
+      examples:
+        - image
+    view_mode:
+      title: View mode
+      type: string
+      examples:
+        - default
+    published:
+      title: Published
+      type: boolean
+      examples:
+        - true
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class' ]
+slots:
+  content:
+    title: Content
+    examples:
+      -
+        '#theme': 'image'
+        '#uri': 'modules/contrib/artisan_styleguide/components/artisan-styleguide-sdc-model/artisan-styleguide-sdc-model-placeholder.jpg'
+        '#width': '1920'
+        '#height': '1080'
+        '#alt': 'Alternative image text'
+        '#suffix': '<i>"Simulated media result"</i>'

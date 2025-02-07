@@ -1,0 +1,19 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Input
+props:
+  type: object
+  properties:
+    children:
+      type: string
+      title: 'Input children'
+      examples:
+        - 'Morbi mollis tellus ac'
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class', 'form-control' ]
+        - type: 'text'
+        - value: 'Maecenas egestas arcu quis ligula'
+        - placeholder: 'Maecenas egestas arcu quis ligula'

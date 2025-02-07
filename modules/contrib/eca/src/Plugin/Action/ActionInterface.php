@@ -24,6 +24,18 @@ interface ActionInterface {
   public static function externallyAvailable(): bool;
 
   /**
+   * Sets the ECA action IDs.
+   *
+   * @param string $ecaModelId
+   *   The ID of the containing ECA model.
+   * @param string $actionId
+   *   The ID of the action within the ECA model.
+   *
+   * @return $this
+   */
+  public function setEcaActionIds(string $ecaModelId, string $actionId): ActionInterface;
+
+  /**
    * Sets the triggered event that leads to this action.
    *
    * @param \Symfony\Contracts\EventDispatcher\Event $event
@@ -48,5 +60,23 @@ interface ActionInterface {
    *   An associative array with the default configuration.
    */
   public function defaultConfiguration(): array;
+
+  /**
+   * Returns whether this action plugin handles exceptions.
+   *
+   * If so, ECA should not catch them. Defaults to false.
+   *
+   * @return bool
+   *   Whether or not this action plugin handles exceptions.
+   */
+  public function handleExceptions(): bool;
+
+  /**
+   * Returns whether exceptions should be logged.
+   *
+   * @return bool
+   *   Whether or not exceptions thrown by this action should be logged.
+   */
+  public function logExceptions(): bool;
 
 }

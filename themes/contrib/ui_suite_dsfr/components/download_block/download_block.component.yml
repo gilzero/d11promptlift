@@ -1,0 +1,35 @@
+name: "Download block"
+description: "Highlight a document to be downloaded."
+group: Download
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/telechargement-de-fichier"
+slots:
+  name:
+    title: "Block title"
+    description: "Text title of the block."
+  detail:
+    title: "File detail"
+    description: "File format and weight."
+  description:
+    title: "Short description"
+props:
+  type: object
+  properties:
+    url:
+      title: "File url"
+      $ref: "ui-patterns://url"
+    new_window:
+      title: "Open is a new window?"
+      type: boolean
+    direct_download:
+      title: "Direct download?"
+      description: "The attribute download allows the direct download of the resource, without opening it."
+      type: boolean
+    detail_icon:
+      title: "Detail icon"
+      description: "Available detail icons."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr

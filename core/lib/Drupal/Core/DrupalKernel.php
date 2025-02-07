@@ -227,9 +227,9 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
   /**
    * List of instantiated service provider classes.
    *
-   * @see \Drupal\Core\DrupalKernel::$serviceProviderClasses
-   *
    * @var array
+   *
+   * @see \Drupal\Core\DrupalKernel::$serviceProviderClasses
    */
   protected $serviceProviders;
 
@@ -983,8 +983,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
       $app_root = static::guessApplicationRoot();
     }
 
-    // Enforce E_STRICT, but allow users to set levels not part of E_STRICT.
-    error_reporting(E_STRICT | E_ALL);
+    error_reporting(E_ALL);
 
     // Override PHP settings required for Drupal to work properly.
     // sites/default/default.settings.php contains more runtime settings.
@@ -994,8 +993,10 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
       // Use session cookies, not transparent sessions that puts the session id
       // in the query string.
       ini_set('session.use_cookies', '1');
-      ini_set('session.use_only_cookies', '1');
-      ini_set('session.use_trans_sid', '0');
+      if (\PHP_VERSION_ID < 80400) {
+        ini_set('session.use_only_cookies', '1');
+        ini_set('session.use_trans_sid', '0');
+      }
       // Don't send HTTP headers using PHP's session handler.
       // Send an empty string to disable the cache limiter.
       ini_set('session.cache_limiter', '');
@@ -1025,7 +1026,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
         ini_set('log_errors', 1);
         ini_set('error_log', $app_root . '/' . $test_db->getTestSitePath() . '/error.log');
 
-        // Ensure that a rewritten settings.php is used if opcache is on.
+        // Ensure that a rewritten settings.php is used if OPcache is on.
         ini_set('opcache.validate_timestamps', 'on');
         ini_set('opcache.revalidate_freq', 0);
       }
@@ -1141,7 +1142,11 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
     $this->moduleList = NULL;
     $this->moduleData = [];
     $this->containerNeedsRebuild = TRUE;
-    return $this->initializeContainer();
+    $container = $this->initializeContainer();
+    // ThemeManager::render() fails without this. Normally ::preHandle() has
+    // a ->loadAll() call.
+    $container->get('module_handler')->loadAll();
+    return $container;
   }
 
   /**
@@ -1422,7 +1427,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
     try {
       $this->bootstrapContainer->get('cache.container')->set($this->getContainerCacheKey(), $container_definition);
     }
-    catch (\Exception $e) {
+    catch (\Exception) {
       // There is no way to get from the Cache API if the cache set was
       // successful or not, hence an Exception is caught and the caller informed
       // about the error condition.
@@ -1453,7 +1458,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
       try {
         $this->configStorage = BootstrapConfigStorageFactory::get($this->classLoader);
       }
-      catch (\Exception $e) {
+      catch (\Exception) {
         $this->configStorage = new NullStorage();
       }
     }
@@ -1577,7 +1582,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
     try {
       $http_host = $request->getHost();
     }
-    catch (\UnexpectedValueException $e) {
+    catch (\UnexpectedValueException) {
       return FALSE;
     }
 
@@ -1635,7 +1640,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
       Request::setFactory([$request_factory, 'createRequest'](...));
 
     }
-    catch (\UnexpectedValueException $e) {
+    catch (\UnexpectedValueException) {
       return FALSE;
     }
 

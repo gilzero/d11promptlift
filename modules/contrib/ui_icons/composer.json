@@ -1,0 +1,13 @@
+{
+    "name": "drupal/ui_icons",
+    "description": "The UI Icons module is a generic icon manager for Drupal.",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-module",
+    "require": {
+        "drupal/core": "^11.1"
+    },
+    "require-dev": {
+        "drupal/link_attributes": "^2.0",
+        "drupal/linkit": "^7.0"
+    }
+}

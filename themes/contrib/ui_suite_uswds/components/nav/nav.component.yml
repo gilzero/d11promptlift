@@ -1,0 +1,38 @@
+name: Navigation
+description: 'Hierarchical, horizontal navigation to place. To be used inside a header component.'
+group: Navigation
+slots:
+  search:
+    title: 'Search'
+    description: 'Expect a search component'
+props:
+  type: object
+  properties:
+    is_slim:
+      title: 'Is slim?'
+      description: 'Flag to determine if slim footer is being used.'
+      type: boolean
+    close_icon:
+      title: 'Close icon path'
+      description: 'Path to close icon.'
+      type: string
+    nav_id:
+      title: 'ID'
+      description: 'Must start with a letter. Randomly generated if empty.'
+      $ref: 'ui-patterns://identifier'
+    use_megamenu:
+      title: 'Megamenu'
+      description: 'Use megamenu in the primary navigation.'
+      type: boolean
+    primary:
+      title: 'Primary navigation'
+      description: 'Full-height and lightweight navigation with dropdowns. 2 levels max. Links are ignored if children are present.'
+      $ref: 'ui-patterns://links'
+    secondary:
+      title: 'Secondary navigation'
+      description: 'Flat menu.'
+      $ref: 'ui-patterns://links'
+libraryOverrides:
+  css:
+    component:
+      css/uswds-nav.css: {  }

@@ -1,0 +1,21 @@
+name: "Bootstrap Italia Paragraph Map"
+description: This module manages the map component through the paragraph module. This module uses leaflets and open street maps.
+package: "Bootstrap Italia"
+
+type: module
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - geofield:geofield
+  - leaflet:leaflet
+  - bootstrap_italia:bootstrap_italia_paragraph
+
+components:
+  namespaces:
+    # Components library 2.0
+    bi-bcl:
+      - ../../components/components-2
+
+# Information added by Drupal.org packaging script on 2024-12-02
+version: '2.12.0'
+project: 'bootstrap_italia'
+datestamp: 1733160393

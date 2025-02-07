@@ -1,0 +1,19 @@
+ui_suite_dsfr.settings:
+  type: theme_settings
+  label: 'UI Suite DSFR settings'
+  mapping:
+    container:
+      type: string
+      label: "The container's type"
+    available_colors:
+      type: sequence
+      label: "Available colors"
+      sequence:
+        type: string
+        label: "Color scheme"
+    logo_text:
+      type: label
+      label: "The logo's text"
+    dsfr_footer_top:
+      type: string
+      label: "The menu used as footer top."

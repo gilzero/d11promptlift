@@ -1,0 +1,5 @@
+name: Preview
+slots:
+  summary_heading: 'Key information'
+  content:
+    - markup: 'Lorem ipsum dolor sit amet consectetur adipiscing elit vestibulum, feugiat sollicitudin nunc facilisis hendrerit nascetur a odio, mauris litora imperdiet dictumst purus leo suscipit.'

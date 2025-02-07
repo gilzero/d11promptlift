@@ -11,7 +11,6 @@ use Drupal\taxonomy\Entity\Vocabulary;
  * JSON:API integration test for the "vocabulary" config entity type.
  *
  * @group jsonapi
- * @group #slow
  */
 class VocabularyTest extends ConfigEntityResourceTestBase {
 
@@ -45,7 +44,7 @@ class VocabularyTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUpAuthorization($method) {
+  protected function setUpAuthorization($method): void {
     $this->grantPermissionsToTestedRole(['administer taxonomy']);
   }
 
@@ -65,7 +64,7 @@ class VocabularyTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedDocument() {
+  protected function getExpectedDocument(): array {
     $self_url = Url::fromUri('base:/jsonapi/taxonomy_vocabulary/taxonomy_vocabulary/' . $this->entity->uuid())->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     return [
       'jsonapi' => [
@@ -102,7 +101,7 @@ class VocabularyTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getPostDocument() {
+  protected function getPostDocument(): array {
     // @todo Update in https://www.drupal.org/node/2300677.
     return [];
   }

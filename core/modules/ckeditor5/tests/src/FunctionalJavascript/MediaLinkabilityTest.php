@@ -7,12 +7,11 @@ namespace Drupal\Tests\ckeditor5\FunctionalJavascript;
 use Drupal\editor\Entity\Editor;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\ckeditor5\Plugin\Editor\CKEditor5;
-use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 
 /**
  * @coversDefaultClass \Drupal\ckeditor5\Plugin\CKEditor5Plugin\Media
  * @group ckeditor5
- * @group #slow
  * @internal
  */
 class MediaLinkabilityTest extends MediaTestBase {
@@ -48,7 +47,7 @@ class MediaLinkabilityTest extends MediaTestBase {
     $editor->save();
     $filter_format->save();
     $this->assertSame([], array_map(
-      function (ConstraintViolation $v) {
+      function (ConstraintViolationInterface $v) {
         return (string) $v->getMessage();
       },
       iterator_to_array(CKEditor5::validatePair(

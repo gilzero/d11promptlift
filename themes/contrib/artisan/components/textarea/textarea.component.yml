@@ -1,0 +1,22 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Textarea
+props:
+  type: object
+  properties:
+    value:
+      type: string
+      title: 'Textarea content'
+      examples:
+        - 'Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Phasellus nec sem in justo pellentesque facilisis. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Aenean viverra rhoncus pede. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Vivamus quis mi. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Vivamus quis mi. Ut tincidunt tincidunt erat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed fringilla mauris sit amet nibh. Quisque ut nisi. Class aptent taciti '
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class' ]
+    textarea_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Textarea attributes
+      title: Textarea attributes
+      examples:
+        - class: [ 'textarea-attributes-class', 'form-control' ]

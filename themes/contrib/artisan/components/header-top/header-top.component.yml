@@ -1,0 +1,29 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Header top
+slots:
+  content:
+    title: Header top content
+    examples:
+      - >
+        {% include 'artisan:nav' with {
+          attributes: create_attribute().addClass(['navbar-nav']),
+          items: [
+            { 'url': 'internal:/', 'title': 'Example Header Top Link' },
+            { 'url': 'internal:/', 'title': 'Example Header Top Link' }
+          ]
+        } only %}
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-class-attribute' ]
+    container_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-container-class-attribute' ]

@@ -1,0 +1,27 @@
+name: "(Stat item)"
+description: "Stat item is used to show numbers and data in a box inside stat component."
+group: Data display
+links:
+  - "https://daisyui.com/components/stat/"
+slots:
+  figure:
+    title: Figure
+  title:
+    title: Title
+  value:
+    title: Value
+  desc:
+    title: Desc
+  actions:
+    title: Actions
+props:
+  type: object
+  properties:
+    reverse_order:
+      title: Reverse order?
+      description: "Switch order of title and value"
+      type: boolean
+    centered:
+      title: Centered?
+      description: "Center items inside stat component"
+      type: boolean

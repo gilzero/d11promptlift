@@ -4,7 +4,7 @@ package: Entity
 type: module
 core_version_requirement: ^10.1 || ^11
 
-# Information added by Drupal.org packaging script on 2024-08-12
-version: '8.x-3.3'
+# Information added by Drupal.org packaging script on 2025-01-05
+version: '8.x-3.4'
 project: 'auto_entitylabel'
-datestamp: 1723462800
+datestamp: 1736079374

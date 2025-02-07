@@ -11,7 +11,6 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
  * JSON:API integration test for the "ResponsiveImageStyle" config entity type.
  *
  * @group jsonapi
- * @group #slow
  */
 class ResponsiveImageStyleTest extends ConfigEntityResourceTestBase {
 
@@ -45,7 +44,7 @@ class ResponsiveImageStyleTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUpAuthorization($method) {
+  protected function setUpAuthorization($method): void {
     $this->grantPermissionsToTestedRole(['administer responsive images']);
   }
 
@@ -82,7 +81,7 @@ class ResponsiveImageStyleTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedDocument() {
+  protected function getExpectedDocument(): array {
     $self_url = Url::fromUri('base:/jsonapi/responsive_image_style/responsive_image_style/' . $this->entity->uuid())->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     return [
       'jsonapi' => [
@@ -143,7 +142,7 @@ class ResponsiveImageStyleTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getPostDocument() {
+  protected function getPostDocument(): array {
     // @todo Update in https://www.drupal.org/node/2300677.
     return [];
   }

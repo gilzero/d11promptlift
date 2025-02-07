@@ -1,0 +1,30 @@
+name: Tooltip
+description: 'https://designsystem.digital.gov/components/tooltip/'
+group: Other
+variants:
+  top:
+    title: 'Top'
+    description: 'Show on top.'
+  right:
+    title: 'Right'
+    description: 'Show on right.'
+  left:
+    title: 'Left'
+    description: 'Show on left.'
+  bottom:
+    title: 'Bottom'
+    description: 'Show on bottom.'
+slots:
+  label:
+    title: 'Label'
+    description: 'Label value.'
+  tooltip:
+    title: 'Tooltip'
+    description: 'Tooltip text.'
+props:
+  type: object
+  properties:
+    tooltip_id:
+      title: 'Tooltip ID'
+      description: 'ID used by button to toggle the tooltip. Randomly generated if empty.'
+      $ref: 'ui-patterns://identifier'

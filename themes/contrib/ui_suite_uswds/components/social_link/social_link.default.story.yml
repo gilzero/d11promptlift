@@ -1,0 +1,5 @@
+name: Preview
+props:
+  icon: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/usa-icons/facebook.svg'
+  href: 'https://www.facebook.com/'
+  name: Facebook

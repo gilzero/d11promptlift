@@ -1,0 +1,48 @@
+name: Header
+description: "The header allows users to identify what site they are on. It can provide access to search and certain key pages or features."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/en-tete"
+  - "https://storybook.systeme-de-design.gouv.fr/?path=/docs/header--docs"
+  - "https://www.info.gouv.fr/marque-de-letat/le-bloc-marque"
+slots:
+  operator_logo:
+    title: "Operator logo"
+    description: "A renderable image."
+  tools_links:
+    title: "Tools links"
+    description: "Quick access links."
+  tools_search:
+    title: "Tools search"
+  navbar:
+    title: Navbar
+    description: "A nav_menu component"
+props:
+  type: object
+  properties:
+    id:
+      title: "Header ID"
+      description: "To generate unique id attributes if several headers are in the same page. Default is randomly generated."
+      $ref: "ui-patterns://identifier"
+    logo_text:
+      title: "Logo text"
+      description: "Default: 'République\\n Française'"
+      type: string
+    home_url:
+      title: "Homepage URL"
+      $ref: "ui-patterns://url"
+    service_title:
+      title: "Service title"
+      description: ""
+      type: string
+    service_tagline:
+      title: "Service tagline"
+      description: "Baseline - précisions sur l‘organisation"
+      type: string
+    link_title:
+      title: "Title inside the link, surrounded by Homepage text and logo text."
+      description: "Name of the entity (ministry, state secretariat, government), operator or of the service portal. Default will be service_title if not provided."
+      type: string
+    home_text:
+      title: "Homepage text"
+      description: "Default: 'Retour à l'accueil du site'"
+      type: string

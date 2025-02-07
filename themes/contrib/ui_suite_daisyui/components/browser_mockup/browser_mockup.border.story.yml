@@ -1,0 +1,21 @@
+name: Border
+slots:
+  toolbar: https://daisyui.com
+  content:
+    type: html_tag
+    tag: div
+    value: "Hello!"
+    attributes:
+      class:
+        [
+          "border-base-300",
+          "flex",
+          "justify-center",
+          "border-t",
+          "px-4",
+          "py-16",
+        ]
+props:
+  border: true
+  attributes:
+    class: ["border-base-300", "border"]

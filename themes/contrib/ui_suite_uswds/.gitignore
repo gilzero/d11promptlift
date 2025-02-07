@@ -1,0 +1,4 @@
+node_modules/*
+starterkit_subtheme/node_modules/*
+yarn.lock
+.DS_Store

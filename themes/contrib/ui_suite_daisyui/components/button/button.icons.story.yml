@@ -1,0 +1,12 @@
+name: Default
+slots:
+  label: Label
+props:
+  size: md
+  icon:
+    pack_id: hero_outline_24
+    icon_id: arrow-small-right
+    settings:
+      size: 24
+      stroke_width: 2
+  icon_position: right

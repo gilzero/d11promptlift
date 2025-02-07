@@ -1,0 +1,52 @@
+name: Preview
+slots:
+  content:
+    - type: component
+      component: "ui_suite_dsfr:card"
+      slots:
+        detail: Detail
+        description: "Card information text."
+        title:
+          type: html_tag
+          tag: a
+          value: "Card title"
+          attributes:
+            href: "#"
+            title: "Link title"
+      props:
+        enlarge_link: true
+        grey_hover: true
+    - type: component
+      component: "ui_suite_dsfr:card"
+      slots:
+        detail: Detail
+        title: "Small card"
+        description: "Card information text."
+      props:
+        no_arrow: true
+    - type: component
+      component: "ui_suite_dsfr:card"
+      slots:
+        detail: Detail
+        title: "Small card"
+        description: "Card information text."
+    - type: component
+      component: "ui_suite_dsfr:tile"
+      slots:
+        detail: Detail
+        title: "Small tile"
+        description: "Tile information text."
+    - type: component
+      component: "ui_suite_dsfr:tile"
+      slots:
+        title: "Small tile"
+        description: "Tile information text."
+    - type: component
+      component: "ui_suite_dsfr:tile"
+      slots:
+        title: "Small tile"
+        description: "Tile information text."
+props:
+  with_gutters: true
+  col: 4
+  horizontal_align: left

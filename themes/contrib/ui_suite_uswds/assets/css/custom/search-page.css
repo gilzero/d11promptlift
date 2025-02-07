@@ -1,0 +1,13 @@
+.search-form.usa-search .container-inline {
+  display: flex;
+  align-items: flex-end;
+}
+
+.search-form.usa-search .container-inline .form-type-search {
+  margin-bottom: 0;
+}
+
+.search-form.usa-search .search-help-link {
+  display: block;
+  margin: 1rem 0;
+}

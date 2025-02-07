@@ -1,0 +1,26 @@
+{% set modal_id = 'fr-consent-modal' %}
+
+<div{{ attributes.addClass('fr-consent-banner') }}>
+  {% if title %}<h4 class="fr-h6 fr-mb-3v">{{ title }}</h4>{% endif %}
+  <div class="fr-consent-banner__content">
+    <p class="fr-text--sm">{{ content }}</p>
+  </div>
+  {% set buttons = [
+    include('ui_suite_dsfr:button', {label: 'Accept all'|t, attributes: {title: 'Accept all cookies'|t}}, with_context: false),
+    include('ui_suite_dsfr:button', {label: 'Refuse all'|t, attributes: {title: 'Refuse all cookies'|t}}, with_context: false),
+    include('ui_suite_dsfr:button', {
+      label: 'Personalize'|t,
+      attributes: {'data-fr-opened': 'false', 'aria-controls': modal_id, title: 'Personalize cookies'|t},
+      variant: 'secondary'}, with_context: false),
+  ] %}
+  {{ include('ui_suite_dsfr:button_group', {
+    buttons: buttons,
+    attributes: {class: ['fr-consent-banner__buttons', 'fr-btns-group--inline-sm']},
+    variant: 'inline__inline_reverse__right'}, with_context: false) }}
+</div>
+
+{{ include('ui_suite_dsfr:modal', {
+  title: modal_title,
+  body: include('ui_suite_dsfr:consent_manager', {title: modal_text, services: services}, with_context: false),
+  modal_id: modal_id,
+}, with_context: false) }}

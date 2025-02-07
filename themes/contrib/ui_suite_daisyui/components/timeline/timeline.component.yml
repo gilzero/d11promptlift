@@ -1,0 +1,14 @@
+name: Timeline
+description: "Timeline component shows a list of events in chronological order."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/timeline/"
+variants:
+  default:
+    title: Default
+  vertical:
+    title: Vertical
+slots:
+  items:
+    title: Items
+    description: "Expect a list of Timeline item components"

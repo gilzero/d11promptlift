@@ -1,0 +1,17 @@
+name: Breadcrumb
+description: 'Breadcrumbs provide secondary navigation to help users understand where they are in a website.'
+group: Navigation
+links:
+  - 'https://designsystem.digital.gov/components/breadcrumb/'
+variants:
+  default:
+    title: 'Default'
+  wrap:
+    title: 'Wrap'
+props:
+  type: object
+  properties:
+    items:
+      title: 'Items'
+      description: 'Breadcrumb items.'
+      $ref: 'ui-patterns://links'

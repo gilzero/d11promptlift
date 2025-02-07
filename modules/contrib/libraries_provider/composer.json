@@ -1,0 +1,20 @@
+{
+    "name": "drupal/libraries_provider",
+    "description": "Enables modules to define how to serve their external libraries",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/libraries_provider",
+    "support": {
+        "source": "https://git.drupalcode.org/project/libraries_provider",
+        "issues": "https://www.drupal.org/project/issues/libraries_provider"
+    },
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.0",
+        "drupal/hook_event_dispatcher": "^4",
+        "drupal/core_event_dispatcher": "^4",
+        "drupal/form_options_attributes": "^2",
+        "php-http/guzzle7-adapter": "^1.0",
+        "upstreamable/jsdelivr-api-client": "^1",
+        "drupal/autoservices": "^1"
+    }
+}

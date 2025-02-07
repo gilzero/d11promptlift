@@ -11,7 +11,6 @@ use Drupal\Core\Url;
  * JSON:API integration test for the "EntityViewMode" config entity type.
  *
  * @group jsonapi
- * @group #slow
  */
 class EntityViewModeTest extends ConfigEntityResourceTestBase {
 
@@ -47,7 +46,7 @@ class EntityViewModeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUpAuthorization($method) {
+  protected function setUpAuthorization($method): void {
     $this->grantPermissionsToTestedRole(['administer display modes']);
   }
 
@@ -68,7 +67,7 @@ class EntityViewModeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedDocument() {
+  protected function getExpectedDocument(): array {
     $self_url = Url::fromUri('base:/jsonapi/entity_view_mode/entity_view_mode/' . $this->entity->uuid())->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     return [
       'jsonapi' => [
@@ -109,7 +108,7 @@ class EntityViewModeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getPostDocument() {
+  protected function getPostDocument(): array {
     // @todo Update in https://www.drupal.org/node/2300677.
     return [];
   }

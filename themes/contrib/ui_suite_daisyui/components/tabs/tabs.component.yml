@@ -1,0 +1,34 @@
+name: Tabs
+description: "Tabs can be used to show a list of links in a tabbed format."
+group: Navigation
+links:
+  - "https://daisyui.com/components/tab/"
+variants:
+  default:
+    title: Default
+  bordered:
+    title: Bordered
+  lifted:
+    title: Lifted
+  boxed:
+    title: Boxed
+slots:
+  items:
+    title: Items
+props:
+  type: object
+  properties:
+    size:
+      title: Size
+      description: "It is possible to set the size of buttons."
+      type: string
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+      "meta:enum":
+        xs: "Extra small"
+        sm: Small
+        md: Medium
+        lg: Large

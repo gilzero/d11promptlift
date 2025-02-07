@@ -1,0 +1,37 @@
+{% set wrapper_attributes = create_attribute({
+  'class': [
+    'usa-date-picker'
+  ]
+}) %}
+
+{% if min_date %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-min-date', min_date) %}
+{% endif %}
+
+{% if max_date %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-max-date', max_date) %}
+{% endif %}
+
+{% if range_date %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-range-date', range_date) %}
+{% endif %}
+
+{% if default_value %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-default-value', default_value) %}
+{% endif %}
+
+{% if required %}
+  {% set attributes = attributes.setAttribute('required', 'true') %}
+{% endif %}
+
+{% if disabled %}
+  {% set attributes = attributes.setAttribute('disabled', 'true') %}
+{% endif %}
+
+{% if hint %}
+  <div class="usa-hint" id="appointment-date-hint">{{ hint }}</div>
+{% endif %}
+
+<div{{ wrapper_attributes }}>
+  <input{{ attributes.addClass('usa-input') }} />
+</div>

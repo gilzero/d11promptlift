@@ -1,0 +1,18 @@
+{% set attributes = attributes.merge(create_attribute({
+  'class': [
+    'usa-range'
+  ],
+  'type': 'range',
+  'min': min,
+  'max': max,
+  'data-text-unit': data_text_unit,
+  'data-text-preposition': data_text_preposition,
+  'id': field_name
+})) %}
+
+{{ include('ui_suite_uswds:label', {
+  label: field_label|default(''),
+  for_value: field_name
+}, with_context = false) }}
+
+<input{{ attributes }} />

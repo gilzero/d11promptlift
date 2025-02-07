@@ -70,7 +70,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
    * @param array $map
    *   The row to save.
    */
-  protected function saveMap(array $map) {
+  protected function saveMap(array $map): void {
     $table = 'migrate_map_sql_idmap_test';
 
     $schema = $this->database->schema();
@@ -134,7 +134,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
    *   - rollback_action
    *   - hash
    */
-  protected function idMapDefaults() {
+  protected function idMapDefaults(): array {
     $defaults = [
       'source_row_status' => MigrateIdMapInterface::STATUS_IMPORTED,
       'rollback_action' => MigrateIdMapInterface::ROLLBACK_DELETE,
@@ -924,7 +924,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
       $id_map->setUpdate([]);
       $this->assertFalse(FALSE, 'MigrateException not thrown, when source identifiers were provided to update.');
     }
-    catch (MigrateException $e) {
+    catch (MigrateException) {
       $this->assertTrue(TRUE, "MigrateException thrown, when source identifiers were not provided to update.");
     }
   }
@@ -1045,7 +1045,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
    * @return array
    *   The contents of an ID map.
    */
-  private function getIdMapContents() {
+  private function getIdMapContents(): array {
     $result = $this->database
       ->select('migrate_map_sql_idmap_test', 't')
       ->fields('t')

@@ -1,0 +1,26 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Block
+slots:
+  label:
+    title: Label
+    examples:
+      - <h2>Example Block Label</h2>
+  content:
+    title: Content
+    examples:
+      - Example Block Content
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-class-attribute' ]
+    label_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-label-class-attribute' ]

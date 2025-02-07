@@ -1,0 +1,20 @@
+pwa.manifest:
+  path: /manifest.json
+  defaults:
+    _controller: '\Drupal\pwa\Controller\PWAController::manifestData'
+  requirements:
+    _permission: 'access pwa'
+pwa.config:
+  path: '/admin/config/services/pwa'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Progressive Web App'
+  requirements:
+    _permission: 'administer pwa'
+pwa.config_manifest:
+  path: '/admin/config/services/pwa/manifest'
+  defaults:
+    _form: '\Drupal\pwa\Form\ManifestConfigurationForm'
+    _title: 'Manifest configuration'
+  requirements:
+    _permission: 'administer pwa'

@@ -1,0 +1,44 @@
+// @see https://getbootstrap.com/docs/5.3/customize/sass/
+
+@import "init";
+
+// 5. Include remainder of required parts
+@import "~bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+@import "base-overrides/body";
+@import "base-overrides/headings";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/helpers";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "base-overrides/forms";
+@import "~bootstrap/scss/buttons";
+@import "base-overrides/buttons";
+@import "~bootstrap/scss/breadcrumb";
+@import "base-overrides/breadcrumb";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "base-overrides/links";
+@import "~bootstrap/scss/transitions";
+@import "base/utilities";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "~bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+@import "base/typography";
+@import "base/elements";
+@import "base/helpers";
+
+// 9. Theme additions
+@import "base-overrides/layout";
+@import "base-overrides/header";
+@import "base-overrides/footer";
+@import "base-overrides/displays";

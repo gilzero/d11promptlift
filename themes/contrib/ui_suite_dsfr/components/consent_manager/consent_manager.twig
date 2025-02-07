@@ -1,0 +1,68 @@
+<div{{ attributes.addClass('fr-consent-manager') }}>
+  <div class="fr-consent-service fr-consent-manager__header">
+    <fieldset class="fr-fieldset fr-fieldset--inline">
+      {% if title %}
+        <legend id="finality-legend" class="fr-consent-service__title">{{ title }}</legend>
+      {% endif %}
+      <div class="fr-consent-service__radios">
+        <div class="fr-radio-group">
+          <input type="radio" id="consent-all-accept" name="consent-all">
+          <label class="fr-label" for="consent-all-accept">{{ 'Accept all'|t }}</label>
+        </div>
+        <div class="fr-radio-group">
+          <input type="radio" id="consent-all-refuse" name="consent-all">
+          <label class="fr-label" for="consent-all-refuse">{{ 'Refuse all'|t }}</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  {% for service in services %}
+    <div class="fr-consent-service">
+      <fieldset aria-labelledby="{{ service.attributes.id }}-legend {{ service.attributes.id }}-desc" role="group" class="fr-fieldset fr-fieldset--inline">
+    <legend id="{{ service.attributes.id }}-legend" class="fr-consent-service__title">{{ service.title }}</legend>
+    <div class="fr-consent-service__radios">
+      <div class="fr-radio-group">
+        <input type="radio" id="consent-{{ service.attributes.id }}-accept" name="consent-{{ service.attributes.id }}">
+        <label class="fr-label" for="consent-{{ service.attributes.id }}-accept">{{ 'Accept'|t }}</label>
+      </div>
+      <div class="fr-radio-group">
+        <input type="radio" id="consent-{{ service.attributes.id }}-refuse" name="consent-{{ service.attributes.id }}">
+        <label class="fr-label" for="consent-{{ service.attributes.id }}-refuse">{{ 'Refuse'|t }}</label>
+      </div>
+    </div>
+    {% if service.attributes.title %}
+      <p id="{{ service.attributes.id }}-desc" class="fr-consent-service__desc">{{ service.attributes.title }}</p>
+    {% endif %}
+    {% if service.below %}
+      <div class="fr-consent-service__collapse">
+        <button class="fr-consent-service__collapse-btn" aria-expanded="false" aria-describedby="{{ service.attributes.id }}-legend" aria-controls="{{ service.attributes.id }}-collapse" type="button">{{ 'See more details'|t }}</button>
+      </div>
+      <div class="fr-consent-services fr-collapse" id="{{ service.attributes.id }}-collapse">
+        {% for sub_service in service.below %}
+          {% set sub_id = sub_service.attributes.id|default('') %}
+          <div class="fr-consent-service">
+            <fieldset class="fr-fieldset fr-fieldset--inline">
+              <legend id="{{ service.attributes.id }}-{{ sub_id }}-legend" class="fr-consent-service__title">{{ sub_service.title|default('') }}</legend>
+              <div class="fr-consent-service__radios fr-fieldset--inline">
+                <div class="fr-radio-group">
+                  <input type="radio" id="consent-{{ service.attributes.id }}-{{ sub_id }}-accept" name="consent-{{ service.attributes.id }}-{{ sub_id }}">
+                  <label class="fr-label" for="consent-{{ service.attributes.id }}-{{ sub_id }}-accept">{{ 'Accept'|t }}</label>
+                </div>
+                <div class="fr-radio-group">
+                  <input type="radio" id="consent-{{ service.attributes.id }}-{{ sub_id }}-refuse" name="consent-{{ service.attributes.id }}-{{ sub_id }}">
+                  <label class="fr-label" for="consent-{{ service.attributes.id }}-{{ sub_id }}-refuse">{{ 'Refuse'|t }}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </fieldset>
+    </div>
+  {% endfor %}
+  {{ include('ui_suite_dsfr:button_group', {
+    buttons: [include('ui_suite_dsfr:button', {label: 'Confirm my choices'|t}, with_context: false)],
+    attributes: {class: ['fr-consent-manager__buttons', 'fr-btns-group--inline-sm']},
+    variant: 'right'}, with_context: false) }}
+</div>

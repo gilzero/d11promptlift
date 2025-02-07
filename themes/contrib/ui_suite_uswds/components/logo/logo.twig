@@ -1,0 +1,26 @@
+{% set link_attributes = link_attributes|default(create_attribute({
+  'class': [
+    'display-flex',
+    'flex-align-center',
+    'flex-no-wrap'
+  ],
+  'href': '/',
+  'accesskey': 2,
+  'aria-label': 'Homepage'
+})) %}
+
+<div{{ attributes.addClass('usa-logo').addClass('site-logo').setAttribute('id', 'logo') }}>
+
+  {% set alt = not content ? 'Home' : '' %}
+
+  <em class="usa-logo__text">
+    <a{{ link_attributes.setAttribute('tabindex', 0).setAttribute('role', 'link') }}>
+
+      {% if site_logo %}
+        <img class="logo-img" src="{{ site_logo }}" alt="{{ alt }}" />
+      {% endif %}
+
+      {{ content }}
+    </a>
+  </em>
+</div>

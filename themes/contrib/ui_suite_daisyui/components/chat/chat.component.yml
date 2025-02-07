@@ -1,0 +1,9 @@
+name: Chat
+description: "Chat is used to show lines of conversation and all their data, including author images, author names, times, etc."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/chat/"
+slots:
+  items:
+    title: Items
+    description: "Expect a list of chat bubble components"

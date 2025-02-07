@@ -1,0 +1,22 @@
+name: Preview
+slots:
+  content:
+    type: component
+    component: "ui_suite_dsfr:card"
+    slots:
+      detail: Detail
+      description: "Card information text."
+      title:
+        type: html_tag
+        tag: a
+        value: "Card title"
+        attributes:
+          href: "#"
+          title: "Link title"
+    props:
+      enlarge_link: true
+      grey_hover: true
+props:
+  with_gutters: true
+  horizontal_align: left
+  vertical_align: top

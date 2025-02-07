@@ -1,0 +1,73 @@
+{% set attributes = attributes.addClass('usa-modal').setAttribute('tabindex', '-1') %}
+{% set attributes = forced_action ? attributes.setAttribute('data-force-action', 'true') : attributes %}
+
+{% set attributes = (variant and variant != 'default') ? attributes.addClass('usa-modal--' ~ variant) : attributes %}
+
+{% set modal = 'usa-model-' ~ modal_id|default(random()) %}
+{% set attributes = attributes.setAttribute('id', modal) %}
+
+{% set modal_id_header = modal ~ '-heading' %}
+{% set modal_id_body = modal ~ '-description' %}
+
+{% set attributes = attributes.setAttribute('aria-labelledby', modal_id_header) %}
+{% set attributes = attributes.setAttribute('aria-describedby', modal_id_body) %}
+
+{{ include('ui_suite_uswds:button', {
+  label: button_text|default('Open modal'),
+  attributes: create_attribute({
+    'aria-controls': modal,
+    'data-open-modal': 'true'
+  }),
+  url: '#' ~ modal,
+}, with_context = false) }}
+
+<div{{ attributes }}>
+  <div class="usa-modal__content">
+    <div class="usa-modal__main">
+
+      {% if title %}
+        <h2 class="usa-modal__heading" id="{{ modal_id_header }}">{{ title }}</h2>
+      {% endif %}
+
+      {% if body %}
+        <div class="usa-prose" id="{{ modal_id_body }}">
+          {{ body }}
+        </div>
+      {% endif %}
+
+      <div class="usa-modal__footer">
+        <ul class="usa-button-group">
+          <li class="usa-button-group__item">
+            {{ include('ui_suite_uswds:button', {
+              label: yes_text|default('Save Changes'),
+              attributes: create_attribute({
+                'data-close-modal': 'true'
+              }),
+              url: yes_url
+            }, with_context = false) }}
+          </li>
+          <li class="usa-button-group__item">
+            {{ include('ui_suite_uswds:button', {
+              label:  no_text|default('Close'),
+              attributes: create_attribute({
+                'data-close-modal': 'true'
+              }),
+              variant: 'secondary',
+              url: no_url
+            }, with_context = false) }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {% if forced_action == false %}
+      {{ include('ui_suite_uswds:button', {
+        attributes:  create_attribute({
+          'class': 'usa-modal__close',
+          'data-close-modal': 'true'
+        })
+      }, with_context = false) }}
+    {% endif %}
+
+  </div>
+</div>

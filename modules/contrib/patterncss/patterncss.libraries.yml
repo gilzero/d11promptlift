@@ -1,0 +1,47 @@
+pattern.css:
+  remote: https://animate.style/
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://github.com/animate-css/pattern.css/blob/main/LICENSE
+    gpl-compatible: true
+  css:
+    theme:
+      lib/pattern.css: { }
+      css/pattern.xs.css: { }
+
+pattern.min.css:
+  remote: https://animate.style/
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://github.com/animate-css/pattern.css/blob/main/LICENSE
+    gpl-compatible: true
+  css:
+    theme:
+      lib/pattern.min.css: { minified: true }
+      css/pattern.xs.min.css: { minified: true }
+
+pattern.cdn:
+  remote: https://animate.style/
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://github.com/animate-css/pattern.css/blob/main/LICENSE
+    gpl-compatible: true
+  css:
+    theme:
+      'https://unpkg.com/pattern.css/dist/pattern.css': { type: external }
+      css/pattern.xs.css: { }
+
+pattern.min.cdn:
+  remote: https://animate.style/
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://github.com/animate-css/pattern.css/blob/main/LICENSE
+    gpl-compatible: true
+  css:
+    theme:
+      'https://unpkg.com/pattern.css/dist/pattern.min.css': { type: external, minified: true }
+      css/pattern.xs.min.css: { minified: true }

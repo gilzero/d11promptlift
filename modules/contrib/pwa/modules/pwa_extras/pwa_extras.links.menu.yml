@@ -1,0 +1,5 @@
+pwa_extras.settings:
+  title: PWA Extras Settings
+  description: 'Progressive web app Extras configuration'
+  parent: pwa.config
+  route_name: pwa_extras.settings

@@ -1,0 +1,38 @@
+name: Menu
+description: "Used to show a navigation bar on the top of the page."
+group: Navigation
+links:
+  - "https://daisyui.com/components/navbar/"
+variants:
+  vertical__xs:
+    title: "Vertical XS"
+  vertical__sm:
+    title: "Vertical SM"
+  vertical__md:
+    title: "Vertical MD (Default)"
+  vertical__lg:
+    title: "Vertical LG"
+  horizontal__xs:
+    title: "Horizontal XS"
+  horizontal__sm:
+    title: "Horizontal SM"
+  horizontal__md:
+    title: "Horizontal MD (Default)"
+  horizontal__lg:
+    title: "Horizontal LG"
+props:
+  type: object
+  properties:
+    items:
+      title: "Menu items"
+      $ref: "ui-patterns://links"
+    collapsible:
+      title: "Collapsible"
+      description: Menu items are not collapsible if this prop is missing or empty.
+      type: string
+      enum:
+        - open
+        - closed
+      "meta:enum":
+        open: Open by default
+        closed: Closed by default

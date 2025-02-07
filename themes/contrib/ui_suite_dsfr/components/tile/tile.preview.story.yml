@@ -1,0 +1,43 @@
+name: Preview
+slots:
+  image:
+    theme: image
+    uri: "data:image/svg+xml;charset=UTF-8,%3csvg style='font-size: 1.125rem; text-anchor: middle; user-select: none;' width='100%25' height='254' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'%3e%3crect width='100%25' height='100%25' fill='%23868e96'%3e%3c/rect%3e%3ctext x='50%25' y='50%25' fill='%23dee2e6' dy='.3em'%3eImage cap%3c/text%3e%3c/svg%3e"
+    alt: ""
+  title:
+    type: html_tag
+    tag: a
+    value: "Tile title"
+    attributes:
+      href: "#"
+      title: "Link title"
+  tags_badges:
+    - type: component
+      component: "ui_suite_dsfr:tag_group"
+      slots:
+        tags:
+          - type: component
+            component: "ui_suite_dsfr:tag"
+            slots:
+              label: "Label tag 1"
+            props:
+              variant: sm
+          - type: component
+            component: "ui_suite_dsfr:tag"
+            slots:
+              label: "Label tag 2"
+            props:
+              variant: sm
+    - type: component
+      component: "ui_suite_dsfr:badge"
+      slots:
+        label: "Badge label"
+      props:
+        variant: sm
+  description: "Tile description"
+  detail: "Tile detail"
+props:
+  enlarge_link: true
+  icon: true
+  border: true
+  shadow: false

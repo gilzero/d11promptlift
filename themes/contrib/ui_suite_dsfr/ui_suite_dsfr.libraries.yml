@@ -1,0 +1,23 @@
+dsfr:
+  version: 1.x
+  license:
+    name: MIT
+    gpl-compatible: false
+    url: https://github.com/GouvernementFR/dsfr/blob/main/LICENSE.md
+  js:
+    # We don't use dsfr.module.min.js because of conflict with drupal js.
+    /libraries/dsfr/dist/dsfr.module.js: { attributes: { type: module } }
+  css:
+    theme:
+      /libraries/dsfr/dist/dsfr.min.css: { minified: true }
+      /libraries/dsfr/dist/dsfr.print.css: { minified: true, media: print }
+      /libraries/dsfr/dist/utility/icons/icons.min.css: { minified: true }
+      /libraries/dsfr/dist/utility/colors/colors.min.css: { minified: true }
+
+overrides:
+  css:
+    theme:
+      css/overrides.css: {}
+      css/reset.css: {}
+  dependencies:
+    - ui_suite_dsfr/dsfr

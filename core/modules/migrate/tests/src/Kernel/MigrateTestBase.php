@@ -60,6 +60,9 @@ abstract class MigrateTestBase extends KernelTestBase implements MigrateMessageI
    */
   protected $logger;
 
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = ['migrate'];
 
   /**
@@ -248,7 +251,7 @@ abstract class MigrateTestBase extends KernelTestBase implements MigrateMessageI
   /**
    * Gets the migration plugin.
    *
-   * @param $plugin_id
+   * @param string $plugin_id
    *   The plugin ID of the migration to get.
    *
    * @return \Drupal\migrate\Plugin\Migration

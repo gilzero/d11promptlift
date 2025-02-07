@@ -1,0 +1,14 @@
+.usa-logo {
+  .logo_content {
+    padding-left: 1rem;
+    line-height: 2rem;
+
+    .logo_content--site_name {
+      font-size: 1.875rem;
+    }
+
+    .logo_content--site_slogan {
+      font-size: 1.25rem;
+    }
+  }
+}

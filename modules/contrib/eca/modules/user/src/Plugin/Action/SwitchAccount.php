@@ -59,7 +59,7 @@ class SwitchAccount extends ConfigurableActionBase implements CleanupInterface {
     $form['user_id'] = [
       '#type' => 'textfield',
       '#title' => $this->t('User ID (UID)'),
-      '#default_value' => $this->configuration['user_id'],
+      '#default_value' => $this->configuration['user_id'] ?? '',
       '#description' => $this->t('The numeric ID of the user account to switch to.'),
       '#weight' => -10,
       '#eca_token_replacement' => TRUE,

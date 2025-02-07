@@ -121,7 +121,7 @@ class ExtensionDiscoveryTest extends UnitTestCase {
    *   Format: $[$type][$name] = $yml_file
    *   E.g. $['module']['system'] = 'system.info.yml'
    */
-  protected function populateFilesystemStructure(array &$filesystem_structure) {
+  protected function populateFilesystemStructure(array &$filesystem_structure): array {
     $info_by_file = [
       'core/profiles/standard/standard.info.yml' => [
         'type' => 'profile',
@@ -194,7 +194,7 @@ class ExtensionDiscoveryTest extends UnitTestCase {
    * @param string $content
    *   The contents of the file.
    */
-  protected function addFileToFilesystemStructure(array &$filesystem_structure, array $pieces, $content) {
+  protected function addFileToFilesystemStructure(array &$filesystem_structure, array $pieces, $content): void {
     $piece = array_shift($pieces);
     if ($pieces !== []) {
       $filesystem_structure += [$piece => []];

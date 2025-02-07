@@ -1,0 +1,9 @@
+name: Accordion
+description: "Accordion is used for showing and hiding content but only one item can stay open at a time."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/accordion/"
+slots:
+  items:
+    title: Items
+    description: "Expect a list of Collapses with accordion_id filled with same value"

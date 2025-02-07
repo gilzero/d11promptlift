@@ -1,0 +1,36 @@
+name: Preview
+slots:
+  title: Button
+props:
+  content:
+    - title: "Dropdown header"
+      link_attributes:
+        class:
+          - dropdown-header
+    - title: Action
+      url: "#"
+    - title: "Dropdown item text"
+    - title: "Another action"
+      url: "#"
+    - title: "Something else here"
+      url: "#"
+    - {}
+    - title: "Separated link"
+      url: "#"
+    - title: "Action (button)"
+      link_attributes:
+        class:
+          - dropdown-item
+    - title: "Another action (button)"
+      link_attributes:
+        class:
+          - dropdown-item
+    - title: "Something else here (text)"
+  button_variant: primary
+  button_split: true
+  button_url: /
+  button_attributes: {}
+  dark: false
+  auto_close: "true"
+  dropdown_navbar: false
+  heading_level: 6

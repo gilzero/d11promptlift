@@ -1,0 +1,23 @@
+/* todo remove after https://github.com/uswds/uswds/pull/5444 lands. */
+.usa-in-page-nav-container .usa-in-page-nav__item:not(.usa-in-page-nav__item--primary) {
+  padding-left: 1rem;
+}
+
+.usa-in-page-nav-container .usa-in-page-nav__item--sub-item a[href='#key-information'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#accordion-item'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#modal-title'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#featured'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#let-the-sun-shine'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#adjust-your-schedule'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#name-of-agency'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#agency-contact-center'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#agency-contact-center-2'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#this-is-a-test-pattern'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#fill-it-up'],
+.usa-in-page-nav-container .usa-in-page-nav__item a[href^='#graphic-headings-can-vary'] {
+  display: none;
+}
+
+.ui_patterns_story [data-component-id='ui_suite_uswds:search'] {
+  padding: 1rem 0;
+}

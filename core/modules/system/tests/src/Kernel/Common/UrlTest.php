@@ -22,6 +22,9 @@ use Drupal\KernelTests\KernelTestBase;
  */
 class UrlTest extends KernelTestBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = ['common_test', 'url_alter_test'];
 
   /**
@@ -165,17 +168,17 @@ class UrlTest extends KernelTestBase {
   /**
    * Checks for class existence in link.
    *
-   * @param $attribute
+   * @param string $attribute
    *   Attribute to be checked.
-   * @param $link
+   * @param string $link
    *   URL to search.
-   * @param $class
+   * @param string $class
    *   Element class to search for.
    *
    * @return bool
    *   TRUE if the class is found, FALSE otherwise.
    */
-  private function hasAttribute($attribute, $link, $class) {
+  private function hasAttribute($attribute, $link, $class): bool {
     return (bool) preg_match('|' . $attribute . '="([^\"\s]+\s+)*' . $class . '|', $link);
   }
 

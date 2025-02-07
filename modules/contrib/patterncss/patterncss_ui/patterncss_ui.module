@@ -1,0 +1,203 @@
+<?php
+
+/**
+ * @file
+ * Drupal`s integration with Pattern.css library.
+ *
+ * Pattern.css is a CSS only library to fill your
+ * empty background with beautiful patterns.
+ *
+ * GitHub:  https://github.com/bansal/pattern.css
+ * Website: https://bansal.io/pattern-css
+ * license: MIT licensed
+ *
+ * Copyright (C) 2020-2023 Jitender Bansal
+ */
+
+use Drupal\Core\Installer\InstallerKernel;
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+/**
+ * Implements hook_help().
+ */
+function patterncss_ui_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.patterncss_ui':
+      return '<p>' . t('<a href=":patterncss_url">Pattern.css</a> is a CSS only library to fill your empty background with beautiful patterns. see the <a href=":patterncss_github">Pattern.css GitHub</a> for usage and Configure on <a href=":patterncss_config">PatternCSS module settings</a> to put CSS selectors you want to add pattern.', [
+        ':patterncss_url'    => 'https://github.com/bansal/pattern.css',
+        ':patterncss_github' => 'https://github.com/animate-css/pattern.css',
+        ':patterncss_config' => Link::createFromRoute(t('settings page'), 'patterncss.settings')->toString(),
+      ]) . '</p>';
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function patterncss_ui_page_attachments(array &$attachments) {
+  // Don't add the library during installation.
+  if (InstallerKernel::installationAttempted()) {
+    return;
+  }
+
+  // Load the Pattern.css configuration settings.
+  $config = \Drupal::config('patterncss.settings');
+
+  // Attach Pattern.css to pages with chosen method.
+  $method = $config->get('method') == 'cdn' ? '.cdn' : '.css';
+
+  // Checking the path to load Pattern.css for demo examples,
+  // It's just in Patterncss configuration.
+  $currentPath = Url::fromRoute('<current>')->toString();
+  $settingPath = Url::fromRoute('patterncss.admin')->toString() . '/*';
+
+  if (\Drupal::service('path.matcher')->matchPath($currentPath, $settingPath)) {
+    $attachments['#attached']['library'][] = 'patterncss/pattern' . $method;
+
+    $options = $config->get('options');
+    $options['segment'] = $config->get('segment');
+    $options['selector'] = '#edit-preview .details-wrapper';
+
+    // Attach Pattern.css for examples.
+    $attachments['#attached']['drupalSettings']['patterncss']['sample'] = $options;
+
+    return;
+  }
+
+  // Don't include Pattern.css library if the user has
+  // opted out of loading it or excluded from specified paths.
+  if (!$config->get('load') || !_patterncss_ui_check_url()) {
+    return TRUE;
+  }
+
+  // Check for load development and production version.
+  $variant = $config->get('build.variant') == '1' ? '.min' : '';
+
+  // Attach dynamic Pattern.css library by chosen variant and method.
+  $attachments['#attached']['library'][] = 'patterncss/pattern' . $variant . $method;
+
+  // Get selectors from config.
+  $options = $config->get('options');
+  $patterns = [];
+
+  // Load enabled animate selectors from database.
+  $results = \Drupal::service('patterncss.pattern_manager')->loadPattern()->fetchAll();
+  if (count($results)) {
+    $selectors = [];
+    foreach ($results as $pattern) {
+      $pattern_options = unserialize($pattern->options, ['allowed_classes' => FALSE]);
+
+      $selectors[] = $pattern->selector;
+      $patterns[$pattern->pid] = ['selector' => $pattern->selector] + ['segment' => $pattern->segment] + $pattern_options;
+    }
+
+    // Merge global selectors from config with database selectors.
+    if (count($config->get('options.selector')) && count($selectors)) {
+      $options['selector'] = array_diff($options['selector'], $selectors);
+
+      // Attach config selectors after merge if there were any left.
+      if (count($options['selector'])) {
+        array_unshift($patterns, $options);
+      }
+    }
+  }
+  else {
+    // If global selectors are set, get the selectors from the configuration.
+    if (count($config->get('options.selector'))) {
+      $patterns = [$options];
+    }
+  }
+
+  // If there is animate selectors, then the init file
+  // with options will be added to the page.
+  if (count($patterns)) {
+    // Export settings.
+    $attachments['#attached']['drupalSettings']['patterncss']['elements'] = $patterns;
+
+    // Init animate.
+    $attachments['#attached']['library'][] = 'patterncss_ui/pattern-init';
+  }
+}
+
+/**
+ * Check if Pattern.css should be active for the current URL.
+ *
+ * @param \Symfony\Component\HttpFoundation\Request $request
+ *   The request to use if provided, otherwise \Drupal::request() will be used.
+ * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+ *   The request stack.
+ *
+ * @return bool
+ *   TRUE if Pattern.css should be active for the current page.
+ */
+function _patterncss_ui_check_url(Request $request = NULL, RequestStack $request_stack = NULL) {
+  if (!isset($request)) {
+    $request = \Drupal::request();
+  }
+
+  // Assume there are no matches until one is found.
+  $page_match = FALSE;
+
+  // Make it possible deactivate letting with
+  // parameter ?animate=no in the url.
+  $query = $request->query;
+  if ($query->get('pattern') !== NULL && $query->get('pattern') == 'no') {
+    return $page_match;
+  }
+
+  // Convert path to lowercase. This allows comparison of the same path
+  // with different case. Ex: /Page, /page, /PAGE.
+  $config = \Drupal::config('patterncss.settings');
+  $pages = mb_strtolower(_patterncss_ui_array_to_string($config->get('request_path.pages')));
+  if (!$pages) {
+    return TRUE;
+  }
+  if (!isset($request_stack)) {
+    $request_stack = \Drupal::requestStack();
+  }
+  $current_request = $request_stack->getCurrentRequest();
+  // Compare the lowercase path alias (if any) and internal path.
+  $path = \Drupal::service('path.current')->getPath($current_request);
+  // Do not trim a trailing slash if that is the complete path.
+  $path = $path === '/' ? $path : rtrim($path, '/');
+  $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $path_alias = mb_strtolower(\Drupal::service('path_alias.manager')->getAliasByPath($path, $langcode));
+  $page_match = \Drupal::service('path.matcher')->matchPath($path_alias, $pages);
+  if ($path_alias != $path) {
+    $page_match = $page_match || \Drupal::service('path.matcher')->matchPath($path, $pages);
+  }
+  $page_match = $config->get('request_path.negate') == 0 ? !$page_match : $page_match;
+
+  return $page_match;
+}
+
+/**
+ * Converts a text with lines (\n) into an array of lines.
+ *
+ * @return array
+ *   Array with as many items as non-empty lines in the text
+ */
+function _patterncss_ui_string_to_array($text) {
+  if (!is_string($text)) {
+    return NULL;
+  }
+  $text = str_replace("\r\n", "\n", $text);
+  return array_filter(explode("\n", $text), 'trim');
+}
+
+/**
+ * Converts an array of lines into a text with lines (\n).
+ *
+ * @return string
+ *   Text with lines
+ */
+function _patterncss_ui_array_to_string($array) {
+  if (!is_array($array)) {
+    return NULL;
+  }
+  return implode("\r\n", $array);
+}

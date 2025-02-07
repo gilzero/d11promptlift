@@ -78,7 +78,7 @@ abstract class BoostByAiSearchBase extends ProcessorPluginBase implements Plugin
 
     $form['minimum_relevance_score'] = [
       '#type' => 'number',
-      '#step' => 0.1,
+      '#step' => 0.01,
       '#required' => TRUE,
       '#title' => $this->t('Minimum relevance score'),
       '#description' => $this->t('Only prepend results that have a score higher than this. The score should be between 0 and 1. 0 will return all results. 1 is almost impossible to achieve and will likely never return results. Between 0.2 and 0.5 are most likely to be useful.'),

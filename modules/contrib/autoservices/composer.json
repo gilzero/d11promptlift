@@ -1,0 +1,11 @@
+{
+    "name": "drupal/autoservices",
+    "description": "Register services into the container without configuration",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/autoservices",
+    "support": {
+        "source": "https://git.drupalcode.org/project/autoservices",
+        "issues": "https://www.drupal.org/project/issues/autoservices"
+    },
+    "license": "GPL-2.0-or-later"
+}

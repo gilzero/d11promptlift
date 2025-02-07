@@ -1,0 +1,6 @@
+block.settings.pwa_add_to_home_screen:
+  type: block_settings
+  mapping:
+    button_text:
+      type: label
+      label: 'Button text'

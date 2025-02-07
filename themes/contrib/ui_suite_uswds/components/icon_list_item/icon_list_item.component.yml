@@ -1,0 +1,25 @@
+name: 'Icon List Item'
+description: "Internal: Meant to be used by 'Icon List' pattern."
+group: List
+slots:
+  header:
+    title: 'Header'
+    description: 'Icon list item header.'
+  body:
+    title: 'Body'
+    description: 'Body content.'
+props:
+  type: object
+  properties:
+    icon_name:
+      title: 'Icon Name'
+      description: 'Will be pulled from sprite.svg.'
+      $ref: 'ui-patterns://icon'
+      properties:
+        pack_id:
+          enum:
+            - uswds
+    icon_attributes:
+      title: 'Icon wrapper attributes'
+      description: 'The attributes to customize the icon wrapper tag.'
+      $ref: 'ui-patterns://attributes'

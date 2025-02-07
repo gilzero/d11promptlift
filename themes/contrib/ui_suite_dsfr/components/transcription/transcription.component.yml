@@ -1,0 +1,32 @@
+name: Transcription
+description: "Textual transcription for video, or detailed description for complex images"
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/transcription"
+  - "https://storybook.systeme-de-design.gouv.fr/?path=/docs/transcription--docs"
+slots:
+  title:
+    title: Title
+    description: 'Title for transcription. Default is "Transcription".'
+  content:
+    title: Content
+    description: "A transcription text (for video, or detailed description for complex images)."
+props:
+  type: object
+  properties:
+    id:
+      title: "Transcription ID"
+      description: "To generate unique id attributes if several transcriptions are in the same page. Default is randomly generated."
+      $ref: "ui-patterns://identifier"
+    expanded:
+      title: "Expanded"
+      description: "Whether the transcription is expanded by default. Default is false."
+      $ref: "ui-patterns://boolean"
+      default: false
+    enlarge_text:
+      title: "Enlarge text"
+      description: "Text for the button to enlarge the transcription. Default is 'Enlarge' translated."
+      type: string
+    enlarge_aria_label:
+      title: "Enlarge aria label"
+      description: "Aria label for the button to enlarge the transcription. Default is 'Enlarge transcription' translated."
+      type: string

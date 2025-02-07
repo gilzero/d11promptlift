@@ -1,0 +1,5 @@
+services:
+  typogrify.twig_extension:
+    class: Drupal\typogrify\TwigExtension\Typogrify
+    tags:
+      - { name: twig.extension }

@@ -1,0 +1,8 @@
+{% embed "artisan:block" with {
+  full_width: true,
+  content,
+  plugin_id,
+  configuration,
+  attributes: create_attribute({'class': 'block--local-tasks'}),
+} only %}
+{% endembed %}

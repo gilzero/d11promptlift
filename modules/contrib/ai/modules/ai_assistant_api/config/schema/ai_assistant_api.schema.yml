@@ -13,15 +13,21 @@ ai_assistant_api.ai_assistant.*:
     description:
       type: string
       label: Description
+    system_prompt:
+      type: string
+      label: System Prompt
     pre_action_prompt:
       type: string
       label: Pre Action Prompt
     instructions:
       type: string
-      label: Pre-prompt Instructions
+      label: Instructions
     allow_history:
       type: string
       label: Allow History
+    history_context_length:
+      type: string
+      label: History context length
     preprompt_instructions:
       type: string
       label: Pre-prompt Instructions
@@ -38,8 +44,14 @@ ai_assistant_api.ai_assistant.*:
       required: true
     error_message:
       type: string
-      label: Error Message
+      label: Generic Error Message
       required: true
+    specific_error_messages:
+      type: sequence
+      label: Specific Error Messages
+      required: false
+      sequence:
+        type: string
     llm_provider:
       type: string
       label: LLM Provider
@@ -60,4 +72,9 @@ ai_assistant_api.ai_assistant.*:
       required: false
       sequence:
         type: ignore
-
+    roles:
+      type: sequence
+      label: Roles
+      required: false
+      sequence:
+        type: ignore

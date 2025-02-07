@@ -1,0 +1,37 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set label_attributes = label_attributes ?: create_attribute() %}
+{% set block_html_tag = block_html_tag ?? 'div' %}
+{% set fullwidth = fullwidth ?? false %}
+
+{%
+  set block_classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  layout ? 'layout--' ~ layout|clean_class,
+  bundle ? 'block--' ~ bundle|clean_class : "",
+  fullwidth ? 'container',
+]
+%}
+
+{% if block_html_tag %}
+  <{{block_html_tag}} {{ attributes|without('id').addClass(block_classes) }}>
+{% endif %}
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% if label %}
+    {% block label %}
+      <h2{{ label_attributes.addClass('block-label') }}>{{ label }}</h2>
+    {% endblock %}
+  {% endif %}
+
+  {% if content %}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  {% endif %}
+
+{% if block_html_tag %}
+  </{{block_html_tag}}>
+{% endif %}

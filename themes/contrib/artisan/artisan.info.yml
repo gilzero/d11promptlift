@@ -1,0 +1,25 @@
+name: Artisan
+type: theme
+base theme: false
+description: Artisan Theme.
+alt text: Artisan Theme.
+package: Artisan
+core_version_requirement: ^10 || ^11
+
+dependencies:
+  - drupal:serialization
+
+regions:
+  header_top: Header Top
+  branding: Branding
+  primary_menu: Primary menu
+  secondary_menu: Secondary menu
+  header: Header
+  content: Content
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+
+# Information added by Drupal.org packaging script on 2025-02-04
+version: '1.3.9'
+project: 'artisan'
+datestamp: 1738686397

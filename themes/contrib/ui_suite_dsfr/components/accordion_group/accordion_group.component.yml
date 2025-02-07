@@ -1,0 +1,16 @@
+name: "Accordion group"
+description: "A grouping of accordions."
+group: Accordion
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/accordeon"
+slots:
+  accordions:
+    title: Accordions
+    description: "A list of 'accordion' components."
+props:
+  type: object
+  properties:
+    grouped:
+      title: "Group accordions?"
+      type: boolean
+      default: true

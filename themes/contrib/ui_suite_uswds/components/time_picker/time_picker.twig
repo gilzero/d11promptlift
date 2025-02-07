@@ -1,0 +1,42 @@
+{% set wrapper_attributes = create_attribute({
+  'class': [
+    'usa-time-picker'
+  ]
+}) %}
+
+{% if min_date %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-min-date', min_date) %}
+{% endif %}
+
+{% if max_date %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-max-date', max_date) %}
+{% endif %}
+
+{% if data_step %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-step', 15) %}
+{% endif %}
+
+{% if data_filter %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('data-filter', data_filter) %}
+{% endif %}
+
+{% if disabled %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('disabled', 'true') %}
+{% endif %}
+
+{% if default_value %}
+  {% set attributes = attributes.setAttribute('disabled', 'true') %}
+{% endif %}
+
+{{ include('ui_suite_uswds:label', {
+  label: field_label|default(''),
+  for_value: field_name,
+}, with_context = false) }}
+
+{% if hint %}
+  <div class="usa-hint" id="appointment-date-hint">{{ hint }}</div>
+{% endif %}
+
+<div{{ wrapper_attributes }}>
+  <input{{ attributes.addClass('usa-input').setAttribute('id', field_name) }} />
+</div>

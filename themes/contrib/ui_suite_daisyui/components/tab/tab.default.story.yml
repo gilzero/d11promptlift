@@ -1,0 +1,14 @@
+name: Default
+slots:
+  link:
+    type: html_tag
+    tag: a
+    value: Link
+    attributes:
+      href: "https://example.com"
+props:
+  active: true
+library_wrapper: >
+  <div role="tablist" class="tabs">
+  {{ _story }}
+  </div>

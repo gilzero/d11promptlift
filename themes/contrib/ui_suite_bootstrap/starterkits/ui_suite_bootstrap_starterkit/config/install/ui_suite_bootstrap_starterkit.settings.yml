@@ -1,0 +1,24 @@
+favicon:
+  use_default: true
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  use_default: true
+ui_styles_entity_status_unpublished:
+  selected:
+    colors_background_color: bg-danger-subtle
+  extra: ''
+ui_styles_regions:
+  sidebar_first:
+    selected:
+      colors_background_color: bg-light
+      spacing_padding: p-3
+    extra: ''
+  sidebar_second:
+    selected:
+      colors_background_color: bg-light
+      spacing_padding: p-3
+    extra: ''

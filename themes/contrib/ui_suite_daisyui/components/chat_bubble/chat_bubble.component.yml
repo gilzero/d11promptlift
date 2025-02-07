@@ -1,0 +1,46 @@
+name: "Chat bubble"
+description: "Chat bubbles are used to show one line of conversation and all its data, including the author image, author name, time, etc."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/chat/"
+variants:
+  default:
+    title: Default
+  primary:
+    title: Primary
+  secondary:
+    title: Secondary
+  accent:
+    title: Accent
+  info:
+    title: Info
+  success:
+    title: Success
+  warning:
+    title: Warning
+  error:
+    title: Error
+slots:
+  avatar:
+    title: Avatar
+  header:
+    title: Header
+  time:
+    title: Time
+  text:
+    title: Text
+  footer:
+    title: Footer
+props:
+  type: object
+  properties:
+    position:
+      title: Position
+      description: "Start or end position."
+      type: string
+      enum:
+        - start
+        - end
+      "meta:enum":
+        start: Start
+        end: End

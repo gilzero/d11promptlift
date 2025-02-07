@@ -1,0 +1,23 @@
+name: 'UI Suite USWDS subtheme'
+type: theme
+description: 'UI Suite USWDS subtheme subtheme based on UI Suite USWDS theme.'
+core_version_requirement: ^10 || ^11
+'base theme': ui_suite_uswds
+logo: logo.png
+screenshot: screenshot.png
+dependencies:
+  - 'ui_patterns:ui_patterns_library'
+  - 'ui_patterns_settings:ui_patterns_settings'
+regions:
+  header_top: 'Header - Top'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  hero: 'Hero'
+  content: 'Content'
+  footer_bottom: 'Footer - Bottom'
+
+libraries:
+  - starterkit_subtheme/global-styling

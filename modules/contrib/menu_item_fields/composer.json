@@ -1,0 +1,27 @@
+{
+    "name": "drupal/menu_item_fields",
+    "description": "Makes the menu link content entity type fieldable",
+    "homepage": "https://www.drupal.org/project/menu_item_fields",
+    "support": {
+        "source": "https://gitlab.com/upstreamable/drupal-item-fields",
+        "issues": "https://gitlab.com/upstreamable/drupal-item-fields/issues"
+    },
+    "type": "drupal-module",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require-dev": {
+        "upstreamable/md-to-html": "^1.0"
+    },
+    "scripts": {
+        "md-to-html": [
+            "MdToHtml\\composer\\ScriptHandler::transform"
+        ],
+        "generate-readme": [
+            "@md-to-html --remove-first-line README.md README.html"
+        ]
+    },
+    "scripts-descriptions": {
+        "generate-readme": "Generates a README.html from the README.md to use in the module page."
+    }
+}

@@ -1,0 +1,16 @@
+name: "Consent manager"
+description: "Allows the user to define his preferences on the use of his personal data, in particular the deposit of non-functional cookies in his browser. Used with consent_banner."
+group: Consent
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/gestionnaire-de-consentement"
+slots:
+  title:
+    title: Title
+    description: 'Descriptive text for the "Accept all" / "Refuse all" options.'
+props:
+  type: object
+  properties:
+    services:
+      title: Services
+      description: "A 2 levels links structure with attributes.id and attributes.title. 'url' key is ignored."
+      $ref: "ui-patterns://links"

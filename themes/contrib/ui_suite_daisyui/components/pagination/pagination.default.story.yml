@@ -1,0 +1,18 @@
+name: Default
+props:
+  size: md
+  items:
+    - url: "#"
+      title: "« First"
+    - url: "#"
+      title: "‹ Previous"
+    - title: "4"
+    - url: "#"
+      title: "5"
+    - {}
+    - url: "#"
+      title: "6"
+    - url: "#"
+      title: "Next ›"
+    - url: "#"
+      title: "Last »"

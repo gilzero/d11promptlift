@@ -1,0 +1,5 @@
+name: Preview
+props:
+  tile: true
+  field_name: 'check-historical-douglass'
+  field_label: 'Frederick Douglass'

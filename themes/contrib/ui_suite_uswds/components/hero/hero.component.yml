@@ -1,0 +1,24 @@
+name: Hero
+description: 'A big eye-catching image with info, usually in the above-the-fold zone of the page right below the header.'
+group: Layout
+slots:
+  title:
+    title: 'Title'
+    description: 'Will render as an H1.'
+  body:
+    title: 'Body'
+    description: 'Small body for banner, recommended keep short.'
+props:
+  type: object
+  properties:
+    title_alt:
+      title: 'Text alt'
+      description: 'Will render above title.'
+      type: string
+    aria_label:
+      title: 'Aria label'
+      description: 'Short label for this specific banner.'
+      type: string
+    bg_image:
+      title: 'Background image'
+      $ref: 'ui-patterns://url'

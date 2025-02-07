@@ -1,0 +1,26 @@
+/* Tokens browser pop-in is kind of incompatible with DSFR [href] rule. */
+table.treetable tr span.indenter a {
+  background-size: initial;
+}
+
+/* Some components need to be overriden for preview and builder. */
+.pattern-preview .fr-skiplinks,
+.layout-builder__section .fr-skiplinks {
+  position: relative;
+  transform: none;
+}
+.layout-builder__section .fr-enlarge-link a::before {
+  position: relative;
+}
+.layout-builder__section .fr-download__detail {
+  position: relative;
+  pointer-events: auto;
+}
+.layout-builder__section .fr-modal {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+}
+.layout-builder__section .fr-card * {
+  order: unset;
+}

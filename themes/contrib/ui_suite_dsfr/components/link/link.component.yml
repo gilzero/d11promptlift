@@ -1,0 +1,71 @@
+name: Link
+description: "Allows navigation between a page and other content within the same page, the same site or external."
+group: Link
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/lien"
+variants:
+  default:
+    title: Medium
+  sm:
+    title: Small
+  lg:
+    title: Large
+slots:
+  label:
+    title: Label
+props:
+  type: object
+  properties:
+    title:
+      title: "Tilte attribute"
+      description: "'- new window' suffix will automatically be added for external links."
+      type: string
+    url:
+      title: URL
+      description: "The link URL. Optional."
+      $ref: "ui-patterns://url"
+    target:
+      title: 'Target attribute.  "Blank" will automatically be set for external links.'
+      type: string
+      enum:
+        - self
+        - blank
+        - parent
+        - top
+      "meta:enum":
+        self: Self
+        blank: Blank
+        parent: Parent
+        top: Left
+    external:
+      title: "External?"
+      description: "Is the link targeting an external URL?"
+      type: boolean
+    tooltip:
+      title: Tooltip
+      description: "Hidden by default and displayed when hovering over. https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/infobulle/"
+      type: string
+    id:
+      title: "Link ID"
+      description: "Used by the tooltip. Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"
+    force_internal:
+      title: "Force as internal"
+      description: "Link will be diplayed as internal, with class 'fr-link'."
+      type: boolean
+    icon_position:
+      title: "Icon position"
+      type: string
+      enum:
+        - left
+        - right
+      "meta:enum":
+        left: Left
+        right: Right
+    icon:
+      title: Icon
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr

@@ -1,0 +1,18 @@
+{% set brand = 'FranceConnect'|t %}
+{% set url = 'https://franceconnect.gouv.fr/' %}
+
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('fr-connect--' ~ variant) %}
+  {% set brand = 'FranceConnect'|t %}
+  {% set url = 'https://franceconnect.gouv.fr/france-connect-plus' %}
+{% endif %}
+
+<div class="fr-connect-group">
+  <button{{ attributes.addClass('fr-connect').setAttribute('type', 'button') }} >
+    <span class="fr-connect__login">{{ 'Identify with'|t }}</span>
+    <span class="fr-connect__brand">{{ brand }}</span>
+  </button>
+  <p>
+    {{ include('ui_suite_dsfr:link', {label: 'What is @title?'|t({'@title': brand}), url: url}, with_context: false) }}
+  </p>
+</div>

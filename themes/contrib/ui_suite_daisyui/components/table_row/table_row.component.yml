@@ -1,0 +1,9 @@
+name: "(Table Row)"
+description: "Internal: to be used in the 'Table' components."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/table/"
+slots:
+  content:
+    title: "Row content"
+    description: "The row content."

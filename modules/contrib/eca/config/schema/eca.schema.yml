@@ -11,6 +11,9 @@ eca.settings:
     user:
       type: string
       label: 'Execute models with user'
+    service_user:
+      type: string
+      label: 'Service user'
     dependency_calculation:
       type: sequence
       label: 'Config dependency calculation'

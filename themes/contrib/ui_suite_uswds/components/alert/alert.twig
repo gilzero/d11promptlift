@@ -1,0 +1,32 @@
+{% set role = 'alert' %}
+{% if variant and variant != 'default' %}
+  {% set attributes = attributes.addClass('usa-alert--' ~ variant) %}
+  {% if variant == 'success' %}
+    {% set role = 'status' %}
+  {% endif %}
+
+  {% if variant == 'info' or variant == 'warning' %}
+    {% set role = 'region' %}
+  {% endif %}
+{% endif %}
+
+{% if no_icon %}
+  {% set attributes = attributes.addClass('usa-alert--no-icon') %}
+{% endif %}
+
+{% if slim %}
+  {% set attributes = attributes.addClass('usa-alert--slim') %}
+{% endif %}
+
+<div{{ attributes.addClass('usa-alert').setAttribute('role', role) }}>
+  <div class="usa-alert__body">
+    {% if heading and not slim %}
+      <h4 class="usa-alert__heading">{{ heading }}</h4>
+    {% endif %}
+    {% if message %}
+      <div class="usa-alert__text">
+        {{ message }}
+      </div>
+    {% endif %}
+  </div>
+</div>

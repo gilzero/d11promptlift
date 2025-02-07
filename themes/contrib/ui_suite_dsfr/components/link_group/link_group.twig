@@ -1,0 +1,8 @@
+{% if links %}
+  <ul{{ attributes.addClass('fr-links-group') }}>
+    {% set links = links and links is not sequence ? [links] : links %}
+    {% for link in links %}
+      <li>{{ link }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

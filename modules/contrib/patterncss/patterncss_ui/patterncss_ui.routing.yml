@@ -1,0 +1,47 @@
+patterncss.admin:
+  path: '/admin/config/user-interface/patterncss'
+  defaults:
+    _form: '\Drupal\patterncss_ui\PatternCssAdmin'
+    _title: 'Pattern List'
+  requirements:
+    _permission: 'administer pattern css'
+
+patterncss.add:
+  path: '/admin/config/user-interface/patterncss/add'
+  defaults:
+    _form: '\Drupal\patterncss_ui\Form\PatternCssForm'
+    _title: 'Add Pattern'
+  requirements:
+    _permission: 'administer pattern css'
+
+patterncss.edit:
+  path: '/admin/config/user-interface/patterncss/edit/{pattern}'
+  defaults:
+    _form: '\Drupal\patterncss_ui\Form\PatternCssForm'
+    _title: 'Edit Pattern'
+  requirements:
+    _permission: 'administer pattern css'
+
+patterncss.delete:
+  path: '/admin/config/user-interface/patterncss/delete/{pattern}'
+  defaults:
+    _form: '\Drupal\patterncss_ui\Form\PatternCssDelete'
+    _title: 'Delete Pattern'
+  requirements:
+    _permission: 'administer pattern css'
+
+patterncss.duplicate:
+  path: '/admin/config/user-interface/patterncss/duplicate/{pattern}'
+  defaults:
+    _form: '\Drupal\patterncss_ui\Form\PatternCssDuplicate'
+    _title: 'Duplicate Pattern'
+  requirements:
+    _permission: 'administer pattern css'
+
+patterncss.settings:
+  path: '/admin/config/user-interface/patterncss/settings'
+  defaults:
+    _form: '\Drupal\patterncss_ui\Form\PatternCssSettings'
+    _title: 'Pattern Settings'
+  requirements:
+    _permission: 'administer pattern css'

@@ -1,0 +1,68 @@
+name: Default
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:timeline_item"
+      slots:
+        timeline_start: "1984"
+        timeline_end: "First Macintosh computer"
+      props:
+        timeline_box_end: true
+        icon:
+          pack_id: hero_solid_20
+          icon_id: check-circle
+          settings:
+            size: 20
+            stroke_width: 2
+    - type: component
+      component: "ui_suite_daisyui:timeline_item"
+      slots:
+        timeline_start: "1998"
+        timeline_end: iMac
+      props:
+        timeline_box_end: true
+        icon:
+          pack_id: hero_solid_20
+          icon_id: check-circle
+          settings:
+            size: 20
+            stroke_width: 2
+    - type: component
+      component: "ui_suite_daisyui:timeline_item"
+      slots:
+        timeline_start: "2001"
+        timeline_end: iPod
+      props:
+        timeline_box_end: true
+        icon:
+          pack_id: hero_solid_20
+          icon_id: check-circle
+          settings:
+            size: 20
+            stroke_width: 2
+    - type: component
+      component: "ui_suite_daisyui:timeline_item"
+      slots:
+        timeline_start: "2007"
+        timeline_end: iPhone
+      props:
+        timeline_box_end: true
+        icon:
+          pack_id: hero_solid_20
+          icon_id: check-circle
+          settings:
+            size: 20
+            stroke_width: 2
+    - type: component
+      component: "ui_suite_daisyui:timeline_item"
+      slots:
+        timeline_start: "2015"
+        timeline_end: "Apple Watch"
+      props:
+        timeline_box_end: true
+        icon:
+          pack_id: hero_solid_20
+          icon_id: check-circle
+          settings:
+            size: 20
+            stroke_width: 2

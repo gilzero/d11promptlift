@@ -10,6 +10,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Utility\Token;
+use Drupal\ai\Service\PromptCodeBlockExtractor\PromptCodeBlockExtractorInterface;
 use Drupal\ai_automators\FormAlter\AiAutomatorFieldConfig;
 use Drupal\file\FileInterface;
 use Drupal\token\TreeBuilder;
@@ -71,6 +72,13 @@ class GeneralHelper {
   protected $tokenTreeBuilder;
 
   /**
+   * Prompt code block extractor.
+   *
+   * @var \Drupal\ai\PromptCodeBlockExtractor\PromptCodeBlockExtractor
+   */
+  protected $promptCodeBlockExtractor;
+
+  /**
    * Constructor for the class.
    *
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
@@ -87,6 +95,8 @@ class GeneralHelper {
    *   The entity type manager.
    * @param \Drupal\token\TreeBuilder $tokenTreeBuilder
    *   The token tree builder.
+   * @param \Drupal\ai\PromptCodeBlockExtractor\PromptCodeBlockExtractor $promptCodeBlockExtractor
+   *   The prompt code block extractor.
    */
   public function __construct(
     EntityFieldManagerInterface $entityFieldManager,
@@ -96,6 +106,7 @@ class GeneralHelper {
     AccountProxyInterface $currentUser,
     EntityTypeManagerInterface $entityTypeManager,
     TreeBuilder $tokenTreeBuilder,
+    PromptCodeBlockExtractorInterface $promptCodeBlockExtractor,
   ) {
     $this->entityFieldManager = $entityFieldManager;
     $this->moduleHandler = $moduleHandler;
@@ -104,6 +115,7 @@ class GeneralHelper {
     $this->currentUser = $currentUser;
     $this->entityTypeManager = $entityTypeManager;
     $this->tokenTreeBuilder = $tokenTreeBuilder;
+    $this->promptCodeBlockExtractor = $promptCodeBlockExtractor;
   }
 
   /**
@@ -470,7 +482,25 @@ class GeneralHelper {
   }
 
   /**
-   * Get text format.
+   * Get possible text formats for a drop down.
+   *
+   * @return array
+   *   The text formats.
+   */
+  public function getTextFormatsOptions() {
+    $formats = $this->entityTypeManager->getStorage('filter_format')->loadMultiple();
+    $options = [
+      '' => $this->t('-- None/User Based --'),
+    ];
+
+    foreach ($formats as $format) {
+      $options[$format->id()] = $format->label();
+    }
+    return $options;
+  }
+
+  /**
+   * Calculate text format.
    *
    * @param \Drupal\Core\Field\FieldDefinitionInterface $fieldDefinition
    *   The field definition.
@@ -478,14 +508,25 @@ class GeneralHelper {
    * @return string|null
    *   The format.
    */
-  public function getTextFormat(FieldDefinitionInterface $fieldDefinition) {
+  public function calculateTextFormat(FieldDefinitionInterface $fieldDefinition) {
     $allFormats = $this->entityTypeManager->getStorage('filter_format')->loadMultiple();
-    // Maybe no formats are set.
+    // Maybe no formats are available.
     if (empty($allFormats)) {
       return NULL;
     }
-    $format = $fieldDefinition->getSetting('allowed_formats');
-    return $format[0] ?? key($allFormats);
+    $formatsAllowed = $fieldDefinition->getSetting('allowed_formats');
+    // All formats are allowed.
+    if (!count($formatsAllowed)) {
+      $formatsAllowed = array_keys($allFormats);
+    }
+    foreach ($formatsAllowed as $format) {
+      // Check if the user has access to the format.
+      if (isset($allFormats[$format]) && $allFormats[$format]->access('use')) {
+        return $format;
+      }
+    }
+    // User does not have access to any format.
+    return NULL;
   }
 
   /**
@@ -514,6 +555,16 @@ class GeneralHelper {
   }
 
   /**
+   * Get the prompt code block extractor.
+   *
+   * @return \Drupal\ai\Service\PromptCodeBlockExtractor\PromptCodeBlockExtractorInterface
+   *   The prompt code block extractor.
+   */
+  public function getPromptCodeBlockExtractor() {
+    return $this->promptCodeBlockExtractor;
+  }
+
+  /**
    * Preprocess the image style.
    *
    * @param \Drupal\file\FileInterface $imageEntity
@@ -536,6 +587,68 @@ class GeneralHelper {
     ]);
     $file->save();
     return $file;
+  }
+
+  /**
+   * Get or generate taxonomy in vocabulary.
+   *
+   * @param string $vocabulary
+   *   The vocabulary.
+   * @param string $label
+   *   The label.
+   *
+   * @return \Drupal\taxonomy\Entity\Term
+   *   The term.
+   */
+  public function getOrGenerateTaxonomyTerm($vocabulary, $label) {
+    $termStorage = $this->entityTypeManager->getStorage('taxonomy_term');
+    $terms = $termStorage->loadByProperties([
+      'name' => $label,
+      'vid' => $vocabulary,
+    ]);
+    if ($terms) {
+      return reset($terms);
+    }
+    $term = $termStorage->create([
+      'name' => $label,
+      'vid' => $vocabulary,
+    ]);
+    $term->save();
+    return $term;
+  }
+
+  /**
+   * Get vocabularies for a entity reference field.
+   *
+   * @param string $entityType
+   *   The entity type.
+   * @param string $bundle
+   *   The bundle.
+   * @param string $fieldName
+   *   The field name.
+   *
+   * @return array
+   *   The vocabularies.
+   */
+  public function getVocabulariesFromField($entityType, $bundle, $fieldName) {
+    $fieldStorage = $this->entityFieldManager->getFieldDefinitions($entityType, $bundle)[$fieldName];
+    $vocabularies = [];
+    foreach ($fieldStorage->getSetting('handler_settings')['target_bundles'] as $vocabulary) {
+      if ($vocabulary) {
+        $vocabularies[] = $vocabulary;
+      }
+    }
+    return $vocabularies;
+  }
+
+  /**
+   * Get the entity type manager.
+   *
+   * @return \Drupal\Core\Entity\EntityTypeManagerInterface
+   *   The entity type manager.
+   */
+  public function entityTypeManager() {
+    return $this->entityTypeManager;
   }
 
 }

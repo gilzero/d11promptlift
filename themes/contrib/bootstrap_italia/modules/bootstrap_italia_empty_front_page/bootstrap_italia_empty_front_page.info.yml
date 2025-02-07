@@ -1,0 +1,13 @@
+name: Bootstrap Italia Empty Front Page
+type: module
+description: 'Sets the front page to an empty page'
+package: "Bootstrap Italia"
+core_version_requirement: ^9.3 || ^10
+
+dependencies:
+  - empty_front_page:empty_front_page
+
+# Information added by Drupal.org packaging script on 2024-12-02
+version: '2.12.0'
+project: 'bootstrap_italia'
+datestamp: 1733160393

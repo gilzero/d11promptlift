@@ -43,7 +43,15 @@ final class Summarize extends AiCKEditorPluginBase {
       '#default_value' => $this->configuration['provider'] ?? $this->aiProviderManager->getSimpleDefaultProviderOptions('chat'),
       '#description' => $this->t('Select which provider to use for this plugin. See the <a href=":link">Provider overview</a> for details about each provider.', [':link' => '/admin/config/ai/providers']),
     ];
-
+    $prompts_config = $this->getConfigFactory()->get('ai_ckeditor.settings');
+    $prompt_summarise = $prompts_config->get('prompts.summarise');
+    $form['prompt'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Summarise prompt'),
+      '#required' => TRUE,
+      '#default_value' => $prompt_summarise,
+      '#description' => $this->t('This prompt will be used to summarise the text.'),
+    ];
     return $form;
   }
 
@@ -59,12 +67,15 @@ final class Summarize extends AiCKEditorPluginBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['provider'] = $form_state->getValue('provider');
+    $newPrompt = $form_state->getValue('prompt');
+    $prompts_config = $this->getConfigFactory()->getEditable('ai_ckeditor.settings');
+    $prompts_config->set('prompts.summarise', $newPrompt)->save();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildCkEditorModalForm(array $form, FormStateInterface $form_state) {
+  public function buildCkEditorModalForm(array $form, FormStateInterface $form_state, array $settings = []) {
     $storage = $form_state->getStorage();
     $editor_id = $this->requestStack->getParentRequest()->get('editor_id');
 
@@ -112,9 +123,10 @@ final class Summarize extends AiCKEditorPluginBase {
    */
   public function ajaxGenerate(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
-
+    $prompts_config = $this->getConfigFactory()->get('ai_ckeditor.settings');
+    $prompt = $prompts_config->get('prompts.summarise');
     try {
-      $prompt = 'Summarize the following text using the same language as the following text:\r\n"' . $values["plugin_config"]["selected_text"];
+      $prompt .= '"' . $values["plugin_config"]["selected_text"] . '"';
       $response = new AjaxResponse();
       $values = $form_state->getValues();
       $response->addCommand(new AiRequestCommand($prompt, $values["editor_id"], $this->pluginDefinition['id'], 'ai-ckeditor-response'));

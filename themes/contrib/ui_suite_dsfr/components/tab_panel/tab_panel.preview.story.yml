@@ -1,0 +1,6 @@
+name: Preview
+slots:
+  content:
+    type: html_tag
+    tag: p
+    value: "Tab content"

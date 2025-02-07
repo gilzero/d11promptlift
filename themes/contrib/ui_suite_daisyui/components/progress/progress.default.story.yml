@@ -1,0 +1,4 @@
+name: Default
+props:
+  value: 25
+  max: 100

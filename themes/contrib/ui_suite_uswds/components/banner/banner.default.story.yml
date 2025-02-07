@@ -1,0 +1,4 @@
+name: Preview
+props:
+  banner_id: 'test-banner'
+  icon_path: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/'

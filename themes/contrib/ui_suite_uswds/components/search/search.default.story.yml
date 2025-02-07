@@ -1,0 +1,5 @@
+name: Preview
+props:
+  name: keys
+  search_id: test-search-field
+  search_icon: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/usa-icons-bg/search--white.svg'

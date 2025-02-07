@@ -1,0 +1,11 @@
+name: Background
+slots:
+  content:
+    type: html_tag
+    tag: div
+    value: "Hello!"
+    attributes:
+      class: ["bg-base-200", "flex", "justify-center", "px-4", "py-16"]
+props:
+  attributes:
+    class: ["bg-base-300", "border"]

@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Menu Item Fields UI module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function menu_item_fields_ui_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.menu_item_fields':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Makes the menu link content entity type fieldable.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function menu_item_fields_ui_entity_type_alter(array &$entity_types) {
+  if (isset($entity_types['menu_link_content'])) {
+    $entity_types['menu_link_content']->set('field_ui_base_route', 'entity.menu.collection');
+  }
+}

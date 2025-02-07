@@ -1,0 +1,51 @@
+# Using Radix for modal dialogs
+
+Drupal core supports generating modal dialogs, triggered via Ajax by a link, as documented [here](https://www.drupal.org/docs/develop/drupal-apis/ajax-api/ajax-dialog-boxes). Radix contains experimental libraries which may be enabled to allow Radix to use Bootstrap for these core Ajax dialogs.
+
+**Warning:** These Radix libraries may not be compatible with all other modules. There is a known incompatibility with the core Layout Builder module.
+
+Note: These dialogs are not triggered in the same manner as Bootstrap 5 native dialogs. Disregard instructions found in Bootstrap documentation for triggering native Drupal dialogs.
+
+1.  In your `SUBTHEME.info.yml` file, in the `libraries-extend:` section, uncomment the following:
+    ```yaml
+      core/drupal.dialog:
+        - SUBTHEME/drupal.dialog
+      core/drupal.dialog.ajax:
+        - SUBTHEME/drupal.dialog.ajax
+    ```
+2.  As per the core instructions, ensure that the following libraries are attached to your page in any of the supported manners:
+    ```
+    core/drupal.dialog
+    core/ajax.drupal.dialog
+    ```
+3.  If necessary, you may need to suppress other libraries with incompatible CSS styles or javascript. This may be done using the `libraries-override` section in your `SUBTHEME.info.yml` file. For example, the Simple Ads module supports modal dialog advertisements. These may be removed if not used by:
+    ```yaml
+    libraries-override:
+      simpleads/simpleads.modal:
+        css:
+          theme:
+            js/modal/jquery.modal.min.css: false
+        js:
+      js/modal/jquery.modal.min.js: false
+    ```
+
+4.  If necessary, disable competing modules. For example, `bootstrap4_modal` would be redundant.
+5.  Generate the link in any manner supported by Drupal. Here's an example of a render array:
+    ```php
+    $link = [
+      '#type' => 'link',
+      '#title' => $link_title,
+      '#url' => $url,
+      '#options' => [
+        'attributes' => [
+          'title' => t('YOUR TITLE ATTRIBUTE HERE'),
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'dialogClasses' => 'modal-dialog-centered modal-xl',
+          ]),
+        ],
+      ],
+      '#attached' => ['library' => ['core/drupal.dialog', 'core/drupal.dialog.ajax']],
+    ];
+    ```

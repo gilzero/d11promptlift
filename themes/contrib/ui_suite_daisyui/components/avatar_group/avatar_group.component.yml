@@ -1,0 +1,9 @@
+name: "(Avatar group)"
+description: "Avatar groups are used to show a group of avatar."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/avatar/"
+slots:
+  items:
+    title: Items
+    description: "Expect a list of Avatar item components"

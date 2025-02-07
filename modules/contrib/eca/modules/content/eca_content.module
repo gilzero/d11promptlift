@@ -11,6 +11,7 @@ if (!class_exists('Drupal\Core\Field\FieldUpdateActionBase', FALSE)) {
   class_alias('Drupal\eca_content\Plugin\Action\FieldUpdateActionBase', 'Drupal\Core\Field\FieldUpdateActionBase');
 }
 
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -156,7 +157,7 @@ function eca_content_entity_prepare_view(string $entity_type_id, array $entities
 /**
  * Implements hook_entity_prepare_form().
  */
-function eca_content_entity_prepare_form(EntityInterface $entity, string $operation, FormStateInterface $form_state): void {
+function eca_content_entity_prepare_form(EntityInterface &$entity, ?string $operation, FormStateInterface $form_state): void {
   _eca_content_hook_handler()->prepareForm($entity, $operation, $form_state);
 }
 
@@ -172,6 +173,19 @@ function eca_content_entity_field_values_init(FieldableEntityInterface $entity):
  */
 function eca_content_entity_view_mode_alter(string &$view_mode, EntityInterface $entity): void {
   _eca_content_hook_handler()->viewModeAlter($view_mode, $entity);
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function eca_content_entity_type_build(array &$entity_types): void {
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+  foreach ($entity_types as $entity_type) {
+    if ($entity_type->entityClassImplements(ContentEntityInterface::class)) {
+      // Add ECA's chameleon validation constraint to the content entity.
+      $entity_type->addConstraint('EcaContent');
+    }
+  }
 }
 
 /**

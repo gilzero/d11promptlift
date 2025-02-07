@@ -1,0 +1,24 @@
+name: Preview
+slots:
+  buttons:
+    -
+      type: component
+      component: 'ui_suite_uswds:button'
+      slots:
+        label: First
+      props:
+        variant: default
+    -
+      type: component
+      component: 'ui_suite_uswds:button'
+      slots:
+        label: Second
+      props:
+        variant: default
+    -
+      type: component
+      component: 'ui_suite_uswds:button'
+      slots:
+        label: Third
+      props:
+        variant: default

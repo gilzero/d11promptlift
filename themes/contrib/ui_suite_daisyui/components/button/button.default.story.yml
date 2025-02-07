@@ -1,0 +1,6 @@
+name: Default
+slots:
+  label: Label
+props:
+  size: md
+  url: "https://example.com"

@@ -1,0 +1,40 @@
+name: Modal
+description: "The modal allows the user's attention to be focused exclusively on a task or an element of information, without losing the context of the current page. This component requires user action in order to be closed or opened."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/modale"
+variants:
+  default:
+    title: Medium
+  lg:
+    title: Large
+  sm:
+    title: Small
+slots:
+  title:
+    title: Title
+    description: "The modal title"
+  body:
+    title: Body
+    description: "The modal body renderable text."
+  actions:
+    title: Actions
+    description: "Modal action (button_group component)."
+props:
+  type: object
+  properties:
+    id:
+      title: "Modal ID"
+      description: "To link the triggered element (the one with 'aria-controls') and the modal."
+      $ref: "ui-patterns://identifier"
+    icon:
+      title: Icon
+      description: "Icon to be placed near modal title."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr
+    close_title:
+      title: "Close title"
+      description: "Title for the close button. Default is 'Close', translated."
+      type: string

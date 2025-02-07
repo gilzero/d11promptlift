@@ -1,0 +1,10 @@
+name: Autoservices
+type: module
+description: Register services into the container without configuration.
+package: Container
+core_version_requirement: ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2024-08-10
+version: '1.0.2'
+project: 'autoservices'
+datestamp: 1723286182

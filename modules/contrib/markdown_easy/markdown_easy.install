@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Update hooks for the Markdown Easy module.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_requirements().
+ */
+function markdown_easy_requirements(string $phase): array {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    // Check to see if any enabled text formats have Markdown Easy configured
+    // insecurely.
+    $text_formats = filter_formats();
+
+    foreach ($text_formats as $format) {
+      $filter_config_array = [];
+      $filters = $format->filters();
+      foreach ($filters as $filter) {
+        $config = $filter->getConfiguration();
+        $filter_config_array[$config['id']] = $config;
+      }
+
+      /** @var Drupal\markdown_easy\MarkdownUtility */
+      $markdown_easy_utility_service = \Drupal::service('markdown_easy.utility');
+      $weights = $markdown_easy_utility_service->getFilterWeights($filter_config_array);
+
+      if (isset($weights['markdown_easy'])) {
+        if (!isset($weights['filter_html']) || ($weights['filter_html'] < $weights['markdown_easy'])) {
+          $requirements['markdown_easy_filter_configuration_limit_html'] = [
+            'title' => t('Markdown Easy'),
+            'value' => t('Text format configured insecurely.'),
+            'description' => t('The text format %format is potentially configured insecurely. The "Limit allowed HTML tags and correct faulty HTML" filter is strongly recommended and should be configured to run after the Markdown Easy filter.', ['%format' => $format->get('name')]),
+            'severity' => REQUIREMENT_WARNING,
+          ];
+        }
+        if (!isset($weights['filter_autop']) || ($weights['filter_autop'] < $weights['markdown_easy'])) {
+          $requirements['markdown_easy_filter_configuration_filter_autop'] = [
+            'title' => t('Markdown Easy'),
+            'value' => t('Text format configured insecurely.'),
+            'description' => t('The text format %format is potentially configured incorrectly. The "Convert line breaks into HTML" filter is recommended and should be configured to run after the Markdown Easy filter.', ['%format' => $format->get('name')]),
+            'severity' => REQUIREMENT_WARNING,
+          ];
+        }
+      }
+    }
+
+  }
+
+  return $requirements;
+}

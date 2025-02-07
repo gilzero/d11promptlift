@@ -1,0 +1,17 @@
+name: "(Footer menu)"
+description: "To be embedded in the footer component."
+group: Footer
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/pied-de-page"
+variants:
+  content:
+    title: "Content (Default)"
+  bottom:
+    title: Bottom
+props:
+  type: object
+  properties:
+    items:
+      title: Items
+      description: "Flat list of links."
+      $ref: "ui-patterns://links"

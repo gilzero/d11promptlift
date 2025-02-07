@@ -1,0 +1,12 @@
+name: Preview
+slots:
+  image:
+    type: html_tag
+    tag: img
+    attributes:
+      src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMaWdodCBCbHVlIENpcmNsZSIgdmlld2JveD0iMCAwIDEyNCAxMjQiIHdpZHRoPSIxMjQiIGhlaWdodD0iMTI0Ij48Y2lyY2xlIGlkPSJsaWdodF9ibHVlX2NpcmNsZSIgZmlsbD0iIzAwNzFiYyIgY3g9IjYyIiBjeT0iNjIiIHI9IjYyIi8+PC9zdmc+Cg=='
+  heading: 'Graphic headings can vary.'
+  content:
+    type: html_tag
+    tag: p
+    value: 'Graphic headings can be used a few different ways, depending on what your landing page is for. Highlight your values, specific program areas, or results.'

@@ -1,0 +1,8 @@
+{% embed 'artisan:media' with {
+  bundle: media.bundle(),
+  published: media.isPublished(),
+  view_mode: view_mode,
+  content: content,
+  attributes: attributes,
+} only %}
+{% endembed %}

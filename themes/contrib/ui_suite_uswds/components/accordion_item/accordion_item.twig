@@ -1,0 +1,35 @@
+{% set item_id = item_id|default("accordion-item-" ~ random()) %}
+
+{% set heading_level = heading_level|default(2) %}
+
+{% set button_attributes = create_attribute({
+  'class': [
+    'usa-accordion__button',
+  ],
+  'type': 'button',
+  'aria-controls': 'heading--' ~ item_id,
+  'aria-expanded': 'false'
+}) %}
+
+{% set content_attributes = create_attribute({
+  'class': [
+    'usa-accordion__content',
+    'usa-prose',
+  ],
+  'id': 'heading--' ~ item_id
+}) %}
+
+{% if opened %}
+  {% set button_attributes = button_attributes.setAttribute('aria-expanded', 'true') %}
+{% endif %}
+
+<h{{ heading_level }} {{ attributes.addClass('usa-accordion__heading') }}>
+  <button{{ button_attributes }}>
+    {{ title }}
+  </button>
+</h{{ heading_level }}>
+<div{{ content_attributes }} hidden>
+  <div class="accordion-body">
+    {{ content }}
+  </div>
+</div>

@@ -1,0 +1,24 @@
+name: Preview
+slots:
+  options:
+    - type: component
+      component: 'ui_suite_uswds:select_item'
+      props:
+        value: 'apple'
+        label: 'Apple'
+    - type: component
+      component: 'ui_suite_uswds:select_item'
+      props:
+        value: 'apricot'
+        label: 'Apricot'
+    - type: component
+      component: 'ui_suite_uswds:select_item'
+      props:
+        value: 'banana'
+        label: 'Banana smoothie'
+props:
+  required: true
+  placeholder: 'Example placeholder'
+  default_value: apple
+  field_name: fruit
+  field_label: 'Example Combo Box'

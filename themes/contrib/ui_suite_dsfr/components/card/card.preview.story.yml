@@ -1,0 +1,70 @@
+name: Preview
+slots:
+  image:
+    theme: image
+    uri: "data:image/svg+xml;charset=UTF-8,%3csvg style='font-size: 1.125rem; text-anchor: middle; user-select: none;' width='100%25' height='254' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'%3e%3crect width='100%25' height='100%25' fill='%23868e96'%3e%3c/rect%3e%3ctext x='50%25' y='50%25' fill='%23dee2e6' dy='.3em'%3eImage cap%3c/text%3e%3c/svg%3e"
+    alt: ""
+  image_badges:
+    type: component
+    component: "ui_suite_dsfr:badge_group"
+    slots:
+      badges:
+        - type: component
+          component: "ui_suite_dsfr:badge"
+          slots:
+            label: "Badge label"
+  title:
+    type: html_tag
+    tag: a
+    value: "Card title"
+    attributes:
+      href: "#"
+      title: "Link title"
+  tags_badges:
+    type: component
+    component: "ui_suite_dsfr:tag_group"
+    slots:
+      tags:
+        - type: component
+          component: "ui_suite_dsfr:tag"
+          slots:
+            label: "Label tag 1"
+        - type: component
+          component: "ui_suite_dsfr:tag"
+          slots:
+            label: "Label tag 2"
+  detail: Detail
+  detail_end: "Detail 2"
+  description: "The card gives clickable previews of a content page to the user. It is usually part of a collection or list of similar content previews. The card is never presented in isolation."
+  footer:
+    type: component
+    component: "ui_suite_dsfr:button_group"
+    slots:
+      buttons:
+        - type: component
+          component: "ui_suite_dsfr:button"
+          slots:
+            label: "Button 1"
+            url: "https://example.com"
+            title: "Button 1 title"
+          props:
+            variant: secondary
+        - type: component
+          component: "ui_suite_dsfr:button"
+          slots:
+            label: "Button 2"
+    props:
+      variant: inline__sm
+props:
+  horizontal_ratio: ""
+  enlarge_link: true
+  no_arrow: false
+  bg_boxes: shadow
+  detail_icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: checkbox-circle-line
+  detail_end_icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: alert-fill

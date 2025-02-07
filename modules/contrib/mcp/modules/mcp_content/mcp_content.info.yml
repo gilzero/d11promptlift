@@ -1,0 +1,13 @@
+name: 'Model Context Protocol Content'
+type: module
+description: 'Content management module for Model Context Protocol'
+package: Automation
+core_version_requirement: ^10 || ^11
+dependencies:
+  - mcp:mcp
+  - drupal:node
+
+# Information added by Drupal.org packaging script on 2025-01-13
+version: '1.0.0-alpha4'
+project: 'mcp'
+datestamp: 1736778433

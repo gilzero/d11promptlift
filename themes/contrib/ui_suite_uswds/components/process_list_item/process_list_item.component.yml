@@ -1,0 +1,10 @@
+name: 'Process List Item'
+description: "Internal: Meant to be used by 'Process List' pattern."
+group: List
+slots:
+  header:
+    title: 'Header'
+    description: 'Process list item header.'
+  body:
+    title: 'Body'
+    description: 'Body content.'

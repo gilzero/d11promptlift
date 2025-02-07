@@ -1,0 +1,5 @@
+name: Preview
+slots:
+  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi placerat gravida tortor id semper. Maecenas posuere et dolor nec feugiat. Fusce elit diam, gravida id tortor eu, eleifend faucibus libero. Mauris quis mi finibus, accumsan dui ut, ultricies est. Fusce mi quam, suscipit vitae ante a, egestas auctor purus."
+props:
+  color_schema: green-emeraude

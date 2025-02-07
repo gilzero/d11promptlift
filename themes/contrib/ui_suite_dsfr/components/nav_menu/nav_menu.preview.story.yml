@@ -1,0 +1,28 @@
+name: Preview
+props:
+  is_mega_menu: false
+  menu_name: "Main menu"
+  items:
+    - title: Home
+      url: /
+    - title: Library
+      url: "#"
+      in_active_trail: true
+      content:
+        extra_title: "Editorialized title"
+        extra_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi placerat gravida tortor id semper. Maecenas posuere et dolor nec feugiat."
+        extra_link:
+          url: "#"
+          label: "See the whole section"
+      below:
+        - title: "Sub 1"
+          url: "#"
+          below:
+            - title: "Sub 1.1"
+              url: "#"
+        - title: "Sub 2"
+          url: "#"
+          below:
+            - title: "Sub 2.1"
+              url: "#"
+    - title: Data

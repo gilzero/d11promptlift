@@ -1,0 +1,17 @@
+name: Default
+slots:
+  avatar:
+    type: component
+    component: "ui_suite_daisyui:avatar"
+    props:
+      rounded: rounded-full
+      size: "w-10"
+    slots:
+      image:
+        theme: image
+        uri: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+        alt: "Tailwind CSS chat bubble component"
+  header: "Obi-Wan Kenobi"
+  time: "12:45"
+  text: "You were the Chosen One!"
+  footer: Delivered

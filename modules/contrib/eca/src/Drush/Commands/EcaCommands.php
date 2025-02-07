@@ -5,9 +5,13 @@ namespace Drupal\eca\Drush\Commands;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\eca\EcaUpdate;
 use Drupal\eca\Service\ExportRecipe;
 use Drupal\eca\Service\Modellers;
-use Drush\Attributes as CLI;
+use Drush\Attributes\Argument;
+use Drush\Attributes\Command;
+use Drush\Attributes\Option;
+use Drush\Attributes\Usage;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -30,6 +34,7 @@ final class EcaCommands extends DrushCommands {
     EntityTypeManagerInterface $entityTypeManager,
     private readonly Modellers $ecaServiceModeller,
     private readonly ExportRecipe $exportRecipe,
+    private readonly EcaUpdate $ecaUpdate,
   ) {
     parent::__construct();
     $this->configStorage = $entityTypeManager->getStorage('eca');
@@ -49,16 +54,17 @@ final class EcaCommands extends DrushCommands {
       $container->get('entity_type.manager'),
       $container->get('eca.service.modeller'),
       $container->get('eca.export.recipe'),
+      $container->get('eca.update'),
     );
   }
 
   /**
    * Import a single ECA file.
    */
-  #[CLI\Command(name: 'eca:import', aliases: [])]
-  #[CLI\Argument(name: 'pluginId', description: 'The id of the modeller plugin.')]
-  #[CLI\Argument(name: 'filename', description: 'The file name to import, relative to the Drupal root or absolute.')]
-  #[CLI\Usage(name: 'eca:import camunda mymodel.xml', description: 'Import a single ECA file.')]
+  #[Command(name: 'eca:import', aliases: [])]
+  #[Argument(name: 'pluginId', description: 'The id of the modeller plugin.')]
+  #[Argument(name: 'filename', description: 'The file name to import, relative to the Drupal root or absolute.')]
+  #[Usage(name: 'eca:import camunda mymodel.xml', description: 'Import a single ECA file.')]
   public function import(string $pluginId, string $filename): void {
     $modeller = $this->ecaServiceModeller->getModeller($pluginId);
     if ($modeller === NULL) {
@@ -80,8 +86,8 @@ final class EcaCommands extends DrushCommands {
   /**
    * Update all previously imported ECA files.
    */
-  #[CLI\Command(name: 'eca:reimport', aliases: [])]
-  #[CLI\Usage(name: 'eca:reimport', description: 'Update all previously imported ECA files.')]
+  #[Command(name: 'eca:reimport', aliases: [])]
+  #[Usage(name: 'eca:reimport', description: 'Update all previously imported ECA files.')]
   public function reimportAll(): void {
     /** @var \Drupal\eca\Entity\Eca $eca */
     foreach ($this->configStorage->loadMultiple() as $eca) {
@@ -112,8 +118,8 @@ final class EcaCommands extends DrushCommands {
   /**
    * Export templates for all ECA modellers.
    */
-  #[CLI\Command(name: 'eca:export:templates', aliases: [])]
-  #[CLI\Usage(name: 'eca:export:templates', description: 'Export templates for all ECA modellers.')]
+  #[Command(name: 'eca:export:templates', aliases: [])]
+  #[Usage(name: 'eca:export:templates', description: 'Export templates for all ECA modellers.')]
   public function exportTemplates(): void {
     foreach ($this->ecaServiceModeller->getModellerDefinitions() as $plugin_id => $definition) {
       $modeller = $this->ecaServiceModeller->getModeller($plugin_id);
@@ -131,38 +137,23 @@ final class EcaCommands extends DrushCommands {
    * It is the modeller's responsibility to load all existing plugins and find
    * out if the model data, which is proprietary to them, needs to be updated.
    */
-  #[CLI\Command(name: 'eca:update', aliases: [])]
-  #[CLI\Usage(name: 'eca:update', description: 'Update all models if plugins got changed.')]
+  #[Command(name: 'eca:update', aliases: [])]
+  #[Usage(name: 'eca:update', description: 'Update all models if plugins got changed.')]
   public function updateAllModels(): void {
-    /** @var \Drupal\eca\Entity\Eca $eca */
-    foreach ($this->configStorage->loadMultiple() as $eca) {
-      $modeller = $this->ecaServiceModeller->getModeller($eca->get('modeller'));
-      if ($modeller === NULL) {
-        $this->logger->error('This modeller plugin ' . $eca->get('modeller') . ' does not exist.');
-        continue;
-      }
-      $model = $eca->getModel();
-      $modeller->setConfigEntity($eca);
-      if ($modeller->updateModel($model)) {
-        $filename = $model->getFilename();
-        if ($filename && file_exists($filename)) {
-          file_put_contents($filename, $model->getModeldata());
-        }
-        try {
-          $modeller->save($model->getModeldata(), $filename);
-        }
-        catch (\LogicException | EntityStorageException $e) {
-          $this->io()->error($e->getMessage());
-        }
-      }
+    $this->ecaUpdate->updateAllModels();
+    if ($infos = $this->ecaUpdate->getInfos()) {
+      $this->io()->info(implode(PHP_EOL, $infos));
+    }
+    if ($errors = $this->ecaUpdate->getErrors()) {
+      $this->io()->error(implode(PHP_EOL, $errors));
     }
   }
 
   /**
    * Disable all existing ECA entities.
    */
-  #[CLI\Command(name: 'eca:disable', aliases: [])]
-  #[CLI\Usage(name: 'eca:disable', description: 'Disable all models.')]
+  #[Command(name: 'eca:disable', aliases: [])]
+  #[Usage(name: 'eca:disable', description: 'Disable all models.')]
   public function disableAllModels(): void {
     /** @var \Drupal\eca\Entity\Eca $eca */
     foreach ($this->configStorage->loadMultiple() as $eca) {
@@ -180,8 +171,8 @@ final class EcaCommands extends DrushCommands {
   /**
    * Enable all existing ECA entities.
    */
-  #[CLI\Command(name: 'eca:enable', aliases: [])]
-  #[CLI\Usage(name: 'eca:enable', description: 'Enable all models.')]
+  #[Command(name: 'eca:enable', aliases: [])]
+  #[Usage(name: 'eca:enable', description: 'Enable all models.')]
   public function enableAllModels(): void {
     /** @var \Drupal\eca\Entity\Eca $eca */
     foreach ($this->configStorage->loadMultiple() as $eca) {
@@ -199,8 +190,8 @@ final class EcaCommands extends DrushCommands {
   /**
    * Rebuild the state of subscribed events.
    */
-  #[CLI\Command(name: 'eca:subscriber:rebuild', aliases: [])]
-  #[CLI\Usage(name: 'eca:subscriber:rebuild', description: 'Rebuild the state of subscribed events.')]
+  #[Command(name: 'eca:subscriber:rebuild', aliases: [])]
+  #[Usage(name: 'eca:subscriber:rebuild', description: 'Rebuild the state of subscribed events.')]
   public function rebuildSubscribedEvents(): void {
     /** @var \Drupal\eca\Entity\EcaStorage $storage */
     $storage = $this->configStorage;
@@ -210,17 +201,23 @@ final class EcaCommands extends DrushCommands {
   /**
    * Export a model as a recipe.
    */
-  #[CLI\Command(name: 'eca:model:export', aliases: [])]
-  #[CLI\Argument(name: 'id', description: 'The ID of the model.')]
-  #[CLI\Usage(name: 'eca:model:export MODELID', description: 'Export the model with the given ID as a recipe.')]
-  public function exportModel(string $id): void {
+  #[Command(name: 'eca:model:export', aliases: [])]
+  #[Argument(name: 'id', description: 'The ID of the model.')]
+  #[Option(name: 'namespace', description: 'The namespace of the composer package.')]
+  #[Option(name: 'destination', description: 'The directory where to store the recipe.')]
+  #[Usage(name: 'eca:model:export MODELID', description: 'Export the model with the given ID as a recipe.')]
+  #[Usage(name: 'eca:model:export MODELID --namespace=your-vendor', description: 'Customize the recipe namespace (name prefix in composer.json).')]
+  #[Usage(name: 'eca:model:export MODELID --destination=../recipes/process_abc', description: 'Output the recipe at a custom relative path.')]
+  public function exportModel(string $id, array $options = ['namespace' => self::OPT, 'destination' => self::OPT]): void {
     /** @var \Drupal\eca\Entity\Eca|null $eca */
     $eca = $this->configStorage->load($id);
     if ($eca === NULL) {
       $this->io()->error('The given ECA model does not exist!');
       return;
     }
-    $this->exportRecipe->doExport($eca);
+    $namespace = $options['namespace'] ?? ExportRecipe::DEFAULT_NAMESPACE;
+    $destination = $options['destination'] ?? ExportRecipe::DEFAULT_DESTINATION;
+    $this->exportRecipe->doExport($eca, NULL, $namespace, $destination);
   }
 
 }

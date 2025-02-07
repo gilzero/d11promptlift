@@ -1,0 +1,15 @@
+{% set attributes = attributes.addClass('stats') %}
+
+{% if variant and variant != 'responsive' %}
+  {% set attributes = (variant != 'default') ? attributes.addClass('stats-' ~ variant) : attributes %}
+{% elseif variant == 'responsive' %}
+  {% set attributes = attributes.addClass('stats-vertical', 'lg:stats-horizontal') %}
+{% endif %}
+
+{% if items %}
+<div {{ attributes }}>
+{% for item in items %}
+ {{ item }}
+{% endfor %}
+</div>
+{% endif %}

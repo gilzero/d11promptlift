@@ -1,0 +1,45 @@
+name: Preview
+slots:
+  items:
+    -
+      type: component
+      component: 'ui_suite_uswds:collection_item'
+      slots:
+        header_text: 'Gears of Government President’s Award winners'
+        content: 'Today, the Administration announces the winners of the Gears of Government President’s Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.'
+        meta_items_list:
+          -
+            plain_text: 'By John Doe and Constance Lu'
+          -
+            plain_text: 'September 30, 2020'
+        meta_items_tags:
+          -
+            plain_text: NEW
+          -
+            plain_text: PMA
+          -
+            plain_text: OMB
+    - type: component
+      component: 'ui_suite_uswds:collection_item'
+      slots:
+        header_text: 'Gears of Government President’s Award winners'
+        content: 'Today, the Administration announces the winners of the Gears of Government President’s Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.'
+        meta_items_list:
+          - plain_text: 'By John Doe and Constance Lu'
+          - plain_text: 'September 30, 2020'
+        meta_items_tags:
+          - plain_text: NEW
+          - plain_text: PMA
+          - plain_text: OMB
+    - type: component
+      component: 'ui_suite_uswds:collection_item'
+      slots:
+        header_text: 'Gears of Government President’s Award winners'
+        content: 'Today, the Administration announces the winners of the Gears of Government President’s Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.'
+        meta_items_list:
+          - plain_text: 'By John Doe and Constance Lu'
+          - plain_text: 'September 30, 2020'
+        meta_items_tags:
+          - plain_text: NEW
+          - plain_text: PMA
+          - plain_text: OMB

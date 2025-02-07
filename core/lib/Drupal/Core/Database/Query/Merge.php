@@ -103,6 +103,8 @@ class Merge extends Query implements ConditionInterface {
   /**
    * Array of fields to update to an expression in case of a duplicate record.
    *
+   * @var array
+   *
    * This variable is a nested array in the following format:
    * @code
    * <some field> => [
@@ -110,8 +112,6 @@ class Merge extends Query implements ConditionInterface {
    *  'arguments' => <array of arguments for condition, or NULL for none>,
    * ];
    * @endcode
-   *
-   * @var array
    */
   protected $expressionFields = [];
 
@@ -333,15 +333,12 @@ class Merge extends Query implements ConditionInterface {
   }
 
   /**
-   * Implements PHP magic __toString method to convert the query to a string.
-   *
-   * In the degenerate case, there is no string-able query as this operation
-   * is potentially two queries.
-   *
-   * @return string
-   *   The prepared query statement.
+   * {@inheritdoc}
    */
   public function __toString() {
+    // In the degenerate case, there is no string-able query as this operation
+    // is potentially two queries.
+    throw new \BadMethodCallException('The merge query can not be converted to a string');
   }
 
   /**

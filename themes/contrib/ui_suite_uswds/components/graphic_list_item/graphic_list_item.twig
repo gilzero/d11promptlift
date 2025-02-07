@@ -1,0 +1,14 @@
+{% set body %}
+   <h2 class="usa-graphic-list__heading">
+      {{ heading }}
+    </h2>
+    {{ content }}
+{% endset %}
+
+{{ include('ui_suite_uswds:media_block', {
+  image: image,
+  body: {
+    '#markup': body
+  },
+  attributes: attributes
+}, with_context = false) }}

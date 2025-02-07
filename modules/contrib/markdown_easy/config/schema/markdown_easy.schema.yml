@@ -1,0 +1,10 @@
+filter_settings.markdown_easy:
+  type: filter
+  label: 'Markdown Easy filter'
+  mapping:
+    flavor:
+      type: string
+      label: Flavor
+    tips:
+      type: string
+      label: Tips

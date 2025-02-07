@@ -1,0 +1,95 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Form Element
+slots:
+  errors:
+    title: Errors
+    examples:
+    - 'This is a required field.'
+props:
+  type: object
+  properties:
+    floating_label:
+      type: boolean
+      title: Floating label (checkboxes, radios, files & textareas excluded)
+      examples:
+        - true
+    switches:
+      type: boolean
+      title: Use switches (checkboxes and radios only)
+      examples:
+        - true
+    inline:
+      type: boolean
+      title: Inline when multiple (checkboxes and radios only)
+      examples:
+        - true
+    name:
+      type: string
+      title: Name
+      examples:
+      - example
+    type:
+      type: string
+      title: Type
+      examples:
+      - 'checkbox'
+    disabled:
+      type: string
+      title: Disabled
+      examples:
+      - Enabled
+    children:
+      type: string
+      title: 'Children'
+      examples:
+      - Children
+    prefix:
+      type: string
+      title: Prefix
+      examples:
+      - Prefix
+    suffix:
+      type: string
+      title: Suffix
+      examples:
+      - Suffix
+    description:
+      type: string
+      title: Description
+      examples:
+        - 'Description'
+    description_display:
+      type: string
+      title: Description display
+      examples:
+        - after
+      enum:
+        - before
+        - after
+        - invisible
+        - none
+      default: none
+    label:
+      type: string
+      title: Label
+    label_display:
+      type: string
+      title: Label display
+      enum:
+        - before
+        - after
+        - invisible
+        - none
+      default: none
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class' ]
+    description_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-description-attributes-class' ]

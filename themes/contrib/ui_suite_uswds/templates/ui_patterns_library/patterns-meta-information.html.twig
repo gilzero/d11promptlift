@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * UI Pattern meta information.
+ */
+#}
+
+{% if pattern is not empty %}
+
+  {# Pattern description. #}
+  <p class="pattern-preview__description">{{ pattern.description }}</p>
+
+  {# External documentation links. #}
+  {% if pattern.render_links %}
+    <p>
+      {% for renderLink in pattern.render_links %}
+        {{ renderLink|add_class('usa-button') }}
+      {% endfor %}
+    </p>
+  {% endif %}
+
+  {# Pattern fields descriptions. #}
+  {% if pattern.fields or pattern.additional.settings %}
+    <details>
+      <summary>{{ pattern.label ~ " - " ~ "Pattern Details"|t }}</summary>
+      <table class="pattern-preview__fields usa-table usa-table--stacked">
+        <thead>
+        <tr>
+          <th>{{ "Name"|t }}</th>
+          <th>{{ "Label"|t }}</th>
+          <th>{{ "Type"|t }}</th>
+          <th>{{ "Description"|t }} / {{ "Options"|t }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for field in pattern.fields %}
+          <tr>
+            <td><code>{{ field.name }}</code></td>
+            <td>{{ field.label }}</td>
+            <td><code>slot</code></td>
+            <td>{{ field.description }}</td>
+          </tr>
+        {% endfor %}
+        {% for name, setting in pattern.additional.settings %}
+          <tr>
+            <td><code>{{ name }}</code></td>
+            <td>{{ setting.label }}</td>
+            <td><code>{{ setting.type }}</code></td>
+            <td>{{ setting.description }}
+              {% if setting.options %}
+                <ul>
+                  {% for key, label in setting.options %}
+                    <li>{{ key }}: {{ label }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </details>
+  {% endif %}
+
+{% endif %}

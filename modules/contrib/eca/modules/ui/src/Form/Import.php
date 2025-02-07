@@ -167,16 +167,24 @@ class Import extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
-    $form['model'] = [
-      '#type' => 'file',
-      '#title' => $this->t('File containing the exported XML model or archive containing all dependent config entities.'),
-    ];
-    $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Import'),
-      '#button_type' => 'primary',
-    ];
+    if ($this->moduleHandler->moduleExists('config')) {
+      $form['model'] = [
+        '#type' => 'file',
+        '#title' => $this->t('File containing the exported XML model or archive containing all dependent config entities.'),
+      ];
+      $form['actions']['#type'] = 'actions';
+      $form['actions']['submit'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Import'),
+        '#button_type' => 'primary',
+      ];
+    }
+    else {
+      $form['info'] = [
+        '#type' => 'markup',
+        '#markup' => $this->t('Import requires the config module to be enabled.'),
+      ];
+    }
     return $form;
   }
 
@@ -363,7 +371,7 @@ class Import extends FormBase {
           $this->moduleHandler,
           $this->moduleInstaller,
           $this->themeHandler,
-          $this->stringTranslation,
+          $this->getStringTranslation(),
           $this->moduleExtensionList,
           $this->themeExtensionList
         );

@@ -48,7 +48,7 @@ trait AiSearchBackendEmbeddingsEngineTrait {
     return [
       'embeddings_engine' => NULL,
       'embeddings_engine_configuration' => [
-        'dimensions' => 768,
+        'dimensions' => 0,
       ],
     ];
   }
@@ -106,7 +106,7 @@ trait AiSearchBackendEmbeddingsEngineTrait {
     $form['embeddings_engine_configuration']['set_dimensions'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Set Dimensions Manually'),
-      '#description' => $this->t('This is for advanced usage, when you want to use custom embeddings engines. The dimensions entered must match the dimensions your embedding engine generates and must match the dimensions your vector database accepts or you should expect errors. Once the index has been created, the dimensions can no longer be changed or overridden.'),
+      '#description' => $this->t('This is for advanced usage, when you want to use custom or a variable embeddings engines. With variable embeddings engine you can choose a smaller dimension to choose performance and price over quality. Once the index has been created, the dimensions can no longer be changed or overridden.'),
       '#default_value' => FALSE,
       // This is disabled if its editing.
       '#disabled' => !$entity->isNew(),
@@ -130,9 +130,12 @@ trait AiSearchBackendEmbeddingsEngineTrait {
     if (!empty($this->engineConfiguration['embeddings_engine']) || $form_state->getValue('embeddings_engine')) {
       $plugin_manager = \Drupal::service('ai.provider');
       $parts = explode('__', $this->engineConfiguration['embeddings_engine'] ?? $form_state->get('embeddings_engine'));
-      $rule = $plugin_manager->createInstance($parts[0])->getAvailableConfiguration('embeddings', $parts[1]);
-      foreach ($rule as $key => $value) {
-        $form['embeddings_engine_configuration'][$key]['#default_value'] = $value['default'];
+      try {
+        $dimensions = $plugin_manager->createInstance($parts[0])->embeddingsVectorSize($parts[1]);
+        $form['embeddings_engine_configuration']['dimensions']['#value'] = $dimensions;
+      }
+      catch (\Exception $e) {
+        \Drupal::messenger()->addError('Could not load the embeddings engine to get the dimensions. Please check the configuration.' . $e->getMessage());
       }
     }
 

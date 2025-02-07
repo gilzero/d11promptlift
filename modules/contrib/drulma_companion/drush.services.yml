@@ -1,0 +1,5 @@
+services:
+  Drupal\drulma_companion\Generators\SubthemeGenerator:
+    arguments: ['@extension.list.theme']
+    tags:
+      - {name: drush.generator.v2}

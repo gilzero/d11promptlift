@@ -1,0 +1,46 @@
+name: Notice
+description: "Draws the user's attention to information without interrupting his current task."
+links:
+  - "https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/bandeau-d-information-importante"
+  - "https://storybook.systeme-de-design.gouv.fr/?path=/docs/notice--docs"
+variants:
+  info:
+    title: Information
+slots:
+  link:
+    title: Link
+    description: "Optional link to a page or a document."
+props:
+  type: object
+  properties:
+    title:
+      title: "Title"
+      description: "The title of the notice."
+      type: string
+    description:
+      title: "Description"
+      description: "The description of the notice."
+      type: string
+    dismissible:
+      title: "Dismissible?"
+      description: "It’s possible to dismiss any notice inline."
+      type: boolean
+    close_title:
+      title: "Close button text"
+      description: "Optional. Will be used only if notice is dismissible."
+      type: string
+    permanent_state:
+      title: "Permanent dismiss?"
+      description: "If true, the notice will stay closed on all pages once closed."
+      type: boolean
+    notice:
+      title: "Add role notice"
+      description: "Add a role='notice' (if the banner is inserted on the fly)"
+      type: string
+
+libraryOverrides:
+  js:
+    js/notice.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

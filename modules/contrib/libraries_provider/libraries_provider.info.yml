@@ -1,0 +1,13 @@
+name: Libraries Provider
+type: module
+description: Enables modules to define how to serve their external libraries.
+Package: Libraries
+core_version_requirement: ^10 || ^11
+dependencies:
+  - hook_event_dispatcher:core_event_dispatcher (^4)
+  - autoservices:autoservices (^1)
+
+# Information added by Drupal.org packaging script on 2024-08-10
+version: '2.0.4'
+project: 'libraries_provider'
+datestamp: 1723290502

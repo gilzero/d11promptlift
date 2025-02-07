@@ -1,0 +1,46 @@
+name: Carousel
+description: "Carousel show images or content in a scrollable area."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/carousel"
+variants:
+  default:
+    title: "Snap to start"
+  center:
+    title: "Snap to center"
+  end:
+    title: "Snap to end"
+slots:
+  items:
+    title: Items
+props:
+  type: object
+  properties:
+    carousel_id:
+      title: "HTML ID"
+      description: "Will be automatically generated if empty."
+      $ref: "ui-patterns://identifier"
+    full_width:
+      title: "Full width items?"
+      description: "Carousel with full width items"
+      type: boolean
+    vertical:
+      title: "Vertical?"
+      description: "Vertical carousel"
+      type: boolean
+    half_width:
+      title: "Half width?"
+      description: "Carousel with half width items"
+      type: boolean
+    full_bleed:
+      title: "Full bleed?"
+      description: "Full-bleed carousel"
+      type: boolean
+    indicator_buttons:
+      title: "Indicator buttons?"
+      description: "Carousel with indicator buttons"
+      type: boolean
+    next_prev_buttons:
+      title: "Next/Prev buttons?"
+      description: "Carousel with next/prev buttons"
+      type: boolean

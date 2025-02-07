@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for local tasks floating block.
+ */
+#}
+{% if content %}
+  {% embed "artisan:local-tasks-floating-block" with {
+    content,
+  } only %}
+  {% endembed %}
+{% endif %}

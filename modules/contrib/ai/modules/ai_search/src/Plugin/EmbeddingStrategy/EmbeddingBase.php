@@ -3,9 +3,11 @@
 namespace Drupal\ai_search\Plugin\EmbeddingStrategy;
 
 use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\ai\AiVdbProviderInterface;
 use Drupal\ai\Enum\EmbeddingStrategyCapability;
 use Drupal\ai\Enum\EmbeddingStrategyIndexingOptions;
+use Drupal\ai\OperationType\Embeddings\EmbeddingsInput;
 use Drupal\ai_search\Base\EmbeddingStrategyPluginBase;
 use Drupal\ai_search\EmbeddingStrategyInterface;
 use Drupal\search_api\IndexInterface;
@@ -114,8 +116,10 @@ class EmbeddingBase extends EmbeddingStrategyPluginBase implements EmbeddingStra
 
       // Only proceed if we have a valid chunk.
       if ($chunk) {
+        // Normalize the chunk before embedding it.
+        $input = new EmbeddingsInput($chunk);
         $raw_embeddings[] = $embedding_llm->embeddings(
-          $chunk,
+          $input,
           $this->modelId,
           ['ai_search'],
         )->getNormalized();
@@ -142,8 +146,8 @@ class EmbeddingBase extends EmbeddingStrategyPluginBase implements EmbeddingStra
     $index_config = $this->configFactory->get('ai_search.index.' . $index->id())->getRawData();
     $indexing_options = $index_config['indexing_options'] ?? [];
     $allowed_options = [
-      EmbeddingStrategyIndexingOptions::MAIN_CONTENT->getKey(),
-      EmbeddingStrategyIndexingOptions::CONTEXTUAL_CONTENT->getKey(),
+      EmbeddingStrategyIndexingOptions::MainContent->getKey(),
+      EmbeddingStrategyIndexingOptions::ContextualContent->getKey(),
     ];
     foreach ($fields as $field) {
 
@@ -168,7 +172,7 @@ class EmbeddingBase extends EmbeddingStrategyPluginBase implements EmbeddingStra
       }
 
       // Get and flatten the value to prepare for conversion to vector.
-      $value = $this->getValue($field);
+      $value = $this->getValue($field, TRUE);
       if (is_array($value)) {
         $value = implode(', ', $value);
       }
@@ -319,11 +323,11 @@ class EmbeddingBase extends EmbeddingStrategyPluginBase implements EmbeddingStra
       if (
         !$field instanceof FieldInterface
         || !isset($indexing_options[$field->getFieldIdentifier()]['indexing_option'])
-        || $indexing_options[$field->getFieldIdentifier()]['indexing_option'] !== EmbeddingStrategyIndexingOptions::ATTRIBUTES->getKey()
+        || $indexing_options[$field->getFieldIdentifier()]['indexing_option'] !== EmbeddingStrategyIndexingOptions::Attributes->getKey()
       ) {
         continue;
       }
-      $metadata[$field->getFieldIdentifier()] = $this->getValue($field);
+      $metadata[$field->getFieldIdentifier()] = $this->getValue($field, FALSE);
     }
     return $metadata;
   }
@@ -374,12 +378,44 @@ class EmbeddingBase extends EmbeddingStrategyPluginBase implements EmbeddingStra
    *
    * @param \Drupal\search_api\Item\FieldInterface $field
    *   The Search API field.
+   * @param bool $convert_to_label
+   *   Convert entity reference target IDs to labels.
    *
    * @return int|string|bool|float
    *   The field value.
    */
-  protected function getValue(FieldInterface $field): int|array|string|bool|float {
+  protected function getValue(FieldInterface $field, bool $convert_to_label): int|array|string|bool|float {
     $values = $field->getValues();
+    try {
+
+      // If the field type is a reference field and its intended to be rendered
+      // as fulltext or a string.
+      $definition = $field->getDataDefinition();
+      $settings = $definition->getSettings();
+      if (
+        in_array($field->getType(), ['fulltext', 'string'])
+        && $definition->getDataType() === 'field_item:entity_reference'
+        && !empty($settings['target_type'])
+      ) {
+
+        // If we can get the entity storage and verify the first entity is
+        // an entity, clear the values and start replacing them with the labels.
+        $storage = $this->entityTypeManager->getStorage($settings['target_type']);
+        $entities = $storage->loadMultiple($values);
+        if ($entities && reset($entities) instanceof EntityInterface) {
+          $values = [];
+          foreach ($entities as $entity) {
+            if (!$entity instanceof EntityInterface) {
+              continue;
+            }
+            $values[$entity->id()] = $entity->label();
+          }
+        }
+      }
+    }
+    catch (\Exception $exception) {
+      // Do nothing, we can just index the values for this type of field.
+    }
 
     // Always composite if field supports multiple. Otherwise, if the field is
     // a single value, we can choose base on the field type At some point we
@@ -403,7 +439,7 @@ class EmbeddingBase extends EmbeddingStrategyPluginBase implements EmbeddingStra
       // Some Vector Databases support arrays, return that in the metadata
       // and leave it to the Provider to flatten if needed.
       $parts = [];
-      foreach ($field->getValues() as $value) {
+      foreach ($values as $value) {
         if (in_array($field->getType(), ['date', 'boolean', 'integer'])) {
           $parts[] = (int) $this->converter->convert((string) $value);
         }

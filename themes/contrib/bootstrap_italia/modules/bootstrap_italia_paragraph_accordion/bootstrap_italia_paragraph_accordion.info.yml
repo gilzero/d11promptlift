@@ -1,0 +1,22 @@
+name: "Bootstrap Italia Paragraph Accordion"
+description: This module manages the accordion component through the paragraph module.
+package: "Bootstrap Italia"
+
+type: module
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - field_group:field_group
+  - imce:imce
+  - paragraphs:paragraphs
+  - bootstrap_italia:bootstrap_italia_paragraph
+
+components:
+  namespaces:
+    # Components library 2.0
+    bi-bcl:
+      - ../../components/components-2
+
+# Information added by Drupal.org packaging script on 2024-12-02
+version: '2.12.0'
+project: 'bootstrap_italia'
+datestamp: 1733160393

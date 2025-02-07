@@ -20,8 +20,8 @@ class Numeric extends RuleBase {
   /**
    * {@inheritDoc}
    */
-  public function tokens() {
-    $tokens = parent::tokens();
+  public function tokens(ContentEntityInterface $entity) {
+    $tokens = parent::tokens($entity);
     $tokens['min'] = 'A min numeric value, if set.';
     $tokens['max'] = 'A max numeric value, if set.';
     return $tokens;

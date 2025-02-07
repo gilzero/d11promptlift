@@ -1,0 +1,17 @@
+name: Browser mockup
+description: "Browser mockup shows a box that looks like a browser window."
+group: Mockup
+links:
+  - "https://daisyui.com/components/mockup-browser/"
+props:
+  type: object
+  properties:
+    border:
+      title: "With border?"
+      description: "Display browser mockup with border."
+      type: boolean
+slots:
+  toolbar:
+    title: Toolbar
+  content:
+    title: Content

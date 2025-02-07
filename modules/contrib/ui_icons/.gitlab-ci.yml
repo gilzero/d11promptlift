@@ -1,0 +1,85 @@
+variables:
+  _CSPELL_IGNORE_PATHS: '**/build/icon.js, *.json, **/*.svg'
+
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - "/includes/include.drupalci.main.yml"
+      - "/includes/include.drupalci.variables.yml"
+      - "/includes/include.drupalci.workflows.yml"
+
+.skip-phpmd-rule: &skip-phpmd-rule
+  if: '$SKIP_PHPMD == "1"'
+  when: never
+
+.skip-coverage-rule: &skip-coverage-rule
+  if: '$SKIP_COVERAGE == "1"'
+  when: never
+
+.phpmd-base:
+  stage: validate
+  rules:
+    - !reference [.opt-in-current-rule]
+    - *skip-phpmd-rule
+    - !reference [.php-files-exist-rule]
+  needs:
+    - composer
+  before_script:
+    - curl -fsSL https://phpmd.org/static/latest/phpmd.phar -o vendor/bin/phpmd
+    - chmod +x vendor/bin/phpmd
+  script:
+    - php --version
+    - vendor/bin/phpmd --version
+    - sed -i "s#/builds/project/ui_icons#${CI_PROJECT_DIR}#g" ${_WEB_ROOT}/modules/custom/${CI_PROJECT_NAME}/.phpmd.baseline.xml
+    - vendor/bin/phpmd
+        $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME
+        gitlab
+        $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/.phpmd.xml
+        --exclude 'tests/*,**/tests/*'
+        --baseline-file $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/.phpmd.baseline.xml > phpmd-quality-report.json || true
+    - vendor/bin/phpmd
+        $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME
+        text
+        $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/.phpmd.xml
+        --exclude 'tests/*,**/tests/*'
+        --baseline-file $_WEB_ROOT/modules/custom/$CI_PROJECT_NAME/.phpmd.baseline.xml
+  allow_failure: true
+  artifacts:
+    expose_as: phpmd
+    when: always
+    expire_in: 6 mos
+    reports:
+      codequality: phpmd-quality-report.json
+    name: artifacts-$CI_PIPELINE_ID-$CI_JOB_NAME_SLUG
+    paths:
+      - phpmd-quality-report.json
+
+phpmd:
+  extends: .phpmd-base
+
+# Coverage seems slow and not manual.
+.coverage:
+  extends:
+    - .phpunit-base
+  services:
+    - !reference [.with-database]
+  rules:
+    - !reference [.opt-in-current-rule]
+    - *skip-coverage-rule
+    - !reference [.phpunit-tests-exist-rule]
+  before_script:
+    - echo -e "\e[0Ksection_start:`date +%s`:install_xdebug[collapsed=true]\r\e[0KInstall PHP Xdebug"
+    - apt-get update
+    - apt-get install -y --no-install-recommends $PHPIZE_DEPS
+    - pecl install xdebug && docker-php-ext-enable xdebug
+    - echo -e "\e[0Ksection_end:`date +%s`:install_xdebug\r\e[0K"
+    - export XDEBUG_MODE=coverage
+  variables:
+    SYMFONY_DEPRECATIONS_HELPER: 'disabled'
+    _PHPUNIT_TESTGROUPS: ui_icons
+    _PHPUNIT_EXTRA: --testsuite unit,kernel --strict-coverage --coverage-text --only-summary-for-coverage-text
+  # @see https://docs.gitlab.com/ee/ci/yaml/#coverage
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+  allow_failure: true
+  when: manual

@@ -7,6 +7,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\eca\Attributes\Token;
 use Drupal\eca\Plugin\DataType\DataTransferObject;
 use Drupal\eca\Plugin\ECA\Event\EventBase;
+use Drupal\eca_misc\Event\EcaExceptionEvent;
 use Symfony\Component\HttpKernel\Event\ControllerArgumentsEvent;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -95,6 +96,13 @@ class KernelEvent extends EventBase {
         'event_class' => Event::class,
         'description' => new TranslatableMarkup('Fires, when the service container finished initializing in subrequest.'),
       ],
+      'exception_status_code' => [
+        'label' => 'Exception status code',
+        'event_name' => EcaExceptionEvent::EVENT_NAME,
+        'event_class' => EcaExceptionEvent::class,
+        'description' => new TranslatableMarkup('Event that is dispatched when a routing exception 4xx or 5xx is found.'),
+        'eca_version_introduced' => '2.1.0',
+      ],
     ];
   }
 
@@ -117,6 +125,7 @@ class KernelEvent extends EventBase {
       new Token(name: 'content', description: 'The content of the POST request.'),
       new Token(name: 'ip', description: 'The client IP.'),
       new Token(name: 'code', description: 'The response code.', classes: [
+        EcaExceptionEvent::class,
         ResponseEvent::class,
       ]),
     ],
@@ -134,6 +143,11 @@ class KernelEvent extends EventBase {
         'content_type' => $event->getRequest()->getContentTypeFormat(),
         'content' => (string) $event->getRequest()->getContent(),
         'ip' => $event->getRequest()->getClientIp(),
+      ];
+    }
+    if ($event instanceof EcaExceptionEvent) {
+      $data += [
+        'code' => $event->getStatusCode(),
       ];
     }
     if ($event instanceof ResponseEvent) {

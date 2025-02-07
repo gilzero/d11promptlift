@@ -1,0 +1,9 @@
+theme:
+  css:
+    theme:
+      assets/css/test.css: {}
+
+test_8:
+  css:
+    theme:
+      assets/css/test_8.css: {}

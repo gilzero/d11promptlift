@@ -1,0 +1,21 @@
+ui_icons.autocomplete:
+  version: VERSION
+  js:
+    js/icon.autocomplete.js: {}
+  css:
+    component:
+      css/icon.autocomplete.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - core/drupal.autocomplete
+
+ui_icons.preview:
+  version: VERSION
+  js:
+    js/icon.preview.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

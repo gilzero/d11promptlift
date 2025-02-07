@@ -1,0 +1,143 @@
+<?php
+
+/**
+ * @file
+ * Contains the implementation for the empty_fields module.
+ */
+
+use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FormatterInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function empty_fields_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.empty_fields':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides a way to show empty fields that would otherwise be hidden.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_field_formatter_third_party_settings_form().
+ */
+function empty_fields_field_formatter_third_party_settings_form(FormatterInterface $plugin, FieldDefinitionInterface $field_definition, $view_mode, $form, FormStateInterface $form_state) {
+  /** @var \Drupal\empty_fields\EmptyFieldsPluginManager $manager */
+  $manager = \Drupal::service('plugin.manager.empty_fields');
+  $options = ['' => t('- Default -')];
+  foreach ($manager->getDefinitions() as $id => $data) {
+    if ($id === 'broken') {
+      // Do not allow select 'broken' the fallback plugin.
+      continue;
+    }
+    $options[$id] = $data['label'];
+  }
+  $default = $plugin->getThirdPartySetting('empty_fields', 'handler', '');
+  $element['handler'] = [
+    '#type' => 'select',
+    '#title' => t('Empty value behavior'),
+    '#default_value' => $default,
+    '#options' => $options,
+    '#ajax' => [
+      'callback' => '_empty_fields_config_form',
+      'wrapper' => 'edit-empty-field-settings-wrapper',
+    ],
+  ];
+  $handler = $form_state->getValue([
+    'fields',
+    $field_definition->getName(),
+    'settings_edit_form',
+    'third_party_settings',
+    'empty_fields',
+    'handler',
+  ], $default);
+  if ($handler) {
+    $configuration = $plugin->getThirdPartySetting('empty_fields', 'settings', []);
+    $handler = $manager->createInstance($handler, $configuration);
+    if ($settings = $handler->settingsForm([], $form_state)) {
+      // Provide configuration form if any.
+      $element['settings'] = $settings;
+    }
+  }
+  $element['settings']['#prefix'] = '<div id="edit-empty-field-settings-wrapper">';
+  $element['settings']['#suffix'] = '</div>';
+  return $element;
+}
+
+/**
+ * Handles switching the handler type selector.
+ */
+function _empty_fields_config_form($form, FormStateInterface $form_state) {
+  $parents = $form_state->getTriggeringElement()['#array_parents'];
+  array_pop($parents);
+  $parents[] = 'settings';
+  return NestedArray::getValue($form, $parents);
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function empty_fields_field_formatter_settings_summary_alter(&$summary, $context) {
+  /** @var \Drupal\Core\Field\FormatterInterface $formatter */
+  $formatter = $context['formatter'];
+  if ($handler = $formatter->getThirdPartySetting('empty_fields', 'handler', '')) {
+    $configuration = $formatter->getThirdPartySetting('empty_fields', 'settings', []);
+    /* @var \Drupal\empty_fields\EmptyFieldsPluginManager manager */
+    $manager = \Drupal::service('plugin.manager.empty_fields');
+    /** @var \Drupal\empty_fields\EmptyFieldPluginInterface $plugin */
+    $plugin = $manager->createInstance($handler, $configuration);
+    $summary[] = $plugin->settingsSummary();
+  }
+}
+
+/**
+ * Implements hook_entity_display_build_alter().
+ */
+function empty_fields_entity_display_build_alter(&$build, $context) {
+  /** @var \Drupal\Core\Entity\FieldableEntityInterface $entity */
+  $entity = $context['entity'];
+  /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display */
+  $display = $context['display'];
+  /** @var \Drupal\empty_fields\EmptyFieldsPluginManager $manager */
+  $manager = \Drupal::service('plugin.manager.empty_fields');
+  foreach (Element::children($build) as $field_name) {
+    if ($entity->get($field_name)->isEmpty()
+      && $entity->{$field_name}->access('view')
+      && ($formatter = $display->getRenderer($field_name)) &&
+      ($handler = $formatter->getThirdPartySetting('empty_fields', 'handler', ''))
+    ) {
+      $configuration = $formatter->getThirdPartySetting('empty_fields', 'settings', []);
+      /** @var \Drupal\empty_fields\EmptyFieldPluginInterface $plugin */
+      $plugin = $manager->createInstance($handler, $configuration);
+      $definition = $entity->get($field_name)->getFieldDefinition();
+      $component = $display->getComponent($field_name);
+
+      $build[$field_name] = [
+        '#theme' => 'field',
+        '#title' => $definition->getLabel(),
+        '#label_display' => $component['label'],
+        '#view_mode' => $context['view_mode'],
+        '#language' => $entity->get($field_name)->getLangcode(),
+        '#field_name' => $definition->getName(),
+        '#field_type' => 'string',
+        '#field_translatable' => $definition->isTranslatable(),
+        '#entity_type' => $entity->getEntityTypeId(),
+        '#bundle' => $entity->bundle(),
+        '#object' => $entity,
+        '#items' => [(object) ['_attributes' => []]],
+        '#is_multiple' => FALSE,
+        '#attributes' => ['class' => ['empty-fields', "empty-fields__$handler"]],
+        // Use simple formatter.
+        '#formatter' => 'string',
+        '0' => $plugin->react($context),
+      ] + $build[$field_name];
+    }
+  }
+}

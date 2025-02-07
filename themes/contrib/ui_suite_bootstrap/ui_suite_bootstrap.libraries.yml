@@ -1,0 +1,148 @@
+bootstrap:
+  remote: http://getbootstrap.com/
+  license:
+    name: MIT
+    url: https://github.com/twbs/bootstrap/blob/main/LICENSE
+    gpl-compatible: false
+  js:
+    /libraries/bootstrap/dist/js/bootstrap.bundle.min.js: { minified: true }
+  css:
+    theme:
+      /libraries/bootstrap/dist/css/bootstrap.min.css: { minified: true }
+      assets/css/form/form-text.css: { }
+
+accessibility:
+  js:
+    assets/js/accessibility.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+component_placeholder:
+  css:
+    theme:
+      assets/css/component/placeholder.css: {}
+
+drupal.ajax:
+  js:
+    assets/js/misc/ajax.js: {}
+  css:
+    component:
+      assets/css/component/ajax.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+drupal.autocomplete:
+  js:
+    assets/js/misc/autocomplete.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+drupal.checkbox:
+  js:
+    assets/js/misc/checkbox.js: {}
+  dependencies:
+    - core/drupal
+
+drupal.dialog:
+  js:
+    assets/js/misc/dialog/dialog.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+drupal.dialog.ajax:
+  js:
+    assets/js/misc/dialog/dialog.ajax.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+
+drupal.dialog.off_canvas:
+  js:
+    assets/js/misc/dialog/dialog.off-canvas.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+  css:
+    component:
+      assets/css/component/off-canvas.css: {}
+
+drupal.layout_builder:
+  css:
+    theme:
+      assets/css/layout-builder/layout-builder.css: {}
+
+drupal.message:
+  js:
+    assets/js/misc/message.js: {}
+
+drupal.progress:
+  js:
+    assets/js/misc/progress.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+drupal.tabledrag:
+  js:
+    assets/js/misc/tabledrag.js: {}
+  css:
+    component:
+      assets/css/component/tabledrag.css: {}
+
+drupal.text:
+  js:
+    assets/js/text/text.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+
+drupal.user:
+  css:
+    component:
+      assets/css/user/password.css: {}
+
+example_carousel:
+  css:
+    theme:
+      assets/css/example/carousel.css: {}
+
+field:
+  css:
+    component:
+      assets/css/component/field.css: {}
+
+form:
+  css:
+    component:
+      assets/css/form/form-required.css: {}
+
+indented:
+  css:
+    component:
+      assets/css/component/indented.css: {}
+
+jquery.validate:
+  js:
+    assets/js/jquery-validation/validate.js: {}
+  dependencies:
+    - core/jquery
+
+media_library.theme:
+  css:
+    theme:
+      assets/css/media-library/media-library-buttons.css: {}
+      assets/css/media-library/media-library-icons.css: {}
+      assets/css/media-library/media-library-states.css: {}
+
+media_library.widget:
+  css:
+    theme:
+      assets/css/media-library/media-library-container-query.css: {}

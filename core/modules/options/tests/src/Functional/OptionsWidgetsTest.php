@@ -13,7 +13,6 @@ use Drupal\Tests\field\Functional\FieldTestBase;
  * Tests the Options widgets.
  *
  * @group options
- * @group #slow
  */
 class OptionsWidgetsTest extends FieldTestBase {
 
@@ -410,7 +409,7 @@ class OptionsWidgetsTest extends FieldTestBase {
     // Submit form: select invalid 'none' option.
     $edit = ['card_1' => '_none'];
     $this->submitForm($edit, 'Save');
-    $this->assertSession()->responseContains(t('This is custom message for required field.'));
+    $this->assertSession()->responseContains('This is custom message for required field.');
   }
 
   /**

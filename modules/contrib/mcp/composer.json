@@ -1,0 +1,18 @@
+{
+    "name": "drupal/mcp",
+    "description": "The MCP Drupal module implements the Model Context Protocol (MCP)",
+    "type": "drupal-module",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/project/ai.git",
+            "no-api": true
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "drupal/ai": "dev-3479388-research-normalize-function"
+    }
+}

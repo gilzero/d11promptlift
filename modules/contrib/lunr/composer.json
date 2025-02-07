@@ -1,0 +1,10 @@
+{
+  "name": "drupal/lunr",
+  "type": "drupal-module",
+  "description": "Provides a basic integration between Drupal and Lunr.js",
+  "homepage": "http://drupal.org/project/lunr",
+  "license": "GPL-2.0+",
+  "require": {
+    "drupal/core": "^8.7 || ^9 || ^10 || ^11"
+  }
+}

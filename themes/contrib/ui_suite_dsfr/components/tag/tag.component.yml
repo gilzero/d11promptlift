@@ -1,0 +1,71 @@
+name: Tag
+description: "The tag categorizes/classifies/organizes content using keywords. It helps users to easily search and find information."
+group: Tag
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/tag"
+variants:
+  default:
+    title: "Medium (default)"
+  sm:
+    title: Small
+slots:
+  label:
+    title: Label
+props:
+  type: object
+  properties:
+    url:
+      title: URL
+      type: string
+    dismissible:
+      title: "Dismissible?"
+      description: "It’s possible to dismiss tag inline. Can be used only for unclicable tags."
+      type: boolean
+    color_schema:
+      title: "Color schema"
+      description: "It is possible to use illustrative colors on clickable tags only."
+      type: string
+      enum:
+        - green-tilleul-verveine
+        - green-bourgeon
+        - green-emeraude
+        - green-menthe
+        - green-archipel
+        - blue-ecume
+        - blue-cumulus
+        - purple-glycine
+        - pink-macaron
+        - pink-tuile
+        - yellow-tournesol
+        - yellow-moutarde
+        - orange-terre-battue
+        - brown-cafe-creme
+        - brown-caramel
+        - brown-opera
+        - beige-gris-galet
+      "meta:enum":
+        green-tilleul-verveine: "Tilleul Verveine"
+        green-bourgeon: Bourgeon
+        green-emeraude: Émeraude
+        green-menthe: Menthe
+        green-archipel: Archipel
+        blue-ecume: Écume
+        blue-cumulus: Cumulus
+        purple-glycine: Glycine
+        pink-macaron: Macaron
+        pink-tuile: Tuile
+        yellow-tournesol: Tournesol
+        yellow-moutarde: Moutarde
+        orange-terre-battue: "Terre Battue"
+        brown-cafe-creme: "Café crème"
+        brown-caramel: Caramel
+        brown-opera: Opéra
+        beige-gris-galet: "Gris Galet"
+    icon:
+      title: Icon
+      description: "Will not be applied for dismissible tag."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr

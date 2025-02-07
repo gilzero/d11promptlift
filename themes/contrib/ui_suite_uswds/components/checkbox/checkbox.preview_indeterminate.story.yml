@@ -1,0 +1,7 @@
+name: Preview Indeterminate
+props:
+  tile: true
+  indeterminate: true
+  field_name: 'check-historical-douglass_indeterminate'
+  field_label: 'Frederick Douglass'
+  description: 'This is optional text that can be used to describe the label in more detail.'

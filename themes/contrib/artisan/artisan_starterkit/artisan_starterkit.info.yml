@@ -1,0 +1,31 @@
+name: artisan_starterkit
+type: theme
+base theme: artisan
+description: artisan_starterkit Artisan based theme.
+alt text: artisan_starterkit Artisan based theme.
+core_version_requirement: ^10 || ^11
+# version: '1.0.1'
+
+dependencies:
+  - drupal:serialization
+
+regions:
+  header_top: Header Top
+  branding: Branding
+  primary_menu: Primary menu
+  secondary_menu: Secondary menu
+  header: Header
+  content: Content
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+
+libraries:
+  - artisan_starterkit/style
+
+ckeditor5-stylesheets:
+  - build/css/style.css
+
+# Information added by Drupal.org packaging script on 2025-02-04
+version: '1.3.9'
+project: 'artisan'
+datestamp: 1738686397

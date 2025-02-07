@@ -5,6 +5,7 @@ namespace Drupal\eca_content\Event;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\eca\Event\FormEventInterface;
+use Drupal\eca\Event\RenderEventInterface;
 use Drupal\eca\Service\ContentEntityTypes;
 
 /**
@@ -16,7 +17,7 @@ use Drupal\eca\Service\ContentEntityTypes;
  *
  * @package Drupal\eca_content\Event
  */
-class ContentEntityPrepareForm extends ContentEntityBaseContentEntity implements FormEventInterface {
+class ContentEntityPrepareForm extends ContentEntityBaseContentEntity implements FormEventInterface, RenderEventInterface {
 
   /**
    * The operation.
@@ -51,6 +52,16 @@ class ContentEntityPrepareForm extends ContentEntityBaseContentEntity implements
   }
 
   /**
+   * Sets the entity.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity.
+   */
+  public function setEntity(ContentEntityInterface $entity): void {
+    $this->entity = $entity;
+  }
+
+  /**
    * Gets the operation.
    *
    * @return string|null
@@ -72,6 +83,17 @@ class ContentEntityPrepareForm extends ContentEntityBaseContentEntity implements
    */
   public function &getForm(): ?array {
     $form = &$this->formState->getCompleteForm();
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function &getRenderArray(): array {
+    $form = &$this->getForm();
+    if ($form === NULL) {
+      $form = [];
+    }
     return $form;
   }
 

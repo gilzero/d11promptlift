@@ -1,0 +1,27 @@
+pwa_service_worker.config:
+  path: '/admin/config/services/pwa/service-worker'
+  defaults:
+    _form: '\Drupal\pwa_service_worker\Form\ServiceWorkerConfigurationForm'
+    _title: 'Service worker configuration'
+  requirements:
+    _permission: 'administer pwa'
+pwa_service_worker.registration:
+  path: /service-worker-data
+  defaults:
+    _controller: '\Drupal\pwa_service_worker\Controller\ServiceWorkerController::serviceWorkerRegistration'
+    _disable_route_normalizer: 'TRUE'
+  requirements:
+    _permission: 'access pwa'
+pwa_service_worker.offline_page:
+  path: /offline
+  defaults:
+    _controller: '\Drupal\pwa_service_worker\Controller\ServiceWorkerController::offlinePage'
+    _title: 'Offline'
+  requirements:
+    _permission: 'access pwa'
+pwa_service_worker.phone_home:
+  path: /pwa/phone-home
+  defaults:
+    _controller: '\Drupal\pwa_service_worker\Controller\ServiceWorkerController::moduleActivePage'
+  requirements:
+    _permission: 'access pwa'

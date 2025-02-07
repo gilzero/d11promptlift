@@ -1,0 +1,32 @@
+name: Footer Top Component
+slots:
+  content:
+    title: Footer top content
+    examples:
+      - >
+        {% embed 'artisan:nav' with {
+          attributes: create_attribute().addClass(['navbar-nav']),
+          items: [
+                { "url": "internal:/", "title": "Example Footer Top Link1" },
+                { "url": "internal:/", "title": "Example Footer Top Link2" },
+                { "url": "internal:/", "title": "Example Footer Top Link3" }
+              ]
+        } only %}
+        {% endembed %}
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Footer Top Attributes
+      description: Attributes for the footer top wrapper
+      examples:
+        - class: [ 'example-attributes-class' ]
+    container_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Container Attributes
+      description: Attributes for the container element
+      examples:
+        - class: [ 'example-container-attributes-class' ]

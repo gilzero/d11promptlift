@@ -1,0 +1,32 @@
+name: UI Suite USWDS
+type: theme
+description: 'A site-builder friendly USWDS theme, using the UI Suite: UI Patterns, UI Styles, Layout Options & UI Examples modules.'
+core_version_requirement: ^10 || ^11
+base theme: stable9
+logo: 'logo.png'
+screenshot: 'screenshot.png'
+dependencies:
+  - ui_icons:ui_icons_patterns
+  - ui_patterns:ui_patterns
+
+regions:
+  header_top: 'Header - Top'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  hero: 'Hero'
+  content: 'Content'
+  footer_bottom: 'Footer - Bottom'
+
+libraries:
+  - ui_suite_uswds/base
+  - ui_suite_uswds/framework
+  - core/normalize
+
+
+# Information added by Drupal.org packaging script on 2025-01-10
+version: '4.0.0-beta1'
+project: 'ui_suite_uswds'
+datestamp: 1736547758

@@ -1,0 +1,15 @@
+name: (Code)
+description: "Code displays a line of code."
+group: Mockup
+links:
+  - "https://daisyui.com/components/mockup-code/"
+props:
+  type: object
+  properties:
+    prefix:
+      title: "Prefix"
+      description: "Display line prefix."
+      type: string
+slots:
+  content:
+    title: Content

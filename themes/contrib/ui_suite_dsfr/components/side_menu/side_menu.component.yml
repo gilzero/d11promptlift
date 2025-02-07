@@ -1,0 +1,38 @@
+name: Sidemenu
+description: "The side menu allows users to navigate between the different pages of a topic or the same topic."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/menu-lateral"
+variants:
+  default:
+    title: Default
+  sticky:
+    title: Sticky
+  sticky_full_height:
+    title: "Sticky full height"
+slots:
+  title:
+    title: "Menu title"
+props:
+  type: object
+  properties:
+    position:
+      title: "Menu position"
+      type: string
+      enum:
+        - default
+        - right
+      "meta:enum":
+        default: Left
+        right: Right
+    id:
+      title: ID
+      description: "Used for collapse mechanism. Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"
+    title_id:
+      title: "Title  ID"
+      description: "An identifier for the side menu title. It must start with a letter and will be randomly generated if left empty."
+      $ref: "ui-patterns://identifier"
+    items:
+      title: "Menu items"
+      description: "Full-height and lightweight navigation (including support for dropdowns)."
+      $ref: "ui-patterns://links"

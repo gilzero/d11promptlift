@@ -1,0 +1,43 @@
+name: Preview
+props:
+  nav_type: ul
+  card_header: false
+  items:
+    - url: "#"
+      title: Active
+      link_attributes:
+        class:
+          - active
+    - title: Dropdown
+      url: "#"
+      below:
+        - title: "Dropdown header"
+          link_attributes:
+            class:
+              - dropdown-header
+        - title: Action
+          url: "#"
+        - title: "Dropdown item text"
+        - title: "Another action"
+          url: "#"
+        - title: "Something else here"
+          url: "#"
+        - {}
+        - title: "Separated link"
+          url: "#"
+        - title: "Action (button)"
+          link_attributes:
+            class:
+              - dropdown-item
+        - title: "Another action (button)"
+          link_attributes:
+            class:
+              - dropdown-item
+        - title: "Something else here (text)"
+    - url: "#"
+      title: "Much longer nav link"
+    - url: "#"
+      title: Disabled
+      link_attributes:
+        class:
+          - disabled

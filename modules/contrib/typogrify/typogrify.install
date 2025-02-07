@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Install, uninstall, and update hook implementations for the typogrify module.
+ */
+
+/**
+ * Update the plugin ID for the Typogrify filter.
+ */
+function typogrify_update_8101() {
+  /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+  $config_factory = \Drupal::configFactory();
+  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+  $old_key = 'TypogrifyFilter';
+  $new_key = 'typogrify';
+
+  foreach ($config_storage->listAll('filter.format') as $config_name) {
+    $config = $config_factory->getEditable($config_name);
+    $settings = $config->get("filters.$old_key");
+    if ($settings && !$config->get("filters.$new_key")) {
+      $config
+        ->clear("filters.$old_key")
+        ->set("filters.$new_key", ['id' => $new_key] + $settings)
+        ->save();
+    }
+  }
+}

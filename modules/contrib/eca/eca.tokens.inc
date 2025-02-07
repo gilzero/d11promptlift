@@ -7,6 +7,8 @@
 
 use Drupal\Core\Access\AccessibleInterface;
 use Drupal\Core\Cache\CacheableDependencyInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Markup;
@@ -52,10 +54,71 @@ function eca_token_info(): array {
 }
 
 /**
+ * Implements hook_token_info_alter().
+ */
+function eca_token_info_alter(array &$data): void {
+  $definitions = \Drupal::entityTypeManager()->getDefinitions();
+  foreach ($definitions as $definition) {
+    if ($definition instanceof ContentEntityTypeInterface && isset($data['tokens'][$definition->id()])) {
+      if ($definition->hasKey('id') && !isset($data['tokens'][$definition->id()]['id'])) {
+        $data['tokens'][$definition->id()]['id'] = [
+          'name' => t('Entity ID'),
+          'description' => t('The ID of the entity.'),
+        ];
+      }
+      if ($definition->hasKey('label') && !isset($data['tokens'][$definition->id()]['label'])) {
+        $data['tokens'][$definition->id()]['label'] = [
+          'name' => t('Entity label'),
+          'description' => t('The label of the entity.'),
+        ];
+      }
+      $data['tokens'][$definition->id()]['entity_type'] = [
+        'name' => t('Entity type'),
+        'description' => t('The type ID of the entity.'),
+      ];
+      if ($definition->hasKey('bundle')) {
+        $data['tokens'][$definition->id()]['bundle_id'] = [
+          'name' => t('Entity bundle'),
+          'description' => t('The bundle ID of the entity.'),
+        ];
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_tokens().
  */
 function eca_tokens(string $type, array $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata): array {
   $replacements = [];
+
+  $definitions = \Drupal::entityTypeManager()->getDefinitions();
+  if (isset($definitions[$type]) && !empty($data[$type]) && $data[$type] instanceof ContentEntityInterface) {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'id':
+          if ($definitions[$type]->hasKey('id')) {
+            $replacements[$original] = $data[$type]->id();
+          }
+          break;
+
+        case 'label':
+          if ($definitions[$type]->hasKey('label')) {
+            $replacements[$original] = $data[$type]->label();
+          }
+          break;
+
+        case 'entity_type':
+          $replacements[$original] = $data[$type]->getEntityTypeId();
+          break;
+
+        case 'bundle_id':
+          $replacements[$original] = $data[$type]->bundle();
+          break;
+
+      }
+    }
+  }
 
   if ($type === 'dto' && !empty($data['dto'])) {
     /** @var \Drupal\eca\Token\TokenInterface $token_services */

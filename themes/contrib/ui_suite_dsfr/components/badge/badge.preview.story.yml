@@ -1,0 +1,7 @@
+name: Preview
+slots:
+  label: "Badge label"
+props:
+  color_schema: brown-caramel
+  system_type: new
+  without_icon: false

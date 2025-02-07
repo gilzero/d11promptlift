@@ -1,0 +1,65 @@
+.ui-icons-input-wrapper {
+  display: flex;
+}
+
+.ui-icons-input-wrapper .ui-icons-select input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Claro and default */
+.ui-icons-input-wrapper .form-item {
+  margin-block: 0;
+}
+
+/* Keep the settings size close to textfield. */
+.ui-icons-settings-wrapper {
+  max-width: 39rem;
+}
+
+.ui-icons-preview-icon {
+  display: flex;
+  justify-content: center;
+  height: 2.85rem;
+  text-align: center;
+}
+
+.ui-icons-preview.form-item {
+  min-width: 3rem;
+  max-width: 3rem;
+  /* Olivero fallback */
+  border: var(--input-border-size, 1px) solid
+    var(--color--gray-60, var(--input-border-color, #ccced1));
+  border-right: 0 none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  /* Olivero fallback */
+  background-color: var(--color-gray-050, var(--color--gray-95, #eaeef0));
+}
+
+.media-library-content .ui-icons-preview.form-item {
+  margin-right: 0;
+}
+
+.ui-icons-preview-icon img,
+.ui-icons-preview-icon svg,
+.ui-icons-preview-icon > i,
+.ui-icons-preview-icon > b,
+.ui-icons-preview-icon > span {
+  display: block;
+  width: 2.6rem;
+  max-height: 2.8rem;
+  margin: auto;
+}
+
+/* Gin theme support */
+body[class*="gin"] .ui-icons-preview-icon {
+  height: 2.3rem;
+}
+body[class*="gin"] .ui-icons-preview-icon img,
+body[class*="gin"] .ui-icons-preview-icon svg,
+body[class*="gin"] .ui-icons-preview-icon > i,
+body[class*="gin"] .ui-icons-preview-icon > b,
+body[class*="gin"] .ui-icons-preview-icon > span {
+  max-height: 2.2rem;
+}

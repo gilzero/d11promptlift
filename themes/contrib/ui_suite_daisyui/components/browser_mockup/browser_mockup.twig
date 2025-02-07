@@ -1,0 +1,14 @@
+{% set attributes = attributes.addClass('mockup-browser', 'not-prose') %}
+
+{% set toolbar_attributes = create_attribute().addClass('input') %}
+
+{% if border %}
+  {% set toolbar_attributes = toolbar_attributes.addClass(['border-base-300', 'border']) %}
+{% endif %}
+
+<div {{ attributes }}>
+  <div class="mockup-browser-toolbar">
+    <div {{ toolbar_attributes }}>{{ toolbar }}</div>
+  </div>
+  {{ content }}
+</div>

@@ -1,0 +1,25 @@
+{% set attributes = zebra ? attributes.addClass('table-zebra') : attributes %}
+{% set attributes = pinned_rows ? attributes.addClass('table-pin-rows') : attributes %}
+{% set attributes = pinned_cols ? attributes.addClass('table-pin-cols') : attributes %}
+
+{% set attributes = variant ? attributes.addClass('table-' ~ variant) : attributes %}
+
+<table{{ attributes.addClass('table', 'not-prose') }}>
+{% if header %}
+  <thead>
+    {{ header }}
+  </thead>
+{% endif %}
+{% if body %}
+  <tbody>
+  {% for row in body %}
+    {{ row }}
+  {% endfor %}
+  </tbody>
+{% endif %}
+{% if footer %}
+  <tfoot>
+    {{ footer }}
+  </tfoot>
+{% endif %}
+</table>

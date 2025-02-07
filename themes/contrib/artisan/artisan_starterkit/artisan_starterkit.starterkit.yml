@@ -1,0 +1,11 @@
+name: Artisan Starterkit
+type: theme
+description: 'Artisan Starterkit Theme'
+core_version_requirement: ^10 || ^11
+base theme: artisan
+hidden: true
+starterkit:
+  replace_patterns:
+    - 'artisan_starterkit'
+  exclude_files:
+    - 'artisan_starterkit.starterkit.yml'

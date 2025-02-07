@@ -1,0 +1,37 @@
+{
+    "name": "drupal/ui_suite_dsfr",
+    "description": "UI Suite DSFR",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-theme",
+    "keywords": [
+        "drupal",
+        "web",
+        "ui"
+    ],
+    "require": {
+        "drupal/ui_patterns": "^2.0",
+        "drupal/ui_styles": "^1.0",
+        "drupal/ui_skins": "^1.0",
+        "drupal/ui_icons": "^1.0"
+    },
+    "require-dev": {
+        "drupal/sdc_devel": "^1.0"
+    },
+    "suggest": {
+        "drupal/ui_examples": "Allows to have examples pages."
+    },
+    "repositories": {
+        "dsfr": {
+            "type": "package",
+            "package": {
+                "name": "gouvernementfr/dsfr",
+                "type": "drupal-library",
+                "version": "1.12.1",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/GouvernementFR/dsfr/releases/download/v1.12.1/dsfr-v1.12.1.zip"
+                }
+            }
+        }
+    }
+}

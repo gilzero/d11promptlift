@@ -1,0 +1,12 @@
+name: Preview extended
+slots:
+  top:
+    type: component
+    component: 'ui_suite_uswds:logo'
+    story: default
+  nav:
+    type: component
+    component: 'ui_suite_uswds:nav'
+    story: default
+props:
+  variant: 'extended'

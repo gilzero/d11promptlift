@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a views mini-pager.
+ *
+ * Available variables:
+ * - heading_id: Pagination heading ID.
+ * - items: List of pager items.
+ *
+ * @see template_preprocess_views_mini_pager()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ include('ui_suite_dsfr:pagination', {
+  prev: items.previous ? items.previous.href : false,
+  pages: [
+    {
+      title: items.current,
+    },
+  ],
+  next: items.next ? items.next.href : false,
+}, with_context: false) }}

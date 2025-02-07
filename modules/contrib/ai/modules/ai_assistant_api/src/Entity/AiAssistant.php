@@ -8,7 +8,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\ai_assistant_api\AiAssistantInterface;
 
 /**
- * Defines the ai assistant entity type.
+ * Defines the AI assistant entity type.
  *
  * @ConfigEntityType(
  *   id = "ai_assistant",
@@ -31,10 +31,10 @@ use Drupal\ai_assistant_api\AiAssistantInterface;
  *   config_prefix = "ai_assistant",
  *   admin_permission = "administer ai_assistant",
  *   links = {
- *     "collection" = "/admin/structure/ai-assistant",
- *     "add-form" = "/admin/structure/ai-assistant/add",
- *     "edit-form" = "/admin/structure/ai-assistant/{ai_assistant}",
- *     "delete-form" = "/admin/structure/ai-assistant/{ai_assistant}/delete",
+ *     "collection" = "/admin/config/ai/ai-assistant",
+ *     "add-form" = "/admin/config/ai/ai-assistant/add",
+ *     "edit-form" = "//admin/config/ai/ai-assistant/{ai_assistant}",
+ *     "delete-form" = "/admin/config/ai/ai-assistant/{ai_assistant}/delete",
  *   },
  *   entity_keys = {
  *     "id" = "id",
@@ -46,15 +46,17 @@ use Drupal\ai_assistant_api\AiAssistantInterface;
  *     "label",
  *     "description",
  *     "allow_history",
+ *     "history_context_length",
  *     "pre_action_prompt",
- *     "preprompt_instructions",
- *     "system_role",
+ *     "system_prompt",
+ *     "instructions",
  *     "actions_enabled",
- *     "assistant_message",
  *     "error_message",
+ *     "specific_error_messages",
  *     "llm_provider",
  *     "llm_model",
  *     "llm_configuration",
+ *     "roles",
  *   },
  * )
  */
@@ -81,6 +83,11 @@ final class AiAssistant extends ConfigEntityBase implements AiAssistantInterface
   protected string $allow_history;
 
   /**
+   * History context length.
+   */
+  protected string $history_context_length = "2";
+
+  /**
    * The system role.
    */
   protected string $system_role;
@@ -89,6 +96,18 @@ final class AiAssistant extends ConfigEntityBase implements AiAssistantInterface
    * The pre action prompt.
    */
   protected string $pre_action_prompt;
+
+  /**
+   * The system prompt.
+   *
+   * @var string
+   */
+  protected ?string $system_prompt;
+
+  /**
+   * The instructions for the LLM.
+   */
+  protected ?string $instructions;
 
   /**
    * The instructions for the pre action prompt.
@@ -106,9 +125,14 @@ final class AiAssistant extends ConfigEntityBase implements AiAssistantInterface
   protected string $assistant_message;
 
   /**
-   * The error message.
+   * The generic error message.
    */
   protected string $error_message;
+
+  /**
+   * The specific error message overrides.
+   */
+  protected ?array $specific_error_messages;
 
   /**
    * The LLM provider.
@@ -124,5 +148,10 @@ final class AiAssistant extends ConfigEntityBase implements AiAssistantInterface
    * The LLM configuration.
    */
   protected array $llm_configuration;
+
+  /**
+   * The roles that can run this assistant.
+   */
+  protected array $roles = [];
 
 }

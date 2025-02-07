@@ -1,0 +1,4 @@
+fontawesome
+pymdownx
+sabberworm
+tfor

@@ -4,7 +4,9 @@ namespace Drupal\eca_base\Drush\Commands;
 
 use Drupal\eca_base\BaseEvents;
 use Drupal\eca_base\Event\CustomEvent;
-use Drush\Attributes as CLI;
+use Drush\Attributes\Argument;
+use Drush\Attributes\Command;
+use Drush\Attributes\Usage;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -41,9 +43,9 @@ final class EcaBaseCommands extends DrushCommands {
   /**
    * Trigger custom event with given event ID.
    */
-  #[CLI\Command(name: 'eca:trigger:custom_event', aliases: [])]
-  #[CLI\Argument(name: 'id', description: 'The id of the custom event to be triggered.')]
-  #[CLI\Usage(name: 'eca:trigger:custom_event myevent', description: 'Trigger custom event with given event ID.')]
+  #[Command(name: 'eca:trigger:custom_event', aliases: [])]
+  #[Argument(name: 'id', description: 'The id of the custom event to be triggered.')]
+  #[Usage(name: 'eca:trigger:custom_event myevent', description: 'Trigger custom event with given event ID.')]
   public function triggerCustomEvent(string $id): void {
     $event = new CustomEvent($id, []);
     $this->eventDispatcher->dispatch($event, BaseEvents::CUSTOM);

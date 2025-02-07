@@ -17,6 +17,7 @@ use Drupal\ai\OperationType\Chat\ChatModelForm;
 use Drupal\ai\OperationType\Embeddings\EmbeddingsModelForm;
 use Drupal\ai\OperationType\GenericType\AbstractModelFormBase;
 use Drupal\ai\Traits\OperationType\ChatTrait;
+use Drupal\ai\Traits\OperationType\EmbeddingsTrait;
 use Drupal\ai\Utility\CastUtility;
 use Drupal\key\KeyRepositoryInterface;
 use Psr\Http\Client\ClientInterface;
@@ -29,6 +30,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 abstract class AiProviderClientBase implements AiProviderInterface, ContainerFactoryPluginInterface {
 
   use ChatTrait;
+  use EmbeddingsTrait;
 
   /**
    * Logger factory.
@@ -92,13 +94,6 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
    * @var \Drupal\Core\File\FileSystemInterface
    */
   protected FileSystemInterface $fileSystem;
-
-  /**
-   * The API definition.
-   *
-   * @var array
-   */
-  protected array $apiDefinition = [];
 
   /**
    * The configuration to add to the call.
@@ -202,7 +197,6 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
     $this->loggerFactory = $logger_factory;
     $this->moduleHandler = $module_handler;
     $this->config = $this->getConfig();
-    $this->apiDefinition = $this->getApiDefinition();
     $this->cacheBackend = $cache_backend;
     $this->keyRepository = $key_repository;
     $this->eventDispatcher = $event_dispatcher;
@@ -213,10 +207,14 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
    * Load from dependency injection container.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    $client_options = $configuration['http_client_options'] ?? [];
+
     return new static(
       $plugin_id,
       $plugin_definition,
-      $container->get('http_client'),
+      $container->get('http_client_factory')->fromOptions($client_options + [
+        'timeout' => 60,
+      ]),
       $container->get('config.factory'),
       $container->get('logger.factory'),
       $container->get('cache.default'),
@@ -410,7 +408,21 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
   /**
    * {@inheritdoc}
    */
-  public function loadModelsForm(array $form, $form_state, string $operation_type, string|NULL $model_id = NULL): array {
+  public function getSetupData(): array {
+    return [];
+  }
+
+  /**
+   * Reset the tags.
+   */
+  public function resetTags(): void {
+    $this->tags = [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function loadModelsForm(array $form, $form_state, string $operation_type, string|null $model_id = NULL): array {
     $config = $this->loadModelConfig($operation_type, $model_id);
     switch ($operation_type) {
       case 'chat':
@@ -456,6 +468,13 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
   }
 
   /**
+   * Post setup. Currently used in Drupal CMS.
+   */
+  public function postSetup(): void {
+    // Do nothing by default.
+  }
+
+  /**
    * Load config for provider, operation type and model.
    *
    * @param string $operation_type
@@ -468,7 +487,7 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
    */
   public function loadModelConfig(string $operation_type, string|NULL $model_id): array {
     if ($model_id) {
-      $configs = $this->getModelsConfig()->get('models');
+      $configs = $this->getModelsConfig();
       if (isset($configs[$this->getPluginId()][$operation_type][$model_id])) {
         $config = $configs[$this->getPluginId()][$operation_type][$model_id];
       }
@@ -539,11 +558,11 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
   /**
    * Get the models configuration.
    *
-   * @return \Drupal\Core\Config\ImmutableConfig
+   * @return array
    *   The models configuration.
    */
-  public function getModelsConfig(): ImmutableConfig {
-    return $this->configFactory->get('ai_models.settings');
+  public function getModelsConfig(): array {
+    return $this->configFactory->get('ai.settings')?->get('models') ?? [];
   }
 
   /**
@@ -559,7 +578,7 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
    */
   public function getModelInfo(string $operation_type, string $model_id): array {
     // Check first override.
-    $models = $this->getModelsConfig()->get('models');
+    $models = $this->getModelsConfig();
     if (isset($models[$this->getPluginId()][$operation_type][$model_id])) {
       return $models[$this->getPluginId()][$operation_type][$model_id];
     }
@@ -571,7 +590,7 @@ abstract class AiProviderClientBase implements AiProviderInterface, ContainerFac
         'label' => $models[$model_id],
       ];
     }
-    return NULL;
+    return [];
   }
 
 }

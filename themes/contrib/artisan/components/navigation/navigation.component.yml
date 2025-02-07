@@ -1,0 +1,82 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Navigation
+slots:
+  branding:
+    title: Branding
+    examples:
+    - >
+      {% embed "artisan:navbar-brand" with {
+          image: '/themes/contrib/artisan/logo.svg',
+          width: '75px',
+          height: 'auto',
+          alt: elements.content.site_name['#markup'] ~ ' logo',
+          attributes: create_attribute({'class': ['d-inline-flex', 'align-items-center']})
+        } only %}
+      {% endembed %}
+  primary_menu:
+    title: Primary menu
+    examples:
+    - >
+      {% embed 'artisan:nav' with {
+        attributes: create_attribute({'class': ['navbar-nav']}),
+        items: [
+          { 'url': 'internal:/', 'title': 'Main Menu Example Link1' } ,
+          { 'url': 'internal:/', 'title': 'Main Menu Example Link2' }
+        ]
+      } only %}
+      {% endembed %}
+  secondary_menu:
+    title: Secondary menu
+    examples:
+    - >
+      {% embed 'artisan:nav' with {
+        attributes: create_attribute({'class': ['navbar-nav']}),
+        items: [
+          { 'url': 'internal:/', 'title': 'Secondary Menu Example Link1' } ,
+        ]
+      } only %}
+      {% endembed %}
+  header:
+    title: Header
+    examples:
+    - >
+      {% embed 'artisan:nav' with {
+        attributes: create_attribute({'class': ['navbar-nav']}),
+        items: [
+          { 'url': 'internal:/', 'title': 'Header' } ,
+        ]
+      } only %}
+      {% endembed %}
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class', 'justify-content-between' ]
+    navbar_container_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-navbar-container-attributes-class', 'container', 'gap-3' ]
+    navbar_collapse_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-navbar-collapse-attributes-class', 'justify-content-lg-evenly' ]
+    navbar_fixed_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-navbar-fixed-attributes-class' ]
+    navbar_toggler_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-navbar-toggler-attributes-class' ]

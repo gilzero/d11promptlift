@@ -131,4 +131,11 @@ class QueueEvent extends EventBase {
     ], TRUE);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function handleExceptions(): bool {
+    return TRUE;
+  }
+
 }

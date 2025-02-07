@@ -1,0 +1,42 @@
+name: Preview
+slots:
+  items:
+    -
+      type: component
+      component: 'ui_suite_uswds:icon_list_item'
+      slots:
+        header: 'Let the sun shine.'
+        body:
+          - markup: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>'
+        attributes: {  }
+      props:
+        icon_name:
+          pack_id: 'uswds'
+          icon_id: 'check_circle'
+        icon_attributes: {  }
+    -
+      type: component
+      component: 'ui_suite_uswds:icon_list_item'
+      slots:
+        header: 'Adjust your schedule.'
+        body:
+          - markup: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>'
+        attributes: {  }
+      props:
+        icon_name:
+          pack_id: 'uswds'
+          icon_id: 'check_circle'
+        icon_attributes: {  }
+    -
+      type: component
+      component: 'ui_suite_uswds:icon_list_item'
+      slots:
+        header: 'Fill it up.'
+        body:
+          - markup: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>'
+        attributes: {  }
+      props:
+        icon_name:
+          pack_id: 'uswds'
+          icon_id: 'cancel'
+        icon_attributes: {  }

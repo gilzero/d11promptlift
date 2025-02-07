@@ -1,0 +1,5 @@
+name: Preview
+props:
+  icon_name:
+    pack_id: 'uswds'
+    icon_id: 'check_circle'

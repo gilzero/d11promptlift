@@ -1,0 +1,165 @@
+name: Default
+slots:
+  header:
+    - type: component
+      component: "ui_suite_daisyui:table_row"
+      slots:
+        content:
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: ""
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Name
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Job
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Company
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Location
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: ""
+            props:
+              tag: th
+  body:
+    - type: component
+      component: "ui_suite_daisyui:table_row"
+      slots:
+        content:
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "1"
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "Cy Ganderton"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "Quality Control Specialist"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "Littel, Schaden and Vandervort"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Canada
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "1"
+            props:
+              tag: th
+    - type: component
+      component: "ui_suite_daisyui:table_row"
+      slots:
+        content:
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "2"
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "Hart Hagerty"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "Desktop Support Technician"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "Zemlak, Daniel and Leannon"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "United States"
+            props:
+              tag: td
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: "2"
+            props:
+              tag: th
+  footer:
+    - type: component
+      component: "ui_suite_daisyui:table_row"
+      slots:
+        content:
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: ""
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Name
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Job
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Company
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: Location
+            props:
+              tag: th
+          - type: component
+            component: "ui_suite_daisyui:table_cell"
+            slots:
+              content: ""
+            props:
+              tag: th

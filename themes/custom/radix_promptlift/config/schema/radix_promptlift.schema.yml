@@ -1,0 +1,5 @@
+# Schema for the configuration files of the radix_promptlift theme.
+
+radix_promptlift.settings:
+  type: theme_settings
+  label: 'radix_promptlift settings'

@@ -1,0 +1,7 @@
+name: Preview
+slots:
+  name: "Download document lorem ipsum sit dolores amet"
+  detail: "JPG – 61,88 ko"
+props:
+  url: "#"
+  new_window: true

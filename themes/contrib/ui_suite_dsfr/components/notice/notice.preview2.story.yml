@@ -1,0 +1,5 @@
+name: Preview with description
+props:
+  title: "Title of an notice"
+  description: "This is a notice description."
+  dismissible: false

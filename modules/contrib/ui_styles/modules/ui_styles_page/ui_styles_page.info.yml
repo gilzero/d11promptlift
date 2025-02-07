@@ -1,0 +1,12 @@
+name: 'UI Styles Page'
+type: module
+description: "Apply styles to themes' regions."
+core_version_requirement: ^10.1 || ^11
+package: 'User interface'
+dependencies:
+  - ui_styles:ui_styles
+
+# Information added by Drupal.org packaging script on 2025-01-24
+version: '8.x-1.15'
+project: 'ui_styles'
+datestamp: 1737740212

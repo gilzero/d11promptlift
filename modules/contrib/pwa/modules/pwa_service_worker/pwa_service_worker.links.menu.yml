@@ -1,0 +1,5 @@
+pwa_service_worker.config:
+  title: 'Service Worker'
+  description: 'Configure Progressive Web App Service Worker'
+  parent: pwa.config
+  route_name: pwa_service_worker.config

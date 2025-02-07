@@ -1,0 +1,19 @@
+name: Bootstrap Italia Views Accordion
+type: module
+description: 'This module manages the integration of the accordion component into the views module.'
+package: "Bootstrap Italia"
+core_version_requirement: ^10.3 || ^11
+
+dependencies:
+  - drupal:views
+
+components:
+  namespaces:
+    # Components library 2.0
+    bi-bcl:
+      - ../../components/components-2
+
+# Information added by Drupal.org packaging script on 2024-12-02
+version: '2.12.0'
+project: 'bootstrap_italia'
+datestamp: 1733160393

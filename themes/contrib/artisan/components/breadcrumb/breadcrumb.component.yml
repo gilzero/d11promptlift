@@ -1,0 +1,36 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Breadcrumb
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class' ]
+    breadcrumb_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-breadcrumb-attributes-class' ]
+    breadcrumb_item_attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-breadcrumb-item-attributes-class' ]
+    breadcrumb:
+      title: Breadcrumb
+      description: Contains breadcrumb items
+      type: array
+      items:
+        type: object
+      minItems: 1
+      uniqueItems: true
+      examples:
+        -
+          - { text: Item1, url: '#' }
+          - { text: Item2, url: '#' }
+          - { text: Item3 }

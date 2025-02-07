@@ -8,8 +8,9 @@ namespace Drupal\Core\Entity;
  * For common default implementations, see
  * \Drupal\Core\Entity\Sql\SqlContentEntityStorage for content entities and
  * \Drupal\Core\Config\Entity\ConfigEntityStorage for config entities. Those
- * implementations are used by default when the @ContentEntityType or
- * @ConfigEntityType annotations are used.
+ * implementations are used by default when the
+ * \Drupal\Core\Entity\Attribute\ContentEntityType or
+ * \Drupal\Core\Entity\Attribute\ConfigEntityType attributes are used.
  *
  * @ingroup entity_api
  */
@@ -41,8 +42,8 @@ interface EntityStorageInterface {
    *   An array of entity IDs, or NULL to load all entities.
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
-   *   An array of entity objects indexed by their IDs. Returns an empty array
-   *   if no matching entities are found.
+   *   An array of successfully loaded objects indexed by their IDs.
+   *   Returns an empty array if no matching entities are found.
    */
   public function loadMultiple(?array $ids = NULL);
 

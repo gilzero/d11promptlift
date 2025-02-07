@@ -64,7 +64,7 @@ class LlmVideoToVideo extends VideoToText implements AiAutomatorTypeInterface {
   /**
    * {@inheritDoc}
    */
-  public function tokens() {
+  public function tokens(ContentEntityInterface $entity) {
     return [];
   }
 

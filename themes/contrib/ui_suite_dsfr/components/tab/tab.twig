@@ -1,0 +1,21 @@
+{% set attributes = attributes.setAttribute('tabindex', '-1').setAttribute('aria-selected', 'false') %}
+{% set attributes = attributes.setAttribute('tabindex', '-1').setAttribute('aria-selected', 'false') %}
+{% if icon.icon_id %}
+  {% set attributes = attributes.addClass(['fr-tabs__tab--icon-left', icon.icon_id ? 'fr-icon-' ~ icon.icon_id|clean_class, (icon.settings.size|default('md') != 'md') ? 'fr-icon--' ~ icon.settings.size|clean_class, icon.settings.color ? 'fr-text-' ~ icon.settings.color|clean_class]) %}
+{% endif %}
+{% if id %}
+  {% set attributes = attributes.setAttribute('id', 'tab-' ~ id).setAttribute('aria-controls', 'panel-' ~ id) %}
+{% endif %}
+{% if variant == 'selected' %}
+  {% set attributes = attributes.setAttribute('tabindex', '0').setAttribute('aria-selected', 'true').addClass('fr-tabs__tab--selected') %}
+{% endif %}
+
+{% if url %}
+<a{{ attributes.addClass('fr-tabs__tab').setAttribute('role', 'tab').setAttribute('href', url) }}>
+  {{ title }}
+</a>
+{% else %}
+<button{{ attributes.addClass('fr-tabs__tab').setAttribute('role', 'tab').setAttribute('type', 'button') }}>
+  {{ title }}
+</button>
+{% endif %}

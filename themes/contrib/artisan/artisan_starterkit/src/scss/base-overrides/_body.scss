@@ -1,0 +1,39 @@
+body {
+  --body-font-family: var(--theme-base-font-family, var(--bs-body-font-family, Roboto));
+  --body-font-size: var(--theme-base-font-size, var(--bs-body-font-size, 1rem));
+  --body-font-weight: var(--theme-base-font-weight, var(--bs-body-font-weight, 400));
+  --body-line-height: var(--theme-base-line-height, var(--bs-body-line-height, 1.5));
+  --body-color: var(--theme-body-color, var(--bs-body-color, black));
+  --body-background: var(--theme-body-background, var(--bs-body-bg, white));
+  --theme-sticky-fixed-offset-top: calc(var(--theme-header-sticky-height, 0px) + var(--drupal-displace-offset-top, 0px));
+
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--body-color);
+  background-color: var(--body-background);
+}
+
+.gin--dark-mode body {
+  background-color: var(--body-background);
+  color: var(--body-color);
+
+  .form-select {
+    background-color: var(--gin-bg-input);
+    color: var(--gin-color-text);
+
+    option {
+      color: var(--body-color);
+    }
+  }
+  .form-text {
+    color: var(--gin-color-text);
+  }
+
+  .ck.ck-editor__main>.ck-editor__editable,
+  .ck-editor__editable {
+    background-color: var(--body-background);
+    color: var(--body-color);
+  }
+}

@@ -1,0 +1,11 @@
+{% if bordered %}
+  {% set attributes = attributes.addClass('usa-accordion--bordered') %}
+{% endif %}
+
+{% if multiselect %}
+  {% set attributes = attributes.addClass('usa-accordion--multiselectable').setAttribute('data-allow-multiple', 'true') %}
+{% endif %}
+
+<div{{ attributes.addClass('usa-accordion') }}>
+  {{ content }}
+</div>

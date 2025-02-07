@@ -1,0 +1,3 @@
+ui_suite_bootstrap_starterkit.settings:
+  type: ui_suite_bootstrap.settings
+  label: 'UI Suite Bootstrap Starterkit settings'

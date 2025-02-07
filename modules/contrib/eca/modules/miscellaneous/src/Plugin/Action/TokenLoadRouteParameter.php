@@ -29,7 +29,8 @@ class TokenLoadRouteParameter extends ConfigurableActionBase {
    */
   public function access($object, ?AccountInterface $account = NULL, $return_as_object = FALSE) {
     $allowed = FALSE;
-    if ($parameter = $this->getRouteMatch()->getParameter($this->configuration['parameter_name'])) {
+    $parameter_name = $this->tokenService->replace($this->configuration['parameter_name']);
+    if ($parameter = $this->getRouteMatch()->getParameter($parameter_name)) {
       $allowed = TRUE;
       if ($parameter instanceof AccessibleInterface) {
         $allowed = $parameter->access('view', $account);
@@ -43,7 +44,8 @@ class TokenLoadRouteParameter extends ConfigurableActionBase {
    * {@inheritdoc}
    */
   public function execute(): void {
-    if ($parameter = $this->getRouteMatch()->getParameter($this->configuration['parameter_name'])) {
+    $parameter_name = $this->tokenService->replace($this->configuration['parameter_name']);
+    if ($parameter = $this->getRouteMatch()->getParameter($parameter_name)) {
       $tokenName = empty($this->configuration['token_name']) ? $this->tokenService->getTokenType($parameter) : $this->configuration['token_name'];
       if ($tokenName) {
         $this->tokenService->addTokenData($tokenName, $parameter);
@@ -73,6 +75,7 @@ class TokenLoadRouteParameter extends ConfigurableActionBase {
       '#description' => $this->t('The routes and their parameters can be found in the <em>MODULE.routing.yml</em> file. Example for the route <em>entity.node.preview</em>: <em>/node/preview/{node_preview}/{view_mode_id}</em> where <em>node_preview</em> and <em>view_mode_id</em> are the parameter names.'),
       '#default_value' => $this->configuration['parameter_name'],
       '#weight' => -20,
+      '#eca_token_replacement' => TRUE,
     ];
     $form['token_name'] = [
       '#type' => 'textfield',

@@ -1,0 +1,7 @@
+name: Preview
+slots:
+  label: New
+props:
+  attributes:
+    class:
+      - text-bg-primary

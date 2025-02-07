@@ -1,0 +1,10 @@
+name: 'Media block'
+description: 'Not found in the upstream documentation, but found in the USWDS examples.'
+group: Layout
+slots:
+  image:
+    title: 'Image'
+    description: 'Expects a renderable image.'
+  body:
+    title: 'Body'
+    description: 'Content to render next to image'

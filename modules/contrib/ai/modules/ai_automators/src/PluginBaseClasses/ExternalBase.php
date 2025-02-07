@@ -36,7 +36,7 @@ abstract class ExternalBase implements AiAutomatorTypeInterface {
   /**
    * {@inheritDoc}
    */
-  public function checkIfEmpty($value) {
+  public function checkIfEmpty($value, array $automatorConfig = []) {
     return $value;
   }
 
@@ -77,7 +77,7 @@ abstract class ExternalBase implements AiAutomatorTypeInterface {
   /**
    * {@inheritDoc}
    */
-  public function tokens() {
+  public function tokens(ContentEntityInterface $entity) {
     return [
       'context' => 'The cleaned text from the base field.',
       'raw_context' => 'The raw text from the base field. Can include HTML',

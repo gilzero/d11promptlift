@@ -22,6 +22,7 @@ class EmbeddingsModelForm extends AbstractModelFormBase {
       '#description' => t('The dimensions this embeddings model supports.'),
       '#default_value' => $config['dimensions'] ?? 0,
       '#weight' => 25,
+      '#required' => TRUE,
       '#disabled' => !empty($config['has_predefined_models']) && empty($config['has_overriden_settings']),
     ];
 

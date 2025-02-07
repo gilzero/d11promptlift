@@ -1,0 +1,18 @@
+prism.settings:
+  type: config_object
+  label: Prism.js settings
+  mapping:
+    languages:
+      type: sequence
+      label: Enabled languages
+      sequence:
+        type: string
+        label: Language
+
+filter_settings.prism_filter:
+  type: mapping
+  label: Prism.js filter settings
+  mapping:
+    always_include_prism_library:
+      type: boolean
+      label: Always include prism library

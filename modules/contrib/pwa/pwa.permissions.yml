@@ -1,0 +1,5 @@
+administer pwa:
+  title: 'Administer the Progressive Web App configuration'
+access pwa:
+  title: 'Access PWA'
+  description: 'Allows the user to use the Progressive Web App. Technically this permission allows the service worker to attach and the manifest.json to get linked. In most cases, this permission should be granted to all roles with the "access content" permission.'

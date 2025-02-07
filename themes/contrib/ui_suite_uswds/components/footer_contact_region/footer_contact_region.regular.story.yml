@@ -1,0 +1,22 @@
+name: Preview regular
+props:
+  agency_contact_center: 'Agency Contact Center'
+  agency_email: info@agency.gov
+  agency_phone: '(800) CALL-GOVT'
+  social_links:
+    -
+      title: Facebook
+      url: 'https://www.facebook.com/'
+      icon: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/usa-icons/facebook.svg'
+    -
+      title: Instagram
+      url: 'https://www.instagram.com/'
+      icon: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/usa-icons/instagram.svg'
+    -
+      title: RSS
+      url: '#rss'
+      icon: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/usa-icons/rss_feed.svg'
+    -
+      title: YouTube
+      url: 'https://www.youtube.com/'
+      icon: 'https://cdn.jsdelivr.net/npm/@uswds/uswds@3.8.0/dist/img/usa-icons/youtube.svg'

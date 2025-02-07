@@ -120,6 +120,37 @@ class ContentEntityTypes {
   }
 
   /**
+   * Gets the entity types.
+   *
+   * @return array
+   *   The entity types.
+   */
+  public function getTypes(): array {
+    $result = [];
+    foreach ($this->entityTypeManager->getDefinitions() as $definition) {
+      if ($definition instanceof ContentEntityTypeInterface) {
+        $result[$definition->id()] = $definition->getLabel();
+      }
+    }
+    return $result;
+  }
+
+  /**
+   * Gets the bundles of an entity type.
+   *
+   * @return array
+   *   The bundles of the entity type.
+   */
+  public function getBundles(string $entity_type_id): array {
+    $result = [];
+    $bundles = $this->entityTypeBundleInfo->getBundleInfo($entity_type_id);
+    foreach ($bundles as $bundle => $bundleDef) {
+      $result[$bundle] = $bundleDef['label'];
+    }
+    return $result;
+  }
+
+  /**
    * Gets the type and bundles.
    *
    * @param bool $include_any

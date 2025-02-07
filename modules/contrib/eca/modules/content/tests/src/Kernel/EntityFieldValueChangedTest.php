@@ -108,11 +108,15 @@ class EntityFieldValueChangedTest extends KernelTestBase {
       ],
     ])->save();
 
+    // Create a base_field_override.
+    \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('node')['status']->getConfig('article')->save();
+
     $this->node = Node::create([
       'type' => 'article',
       'uid' => 1,
       'title' => 'First article',
       'field_boolean_test' => 0,
+      'status' => 0,
     ]);
     $this->node->save();
 
@@ -167,6 +171,15 @@ class EntityFieldValueChangedTest extends KernelTestBase {
     ]);
     $this->condition->setContextValue('entity', $this->node);
     $this->assertTrue($this->condition->evaluate());
+
+    /** @var \Drupal\eca_content\Plugin\ECA\Condition\EntityFieldValueChanged $condition */
+    $this->condition = $this->conditionManager->createInstance('eca_entity_field_value_changed', [
+      'field_name' => 'status',
+    ]);
+
+    $this->node->setUnpublished();
+    $this->condition->setContextValue('entity', $this->node);
+    $this->assertFalse($this->condition->evaluate());
   }
 
   /**

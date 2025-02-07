@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Markdown easy test module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function markdown_easy_test_form_filter_format_form_alter(array &$form, FormStateInterface $form_state, $form_id): void {
+  // Disable the markdown_easy validation to allow potentially insecure
+  // configurations.
+  $key = array_search('_markdown_easy_filter_format_edit_form_validate', $form['#validate'], TRUE);
+  if ($key !== FALSE) {
+    unset($form['#validate'][$key]);
+  }
+}

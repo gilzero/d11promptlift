@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="font_awesome">
+  <rule ref="Drupal">
+  </rule>
+  <rule ref="DrupalPractice">
+  </rule>
+</ruleset>

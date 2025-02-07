@@ -1,0 +1,89 @@
+footer.footer {
+  --footer-color: var(--theme-footer-color);
+  --footer-background: var(--theme-footer-background);
+  --footer-padding-y: var(--theme-footer-padding-y, 0);
+
+  color: var(--footer-color);
+  background-color: var(--footer-background);
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--container-spacing);
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    gap: 0 2rem;
+    justify-content: center;
+  }
+
+  .nav .nav-item .nav-link,
+  a {
+    --footer-nav-link-font-family: var(--theme-footer-links-font-family, var(--link-font-family));
+    --footer-nav-link-font-size: var(--theme-footer-links-font-size, var(--bs-nav-link-font-size, 1rem));
+    --footer-nav-link-font-weight: var(--theme-footer-links-font-weight, var(--bs-nav-link-font-weight, 400));
+    --footer-nav-link-color: var(--theme-footer-links-color, var(--bs-nav-link-color, #{$primary}));
+    --footer-nav-link-decoration: var(--theme-footer-links-decoration, unset);
+
+    font-family: var(--footer-nav-link-font-family);
+    font-size: var(--footer-nav-link-font-size);
+    font-weight: var(--footer-nav-link-font-weight);
+    color: var(--footer-nav-link-color);
+    text-decoration: var(--footer-nav-link-decoration);
+    &:hover,
+    &:active,
+    &:focus {
+      --footer-nav-link-accent-color: var(--theme-footer-links-accent-color, var(--bs-nav-link-hover-color, #{$secondary}));
+
+      color: var(--footer-nav-link-accent-color);
+    }
+  }
+
+  form[class*="search"] {
+    @include inline-form(10rem);
+  }
+}
+
+footer.footer .footer-top {
+  --footer-top-color: var(--theme-footer-top-color);
+  --footer-top-background: var(--theme-footer-top-background);
+
+  color: var(--footer-top-color);
+  background-color: var(--footer-top-background);
+  padding-top: var(--footer-padding-y);
+  padding-bottom: var(--footer-padding-y);
+
+  .nav .nav-item .nav-link,
+  a {
+    --footer-top-nav-link-font-family: var(--theme-footer-top-links-font-family, var(--link-font-family));
+    --footer-top-nav-link-font-size: var(--theme-footer-top-links-font-size, var(--bs-nav-link-font-size, 1rem));
+    --footer-top-nav-link-font-weight: var(--theme-footer-top-links-font-weight, var(--bs-nav-link-font-weight, 400));
+    --footer-top-nav-link-color: var(--theme-footer-top-links-color, var(--bs-nav-link-color, #{$primary}));
+    --footer-top-nav-link-decoration: var(--theme-footer-top-links-decoration, unset);
+
+    font-family: var(--footer-top-nav-link-font-family);
+    font-size: var(--footer-top-nav-link-font-size);
+    font-weight: var(--footer-top-nav-link-font-weight);
+    color: var(--footer-top-nav-link-color);
+    text-decoration: var(--footer-top-nav-link-decoration);
+    &:hover,
+    &:active,
+    &:focus {
+      --footer-top-nav-link-accent-color: var(--theme-footer-top-links-accent-color, var(--bs-nav-link-hover-color, #{$secondary}));
+
+      color: var(--footer-top-nav-link-accent-color);
+    }
+  }
+}
+
+footer.footer .footer-bottom {
+  padding-top: var(--footer-padding-y);
+  padding-bottom: var(--footer-padding-y);
+
+  .container {
+    justify-content: center;
+  }
+}

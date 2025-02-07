@@ -11,7 +11,6 @@ use Drupal\Core\Url;
  * JSON:API integration test for the "EntityFormMode" config entity type.
  *
  * @group jsonapi
- * @group #slow
  */
 class EntityFormModeTest extends ConfigEntityResourceTestBase {
 
@@ -47,7 +46,7 @@ class EntityFormModeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUpAuthorization($method) {
+  protected function setUpAuthorization($method): void {
     $this->grantPermissionsToTestedRole(['administer display modes']);
   }
 
@@ -68,7 +67,7 @@ class EntityFormModeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getExpectedDocument() {
+  protected function getExpectedDocument(): array {
     $self_url = Url::fromUri('base:/jsonapi/entity_form_mode/entity_form_mode/' . $this->entity->uuid())->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     return [
       'jsonapi' => [
@@ -109,7 +108,7 @@ class EntityFormModeTest extends ConfigEntityResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function getPostDocument() {
+  protected function getPostDocument(): array {
     // @todo Update in https://www.drupal.org/node/2300677.
     return [];
   }

@@ -1,0 +1,6 @@
+name: Preview
+slots:
+  content: "Cell content"
+props:
+  tag: td
+  active: false

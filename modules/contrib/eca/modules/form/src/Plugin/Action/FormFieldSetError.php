@@ -2,7 +2,9 @@
 
 namespace Drupal\eca_form\Plugin\Action;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Action to show a validation error message.
@@ -50,6 +52,17 @@ class FormFieldSetError extends FormFieldValidateActionBase {
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
     $this->configuration['message'] = $form_state->getValue('message');
     parent::submitConfigurationForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function access($object, ?AccountInterface $account = NULL, $return_as_object = FALSE) {
+    if (trim((string) $this->configuration['field_name']) === '') {
+      $result = AccessResult::allowed();
+      return $return_as_object ? $result : $result->isAllowed();
+    }
+    return parent::access($object, $account, $return_as_object);
   }
 
   /**

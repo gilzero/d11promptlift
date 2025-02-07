@@ -1,0 +1,1099 @@
+/*
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+========================================
+========================================
+========================================
+----------------------------------------
+UTILITIES SETTINGS
+----------------------------------------
+Read more about settings and
+USWDS utilities in the documentation:
+https://designsystem.digital.gov/utilities
+----------------------------------------
+*/
+
+@use "sass:map";
+
+$utilities-use-important: false;
+$output-these-utilities: default;
+
+/*
+----------------------------------------
+Utility breakpoints
+----------------------------------------
+Which breakpoints does your project
+need? Select as `true` any breakpoint
+used by utilities or layout grid
+----------------------------------------
+*/
+
+$theme-utility-breakpoints: ();
+$theme-utility-breakpoints-complete: map.merge(
+  (
+    // 160px:
+    "card": false,
+    // 240px:
+    "card-lg": false,
+    // 320px:
+    "mobile": false,
+    // 480px:
+    "mobile-lg": true,
+    // 640px:
+    "tablet": true,
+    // 880px:
+    "tablet-lg": false,
+    // 1024px:
+    "desktop": true,
+    // 1200px:
+    "desktop-lg": false,
+    // 1400px:
+    "widescreen": false
+  ),
+  $theme-utility-breakpoints
+);
+
+/*
+----------------------------------------
+Global colors
+----------------------------------------
+The following palettes will be added to
+- background-color
+- border-color
+- color
+- text-decoration-color
+----------------------------------------
+*/
+
+$global-color-palettes: ("palette-color-default");
+
+/*
+----------------------------------------
+Settings
+----------------------------------------
+*/
+
+$add-aspect-settings: ();
+$add-aspect-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $add-aspect-settings
+);
+
+$add-list-reset-settings: ();
+$add-list-reset-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $add-list-reset-settings
+);
+
+$align-items-settings: ();
+$align-items-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $align-items-settings
+);
+
+$align-self-settings: ();
+$align-self-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $align-self-settings
+);
+
+$background-color-settings: ();
+$background-color-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $background-color-settings
+);
+
+$border-settings: ();
+$border-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $border-settings
+);
+
+$border-color-settings: ();
+$border-color-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $border-color-settings
+);
+
+$border-radius-settings: ();
+$border-radius-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $border-radius-settings
+);
+
+$border-style-settings: ();
+$border-style-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $border-style-settings
+);
+
+$border-width-settings: ();
+$border-width-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $border-width-settings
+);
+
+$bottom-settings: ();
+$bottom-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $bottom-settings
+);
+
+$box-shadow-settings: ();
+$box-shadow-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $box-shadow-settings
+);
+
+$circle-settings: ();
+$circle-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $circle-settings
+);
+
+$clearfix-settings: ();
+$clearfix-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $clearfix-settings
+);
+
+$color-settings: ();
+$color-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $color-settings
+);
+
+$cursor-settings: ();
+$cursor-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $cursor-settings
+);
+
+$display-settings: ();
+$display-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $display-settings
+);
+
+$flex-settings: ();
+$flex-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $flex-settings
+);
+
+$flex-direction-settings: ();
+$flex-direction-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $flex-direction-settings
+);
+
+$flex-wrap-settings: ();
+$flex-wrap-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $flex-wrap-settings
+);
+
+$float-settings: ();
+$float-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $float-settings
+);
+
+$font-settings: ();
+$font-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $font-settings
+);
+
+$font-family-settings: ();
+$font-family-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $font-family-settings
+);
+
+$font-feature-settings: ();
+$font-feature-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $font-feature-settings
+);
+
+$font-style-settings: ();
+$font-style-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $font-style-settings
+);
+
+$font-weight-settings: ();
+$font-weight-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $font-weight-settings
+);
+
+$height-settings: ();
+$height-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $height-settings
+);
+
+$justify-content-settings: ();
+$justify-content-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $justify-content-settings
+);
+
+$left-settings: ();
+$left-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $left-settings
+);
+
+$letter-spacing-settings: ();
+$letter-spacing-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $letter-spacing-settings
+);
+
+$line-height-settings: ();
+$line-height-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $line-height-settings
+);
+
+$margin-settings: ();
+$margin-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $margin-settings
+);
+
+$max-height-settings: ();
+$max-height-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $max-height-settings
+);
+
+$max-width-settings: ();
+$max-width-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $max-width-settings
+);
+
+$measure-settings: ();
+$measure-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $measure-settings
+);
+
+$min-height-settings: ();
+$min-height-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $min-height-settings
+);
+
+$min-width-settings: ();
+$min-width-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $min-width-settings
+);
+
+$opacity-settings: ();
+$opacity-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $opacity-settings
+);
+
+$order-settings: ();
+$order-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $order-settings
+);
+
+$outline-settings: ();
+$outline-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $outline-settings
+);
+
+$outline-color-settings: ();
+$outline-color-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $outline-color-settings
+);
+
+$overflow-settings: ();
+$overflow-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $overflow-settings
+);
+
+$padding-settings: ();
+$padding-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $padding-settings
+);
+
+$pin-settings: ();
+$pin-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $pin-settings
+);
+
+$position-settings: ();
+$position-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $position-settings
+);
+
+$right-settings: ();
+$right-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $right-settings
+);
+
+$square-settings: ();
+$square-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $square-settings
+);
+
+$text-align-settings: ();
+$text-align-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $text-align-settings
+);
+
+$text-decoration-settings: ();
+$text-decoration-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $text-decoration-settings
+);
+
+$text-decoration-color-settings: ();
+$text-decoration-color-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: true,
+    visited: false,
+  ),
+  $text-decoration-color-settings
+);
+
+$text-indent-settings: ();
+$text-indent-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $text-indent-settings
+);
+
+$text-transform-settings: ();
+$text-transform-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $text-transform-settings
+);
+
+$top-settings: ();
+$top-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $top-settings
+);
+
+$vertical-align-settings: ();
+$vertical-align-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $vertical-align-settings
+);
+
+$whitespace-settings: ();
+$whitespace-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $whitespace-settings
+);
+
+$width-settings: ();
+$width-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: true,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $width-settings
+);
+
+$z-index-settings: ();
+$z-index-settings-complete: map.merge(
+  (
+    output: true,
+    responsive: false,
+    active: false,
+    focus: false,
+    hover: false,
+    visited: false,
+  ),
+  $z-index-settings
+);
+
+/*
+----------------------------------------
+Values
+----------------------------------------
+*/
+
+// .add-aspect
+
+$add-aspect-palettes: ();
+$add-aspect-manual-values: ();
+
+// .align-items
+
+$align-items-palettes: ("palette-align-items-default");
+$align-items-manual-values: ();
+
+// .align-self
+
+$align-self-palettes: ("palette-align-self-default");
+$align-self-manual-values: ();
+
+// .background-color
+
+$background-color-palettes: ();
+$background-color-manual-values: ();
+
+// .border
+
+$border-palettes: ("palette-border-default");
+$border-manual-values: ();
+
+// .border-color
+
+$border-color-palettes: ();
+$border-color-manual-values: ();
+
+// .border-radius
+
+$border-radius-palettes: ("palette-border-radius-default");
+$border-radius-manual-values: ();
+
+// .border-style
+
+$border-style-palettes: ("palette-border-style-default");
+$border-style-manual-values: ();
+
+// .border-width
+
+$border-width-palettes: ("palette-border-width-default");
+$border-width-manual-values: ();
+
+// .bottom
+
+$bottom-palettes: ("palette-bottom-default");
+
+$bottom-manual-values: ();
+
+// .box-shadow
+
+$box-shadow-palettes: ("palette-box-shadow-default");
+
+$box-shadow-manual-values: ();
+
+// .circle
+
+$circle-palettes: ("palette-circle-default");
+$circle-manual-values: ();
+
+// .color
+
+$color-palettes: ();
+$color-manual-values: ();
+
+// .cursor
+
+$cursor-palettes: ("palette-cursor-default");
+$cursor-manual-values: ();
+
+// .display
+
+$display-palettes: ("palette-display-default");
+$display-manual-values: ();
+
+// .flex
+
+$flex-palettes: ("palette-flex-default");
+$flex-manual-values: ();
+
+// .flex-direction
+
+$flex-direction-palettes: ("palette-flex-direction-default");
+$flex-direction-manual-values: ();
+
+// .flex-wrap
+
+$flex-wrap-palettes: ("palette-flex-wrap-default");
+$flex-wrap-manual-values: ();
+
+// .float
+
+$float-palettes: ("palette-float-default");
+$float-manual-values: ();
+
+// .font
+
+$font-palettes: ("palette-font-default");
+$font-manual-values: ();
+
+// .font-family
+
+$font-family-palettes: ("palette-font-family-default");
+$font-family-manual-values: ();
+
+// .font-feature-settings
+
+$font-feature-palettes: ("palette-font-feature-settings-default");
+$font-feature-manual-values: ();
+
+// .font-style
+
+$font-style-palettes: ("palette-font-style-default");
+$font-style-manual-values: ();
+
+// .font-weight
+
+$font-weight-palettes: ("palette-font-weight-default");
+$font-weight-manual-values: ();
+
+// .height
+
+$height-palettes: ("palette-height-default");
+$height-manual-values: ();
+
+// .justify-content
+
+$justify-content-palettes: ("palette-justify-content-default");
+$justify-content-manual-values: ();
+
+// .left
+
+$left-palettes: ("palette-left-default");
+$left-manual-values: ();
+
+// .letter-spacing
+
+$letter-spacing-palettes: ("palette-letter-spacing-default");
+$letter-spacing-manual-values: ();
+
+// .line-height
+
+$line-height-palettes: ("palette-line-height-default");
+$line-height-manual-values: ();
+
+// .margin
+
+$margin-palettes: ("palette-margin-default");
+$margin-manual-values: ();
+$margin-vertical-palettes: ("palette-margin-vertical-default");
+$margin-vertical-manual-values: ();
+$margin-horizontal-palettes: ("palette-margin-horizontal-default");
+$margin-horizontal-manual-values: ();
+
+// .max-height
+
+$max-height-palettes: ("palette-max-height-default");
+$max-height-manual-values: ();
+
+// .max-width
+
+$max-width-palettes: ("palette-max-width-default");
+$max-width-manual-values: ();
+
+// .measure
+
+$measure-palettes: ("palette-measure-default");
+$measure-manual-values: ();
+
+// .min-height
+
+$min-height-palettes: ("palette-min-height-default");
+$min-height-manual-values: ();
+
+// .min-width
+
+$min-width-palettes: ("palette-min-width-default");
+$min-width-manual-values: ();
+
+// .opacity
+
+$opacity-palettes: ("palette-opacity-default");
+$opacity-manual-values: ();
+
+// .order
+
+$order-palettes: ("palette-order-default");
+$order-manual-values: ();
+
+// .outline
+
+$outline-palettes: ("palette-outline-default");
+$outline-manual-values: ();
+
+// .outline-color
+
+$outline-color-palettes: ("palette-outline-color-default");
+$outline-color-manual-values: ();
+
+// .overflow
+
+$overflow-palettes: ("palette-overflow-default");
+$overflow-manual-values: ();
+
+// .padding
+
+$padding-palettes: ("palette-padding-default");
+$padding-manual-values: ();
+
+// .position
+
+$position-palettes: ("palette-position-default");
+$position-manual-values: ();
+
+// .right
+
+$right-palettes: ("palette-right-default");
+$right-manual-values: ();
+
+// .square
+
+$square-palettes: ("palette-square-default");
+$square-manual-values: ();
+
+// .text-align
+
+$text-align-palettes: ("palette-text-align-default");
+$text-align-manual-values: ();
+
+// .text-decoration
+
+$text-decoration-palettes: ("palette-text-decoration-default");
+$text-decoration-manual-values: ();
+
+// .text-decoration-color
+
+$text-decoration-color-palettes: ();
+$text-decoration-color-manual-values: ();
+
+// .text-indent
+
+$text-indent-palettes: ("palette-text-indent-default");
+$text-indent-manual-values: ();
+
+// .text-transform
+
+$text-transform-palettes: ("palette-text-transform-default");
+$text-transform-manual-values: ();
+
+// .top
+
+$top-palettes: ("palette-top-default");
+$top-manual-values: ();
+
+// .vertical-align
+
+$vertical-align-palettes: ("palette-vertical-align-default");
+$vertical-align-manual-values: ();
+
+// .white-space
+
+$whitespace-palettes: ("palette-white-space-default");
+$whitespace-manual-values: ();
+
+// .width
+
+$width-palettes: ("palette-width-default");
+$width-manual-values: ();
+
+// .z-index
+
+$z-index-palettes: ("palette-z-index-default");
+$z-index-manual-values: ();

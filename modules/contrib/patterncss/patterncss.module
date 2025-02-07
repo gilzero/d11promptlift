@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * @file
+ * Drupal`s integration with Pattern.css library.
+ *
+ * Pattern.css is a CSS only library to fill your
+ * empty background with beautiful patterns.
+ *
+ * GitHub:  https://github.com/bansal/pattern.css
+ * Website: https://bansal.io/pattern-css
+ * license: MIT licensed
+ *
+ * Copyright (C) 2020-2023 Jitender Bansal
+ */
+
+use Drupal\Core\Installer\InstallerKernel;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function patterncss_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.patterncss':
+      $output  = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The PatternCSS is a module that aims to integrate <a href=":animate_library">Pattern.css</a> library with Drupal. Pattern.css is a library of ready-to-use, cross-browser animations for use in your web projects. Great for emphasis, home pages, sliders, and attention-guiding hints. PatternCSS module allows you to quickly attach Pattern.css library in your page.', [':animate_library' => 'https://animate.style/']) . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Basic usage') . '</dt>';
+      $output .= '<dd><p>' . t('Add the class pattern-checks-sm to an element, along with any of the pattern names like dots, grid etc. (do not forget the pattern- prefix and pattern size e.g -md or -sm suffix!)') . '</p>';
+      $output .= '<pre><code>';
+      $output .= '&lt;div class="pattern-checks-sm bg-blue white"&gt;An animated element&lt;/div&gt;' . "\n";
+      $output .= '</code></pre></dd>';
+      $output .= '<dt>' . t('Usage with Javascript') . '</dt>';
+      $output .= '<dd><p>' . t('You can do a whole bunch of other stuff with pattern.css when you combine it with Javascript.') . '</p>';
+      $output .= '<pre>';
+      $output .= "const element = document.querySelector('.my-element');" . "\n";
+      $output .= "element.classList.add('pattern-checks-sm', 'bg-blue');";
+      $output .= '</pre></dd>';
+      $output .= '</dl>';
+      return $output;
+  }
+}
+
+/**
+ * Check to make sure that Pattern.css library is installed.
+ *
+ * @return bool
+ *   Flag indicating if the library is properly installed.
+ */
+function patterncss_check_installed() {
+  // Throw error if Pattern.css library file not found.
+  /** @var Drupal\Core\Asset\LibraryDiscovery $library_discovery */
+  $library_discovery = \Drupal::service('library.discovery');
+  $library_exists = FALSE;
+  $definition = $library_discovery->getLibraryByName('patterncss', 'pattern.css');
+
+  // Check if $definition is an array before accessing its elements.
+  if (is_array($definition) && isset($definition['css'][0]['data'])) {
+    $library_exists = file_exists(DRUPAL_ROOT . '/' . $definition['css'][0]['data']);
+  }
+
+  return $library_exists;
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function patterncss_page_attachments(array &$attachments) {
+  // Don't add the Library during installation.
+  if (InstallerKernel::installationAttempted()) {
+    return;
+  }
+
+  // Check first PatternCSS UI module is not installed and library not exists.
+  $moduleHandler = \Drupal::service('module_handler');
+  if (!$moduleHandler->moduleExists('patterncss_ui')) {
+    // Check if Pattern.css library not exist in local library then
+    // attach the latest version of Pattern.css automatically from CDN.
+    if (patterncss_check_installed()) {
+      $attachments['#attached']['library'][] = 'patterncss/pattern.min.css';
+    }
+    else {
+      $attachments['#attached']['library'][] = 'patterncss/pattern.min.cdn';
+    }
+  }
+}
+
+/**
+ * Pattern.css segment options.
+ */
+function patterncss_segments() {
+  return [
+    'background' => t('Background'),
+    'separator'  => t('Separator'),
+    'text'       => t('Fill text'),
+    'shadow'     => t('Text Shadow'),
+    'image'      => t('Image Shadow'),
+  ];
+}
+
+/**
+ * Pattern.css Pattern options.
+ */
+function patterncss_patterns($pattern = '') {
+  $pattern_names = array_reverse(\Drupal::moduleHandler()->invokeAll('patterncss_patterns', [$pattern]));
+
+  // Attention seekers.
+  $pattern_names['patters'] = [
+    'checks'             => t('Checks'),
+    'grid'               => t('Grid'),
+    'dots'               => t('Dots'),
+    'cross-dots'         => t('Cross Dots'),
+    'diagonal-lines'     => t('Diagonal Lines'),
+    'vertical-lines'     => t('Vertical Lines'),
+    'horizontal-lines'   => t('Horizontal Lines'),
+    'diagonal-stripes'   => t('Diagonal Stripes'),
+    'vertical-stripes'   => t('Vertical Stripes'),
+    'horizontal-stripes' => t('Horizontal Stripes'),
+    'triangles'          => t('Triangles'),
+    'zigzag'             => t('Zigzag'),
+  ];
+
+  return $pattern_names;
+}
+
+/**
+ * Pattern.css size options.
+ */
+function patterncss_sizes() {
+  return [
+    'xs' => t('Extra Small'),
+    'sm' => t('Small'),
+    'md' => t('Medium'),
+    'lg' => t('Large'),
+    'xl' => t('Extra Large'),
+  ];
+}

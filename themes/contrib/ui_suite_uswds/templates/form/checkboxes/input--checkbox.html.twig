@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+{% if input_group %}
+<div class="input-group usa-form-group usa-checkbox">
+  {% endif %}
+
+  {% if prefix %}
+    {{ prefix }}
+  {% endif %}
+
+  {% block input %}
+    {{ include('ui_suite_uswds:checkbox', {
+      attributes: attributes,
+      checkbox: input,
+      tile: false
+    }, with_context = false) }}
+  {% endblock %}
+
+  {% if suffix %}
+    {{ suffix }}
+  {% endif %}
+
+  {% if input_group %}
+</div>
+{% endif %}
+
+{{ children }}

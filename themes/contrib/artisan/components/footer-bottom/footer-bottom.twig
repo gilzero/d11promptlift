@@ -1,0 +1,11 @@
+{% set attributes = attributes ?: create_attribute() %}
+{% set container_attributes = container_attributes ?: create_attribute() %}
+<div {{ attributes.addClass(['footer-bottom']) }}>
+  <div {{ container_attributes }}>
+    {% block content %}
+      {% if content %}
+        {{ content }}
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

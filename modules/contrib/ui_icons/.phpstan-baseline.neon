@@ -1,0 +1,66 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Drupal\\\\filter\\\\FilterPluginCollection\\|Drupal\\\\filter\\\\Plugin\\\\FilterInterface\\:\\:has\\(\\)\\.$#"
+			count: 1
+			path: modules/ui_icons_ckeditor5/src/Plugin/CKEditor5Plugin/IconPlugin.php
+
+		-
+			message: "#^Method Drupal\\\\ui_icons_field\\\\IconFieldHelpers\\:\\:validateSettings\\(\\) should return array but returns array\\|false\\|null\\.$#"
+			count: 1
+			path: modules/ui_icons_field/src/IconFieldHelpers.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldDefinitionInterface\\:\\:get\\(\\)\\.$#"
+			count: 1
+			path: modules/ui_icons_field/src/Plugin/Field/FieldType/IconType.php
+
+		-
+			message: "#^Access to an undefined property Drupal\\\\Core\\\\Field\\\\FieldItemInterface\\:\\:\\$target_id\\.$#"
+			count: 1
+			path: modules/ui_icons_field/src/Plugin/Field/FieldWidget/IconWidget.php
+
+		-
+			message: "#^Function ui_icons_menu_help\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: modules/ui_icons_menu/ui_icons_menu.module
+
+		-
+			message: "#^Parameter \\#1 \\$array of static method Drupal\\\\Component\\\\Utility\\\\NestedArray\\:\\:getValue\\(\\) is passed by reference, so it expects variables only\\.$#"
+			count: 1
+			path: modules/ui_icons_picker/src/Form/IconSelectForm.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of static method Drupal\\\\Component\\\\Utility\\\\NestedArray\\:\\:setValue\\(\\) is passed by reference, so it expects variables only\\.$#"
+			count: 1
+			path: modules/ui_icons_picker/src/Form/IconSelectForm.php
+
+		-
+			message: "#^Parameter \\#2 \\$content of class Drupal\\\\Core\\\\Ajax\\\\AppendCommand constructor expects array\\|string, Drupal\\\\Component\\\\Render\\\\MarkupInterface given\\.$#"
+			count: 1
+			path: modules/ui_icons_picker/src/Form/IconSelectForm.php
+
+		-
+			message: "#^Parameter \\#2 \\$content of class Drupal\\\\Core\\\\Ajax\\\\ReplaceCommand constructor expects array\\|string, Drupal\\\\Component\\\\Render\\\\MarkupInterface given\\.$#"
+			count: 1
+			path: modules/ui_icons_picker/src/Form/IconSelectForm.php
+
+		-
+			message: "#^Method Drupal\\\\ui_icons_text\\\\Plugin\\\\Filter\\\\IconEmbed\\:\\:tips\\(\\) should return string\\|null but returns Drupal\\\\Core\\\\StringTranslation\\\\TranslatableMarkup\\.$#"
+			count: 2
+			path: modules/ui_icons_text/src/Plugin/Filter/IconEmbed.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\Core\\\\Form\\\\FormInterface\\:\\:getEntity\\(\\)\\.$#"
+			count: 1
+			path: modules/ui_icons_text/ui_icons_text.module
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\filter\\\\FilterPluginCollection\\|Drupal\\\\filter\\\\Plugin\\\\FilterInterface\\:\\:get\\(\\)\\.$#"
+			count: 1
+			path: modules/ui_icons_text/ui_icons_text.module
+
+		-
+			message: "#^Parameter \\#2 \\$content of class Drupal\\\\Core\\\\Ajax\\\\ReplaceCommand constructor expects array\\|string, Drupal\\\\Component\\\\Render\\\\MarkupInterface given\\.$#"
+			count: 1
+			path: src/Element/IconAutocomplete.php

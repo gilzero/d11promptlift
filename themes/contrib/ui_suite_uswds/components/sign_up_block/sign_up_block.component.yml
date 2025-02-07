@@ -1,0 +1,24 @@
+name: 'Sign up block'
+description: 'Sign up block used in the footer'
+group: Other
+links:
+  - 'https://designsystem.digital.gov/components/footer/'
+props:
+  type: object
+  properties:
+    heading:
+      title: 'Heading'
+      description: 'H3 value of sign up block'
+      type: string
+    label:
+      title: 'Label'
+      description: 'Label of the sign up for.'
+      type: string
+    button_label:
+      title: 'Button label'
+      description: 'Button label for the sign up form.'
+      type: string
+    form_url:
+      title: 'Sign up form URL'
+      description: 'URL the form should go to.'
+      type: string

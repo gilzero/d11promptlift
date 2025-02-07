@@ -1,0 +1,10 @@
+services:
+  metatag_ai.generator:
+    class: Drupal\metatag_ai\Plugin\GenerateMetatag
+    arguments: ['@config.factory', '@state', '@logger.factory']
+  metatag_ai.openai:
+    class: Drupal\metatag_ai\Plugin\Openai
+    arguments: ['@config.factory', '@state', '@logger.factory']
+  metatag_ai.awsbedrock:
+    class: Drupal\metatag_ai\Plugin\Bedrock
+    arguments: ['@config.factory', '@state', '@logger.factory']

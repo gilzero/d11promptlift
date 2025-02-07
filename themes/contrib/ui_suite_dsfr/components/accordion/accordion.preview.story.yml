@@ -1,0 +1,10 @@
+name: Preview
+slots:
+  title: "Accordion title"
+  content:
+    type: html_tag
+    tag: p
+    value: "Accordion content"
+props:
+  title_tag: h4
+  expanded: false

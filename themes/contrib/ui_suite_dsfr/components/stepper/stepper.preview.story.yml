@@ -1,0 +1,9 @@
+name: Preview
+slots:
+  title: "Title of the current step"
+  state: "Step 2 of 8"
+  detail: "Title of the next step"
+props:
+  title_tag: h2
+  current_step: 2
+  steps: 8

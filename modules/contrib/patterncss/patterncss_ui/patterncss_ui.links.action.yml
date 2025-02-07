@@ -1,0 +1,5 @@
+patterncss.add:
+  route_name: patterncss.add
+  title: 'Add pattern'
+  appears_on:
+    - patterncss.admin

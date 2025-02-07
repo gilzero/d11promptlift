@@ -1,0 +1,37 @@
+<div{{ attributes.addClass('usa-language-container') }}>
+
+  {% if items|length >= 3 %}
+    <ul class="usa-language__primary usa-accordion">
+      <li class="usa-language__primary-item">
+        {{ include('ui_suite_uswds:button', {
+          label: language_label|default('Language'),
+          attributes: create_attribute({
+            'class': [
+              'usa-language__link'
+            ],
+            'aria-expanded': 'false',
+            'aria-controls': 'language-options'
+          }),
+        }, with_context = false) }}
+
+        <ul id="language-options" class="usa-language__submenu" hidden="">
+          {% for item in items %}
+            <li class="usa-language__submenu-item">
+              <a href="{{ item.url }}">
+                {% set attributes = attributes.lang ? attributes.setAttribute("xml:lang", attributes.lang ) : attributes %}
+                <span {{ attributes }}>{{ item.label }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  {% else %}
+    {% for item in items %}
+      <a href="{{ item.url }}" class="usa-button" role="button">
+        {% set attributes = attributes.lang ? attributes.setAttribute("xml:lang", attributes.lang ) : attributes %}
+        <span {{ attributes }}>{{ item.label }}</span>
+      </a>
+    {% endfor %}
+  {% endif %}
+</div>

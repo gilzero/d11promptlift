@@ -1,0 +1,124 @@
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6, {
+  --displays-font-family: var(--theme-displays-font-family, Roboto);
+  --displays-font-weight: var(--theme-displays-font-weight, 700);
+  --displays-color: var(--theme-displays-color, var(--bs-heading-color, inherit));
+  --displays-decoration: var(--theme-displays-decoration, initial);
+
+  font-family: var(--displays-font-family);
+  font-weight: var(--displays-font-weight);
+  color: var(--displays-color);
+  text-decoration: var(--displays-decoration);
+}
+
+.display-1 {
+  --display1-font-family: var(--theme-display1-font-family, var(--displays-font-family));
+  --display1-font-size: var(--theme-display1-font-size, 4rem);
+  --display1-font-size-lg: var(--theme-display1-font-size-lg, 5rem);
+  --display1-font-weight: var(--theme-display1-font-weight, var(--displays-font-weight));
+  --display1-color: var(--theme-display1-color, var(--displays-color));
+  --display1-decoration: var(--theme-display1-decoration, var(--displays-decoration, initial));
+
+  font-family: var(--display1-font-family);
+  font-size: var(--display1-font-size);
+  font-weight: var(--display1-font-weight);
+  color: var(--display1-color);
+  text-decoration: var(--display1-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--display1-font-size-lg);
+  }
+}
+
+.display-2 {
+  --display2-font-family: var(--theme-display2-font-family, var(--displays-font-family));
+  --display2-font-size: var(--theme-display2-font-size, 3.5rem);
+  --display2-font-size-lg: var(--theme-display2-font-size-lg, 4.5rem);
+  --display2-font-weight: var(--theme-display2-font-weight, var(--displays-font-weight));
+  --display2-color: var(--theme-display2-color, var(--displays-color));
+  --display2-decoration: var(--theme-display2-decoration, var(--displays-decoration, initial));
+
+  font-family: var(--display2-font-family);
+  font-size: var(--display2-font-size);
+  font-weight: var(--display2-font-weight);
+  color: var(--display2-color);
+  text-decoration: var(--display2-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--display2-font-size-lg);
+  }
+}
+
+.display-3 {
+  --display3-font-family: var(--theme-display3-font-family, var(--displays-font-family));
+  --display3-font-size: var(--theme-display3-font-size, 3rem);
+  --display3-font-size-lg: var(--theme-display3-font-size-lg, 4rem);
+  --display3-font-weight: var(--theme-display3-font-weight, var(--displays-font-weight));
+  --display3-color: var(--theme-display3-color, var(--displays-color));
+  --display3-decoration: var(--theme-display3-decoration, var(--displays-decoration, initial));
+
+  font-family: var(--display3-font-family);
+  font-size: var(--display3-font-size);
+  font-weight: var(--display3-font-weight);
+  color: var(--display3-color);
+  text-decoration: var(--display3-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--display3-font-size-lg);
+  }
+}
+
+.display-4 {
+  --display4-font-family: var(--theme-display4-font-family, var(--displays-font-family));
+  --display4-font-size: var(--theme-display4-font-size, 2.5rem);
+  --display4-font-size-lg: var(--theme-display4-font-size-lg, 3.5rem);
+  --display4-font-weight: var(--theme-display4-font-weight, var(--displays-font-weight));
+  --display4-color: var(--theme-display4-color, var(--displays-color));
+  --display4-decoration: var(--theme-display4-decoration, var(--displays-decoration, initial));
+
+  font-family: var(--display4-font-family);
+  font-size: var(--display4-font-size);
+  font-weight: var(--display4-font-weight);
+  color: var(--display4-color);
+  text-decoration: var(--display4-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--display4-font-size-lg);
+  }
+}
+
+.display-5 {
+  --display5-font-family: var(--theme-display5-font-family, var(--displays-font-family));
+  --display5-font-size: var(--theme-display5-font-size, 2rem);
+  --display5-font-size-lg: var(--theme-display5-font-size-lg, 3rem);
+  --display5-font-weight: var(--theme-display5-font-weight, var(--displays-font-weight));
+  --display5-color: var(--theme-display5-color, var(--displays-color));
+  --display5-decoration: var(--theme-display5-decoration, var(--displays-decoration, initial));
+
+  font-family: var(--display5-font-family);
+  font-size: var(--display5-font-size);
+  font-weight: var(--display5-font-weight);
+  color: var(--display5-color);
+  text-decoration: var(--display5-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--display5-font-size-lg);
+  }
+}
+
+.display-6 {
+  --display6-font-family: var(--theme-display6-font-family, var(--displays-font-family));
+  --display6-font-size: var(--theme-display6-font-size, 1.5rem);
+  --display6-font-size-lg: var(--theme-display6-font-size-lg, 2.5rem);
+  --display6-font-weight: var(--theme-display6-font-weight, var(--displays-font-weight));
+  --display6-color: var(--theme-display6-color, var(--displays-color));
+  --display6-decoration: var(--theme-display6-decoration, var(--displays-decoration, initial));
+
+  font-family: var(--display6-font-family);
+  font-size: var(--display6-font-size);
+  font-weight: var(--display6-font-weight);
+  color: var(--display6-color);
+  text-decoration: var(--display6-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--display6-font-size-lg);
+  }
+}

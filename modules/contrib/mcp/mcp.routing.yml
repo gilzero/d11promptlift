@@ -1,0 +1,25 @@
+mcp.get:
+  path: '/mcp/get'
+  methods: [ GET ]
+  defaults:
+    _title: 'MCP SSE connect'
+    _controller: '\Drupal\mcp\Controller\McpController::get'
+  requirements:
+    _permission: 'access content'
+
+mcp.post:
+  path: '/mcp/post'
+  methods: [ POST ]
+  defaults:
+    _title: 'MCP Operation'
+    _controller: '\Drupal\mcp\Controller\McpController::post'
+  requirements:
+    _permission: 'access content'
+
+mcp.settings:
+  path: '/admin/config/mcp'
+  defaults:
+    _title: 'MCP Configuration'
+    _form: 'Drupal\mcp\Form\SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

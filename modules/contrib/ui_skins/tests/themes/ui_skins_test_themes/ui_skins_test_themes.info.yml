@@ -1,0 +1,10 @@
+name: 'UI Skins Test Themes'
+type: theme
+description: 'UI Skins test theme for themes.'
+base theme: false
+package: 'Testing'
+
+# Information added by Drupal.org packaging script on 2024-10-17
+version: '1.1.0-alpha3'
+project: 'ui_skins'
+datestamp: 1729181908

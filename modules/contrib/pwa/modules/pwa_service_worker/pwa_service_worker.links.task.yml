@@ -1,0 +1,5 @@
+pwa_service_worker.config:
+  route_name: pwa_service_worker.config
+  base_route: pwa.config_manifest
+  title: 'Service Worker'
+  parent: pwa.config_manifest

@@ -1,0 +1,7 @@
+field_label.module_config_form:
+  path: '/admin/config/content/field-label'
+  defaults:
+    _form: '\Drupal\field_label\Form\ModuleConfigForm'
+    _title: 'Field Label Configuration'
+  requirements:
+    _permission: 'administer site configuration'

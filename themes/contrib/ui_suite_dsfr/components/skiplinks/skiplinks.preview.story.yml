@@ -1,0 +1,23 @@
+name: Preview
+slots:
+  items:
+    - type: component
+      component: "ui_suite_dsfr:link"
+      slots:
+        label: Content
+        url: "#content"
+    - type: component
+      component: "ui_suite_dsfr:link"
+      slots:
+        label: Menu
+        url: "#header-navigation"
+    - type: component
+      component: "ui_suite_dsfr:link"
+      slots:
+        label: Footer
+        url: "#footer"
+    - type: component
+      component: "ui_suite_dsfr:link"
+      slots:
+        label: Search
+        url: "#header-search"

@@ -1,0 +1,114 @@
+name: Button
+description: "Element of interaction with the interface allowing the user to perform an action."
+group: Button
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton"
+variants:
+  default:
+    title: Primary
+  secondary:
+    title: Secondary
+  tertiary:
+    title: Tertiary
+  tertiary_no_outline:
+    title: "Tertiary No Outline"
+  lg:
+    title: "Primary Large"
+  secondary__lg:
+    title: "Secondary Large"
+  tertiary__lg:
+    title: "Tertiary Large"
+  tertiary_no_outline__lg:
+    title: "Tertiary Large No Outline"
+  sm:
+    title: "Primary Small"
+  secondary__sm:
+    title: "Secondary Small"
+  tertiary__sm:
+    title: "Tertiary Small"
+  tertiary_no_outline__sm:
+    title: "Tertiary Small No Outline"
+slots:
+  label:
+    title: Label
+props:
+  type: object
+  properties:
+    title:
+      title: "Title attribute"
+      description: "'- new window' suffix will automatically be added for external links."
+      type: string
+    url:
+      title: URL
+      $ref: "ui-patterns://url"
+    target:
+      title: "Link target attribute"
+      description: 'If button is used as link. "Blank" will automatically be set for external links.'
+      type: string
+      enum:
+        - self
+        - blank
+        - parent
+        - top
+      "meta:enum":
+        self: Self
+        blank: Blank
+        parent: Parent
+        top: Left
+    external:
+      title: "External?"
+      description: "Is the link targeting an external URL?"
+      type: boolean
+    disabled:
+      title: "Disabled?"
+      description: "Disable button."
+      type: boolean
+    icon_position:
+      title: "Icon position"
+      type: string
+      enum:
+        - left
+        - right
+      "meta:enum":
+        left: Left
+        right: Right
+    tooltip:
+      title: Tooltip
+      description: "Hidden by default and displayed when clicking on the button. Replace the icon and disable some variants. https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/infobulle/"
+      type: string
+    id:
+      title: ID
+      description: "Used by the tooltip. Must start with a letter. Randomly generated if empty."
+      $ref: "ui-patterns://identifier"
+    social:
+      title: "Social networks"
+      description: "This will only work in a follow or share component"
+      type: string
+      enum:
+        - facebook
+        - twitter-x
+        - instagram
+        - linkedin
+        - youtube
+        - threads
+        - tiktok
+        - dailymotion
+        - mastodon
+      "meta:enum":
+        facebook: Facebook
+        twitter-x: "X (formerly Twitter)"
+        instagram: Instagram
+        linkedin: LinkedIn
+        youtube: Youtube
+        threads: Threads
+        tiktok: TikTok
+        dailymotion: Dailymotion
+        mastodon: Mastodon
+    icon:
+      title: Icon
+      description: "Available button icons."
+      $ref: ui-patterns://icon
+      properties:
+        pack_id:
+          enum:
+            - dsfr

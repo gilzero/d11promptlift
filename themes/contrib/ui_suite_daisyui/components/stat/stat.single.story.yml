@@ -1,0 +1,13 @@
+name: Stat single
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:stat_item"
+      slots:
+        title: Total Page Views
+        value: 89,400
+        desc: 21% more than last month
+props:
+  variant: default
+  attributes:
+    class: "shadow"

@@ -1,0 +1,16 @@
+/* Adapted from .rvt-lockup__tab */
+.rvt-c-custom-logo {
+  align-items: center;
+  background-color: transparent;
+  color: #243142;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  height: 2.125rem;
+}
+
+@media screen and (min-width: 46.25em) {
+  .rvt-c-custom-logo {
+    height: 2.75rem;
+  }
+}

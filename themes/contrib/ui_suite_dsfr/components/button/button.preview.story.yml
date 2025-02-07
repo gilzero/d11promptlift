@@ -1,0 +1,12 @@
+name: Preview
+slots:
+  label: Submit
+props:
+  target: self
+  external: false
+  disabled: false
+  icon_position: left
+  icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: checkbox-circle-line

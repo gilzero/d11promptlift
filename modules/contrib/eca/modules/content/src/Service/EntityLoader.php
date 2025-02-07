@@ -13,6 +13,7 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
+use Drupal\eca\EntityOriginalTrait;
 use Drupal\eca\Plugin\ECA\PluginFormTrait;
 use Drupal\eca\Service\YamlParser;
 use Drupal\eca\Token\TokenInterface;
@@ -23,6 +24,7 @@ use Symfony\Component\Yaml\Exception\ParseException;
  */
 class EntityLoader {
 
+  use EntityOriginalTrait;
   use PluginFormTrait;
   use StringTranslationTrait;
 
@@ -330,6 +332,10 @@ class EntityLoader {
             $query->range(0, 1);
 
             $result = $query->execute();
+            /** @var int[] $result */
+            array_walk($result, static function (&$item) {
+              $item = (int) $item;
+            });
             /**
              * @var \Drupal\Core\Entity\EntityInterface[] $entities
              */
@@ -344,15 +350,15 @@ class EntityLoader {
     }
 
     if ($entity !== NULL && $config['unchanged']) {
-      if (!isset($entity->original) && !$entity->isNew()) {
+      $original = $this->getOriginal($entity);
+      if (!isset($original) && !$entity->isNew()) {
         /**
          * @var \Drupal\Core\Entity\ContentEntityStorageInterface $storage
          */
         $storage = $this->entityTypeManager->getStorage($entity->getEntityTypeId());
-        // @phpstan-ignore-next-line
-        $entity->original = $storage->loadUnchanged($entity->id());
+        $original = $storage->loadUnchanged($entity->id());
       }
-      $entity = $entity->original ?? NULL;
+      $entity = $original;
     }
 
     if ($entity instanceof TranslatableInterface) {

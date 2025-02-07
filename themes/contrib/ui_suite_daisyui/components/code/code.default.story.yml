@@ -1,0 +1,9 @@
+name: Default
+slots:
+  content: npm i daisyui
+props:
+  prefix: $
+library_wrapper: >
+  <div class="mockup-code not-prose">
+  {{ _story }}
+  </div>

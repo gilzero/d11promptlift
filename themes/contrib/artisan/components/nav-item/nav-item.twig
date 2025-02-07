@@ -1,0 +1,9 @@
+{% set attributes = attributes ?: create_attribute() %}
+
+{% apply spaceless %}
+  {% block nav_item %}
+    <li {{ attributes.addClass('nav-item') }}>
+      {{ link|add_class('nav-link', is_active ? 'active' : '') }}
+    </li>
+  {% endblock %}
+{% endapply %}

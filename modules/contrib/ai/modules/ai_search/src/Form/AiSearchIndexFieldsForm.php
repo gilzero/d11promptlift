@@ -10,7 +10,6 @@ use Drupal\ai\Enum\EmbeddingStrategyIndexingOptions;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Form\IndexFieldsForm;
 use Drupal\search_api\Item\ItemInterface;
-use League\CommonMark\CommonMarkConverter;
 
 /**
  * Override the Search API Index Fields Form.
@@ -106,6 +105,14 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
       // Add the header row for target type.
       if (!empty($field_group['#header'])) {
         $operations_header = array_pop($field_group['#header']);
+
+        // Remove boost from header as it is not applicable to vector
+        // databases.
+        $boost_index = array_search($this->t('Boost'), $field_group['#header']);
+        if ($boost_index) {
+          $field_group['#header'][$boost_index] = '';
+        }
+
         $field_group['#header'][] = $this->t('Indexing option');
         if (isset($ai_search_index_config['control_field_max_length']) && $ai_search_index_config['control_field_max_length']) {
           $field_group['#header'][] = $this->t('Maximum length');
@@ -118,6 +125,16 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
             $field_id = (string) $field_id;
             $edit_row = array_pop($row);
             $remove_row = array_pop($row);
+
+            // Remove boost from row as it is not applicable to vector
+            // databases.
+            if (isset($row['boost'])) {
+              $row['boost']['#type'] = 'hidden';
+              if (isset($row['boost']['#states'])) {
+                unset($row['boost']['#states']);
+              }
+            }
+
             $row['indexing_option'] = [
               '#type' => 'select',
               '#options' => $this->buildSelectIndexingOptions(),
@@ -132,7 +149,7 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
               if (
                 isset($row['type']['#default_value'])
                 && $row['type']['#default_value'] === 'string'
-                && $row['indexing_option']['#default_value'] === EmbeddingStrategyIndexingOptions::ATTRIBUTES->getKey()
+                && $row['indexing_option']['#default_value'] === EmbeddingStrategyIndexingOptions::Attributes->getKey()
               ) {
                 $row['max'] = [
                   '#type' => 'number',
@@ -165,7 +182,7 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
         '#type' => 'details',
         '#title' => $this->t('Preview content to be vectorized'),
         '#description' => $this->t('After saving your configuration, without needing to index, this form can be used to check what will get vectorized from a specific item (i.e., the "Main Content" and "Contextual Content" output will be shown), as well as what metadata will be available from "Filterable Attributes".'),
-        '#open' => FALSE,
+        '#open' => (bool) $form_state->get(['checker', 'entity']),
         '#attributes' => ['id' => 'checker-wrapper'],
       ];
 
@@ -343,10 +360,18 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
       'property' => $this->t('Dimensions'),
       'content' => count($embedding['values']),
     ];
-    $converter = new CommonMarkConverter([
-      'html_input' => 'strip',
-      'allow_unsafe_links' => FALSE,
-    ]);
+
+    // The conversion from markdown to html is an optional dependency.
+    $converter = FALSE;
+    if (class_exists('League\CommonMark\CommonMarkConverter')) {
+      // Ignore the non-use statement loading since this dependency may not
+      // exist.
+      // @codingStandardsIgnoreLine
+      $converter = new \League\CommonMark\CommonMarkConverter([
+        'html_input' => 'strip',
+        'allow_unsafe_links' => FALSE,
+      ]);
+    }
     foreach ($embedding['metadata'] as $key => $item) {
       if (is_array($item)) {
         $form['checker']['embeddings_' . $number]['#rows'][] = [
@@ -355,8 +380,24 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
         ];
       }
       else {
+
+        // Convert the main content from markdown to HTML if the optional
+        // dependency on Commonmark exists.
         if ($key === 'content') {
-          $item = $converter->convert($item);
+          if ($converter) {
+            $item = $converter->convert($item);
+          }
+          else {
+            $notice = [
+              '#theme' => 'status_messages',
+              '#message_list' => [
+                'status' => [
+                  $this->t('In order to make the chunk more readable, please install the Commonmark optional dependency from PHP League by running <code>composer require league/commonmark</code>.'),
+                ],
+              ],
+            ];
+            $item = $this->renderer->render($notice) . $item;
+          }
         }
 
         $form['checker']['embeddings_' . $number]['#rows'][] = [
@@ -402,23 +443,48 @@ class AiSearchIndexFieldsForm extends IndexFieldsForm {
       $values = $form_state->getValues();
 
       // Determine the selected indexing options by looping through all fields.
-      $count = 0;
+      $count_main_contents = 0;
       if (!empty($values['fields'])) {
-        $message = $this->t('Only one "Main Content" field is supported by the Embedding Strategy selected in the Search API Server configuration.');
+        $one_main_message = $this->t('Only one "Main Content" field is supported by the Embedding Strategy selected in the Search API Server configuration.');
+
         foreach ($values['fields'] as $id => $field) {
-          if (!isset($field['indexing_option'])) {
+
+          // Skip internal fields.
+          if (in_array($id, ['node_grants'])) {
+            continue;
+          }
+
+          // Ensure that an indexing option is selected for each field.
+          if (empty($field['indexing_option'])) {
+            $option_required_message = $this->t('For "@field", you must select an indexing option. Select "Ignore" if you do not wish to do anything with this field for now.', [
+              '@field' => $field['title'] ?? $id,
+            ]);
+            $form_state->setErrorByName('fields[' . $id . '][indexing_option', $option_required_message);
             continue;
           }
 
           // If there is more than one, set a validation error.
-          if ($field['indexing_option'] === EmbeddingStrategyIndexingOptions::MAIN_CONTENT->getKey()) {
-            $count++;
+          if ($field['indexing_option'] === EmbeddingStrategyIndexingOptions::MainContent->getKey()) {
+            $count_main_contents++;
           }
-          if ($count > 1) {
-            $form_state->setErrorByName('fields[' . $id . '][indexing_option', $message);
+          if ($count_main_contents > 1) {
+            $form_state->setErrorByName('fields[' . $id . '][indexing_option', $one_main_message);
           }
         }
+
+        // There must be at least one main content.
+        if ($count_main_contents < 1) {
+          $keys = array_keys($values['fields']);
+          $id = reset($keys);
+          $message = $this->t('At least one field should be set as "Main content" to generate the vector embeddings from.');
+          $form_state->setErrorByName('fields[' . $id . '][indexing_option', $message);
+        }
       }
+    }
+
+    if ($form_state->getValue(['checker', 'entity'])) {
+      $this->messenger()->addWarning('Remove the "Preview content to be vectorized" in order to save the form.');
+      $form_state->setRebuild();
     }
   }
 

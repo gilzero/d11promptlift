@@ -1,0 +1,137 @@
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  --headings-font-family: var(--theme-headings-font-family, #{$headings-font-family}, Roboto);
+  --headings-font-weight: var(--theme-headings-font-weight, #{$headings-font-weight}, 700);
+  --headings-color: var(--theme-headings-color, var(--bs-heading-color, inherit));
+  --headings-decoration: var(--theme-headings-decoration, initial);
+
+  font-family: var(--headings-font-family);
+  font-weight: var(--headings-font-weight);
+  color: var(--headings-color);
+  text-decoration: var(--headings-decoration);
+}
+
+h1, .h1 {
+  --h1-font-family: var(--theme-h1-font-family, var(--headings-font-family));
+  --h1-font-size: var(--theme-h1-font-size, #{$h1-font-size});
+  --h1-font-size-lg: var(--theme-h1-font-size-lg, #{$h1-font-size});
+  --h1-font-weight: var(--theme-h1-font-weight, 700);
+  --h1-color: var(--theme-h1-color, var(--headings-color, --bs-heading-color));
+  --h1-decoration: var(--theme-h1-decoration, var(--headings-decoration, initial));
+
+  font-family: var(--h1-font-family);
+  font-size: var(--h1-font-size);
+  font-weight: var(--h1-font-weight);
+  color: var(--h1-color);
+  text-decoration: var(--h1-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--h1-font-size-lg);
+  }
+}
+
+h2, .h2 {
+  --h2-font-family: var(--theme-h2-font-family, var(--headings-font-family));
+  --h2-font-size: var(--theme-h2-font-size, #{$h2-font-size});
+  --h2-font-size-lg: var(--theme-h2-font-size-lg, #{$h2-font-size});
+  --h2-font-weight: var(--theme-h2-font-weight, 700);
+  --h2-color: var(--theme-h2-color, var(--headings-color, --bs-heading-color));
+  --h2-decoration: var(--theme-h2-decoration, var(--headings-decoration, initial));
+
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-weight: var(--h2-font-weight);
+  color: var(--h2-color);
+  text-decoration: var(--h2-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--h2-font-size-lg);
+  }
+}
+
+h3, .h3 {
+  --h3-font-family: var(--theme-h3-font-family, var(--headings-font-family));
+  --h3-font-size: var(--theme-h3-font-size, #{$h3-font-size});
+  --h3-font-size-lg: var(--theme-h3-font-size-lg, #{$h3-font-size});
+  --h3-font-weight: var(--theme-h3-font-weight, 700);
+  --h3-color: var(--theme-h3-color, var(--headings-color, --bs-heading-color));
+  --h3-decoration: var(--theme-h3-decoration, var(--headings-decoration, initial));
+
+  font-family: var(--h3-font-family);
+  font-size: var(--h3-font-size);
+  font-weight: var(--h3-font-weight);
+  color: var(--h3-color);
+  text-decoration: var(--h3-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--h3-font-size-lg);
+  }
+}
+
+h4, .h4 {
+  --h4-font-family: var(--theme-h4-font-family, var(--headings-font-family));
+  --h4-font-size: var(--theme-h4-font-size, #{$h4-font-size});
+  --h4-font-size-lg: var(--theme-h4-font-size-lg, #{$h4-font-size});
+  --h4-font-weight: var(--theme-h4-font-weight, 700);
+  --h4-color: var(--theme-h4-color, var(--headings-color, --bs-heading-color));
+  --h4-decoration: var(--theme-h4-decoration, var(--headings-decoration, initial));
+
+  font-family: var(--h4-font-family);
+  font-size: var(--h4-font-size);
+  font-weight: var(--h4-font-weight);
+  color: var(--h4-color);
+  text-decoration: var(--h4-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--h4-font-size-lg);
+  }
+}
+
+h5, .h5 {
+  --h5-font-family: var(--theme-h5-font-family, var(--headings-font-family));
+  --h5-font-size: var(--theme-h5-font-size, #{$h5-font-size});
+  --h5-font-size-lg: var(--theme-h5-font-size-lg, #{$h5-font-size});
+  --h5-font-weight: var(--theme-h5-font-weight, 700);
+  --h5-color: var(--theme-h5-color, var(--headings-color, --bs-heading-color));
+  --h5-decoration: var(--theme-h5-decoration, var(--headings-decoration, initial));
+
+  font-family: var(--h5-font-family);
+  font-size: var(--h5-font-size);
+  font-weight: var(--h5-font-weight);
+  color: var(--h5-color);
+  text-decoration: var(--h5-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--h5-font-size-lg);
+  }
+}
+
+h6, .h6 {
+  --h6-font-family: var(--theme-h6-font-family, var(--headings-font-family));
+  --h6-font-size: var(--theme-h6-font-size, #{$h6-font-size});
+  --h6-font-size-lg: var(--theme-h6-font-size-lg, #{$h6-font-size});
+  --h6-font-weight: var(--theme-h6-font-weight, 700);
+  --h6-color: var(--theme-h6-color, var(--headings-color, --bs-heading-color));
+  --h6-decoration: var(--theme-h6-decoration, var(--headings-decoration, initial));
+
+  font-family: var(--h6-font-family);
+  font-size: var(--h6-font-size);
+  font-weight: var(--h6-font-weight);
+  color: var(--h6-color);
+  text-decoration: var(--h6-decoration);
+  @include media-breakpoint-up(lg) {
+    font-size: var(--h6-font-size-lg);
+  }
+}
+
+.vlsuite-block .field h1,
+.vlsuite-block .field h2,
+.vlsuite-block .field h3,
+.vlsuite-block .field h4,
+.vlsuite-block .field h5,
+.vlsuite-block .field h6 {
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

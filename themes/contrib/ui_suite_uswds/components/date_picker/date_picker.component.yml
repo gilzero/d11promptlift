@@ -1,0 +1,36 @@
+name: 'Date Picker'
+description: 'A date picker helps users select a single date.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/date-picker/'
+props:
+  type: object
+  properties:
+    min_date:
+      title: 'data-min-date'
+      description: 'The date picker will not allow a date selection before this date. The date should be in the format YYYY-MM-DD. Typing in an earlier date will cause native form validation error. A default min date or 0000-01-01 is used as a default.'
+      type: string
+    max_date:
+      title: 'data-max-date'
+      description: 'The date picker will not allow a date selection after this date. The date should be in the format YYYY-MM-DD. Typing in a later date will cause native form validation error. There is no default maximum date.'
+      type: string
+    range_date:
+      title: 'data-range-date'
+      description: 'The date picker will show a range selection from the range date. The date should be in the format YYYY-MM-DD.'
+      type: string
+    hint:
+      title: 'Hint'
+      description: 'Hint for input into date field'
+      type: string
+    required:
+      title: 'Required'
+      description: 'The date picker component will be required in terms of native form validation.'
+      type: boolean
+    disabled:
+      title: 'Disabled'
+      description: 'The date picker component will be disabled/readonly. You can re-enable by executing the enable procedure on the component.'
+      type: boolean
+    default_value:
+      title: 'Default value'
+      description: 'The date picker input will set this value if it is a valid date. The date should be in the format YYYY-MM-DD.'
+      type: string

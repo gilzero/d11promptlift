@@ -1,0 +1,26 @@
+name: Preview
+slots:
+  badges:
+    - type: component
+      component: "ui_suite_dsfr:badge"
+      slots:
+        label: "Badge with color selected"
+      props:
+        color_schema: green-bourgeon
+    - type: component
+      component: "ui_suite_dsfr:badge"
+      slots:
+        label: "System success badge"
+      props:
+        system_type: success
+    - type: component
+      component: "ui_suite_dsfr:badge"
+      slots:
+        label: "System error badge without an icon"
+      props:
+        system_type: error
+        without_icon: true
+    - type: component
+      component: "ui_suite_dsfr:badge"
+      slots:
+        label: "Simple badge"

@@ -1,0 +1,10 @@
+name: 'Module Locator'
+type: module
+description: 'Locate modules in filesystem.'
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+package: 'Custom'
+
+# Information added by Drupal.org packaging script on 2024-05-05
+version: '2.0.2'
+project: 'module_locator'
+datestamp: 1714931977

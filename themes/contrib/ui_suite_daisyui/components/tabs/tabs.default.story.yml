@@ -1,0 +1,34 @@
+name: Default
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:tab"
+      slots:
+        link:
+          type: html_tag
+          tag: a
+          value: "Tab 1"
+          attributes:
+            href: "https://example.com"
+    - type: component
+      component: "ui_suite_daisyui:tab"
+      slots:
+        link:
+          type: html_tag
+          tag: a
+          value: "Tab 2"
+          attributes:
+            href: "https://example.com"
+      props:
+        active: true
+    - type: component
+      component: "ui_suite_daisyui:tab"
+      slots:
+        link:
+          type: html_tag
+          tag: a
+          value: "Tab 3"
+          attributes:
+            href: "https://example.com"
+props:
+  size: md

@@ -1,0 +1,21 @@
+name: Default
+slots:
+  items:
+    - type: component
+      component: "ui_suite_daisyui:button"
+      slots:
+        label: Button
+      props:
+        url: "http://example.com"
+    - type: component
+      component: "ui_suite_daisyui:button"
+      slots:
+        label: Button
+      props:
+        url: "http://example.com"
+    - type: component
+      component: "ui_suite_daisyui:button"
+      slots:
+        label: Button
+      props:
+        url: "http://example.com"

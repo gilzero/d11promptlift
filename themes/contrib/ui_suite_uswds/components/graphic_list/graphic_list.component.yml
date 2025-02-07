@@ -1,0 +1,7 @@
+name: 'Graphic list'
+description: 'A combination of grid rows and media blocks. Not found in the upstream documentation, but found in the USWDS examples.'
+group: Layout
+slots:
+  items:
+    title: 'Content'
+    description: 'List of Group List Items'

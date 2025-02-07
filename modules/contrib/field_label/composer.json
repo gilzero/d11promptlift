@@ -1,0 +1,20 @@
+{
+    "name": "drupal/field_label",
+    "description": "Allow authorized users to customize field label formatter settings",
+    "type": "drupal-module",
+    "keywords": ["Drupal", "Field label"],
+    "homepage": "https://drupal.org/project/field_label",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Michael Caldwell (justcaldwell)",
+            "homepage": "https://www.drupal.org/u/justcaldwell",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/field_label",
+        "source": "https://git.drupalcode.org/project/field_label"
+    }
+}

@@ -1,0 +1,30 @@
+{% set variant = variant|default('content') %}
+<ul{{ attributes.addClass('fr-footer__' ~ variant ~ '-list') }}>
+  {% for item in items %}
+
+    {% set item_attributes = item.attributes|default({}) %}
+    {% set item_attributes = create_attribute(item_attributes) %}
+
+    <li{{ item_attributes.addClass('fr-footer__' ~ variant ~ '-item') }}>
+      {% set link_attributes = item.link_attributes|default({}) %}
+      {% set link_attributes = create_attribute(link_attributes) %}
+      {% set link_attributes = link_attributes.addClass('fr-footer__' ~ variant ~ '-link') %}
+
+      {% if item.url %}
+        {% set link_attributes = link_attributes.setAttribute('href', item.url) %}
+
+        {% if link_attributes.target == '_blank' %}
+          {% set link_attributes = link_attributes.setAttribute('title', '@title - new window'|t({'@title': link_attributes.title ?: item.title})) %}
+        {% endif %}
+
+        <a{{ link_attributes }}>
+          {{ item.title }}
+        </a>
+     {% else %}
+        <span{{ link_attributes }}>
+          {{ item.title }}
+        </span>
+     {% endif %}
+  </li>
+  {% endfor %}
+</ul>

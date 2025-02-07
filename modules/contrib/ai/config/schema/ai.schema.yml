@@ -36,6 +36,12 @@ ai.settings:
         text_to_speech:
           label: 'Default text to speech provider'
           type: ai.default_operation_provider
+    models:
+      type: sequence
+      label: The overriden/added models.
+      required: false
+      sequence:
+        type: ignore
 
 ai.default_operation_provider:
   type: mapping

@@ -1,5 +1,0 @@
-field_permissions:
-  version: VERSION
-  css:
-    theme:
-      css/field_permissions.css: {}

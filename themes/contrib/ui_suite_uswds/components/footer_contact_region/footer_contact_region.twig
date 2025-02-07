@@ -1,0 +1,30 @@
+<div{{ attributes.addClass('usa-footer__contact-links', 'desktop:grid-col-6') }}>
+
+  {% if social_links and not is_slim %}
+    {{ include('ui_suite_uswds:social_links_group', {
+      items: social_links,
+    }, with_context = false) }}
+  {% endif %}
+
+  {% if agency_contact_center %}
+    <h3 class="usa-footer__contact-heading">{{ agency_contact_center }}</h3>
+  {% endif %}
+
+  {% if not is_slim %}
+    <address class="usa-footer__address">
+      <div class="usa-footer__contact-info grid-row grid-gap">
+        {% if agency_phone %}
+          <div class="grid-col-auto">
+            <a href="tel:{{ agency_phone }}">{{ agency_phone }}</a>
+          </div>
+        {% endif %}
+
+        {% if agency_email %}
+          <div class="grid-col-auto">
+            <a href="mailto:{{ agency_email }}">{{ agency_email }}</a>
+          </div>
+        {% endif %}
+      </div>
+    </address>
+  {% endif %}
+</div>

@@ -1,0 +1,5 @@
+pwa.config:
+  title: 'PWA Translatable config'
+  base_route_name: pwa.config_manifest
+  names:
+    - pwa.config

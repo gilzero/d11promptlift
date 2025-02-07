@@ -1,0 +1,10 @@
+name: Preview
+props:
+  items:
+    - title: Home
+      url: /
+    - title: Library
+      url: "#"
+    - title: Data
+      attributes:
+        data-name: Test

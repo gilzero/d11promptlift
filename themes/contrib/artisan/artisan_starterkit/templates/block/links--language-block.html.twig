@@ -1,0 +1,7 @@
+{% if links %}
+  {% embed 'artisan_starterkit:dropdown' with {
+    toggle: current_language_name,
+    items: links,
+  } only %}
+  {% endembed %}
+{% endif %}

@@ -1,0 +1,6 @@
+mcp.settings:
+  title: MCP Configuration
+  description: Configure MCP server and its plugins' settings.
+  route_name: mcp.settings
+  parent: system.admin_config_services
+  weight: 10

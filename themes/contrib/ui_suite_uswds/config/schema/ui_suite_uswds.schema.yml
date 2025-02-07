@@ -1,0 +1,164 @@
+ui_suite_uswds.settings:
+  type: theme_settings
+  label: 'USWDS UI Patterns'
+  mapping:
+    cdn_provider:
+      type: string
+      label: 'CDN Provider'
+      constraints:
+        Choice:
+          - none
+          - custom
+    cdn_custom_img:
+      type: uri
+      label: 'CDN Custom img'
+    cdn_custom_css:
+      type: uri
+      label: 'CDN Custom CSS'
+    cdn_custom_js:
+      type:  uri
+      label: 'CDN Custom js'
+    search_url_action:
+      type: string
+      label: 'Search URL'
+      constraints:
+        Regex:
+          pattern: '/^(https|\/).*$/'
+          message: "The %value is not valid URL."
+    search_name:
+      type: string
+      label: 'Search Key'
+    uswds_header_style:
+      type: string
+      label: 'Choose a style of header to use'
+      constraints:
+        Choice:
+          - basic
+          - extended
+    uswds_primary_menu:
+      type: machine_name
+      label: 'Primary menu'
+    uswds_secondary_menu:
+      type: machine_name
+      label: 'Secondary menu'
+    uswds_header_mega:
+      type: boolean
+      label: 'Use megamenu in header'
+    uswds_government_banner:
+      type: boolean
+      label: 'Display the official U.S. government banner at the top of each page?'
+    uswds_back_to_top:
+      type: boolean
+      label: 'Display the back to top link in footer'
+    uswds_back_top_top_text:
+      type: label
+      label: 'Return to top text'
+    uswds_footer_style:
+      type: string
+      label: 'Choose a style of footer to use'
+      constraints:
+        Choice:
+          - big
+          - medium
+          - slim
+    uswds_footer_menu:
+      type: machine_name
+      label: 'Footer menu'
+    uswds_footer_agency_name:
+      type: label
+      label: 'Footer agency name'
+    uswds_footer_agency_url:
+      type: uri
+      label: 'Footer agency URL'
+    uswds_footer_agency_logo_default:
+      type: boolean
+      label: 'Footer use general logo'
+    uswds_footer_agency_logo:
+      type: string
+      label: 'Path to footer agency logo'
+      constraints:
+        NotNull: []
+    uswds_contact_center:
+      type: label
+      label: 'Name of contact center'
+    uswds_email:
+      type: email
+      label: 'Email'
+    uswds_phone:
+      type: string
+      label: 'Phone'
+      constraints:
+        Regex:
+          # Regex copied from Color::validateHex()
+          pattern: '/^[0-9\-\(\)\/\+\s]*$/'
+          message: "%value is not a valid phone number."
+    uswds_facebook:
+      type: uri
+      label: 'Facebook link'
+    uswds_twitter:
+      type: uri
+      label: 'Twitter link'
+    uswds_youtube:
+      type: uri
+      label: 'Youtube link'
+    uswds_instagram:
+      type: uri
+      label: 'Instagram'
+    uswds_linkedin:
+      type: uri
+      label: 'LinkedIn'
+    uswds_rss:
+      type: string
+      label: 'RSS feed'
+      constraints:
+        Regex:
+          pattern: '/\.(rss|feed|xml|php)/'
+    sign_up_block_display:
+      type: boolean
+      label: 'Display sign up block'
+    sign_up_block_url:
+      type: string
+      label: 'Sign up block URL'
+      constraints:
+        Regex:
+          pattern: '/^(https|\/).*$/'
+          message: "The %value is not valid URL."
+    sign_up_block_header:
+      type: label
+      label: 'Sign up block header'
+    sign_up_block_label:
+      type: label
+      label: 'Sign up block label'
+    sign_up_block_button_label:
+      type: label
+      label: 'Sign up block button label'
+    uswds_menu_bypass:
+      type: mapping
+      mapping:
+        primary_menu:
+          type: boolean
+          label: 'Bypass primary menu'
+        secondary_menu:
+          type: boolean
+          label: 'Bypass secondary menu'
+        sidebar_first:
+          type: boolean
+          label: 'Bypass sidebar first menu'
+        sidebar_second:
+          type: boolean
+          label: 'Bypass sidebar second menu'
+        footer_primary:
+          type: boolean
+          label: 'Bypass footer primary menu'
+        footer_secondary:
+          type: boolean
+          label: 'Bypass footer secondary menu'
+    subtheme_folder:
+      type: string
+      label: 'Path to subtheme folder'
+    subtheme_name:
+      type: label
+      label: 'Subtheme name'
+    subtheme_machine_name:
+      type: machine_name
+      label: 'Subtheme machine name'

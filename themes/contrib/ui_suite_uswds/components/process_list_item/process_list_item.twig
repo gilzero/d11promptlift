@@ -1,0 +1,9 @@
+<li{{ attributes.addClass('usa-process-list__item') }}>
+  <h4 class="usa-process-list__heading">{{ header }}</h4>
+
+  {% if body %}
+    <div>
+      {{ body }}
+    </div>
+  {% endif %}
+</li>

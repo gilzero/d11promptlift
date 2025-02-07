@@ -19,7 +19,6 @@ html {
 
 body {
   word-wrap: break-word;
-  -webkit-hyphens: auto;
   hyphens: auto;
   color: var(--color-fg);
   background: var(--color-bg);
@@ -242,4 +241,15 @@ img {
 .ui-dialog *:focus {
   outline: var(--focus-outline);
   box-shadow: var(--focus-box-shadow);
+}
+
+/**
+ * These elements should not be displayed until they are processed
+ * by JavaScript, and views-ui-noscript.css exists so browsers
+ * without JavaScript will still display them
+ */
+
+.views-tabs,
+.views-display-top > input.button {
+  display: none;
 }

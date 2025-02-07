@@ -2,12 +2,13 @@
 
 namespace Drupal\ai_translate\Form;
 
+use Drupal\ai\AiProviderPluginManager;
+use Drupal\content_translation\ContentTranslationManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Link;
-use Drupal\ai\AiProviderPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -99,7 +100,12 @@ class AiTranslateForm extends FormBase {
 
     $entity = $build['#entity'];
     $entity_id = $entity->id();
-    $entity_type = $entity->getEntityTypeId();
+    $entity_type_id = $entity->getEntityTypeId();
+    $storage = $this->entityTypeManager->getStorage($entity_type_id);
+    $default_revision = $storage->load($entity_id);
+    $entity_type = $entity->getEntityType();
+
+    $use_latest_revisions = $entity_type->isRevisionable() && ContentTranslationManager::isPendingRevisionSupportEnabled($entity_type_id, $entity->bundle());
     $lang_from = $entity->getUntranslated()->language()->getId();
 
     $config = $this->config(static::CONFIG_NAME);
@@ -107,25 +113,48 @@ class AiTranslateForm extends FormBase {
     foreach ($languages as $langcode => $language) {
       $option = array_shift($overview['#rows']);
 
+      // Get the latest revision.
+      // This logic comes from web/core/modules/content_translation/src/Controller/ContentTranslationController.php.
+      if ($use_latest_revisions) {
+        $entity = $default_revision;
+        $latest_revision_id = $storage->getLatestTranslationAffectedRevisionId($entity->id(), $langcode);
+        if ($latest_revision_id) {
+          /** @var \Drupal\Core\Entity\ContentEntityInterface $latest_revision */
+          $latest_revision = $storage->loadRevision($latest_revision_id);
+          // Make sure we do not list removed translations, i.e. translations
+          // that have been part of a default revision but no longer are.
+          if (!$latest_revision->wasDefaultRevision() || $default_revision->hasTranslation($langcode)) {
+            $entity = $latest_revision;
+          }
+        }
+      }
+      $ai_model = FALSE;
+      $additional = '';
       if ($lang_from !== $langcode && !$entity->hasTranslation($langcode)) {
         $model = $config->get($langcode . '_model') ?? '';
         $parts = explode('__', $model);
-        if (empty($parts[0])) {
-          $default_model = $this->providerManager->getSimpleDefaultProviderOptions('chat');
-          $parts1 = explode('__', $default_model);
-          $ai_model = $parts1[1];
+        if ($model == "" || empty($parts[0])) {
+          $default_model = $this->providerManager->getSimpleDefaultProviderOptions('translate_text');
+          if ($default_model == "") {
+          }
+          else {
+            $parts1 = explode('__', $default_model);
+            $ai_model = $parts1[1];
+          }
         }
         else {
           $ai_model = $parts[1];
         }
-        $additional = Link::createFromRoute($this->t('Translate using @ai', ['@ai' => $ai_model]),
-          'ai_translate.translate_content', [
-            'entity_type' => $entity_type,
-            'entity_id' => $entity_id,
-            'lang_from' => $lang_from,
-            'lang_to' => $langcode,
-          ]
-        )->toString();
+        if ($ai_model) {
+          $additional = Link::createFromRoute($this->t('Translate using @ai', ['@ai' => $ai_model]),
+            'ai_translate.translate_content', [
+              'entity_type' => $entity_type_id,
+              'entity_id' => $entity_id,
+              'lang_from' => $lang_from,
+              'lang_to' => $langcode,
+            ]
+          )->toString();
+        }
       }
       else {
         $additional = $this->t('NA');
@@ -168,7 +197,7 @@ class AiTranslateForm extends FormBase {
    * Function to call the translate API and get the result.
    */
   public function aiTranslateResult(array &$form, FormStateInterface $form_state) {
-
+    return [];
   }
 
 }

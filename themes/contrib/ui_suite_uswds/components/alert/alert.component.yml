@@ -1,0 +1,34 @@
+name: Alert
+description: 'An alert keeps users informed of important and sometimes time-sensitive changes.'
+group: 'Alerts / Banner'
+links:
+  - 'https://designsystem.digital.gov/components/alert/'
+variants:
+  info:
+    title: Informative
+  warning:
+    title: Warning
+  error:
+    title: Error
+  success:
+    title: Success
+  emergency:
+    title: Emergency
+slots:
+  heading:
+    title: Heading
+    description: '(Optional) The alert heading.'
+  message:
+    title: Message
+    description: 'The alert message'
+props:
+  type: object
+  properties:
+    slim:
+      title: Slim
+      description: 'Display a slimmer version of the alert.'
+      type: boolean
+    no_icon:
+      title: 'No Icon'
+      description: 'Display an informational status alert.'
+      type: boolean

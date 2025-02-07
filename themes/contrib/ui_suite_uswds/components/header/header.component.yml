@@ -1,0 +1,19 @@
+name: Header
+description: 'Helps users identify where they are and provides a quick, organized way to reach the main sections of a website.'
+group: Layout
+links:
+  - 'https://designsystem.digital.gov/components/header/'
+variants:
+  basic:
+    title: 'Basic'
+    description: 'Orient users to a simple site.'
+  extended:
+    title: 'Extended (Default)'
+    description: 'Orient users to a site with lots of sections.'
+slots:
+  top:
+    title: 'Top'
+    description: 'Expect a logo component'
+  nav:
+    title: 'Nav'
+    description: 'Expect a nav component'

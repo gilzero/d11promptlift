@@ -1,0 +1,30 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Dropdown Menu
+props:
+  type: object
+  properties:
+    items:
+      title: Dropdown menu items
+      description: Contains dropdown menu items
+      type: array
+      items:
+        type: object
+      examples:
+        -
+          - { title: Titulo, url: '#' }
+          - { title: Titulo1, url: '#' }
+          - { title: Titulo2, url: '#' }
+    dropdown_direction:
+      title: Dropdown direction
+      type: string
+      examples:
+        - dropend
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-attributes-class', 'd-block' ]
+libraryOverrides:
+  dependencies:
+    - artisancustom/bs-dropdown

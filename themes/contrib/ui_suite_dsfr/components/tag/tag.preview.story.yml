@@ -1,0 +1,11 @@
+name: Preview
+slots:
+  label: "Label tag"
+props:
+  url: "https://example.com"
+  dismissible: false
+  color_schema: brown-caramel
+  icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: checkbox-circle-line

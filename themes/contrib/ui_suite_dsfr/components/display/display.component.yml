@@ -1,0 +1,16 @@
+name: Display
+description: "Allows the user to define his preferences on the display settings theme."
+group: Display
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/parametre-d-affichage"
+slots:
+  title:
+    title: Title
+    description: "Descriptive text for changing the display theme settings."
+props:
+  type: object
+  properties:
+    themes:
+      title: Themes
+      description: "A links structure with attributes.id. 'url' property is used for the SVG path."
+      $ref: "ui-patterns://links"

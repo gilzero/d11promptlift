@@ -1,0 +1,7 @@
+name: Default
+slots:
+  text: Register
+library_wrapper: >
+  <ul class="steps not-prose">
+  {{ _story }}
+  </ul>

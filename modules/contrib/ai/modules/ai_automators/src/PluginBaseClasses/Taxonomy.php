@@ -95,8 +95,8 @@ class Taxonomy extends RuleBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function tokens() {
-    $tokens = parent::tokens();
+  public function tokens(ContentEntityInterface $entity) {
+    $tokens = parent::tokens($entity);
     $tokens['value_options_comma'] = 'A comma separated list of all value options.';
     $tokens['value_options_nl'] = 'A new line separated list of all value options.';
     $tokens['value_options_nl_description'] = 'A new line separated list of all value options, with term descriptions.';
@@ -323,7 +323,7 @@ class Taxonomy extends RuleBase implements ContainerFactoryPluginInterface {
     foreach ($config['handler_settings']['target_bundles'] as $vid) {
       $terms = $storage->loadTree($vid);
       foreach ($terms as $term) {
-        $returnTerms[$term->tid] = $withDescriptions ? $term->name . ' - ' . $term->description->value : $term->name;
+        $returnTerms[$term->tid] = $withDescriptions ? $term->name . ' - ' . $term->description__value : $term->name;
       }
     }
     return $returnTerms;

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Theme functions.
+ */
+
+// * Include all files from the includes directory.
+$includes_path = dirname(__FILE__) . '/includes/*.inc';
+foreach (glob($includes_path) as $filename) {
+  require_once dirname(__FILE__) . '/includes/' . basename($filename);
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function belgrade_library_info_alter(&$libraries, $extension) {
+  // Remove the Bootstrap library added by the "bootstrap_basic_image_gallery"
+  // module since it breaks Drupal 11.
+  if ($extension === 'bootstrap_basic_image_gallery' &&
+    isset($libraries['bootstrap_components'])) {
+    unset($libraries['bootstrap_components']['js']);
+  }
+}

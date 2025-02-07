@@ -1,0 +1,15 @@
+name: Default
+slots:
+  open_label: "open modal"
+  close_label: Close
+  title: Hello!
+  message: "Press ESC key or click to close me!"
+props:
+  modal_id: my_modal_1
+library_wrapper: >
+  {{ include('ui_suite_daisyui:button', {
+    'label': 'Open modal',
+    'variant': 'primary',
+    'modal_id': 'my_modal_1'
+  }, with_context = false) }}
+  {{ _story }}

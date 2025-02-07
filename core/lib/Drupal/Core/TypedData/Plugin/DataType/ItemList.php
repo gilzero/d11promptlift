@@ -2,6 +2,7 @@
 
 namespace Drupal\Core\TypedData\Plugin\DataType;
 
+use Drupal\Component\Utility\FilterArray;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\Attribute\DataType;
 use Drupal\Core\TypedData\ComplexDataInterface;
@@ -92,7 +93,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
       $strings[] = $item->getString();
     }
     // Remove any empty strings resulting from empty items.
-    return implode(', ', array_filter($strings, 'mb_strlen'));
+    return implode(', ', FilterArray::removeEmptyStrings($strings));
   }
 
   /**
@@ -300,6 +301,13 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
       $this->list[$delta] = clone $item;
       $this->list[$delta]->setContext($delta, $this);
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function last(): ?TypedDataInterface {
+    return $this->get($this->count() - 1);
   }
 
 }

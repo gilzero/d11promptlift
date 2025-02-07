@@ -1,0 +1,403 @@
+name: 'Grid Row (2 cols)'
+description: 'Use our flexible grid system to structure website content. The grid is mobile-first, powered by flexbox, and based on a 12-column system.'
+group: Layout
+links:
+  - 'https://designsystem.digital.gov/utilities/layout-grid/'
+slots:
+  first:
+    title: "First column"
+    description: "The content of the first column."
+  second:
+    title: "Second column"
+    description: "The content of the second column."
+props:
+  type: object
+  properties:
+    first_column_attributes:
+      title: 'First column attributes'
+      description: 'The attributes used on the first column.'
+      $ref: 'ui-patterns://attributes'
+    second_column_attributes:
+      title: 'Second column attributes'
+      description: 'The attributes used on the second column.'
+      $ref: 'ui-patterns://attributes'
+    with_container:
+      title: 'With container?'
+      description: 'Is the row wrapped in a container?'
+      type: boolean
+    gutters:
+      title: 'Gutters'
+      description: 'Add grid-gap to a grid row to add a gap (or gutter) between each column in the row. The default gap width is 2 units and 4 units at desktop and higher. Customize the width of the gap by adjusting the value of $theme-column-gap in project settings as shown in the following example.'
+      type: string
+      enum:
+        - 'grid-gap'
+        - 'grid-gap-05'
+        - 'grid-gap-1'
+        - 'grid-gap-2'
+        - 'grid-gap-3'
+        - 'grid-gap-4'
+        - 'grid-gap-5'
+        - 'grid-gap-6'
+      'meta:enum':
+        grid-gap: 'default-gap'
+        grid-gap-05: '1/2'
+        grid-gap-1: '1'
+        grid-gap-2: '2'
+        grid-gap-3: '3'
+        grid-gap-4: '4'
+        grid-gap-5: '5'
+        grid-gap-6: '6'
+    offsetting:
+      title: 'Offsetting Columns'
+      description: '.grid-offset-[1-12] offsets an item by the specified number of grid columns as shown in the following example.'
+      type: string
+      enum:
+        - 'grid-offset-1'
+        - 'grid-offset-2'
+        - 'grid-offset-3'
+        - 'grid-offset-4'
+        - 'grid-offset-5'
+        - 'grid-offset-6'
+        - 'grid-offset-7'
+        - 'grid-offset-8'
+        - 'grid-offset-9'
+        - 'grid-offset-10'
+        - 'grid-offset-11'
+        - 'grid-offset-12'
+      'meta:enum':
+        grid-offset-1: '1'
+        grid-offset-2: '2'
+        grid-offset-3: '3'
+        grid-offset-4: '4'
+        grid-offset-5: '5'
+        grid-offset-6: '6'
+        grid-offset-7: '7'
+        grid-offset-8: '8'
+        grid-offset-9: '9'
+        grid-offset-10: '10'
+        grid-offset-11: '11'
+        grid-offset-12: '12'
+    card:
+      title: 'Card'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    card_lg:
+      title: 'Card Large'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    mobile:
+      title: 'Mobile'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          auto: 'Auto'
+          fill: 'Fill'
+          1: '1'
+          2: '2'
+          3: '3'
+          4: '4'
+          5: '5'
+          6: '6'
+          7: '7'
+          8: '8'
+          9: '9'
+          10: '10'
+          11: '11'
+          12: '12'
+    mobile_lg:
+      title: 'Mobile Large'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    tablet:
+      title: 'Tablet'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    tablet_lg:
+      title: 'Tablet Large'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    desktop:
+      title: 'Desktop'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    desktop_lg:
+      title: 'Desktop Large'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'
+    widescreen:
+      title: 'Widescreen'
+      type: array
+      maxItems: 2
+      items:
+        type: string
+        enum:
+          - 'auto'
+          - 'fill'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+        'meta:enum':
+          'auto': 'Auto'
+          'fill': 'Fill'
+          '1': '1'
+          '2': '2'
+          '3': '3'
+          '4': '4'
+          '5': '5'
+          '6': '6'
+          '7': '7'
+          '8': '8'
+          '9': '9'
+          '10': '10'
+          '11': '11'
+          '12': '12'

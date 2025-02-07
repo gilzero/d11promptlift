@@ -1,0 +1,58 @@
+name: Modal
+description: "Modal is used to show a dialog or a box when you click a button."
+group: Actions
+links:
+  - "https://daisyui.com/components/modal/"
+slots:
+  close_label:
+    title: "Button label"
+  title:
+    title: Title
+  message:
+    title: Message
+props:
+  type: object
+  properties:
+    modal_id:
+      title: "Modal ID"
+      description: "To be used in combination with Button component. Randomly generated if missing"
+      $ref: "ui-patterns://identifier"
+    close_outside:
+      title: "Clicked outside closes?"
+      description: "Dialog modal, closes when clicked outside."
+      type: boolean
+    close_corner:
+      title: "Clicked corner closes?"
+      description: "Dialog modal with a close button at corner."
+      type: boolean
+    custom_width:
+      title: "Set custom width?"
+      description: "Dialog modal with custom width."
+      type: boolean
+    responsive:
+      title: "Responsive modal?"
+      description: "Modal goes bottom or top or middle on mobile screen and goes middle on desktop."
+      type: string
+      enum:
+        - bottom
+        - middle
+        - top
+      "meta:enum":
+        bottom: Bottom
+        middle: Middle
+        top: Top
+    heading_level:
+      title: "Heading level"
+      type: integer
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      "meta:enum":
+        2: h2
+        3: "h3 (Default)"
+        4: h4
+        5: h5
+        6: h6

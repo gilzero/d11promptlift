@@ -1,0 +1,10 @@
+name: Diff
+description: "Diff component shows a side-by-side comparison of two items."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/diff/"
+slots:
+  item_1:
+    title: "Item 1"
+  item_2:
+    title: "Item 2"

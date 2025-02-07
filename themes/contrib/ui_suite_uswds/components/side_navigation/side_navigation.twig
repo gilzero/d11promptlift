@@ -1,0 +1,52 @@
+{{ _self.menu_links(items, 0, attributes) }}
+
+{% macro menu_links(items, menu_level, attributes) %}
+
+  {% if menu_level == 0 %}
+    {% set attributes = attributes.addClass('usa-sidenav') %}
+  {% else %}
+    {% set attributes = attributes.addClass('usa-sidenav__sublist') %}
+  {% endif %}
+
+  {% if items %}
+    <ul{{ attributes }}>
+      {% for item in items %}
+        {%
+          set item_classes = [
+          'usa-sidenav__item',
+          item.is_expanded and item.below ? 'expanded dropdown',
+          item.in_active_trail ? 'active active-trail',
+          loop.first ? 'first',
+          loop.last ? 'last',
+        ]
+        %}
+
+        {% set link_attributes = create_attribute(item.link_attributes|default({})) %}
+
+        {% if not item.url %}
+          {% set menu_item_type = 'nolink' %}
+        {% elseif not item.url and item.url.routeName == '<button>' %}
+          {% set menu_item_type = 'button' %}
+        {% else %}
+          {% set menu_item_type = 'link' %}
+        {% endif %}
+
+        {% set link_attributes = link_attributes.addClass(menu_item_type) %}
+
+        {% if item.in_active_trail %}
+          {% set link_attributes = link_attributes.addClass('usa-current') %}
+        {% endif %}
+
+        <li{{ item.attributes.addClass(item_classes) }}>
+
+          <a{{ link_attributes.setAttribute("href", item.url) }}>{{ item.title }}</a>
+
+          {% if item.is_expanded and item.below %}
+            {{ _self.menu_links(item.below, menu_level + 1, attributes) }}
+          {% endif %}
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

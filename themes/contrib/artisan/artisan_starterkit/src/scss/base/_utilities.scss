@@ -1,0 +1,59 @@
+// @see https://getbootstrap.com/docs/5.3/utilities/api/
+
+$artisan-theme-colors: (
+  "branding-primary": var(--theme-palette-branding-primary, var(--bs-primary)),
+  "branding-secondary": var(--theme-palette-branding-secondary, var(--bs-secondary)),
+  "primary": var(--theme-palette-primary, var(--bs-primary)),
+  "secondary": var(--theme-palette-secondary, var(--bs-secondary)),
+  "success": var(--theme-palette-success, var(--bs-success)),
+  "info": var(--theme-palette-info, var(--bs-info)),
+  "warning": var(--theme-palette-warning, var(--bs-warning)),
+  "danger": var(--theme-palette-danger, var(--bs-danger)),
+  "light": var(--theme-palette-light, var(--bs-light)),
+  "dark": var(--theme-palette-dark, var(--bs-dark)),
+  "white": var(--theme-palette-white, var(--bs-white))
+);
+
+$utilities: map-merge(
+    $utilities,
+    (
+      "columns": (
+        property: columns,
+        class: columns,
+        responsive: true,
+        values: (
+          2: 2,
+          3: 3,
+          4: 4,
+          5: 5,
+          auto: auto,
+        ),
+      ),
+      "color": (
+        property: color,
+        class: text,
+        local-vars: (
+          "text-opacity": 1
+        ),
+        values: map-merge(
+            $artisan-theme-colors,
+            (
+              "reset": inherit,
+            )
+        )
+      ),
+      "background-color": (
+        property: background-color,
+        class: bg,
+        local-vars: (
+          "bg-opacity": 1
+        ),
+        values: map-merge(
+            $artisan-theme-colors,
+            (
+              "transparent": transparent,
+            )
+        )
+      ),
+    )
+);

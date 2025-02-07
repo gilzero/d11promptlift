@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Theme functions.
+ */
+
+$includes_path = dirname(__FILE__) . '/includes/*.inc';
+$routesMatched = glob($includes_path);
+if (is_array($routesMatched)) {
+  foreach ($routesMatched as $filename) {
+    require_once dirname(__FILE__) . '/includes/' . basename($filename);
+  }
+}

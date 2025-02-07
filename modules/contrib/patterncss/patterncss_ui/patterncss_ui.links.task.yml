@@ -1,0 +1,19 @@
+patterncss.admin:
+  title: 'Overview'
+  route_name: patterncss.admin
+  base_route: patterncss.admin
+
+patterncss.list:
+  title: 'List'
+  route_name: patterncss.admin
+  parent_id: patterncss.admin
+
+patterncss.settings:
+  title: 'Settings'
+  route_name: patterncss.settings
+  base_route: patterncss.admin
+
+patterncss.settings_library:
+  title: 'Global'
+  route_name: patterncss.settings
+  parent_id: patterncss.settings

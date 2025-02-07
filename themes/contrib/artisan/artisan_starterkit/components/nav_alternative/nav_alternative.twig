@@ -1,0 +1,80 @@
+{#
+/**
+{#
+ * @file
+ * Template for a Nav component.
+ *
+ * Available config:
+ * - alignment: left | right | center | vertical.
+ * - style: tabs | pills
+ * - fill: fill | justify
+ * - utility_classes: An array of utility classes.
+#}
+{% if alignment == 'right' %}
+  {% set alignment = 'justify-content-end' %}
+{% elseif alignment == 'center' %}
+  {% set alignment = 'justify-content-center' %}
+{% elseif alignment == 'vertical' %}
+  {% set alignment = 'flex-column' %}
+{% else %}
+  {% set alignment = '' %}
+{% endif %}
+
+{% set style = style ? 'nav-' ~ style : '' %}
+{% set fill = fill ? 'nav-' ~ fill : '' %}
+
+{% set nav_classes = [
+  'main-menu nav navbar-nav position-relative nav-alternative',
+  style,
+  alignment,
+  fill
+]|merge(utility_classes ? utility_classes : []) %}
+
+{% macro menus(items, attributes, nav_classes, level) %}
+  {% if items %}
+    <ul{{ attributes.addClass(nav_classes) }}>
+      {% for item in items %}
+        {% set nav_item_classes = [
+          'nav-item',
+          'nav-item--level-' ~ level,
+          item.in_active_trail ? 'active',
+          item.is_expanded and item.below ? 'has-children'
+        ] %}
+        {% set nav_link_classes = ['nav-link'] %}
+        {% if item.url.options.attributes.class is iterable %}
+          {% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+        {% elseif item.url.options.attributes.class %}
+          {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+        {% endif %}
+        <li class="{{ nav_item_classes|join(' ') }}">
+          {% if item.is_expanded and item.below %}
+            {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+            <span class="link-expand" aria-expanded="false" title="{{ 'Expand submenu'|t }}"></span>
+            {% if item.below %}
+              {% if level == 1 %}
+                <div class="submenu-container">
+                <div class="p-3">
+              {% endif %}
+              {% set child_attributes = create_attribute() %}
+              {% set new_level = level + 1 %}
+              {{ _self.menus(item.below, child_attributes, [
+                'list-unstyled',
+                'p-0',
+                'nav-child',
+                'nav-child--level-' ~ new_level
+              ], new_level) }}
+              {% if level == 1 %}
+                </div>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% else %}
+            {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{{ _self.menus(items, create_attribute(), nav_classes, 1) }}

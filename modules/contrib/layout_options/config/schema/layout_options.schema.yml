@@ -1,0 +1,9 @@
+layout_options.single_valued_option:
+  type: string
+  label: 'Option value'
+
+layout_options.multi_valued_option:
+  type: sequence
+  label: 'Option values'
+  sequence:
+    type: string

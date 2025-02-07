@@ -1,0 +1,19 @@
+name: Preview
+slots:
+  title_alt: 'Hero callout:'
+  title: 'Bring attention to a project priority'
+  body:
+    -
+      type: html_tag
+      tag: p
+      value: 'Support the callout with some short explanatory text. You don’t need more than a couple of sentences.'
+    -
+      type: component
+      component: 'ui_suite_uswds:button'
+      slots:
+        label: 'Call to action'
+      props:
+        url: '#'
+props:
+  aria_label: Introduction
+  bg_image: 'https://cdnjs.cloudflare.com/ajax/libs/uswds/3.8.0/img/hero.jpg'

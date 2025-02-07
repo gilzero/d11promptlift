@@ -1,0 +1,6 @@
+name: Default
+slots:
+  label: "Simple Link"
+props:
+  url: /
+  underline_hover: true

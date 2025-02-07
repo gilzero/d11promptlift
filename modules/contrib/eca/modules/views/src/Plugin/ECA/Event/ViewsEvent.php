@@ -87,7 +87,11 @@ class ViewsEvent extends EventBase {
    * {@inheritdoc}
    */
   public function generateWildcard(string $eca_config_id, EcaEvent $ecaEvent): string {
-    return $ecaEvent->getConfiguration()['view_id'];
+    $display_id = $ecaEvent->getConfiguration()['display_id'] ?? '';
+    if ($display_id === '') {
+      $display_id = '*';
+    }
+    return $ecaEvent->getConfiguration()['view_id'] . ':' . $display_id;
   }
 
   /**
@@ -95,7 +99,10 @@ class ViewsEvent extends EventBase {
    */
   public static function appliesForWildcard(Event $event, string $event_name, string $wildcard): bool {
     if ($event instanceof ViewsBase) {
-      return $wildcard === $event->getView()->id();
+      [$view_id, $display_id] = explode(':', $wildcard);
+      return $view_id === $event->getView()->id() && (
+        $display_id === '*' || $display_id === $event->getView()->current_display
+      );
     }
     return FALSE;
   }
@@ -106,6 +113,7 @@ class ViewsEvent extends EventBase {
   public function defaultConfiguration(): array {
     return [
       'view_id' => '',
+      'display_id' => '',
     ] + parent::defaultConfiguration();
   }
 
@@ -128,6 +136,13 @@ class ViewsEvent extends EventBase {
       '#options' => $views,
       '#required' => TRUE,
     ];
+    $form['display_id'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Display'),
+      '#default_value' => $this->configuration['display_id'],
+      '#description' => $this->t('Provide the view <code>display id</code> to which to respond. Leave empty to respond on any display.'),
+      '#weight' => -40,
+    ];
     return parent::buildConfigurationForm($form, $form_state);
   }
 
@@ -136,6 +151,7 @@ class ViewsEvent extends EventBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
     $this->configuration['view_id'] = $form_state->getValue('view_id');
+    $this->configuration['display_id'] = $form_state->getValue('display_id');
   }
 
 }

@@ -1,0 +1,28 @@
+{% set accessibility_value = accessibility_value|lower %}
+
+{% set attributes = attributes %}
+
+{{ include('ui_suite_uswds:label', {
+  label: label,
+  for_value: accessibility_value,
+}, with_context = false) }}
+
+{% if hint %}
+  <div class="usa-hint" id="{{ accessibility_value }}Hint">{{ hint }}</div>
+{% endif %}
+
+<span class="usa-input-mask" data-mask="{{ placeholder }}">
+  <span class="usa-input-mask--content" aria-hidden="true" id="{{ accessibility_value }}Mask">{{ placeholder }}</span>
+  <input{{ attributes
+    .setAttribute('id', accessibility_value)
+    .setAttribute('inputmode', input_mode)
+    .setAttribute('name', accessibility_value)
+    .setAttribute('pattern', pattern)
+    .setAttribute('aria-describedby', accessibility_value ~ 'Hint')
+    .setAttribute('data-placeholder', placeholder)
+    .setAttribute('maxlength', max_length)
+    .addClass('usa-masked').addClass('usa-input')
+  }}
+  />
+  {{ children }}
+</span>

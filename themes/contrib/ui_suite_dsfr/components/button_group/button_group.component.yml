@@ -1,0 +1,67 @@
+name: "Button group"
+description: "Allows the user to choose between several actions."
+group: Button
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton"
+variants:
+  default:
+    title: Vertical
+  inline:
+    title: Horizontal
+  center:
+    title: "Center"
+  right:
+    title: "Right"
+  sm:
+    title: "Vertical small"
+  inline__sm:
+    title: "Horizontal small"
+  lg:
+    title: "Vertical large"
+  inline__lg:
+    title: "Horizontal large"
+  inline__center:
+    title: "Horizontal center"
+  inline__right:
+    title: "Horizontal right"
+  inline__inline_reverse__right:
+    title: "Horizontal right reverse"
+  inline__sm__center:
+    title: "Horizontal small center"
+  inline__sm__right:
+    title: "Horizontal small right"
+  inline__inline_reverse__sm__right:
+    title: "Horizontal small right reverse"
+  inline__lg__center:
+    title: "Horizontal large center"
+  inline__lg__right:
+    title: "Horizontal large right"
+  inline__inline_reverse__lg__right:
+    title: "Horizontal large right reverse"
+slots:
+  buttons:
+    title: Buttons
+    description: "A list of 'button' components."
+props:
+  type: object
+  properties:
+    inline_from:
+      title: "Horizontal inline only from a certain breakpoint"
+      type: string
+      enum:
+        - sm
+        - md
+        - lg
+    equisized:
+      title: "Equisized?"
+      description: "Force the same width for all the buttons in the group."
+      type: boolean
+    icon_position:
+      title: "Icon position"
+      type: string
+      enum:
+        - left
+        - right
+      "meta:enum":
+        left: Right
+        right: Left

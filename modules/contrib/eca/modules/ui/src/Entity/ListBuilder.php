@@ -79,6 +79,9 @@ class ListBuilder extends DraggableListBuilder {
     $row['events'] = [
       '#theme' => 'item_list',
       '#items' => $eca->getEventInfos(),
+      '#attributes' => [
+        'class' => ['eca-event-list'],
+      ],
     ];
     $row['version'] = ['#markup' => $eca->get('version') ?: $this->t('undefined')];
     $row['status'] = [

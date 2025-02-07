@@ -1,0 +1,10 @@
+theme-form:
+  css:
+    theme:
+      ui/theme-form.css: {}
+  js:
+    ui/theme-form.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupal.message

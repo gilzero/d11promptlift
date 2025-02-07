@@ -1,0 +1,17 @@
+ui_skins.css_variables:
+  type: 'sequence'
+  label: 'CSS variables'
+  sequence:
+    type: 'ui_skins.css_variable'
+    label: 'CSS variable'
+
+ui_skins.css_variable:
+  type: 'sequence'
+  label: 'CSS variable scoped values'
+  sequence:
+    type: 'string'
+    label: 'Scope value'
+
+ui_skins.theme:
+  type: 'string'
+  label: 'Theme'

@@ -1,0 +1,27 @@
+# Schema for the configuration files of the Model Context Protocol module.
+mcp.settings:
+  type: config_object
+  label: 'Model Context Protocol settings'
+  mapping:
+    enable_sse:
+      type: boolean
+      label: 'Enable Server-Sent Events'
+    plugins:
+      type: sequence
+      label: 'Plugin Settings'
+      sequence:
+        type: mapping
+        mapping:
+          id:
+            type: string
+            label: 'Plugin ID'
+          settings:
+            type: mapping
+            label: 'Plugin Settings'
+            mapping:
+              enabled:
+                type: boolean
+                label: 'Plugin Enabled'
+              config:
+                type: mapping
+                label: 'Custom Configuration'

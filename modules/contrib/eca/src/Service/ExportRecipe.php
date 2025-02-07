@@ -7,6 +7,7 @@ use Drupal\Core\Config\ManagedStorage;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystem;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\eca\Entity\Eca;
@@ -26,7 +27,7 @@ class ExportRecipe {
    *
    * @param \Drupal\Core\Config\ManagedStorage $configStorage
    *   The config storage.
-   * @param \Drupal\Core\File\FileSystem $fileSystem
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
    *   The file system.
    * @param \Drupal\Core\Extension\ModuleExtensionList $moduleExtensionList
    *   The module extension list.
@@ -37,7 +38,7 @@ class ExportRecipe {
    */
   public function __construct(
     protected readonly ManagedStorage $configStorage,
-    protected readonly FileSystem $fileSystem,
+    protected readonly FileSystemInterface $fileSystem,
     protected readonly ModuleExtensionList $moduleExtensionList,
     protected readonly Modellers $modellerService,
     protected readonly Messenger $messenger,
@@ -283,7 +284,7 @@ $description
 
 ```shell
 composer require $namespace/$id
-cd web && php core/scripts/drupal recipe ../vendor/drupal-eca-recipe/$id
+cd web && php core/scripts/drupal recipe ../vendor/$namespace/$id
 ```
 end_of_readme;
   }

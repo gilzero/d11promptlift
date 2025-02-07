@@ -1,0 +1,16 @@
+name: Preview
+slots:
+  title: Title
+  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi placerat gravida tortor id semper. Maecenas posuere et dolor nec feugiat. Fusce elit diam, gravida id tortor eu, eleifend faucibus libero. Mauris quis mi finibus, accumsan dui ut, ultricies est. Fusce mi quam, suscipit vitae ante a, egestas auctor purus."
+  button:
+    type: component
+    component: "ui_suite_dsfr:button"
+    slots:
+      label: "Go somewhere"
+      url: "https://example.com"
+props:
+  color_schema: green-tilleul-verveine
+  icon:
+    pack_id: dsfr
+    settings: {}
+    icon_id: alert-line

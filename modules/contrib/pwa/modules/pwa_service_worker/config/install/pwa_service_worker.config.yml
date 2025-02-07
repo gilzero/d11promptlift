@@ -1,0 +1,5 @@
+urls_to_cache: ''
+urls_to_exclude: "admin/.*\r\nuser/.*"
+offline_page: '/offline'
+cache_version: '1'
+skip_waiting: false

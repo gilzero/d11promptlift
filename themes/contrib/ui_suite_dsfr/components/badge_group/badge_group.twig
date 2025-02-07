@@ -1,0 +1,8 @@
+{% if badges %}
+  <ul {{ attributes.addClass('fr-badge-group') }}>
+    {% set badges = badges and badges is not sequence ? [badges] : badges %}
+    {% for badge in badges %}
+      <li>{{ badge }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

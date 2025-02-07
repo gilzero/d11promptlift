@@ -1,0 +1,28 @@
+name: Checkbox
+description: 'Checkboxes allow users to select one or more options from a list.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/checkbox/'
+props:
+  type: object
+  properties:
+    tile:
+      title: Tiled
+      description: 'Should each checkbox have a tile.'
+      type: boolean
+    indeterminate:
+      title: 'Indeterminate attribute'
+      description: 'Adds data-indeterminate to checkbox'
+      type: boolean
+    field_name:
+      title: 'Field name'
+      description: '(optional) Most likely Drupal will already cover the field name and label'
+      type: string
+    field_label:
+      title: 'Field label'
+      description: '(optional) Most likely Drupal will already cover the field name and label'
+      type: string
+    description:
+      title: 'Description'
+      description: '(optional) If passing field name and label can also pass a description if using indeterminate.'
+      type: string

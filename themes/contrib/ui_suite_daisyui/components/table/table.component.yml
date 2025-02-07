@@ -1,0 +1,39 @@
+name: Table
+description: "Table can be used to show a list of data in a table format."
+group: "Data display"
+links:
+  - "https://daisyui.com/components/table/"
+variants:
+  xs:
+    title: "Extra small"
+  sm:
+    title: Small
+  md:
+    title: Medium
+  lg:
+    title: Large
+slots:
+  header:
+    title: Header
+    description: "A sequence of row components."
+  body:
+    title: Header
+    description: "A sequence of row components."
+  footer:
+    title: Footer
+    description: "A sequence of row components."
+props:
+  type: object
+  properties:
+    zebra:
+      title: Zebra
+      description: "Table with Zebra display"
+      type: boolean
+    pinned_rows:
+      title: "Pinned rows?"
+      description: "Table with pinned-rows"
+      type: boolean
+    pinned_cols:
+      title: "Pinned cols?"
+      description: "Table with pinned-cols"
+      type: boolean

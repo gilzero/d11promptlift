@@ -1,0 +1,15 @@
+{
+    "name": "drupal/ui_suite_daisyui",
+    "description": "A site-builder friendly DaisyUI theme, using the UI Suite modules.",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-theme",
+    "require": {
+        "drupal/ui_patterns": "^2.0",
+        "drupal/ui_styles": "^1.11",
+        "drupal/ui_icons": "^1.0",
+        "drupal/ui_skins": "^1.1"
+    },
+    "suggest": {
+        "drupal/ui_examples": "Allows to write example pages in YML format."
+    }
+}

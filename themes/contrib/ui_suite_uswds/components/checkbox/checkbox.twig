@@ -1,0 +1,26 @@
+{% if tile %}
+  {% set attributes = attributes.addClass('usa-checkbox__input--tile') %}
+{% endif %}
+
+{% if indeterminate %}
+  {% set attributes = attributes.setAttribute('data-indeterminate', 'true') %}
+{% endif %}
+
+{% if field_label and field_name %}
+  {% set attributes = attributes.setAttribute('id', field_name) %}
+{% endif %}
+
+<input{{ attributes.addClass('usa-checkbox__input').setAttribute('type', 'checkbox') }} />
+
+{% if field_label and field_name %}
+  {{ include('ui_suite_uswds:label', {
+    label: field_label|default(''),
+    description: description,
+    attributes: create_attribute({
+      'class': [
+        'usa-checkbox__label'
+      ]
+    }),
+    for_value: field_name,
+  }, with_context = false) }}
+{% endif %}

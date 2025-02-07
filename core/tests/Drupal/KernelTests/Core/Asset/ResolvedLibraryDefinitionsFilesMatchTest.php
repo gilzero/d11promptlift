@@ -15,6 +15,7 @@ use Drupal\KernelTests\KernelTestBase;
  * applied.
  *
  * @group Asset
+ * @group #slow
  */
 class ResolvedLibraryDefinitionsFilesMatchTest extends KernelTestBase {
 
@@ -163,7 +164,7 @@ class ResolvedLibraryDefinitionsFilesMatchTest extends KernelTestBase {
     // and these changes are only applied for the active theme.
     foreach ($this->allThemes as $theme) {
       $this->themeManager->setActiveTheme($this->themeInitialization->getActiveThemeByName($theme));
-      $this->libraryDiscovery->clearCachedDefinitions();
+      $this->libraryDiscovery->clear();
 
       $this->verifyLibraryFilesExist($this->getAllLibraries());
     }
@@ -176,7 +177,7 @@ class ResolvedLibraryDefinitionsFilesMatchTest extends KernelTestBase {
    *   An array of library definitions, keyed by extension, then by library, and
    *   so on.
    */
-  protected function verifyLibraryFilesExist($library_definitions) {
+  protected function verifyLibraryFilesExist($library_definitions): void {
     foreach ($library_definitions as $extension => $libraries) {
       foreach ($libraries as $library_name => $library) {
         if (in_array("$extension/$library_name", $this->librariesToSkip)) {

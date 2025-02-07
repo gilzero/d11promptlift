@@ -1,0 +1,27 @@
+{% if variant %}
+  {% set variants = variant|split('__')|map(v => v|replace({(v): 'usa-button--' ~ v})|replace({'_': '-'})) %}
+  {% set attributes = attributes.addClass(variants) %}
+
+  {% if variant == 'inverse' %}
+    {% set attributes = attributes.addClass('usa-button--outline') %}
+  {% endif %}
+{% endif %}
+
+{% set attributes = attributes.addClass('usa-button') %}
+
+{% if url or attributes.href %}
+  {% set url = url|default(attributes.href) %}
+  {% set attributes = attributes.setAttribute('href', url) %}
+  {% if disabled %}
+    {% set attributes = attributes.setAttribute('href', false).setAttribute('tabindex', '-1').setAttribute('aria-disabled', 'true').addClass('disabled') %}
+  {% endif %}
+
+  <a{{ attributes.setAttribute('role', 'button').setAttribute('tabindex', 0) }}>{{ label }}</a>
+{% else %}
+  {% if disabled %}
+    {% set attributes = attributes.setAttribute('disabled', '') %}
+  {% endif %}
+
+  <button{{ attributes.setAttribute('type', 'button') }}>{{ label }}</button>
+{% endif %}
+

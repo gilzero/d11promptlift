@@ -1,0 +1,20 @@
+name: '(Table Cell)'
+description: "Internal: to be used in the 'Table' and 'Table Row' components."
+group: Table
+links:
+  - 'https://designsystem.digital.gov/components/table/'
+slots:
+  content:
+    title: 'Cell content'
+    description: 'The cell content.'
+props:
+  type: object
+  properties:
+    is_header:
+      title: 'Is header?'
+      description: 'Should table cell have th or td'
+      type: boolean
+    is_sortable:
+      title: 'Is sortable?'
+      description: 'A sorted column changes the row ordering based on alphabetical or numeric cell values. Requires a caption.'
+      type: boolean

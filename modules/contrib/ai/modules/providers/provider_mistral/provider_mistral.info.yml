@@ -3,13 +3,15 @@ description: This enables the use of Mistral AI for the AI module.
 package: AI Providers
 type: module
 core_version_requirement: ^10.2 || ^11
-configure: provider_mistral.settings_form
+lifecycle: deprecated
+lifecycle_link: "https://www.drupal.org/project/ai/issues/3483356"
+hidden: true
 
 dependencies:
   - ai:ai
   - key:key
 
-# Information added by Drupal.org packaging script on 2024-10-10
-version: '1.0.0-alpha8'
+# Information added by Drupal.org packaging script on 2025-02-05
+version: '1.0.4'
 project: 'ai'
-datestamp: 1728569766
+datestamp: 1738761524

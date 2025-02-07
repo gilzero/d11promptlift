@@ -1,0 +1,37 @@
+/* USWDS doesn't have support when menu item isn't a link */
+.usa-col .usa-nav__submenu-item strong {
+  display: block;
+  padding: 0.5rem;
+  color: #fff;
+
+  @media screen and (max-width: 640px) {
+    color: #000;
+  }
+}
+
+/* For some reason USWDS removes padding-left on first column only */
+.usa-megamenu .usa-col .usa-nav__submenu-item a,
+.usa-megamenu .usa-col .usa-nav__submenu-item strong {
+  @media screen and (min-width: 640px) {
+    padding-left: 0 !important;
+  }
+}
+
+.usa-header--basic .usa-nav__primary > .usa-nav__primary-item > a,
+.usa-header--basic .usa-nav__primary > .usa-nav__primary-item > button {
+  padding-bottom: 0.5rem;
+}
+
+.basic-megamenu .usa-nav__primary button[aria-expanded] span::after {
+  top: 60%;
+}
+
+/* Preview CSS */
+.ui_patterns_component__stories .ui_patterns_story__story {
+  position: relative;
+  min-height: 100px;
+}
+
+.ui_patterns_component__stories .ui_patterns_story__story nav {
+  position: absolute;
+}

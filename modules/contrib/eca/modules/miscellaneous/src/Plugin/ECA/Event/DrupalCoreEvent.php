@@ -3,11 +3,14 @@
 namespace Drupal\eca_misc\Plugin\ECA\Event;
 
 use Drupal\Core\File\Event\FileUploadSanitizeNameEvent;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Recipe\RecipeAppliedEvent;
 use Drupal\Core\Render\PageDisplayVariantSelectionEvent;
 use Drupal\Core\Render\RenderEvents;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\block_content\BlockContentEvents;
 use Drupal\block_content\Event\BlockContentGetDependencyEvent;
+use Drupal\eca\Entity\Objects\EcaEvent;
 use Drupal\eca\Plugin\ECA\Event\EventBase;
 use Drupal\jsonapi\ResourceType\ResourceTypeBuildEvent;
 use Drupal\jsonapi\ResourceType\ResourceTypeBuildEvents;
@@ -16,6 +19,7 @@ use Drupal\layout_builder\Event\SectionComponentBuildRenderArrayEvent;
 use Drupal\layout_builder\LayoutBuilderEvents;
 use Drupal\locale\LocaleEvent;
 use Drupal\locale\LocaleEvents;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Plugin implementation of the ECA Events for Drupal core.
@@ -87,7 +91,67 @@ class DrupalCoreEvent extends EventBase {
         'description' => new TranslatableMarkup('Fires, when saving a translated string.'),
       ];
     }
+    $actions['recipe_applied'] = [
+      'label' => 'Recipe applied',
+      'event_name' => RecipeAppliedEvent::class,
+      'event_class' => RecipeAppliedEvent::class,
+      'description' => new TranslatableMarkup('Fires, when a recipe has been applied.'),
+    ];
     return $actions;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function generateWildcard(string $eca_config_id, EcaEvent $ecaEvent): string {
+    $configuration = $ecaEvent->getConfiguration();
+    if ($this->getDerivativeId() === 'recipe_applied') {
+      return empty($configuration['recipe_base_path']) ? '*' : $configuration['recipe_base_path'];
+    }
+    return parent::generateWildcard($eca_config_id, $ecaEvent);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function appliesForWildcard(Event $event, string $event_name, string $wildcard): bool {
+    if ($event instanceof RecipeAppliedEvent) {
+      if ($wildcard === '*') {
+        return TRUE;
+      }
+      return basename($event->recipe->path) === $wildcard;
+    }
+    return parent::appliesForWildcard($event, $event_name, $wildcard);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function defaultConfiguration(): array {
+    return [
+      'recipe_base_path' => '',
+    ] + parent::defaultConfiguration();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state): array {
+    $form['recipe_base_path'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Base path of recipe'),
+      '#default_value' => $this->configuration['recipe_base_path'],
+      '#description' => $this->t('The base path of the recipe that got applied; e.g. if the recipe is stored in "/var/www/recipe/my_recipe" then the base path is "my_recipe". Leave empty to respond to all recipes.'),
+    ];
+    return parent::buildConfigurationForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
+    parent::submitConfigurationForm($form, $form_state);
+    $this->configuration['recipe_base_path'] = $form_state->getValue('recipe_base_path');
   }
 
 }

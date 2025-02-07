@@ -18,6 +18,10 @@
    */
   Drupal.behaviors.ecaTableFilterByText = {
     attach(context, settings) {
+      $('ul.eca-event-list li:nth-of-type(4)').click(function () {
+        const parent = $(this).parent();
+        $(parent).removeClass('eca-event-list');
+      });
       const [input] = once('models-filter-text', 'input.models-filter-text');
       if (!input) {
         return;

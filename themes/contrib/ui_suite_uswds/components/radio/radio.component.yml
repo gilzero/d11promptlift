@@ -1,0 +1,24 @@
+name: Radio
+description: 'Radio buttons allow users to select exactly one choice from a group.'
+group: Forms
+links:
+  - 'https://designsystem.digital.gov/components/radio-buttons/'
+props:
+  type: object
+  properties:
+    tile:
+      title: 'Tiled'
+      description: 'Should each checkbox have a tile.'
+      type: boolean
+    field_label:
+      title: 'Field label'
+      description: '(optional) Most likely Drupal will already cover the field name and label'
+      type: string
+    field_name:
+      title: 'Field name'
+      description: '(optional) Most likely Drupal will already cover the field name and label'
+      type: string
+    description:
+      title: 'Description'
+      description: '(optional) If passing field name and label can also pass a description if using indeterminate.'
+      type: string

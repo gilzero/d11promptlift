@@ -1,0 +1,23 @@
+name: Preview
+slots:
+  buttons:
+    - type: component
+      component: "ui_suite_bootstrap:button"
+      slots:
+        label: First
+      props:
+        variant: secondary
+    - type: component
+      component: "ui_suite_bootstrap:button"
+      slots:
+        label: Second
+      props:
+        variant: secondary
+    - type: component
+      component: "ui_suite_bootstrap:button"
+      slots:
+        label: Third
+      props:
+        variant: secondary
+props:
+  label: "Basic example"

@@ -1,0 +1,25 @@
+name: Default
+slots:
+  lines:
+    - type: component
+      component: "ui_suite_daisyui:code"
+      slots:
+        content: npm i daisyui
+      props:
+        prefix: $
+    - type: component
+      component: "ui_suite_daisyui:code"
+      slots:
+        content: installing...
+      props:
+        prefix: ">"
+        attributes:
+          class: text-warning
+    - type: component
+      component: "ui_suite_daisyui:code"
+      slots:
+        content: Done!
+      props:
+        prefix: ">"
+        attributes:
+          class: text-success

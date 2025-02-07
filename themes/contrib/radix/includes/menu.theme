@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Theme and preprocess functions for menus.
+ */
+
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function radix_preprocess_menu(&$variables, $hook) {
+  // No changes for menu toolbar.
+  if ($hook == 'menu__toolbar') {
+    return;
+  }
+
+  // Get the current path.
+  $current_path = \Drupal::request()->getRequestUri();
+
+  $items = $variables['items'];
+  foreach ($items as $key => $item) {
+    if (isset($item['url']) && is_object($item['url']) && $item['url']->toString() == $current_path) {
+      $variables['items'][$key]['in_active_trail'] = TRUE;
+    }
+
+    if (isset($item['url']) && is_object($item['url']) && $item['url']->isRouted() && $item['url']->getRouteName() === '<nolink>') {
+      $variables['items'][$key]['attributes']->addClass('navbar-text');
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_menu_local_task.
+ */
+function radix_preprocess_menu_local_task(&$variables) {
+  radix_link_fixer($variables);
+}
+
+/**
+ * Implements template_preprocess_menu_local_action().
+ */
+function radix_preprocess_menu_local_action(&$variables) {
+  // Add button classes.
+  $variables['link']['#options']['attributes']['class'][] = 'btn';
+  $variables['link']['#options']['attributes']['class'][] = 'btn-primary';
+}
+
+/**
+ * Implements template_preprocess_links__dropbutton().
+ */
+function radix_preprocess_links__dropbutton(&$variables) {
+  $links = &$variables['links'];
+
+  // Do nothing if we have no links.
+  if (!count($links)) {
+    return;
+  }
+
+  // Get the first link and use it for the dropbutton.
+  $link = reset($links);
+  /** @var \Drupal\Core\Url $link_url */
+  $link_url = $link['link']['#url'] ?? NULL;
+
+  $variables['split'] = $link_url && $link_url->getRouteName() !== '<nolink>';
+  $variables['button'] = [
+    'text' => $link['text'] ?? '',
+    'url' => $link_url ? $link_url->toString() : '',
+    'attributes' => $link['text_attributes'] ?? $link['attributes'] ?? new Attribute(),
+  ];
+
+  // Combine classes to avoid core bug #3494015.
+  foreach ($links as &$link) {
+    radix_link_fixer($link);
+  }
+}
+
+/**
+ * Fixes link render arrays to avoid a loss of classes due to care bug #3494015.
+ *
+ * @param &array $link_variable
+ *   Render array containing a 'link' element.
+ */
+function radix_link_fixer(&$link_variable) {
+  // Link element is optional.
+  if (empty($link_variable['link'])) {
+    return;
+  }
+  // \Drupal\Core\Render\Render\Link does not correctly combine classes in
+  // #options and directly in #attributes. To circumvent the bug, move any
+  // classes in options to attributes.
+  // @see https://www.drupal.org/project/drupal/issues/3494015
+  $attributes_class = $link_variable['link']['#attributes']['class'] ?? [];
+  $options_class = $link_variable['link']['#options']['attributes']['class'] ?? [];
+  $link_variable['link']['#attributes']['class'] = array_merge((array) $options_class, (array) $attributes_class);
+  unset($link_variable['link']['#options']['attributes']['class']);
+}

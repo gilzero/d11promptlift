@@ -38,7 +38,7 @@ class Chart extends RuleBase implements AiAutomatorTypeInterface {
   /**
    * {@inheritDoc}
    */
-  public function checkIfEmpty($value) {
+  public function checkIfEmpty($value, array $automatorConfig = []) {
     if (empty($value[0]['config']['series']['data_collector_table'][0][0]['data'])) {
       return [];
     }

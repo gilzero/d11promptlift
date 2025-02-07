@@ -1,0 +1,4 @@
+navbar-adjust:
+  css:
+    theme:
+      css/navbar-adjust.css: {}

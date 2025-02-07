@@ -29,15 +29,15 @@ class Boolean extends RuleBase {
   /**
    * {@inheritDoc}
    */
-  public function checkIfEmpty($value) {
+  public function checkIfEmpty($value, array $automatorConfig = []) {
     return empty($value[0]['value']) ? [] : $value;
   }
 
   /**
    * {@inheritDoc}
    */
-  public function tokens() {
-    $tokens = parent::tokens();
+  public function tokens(ContentEntityInterface $entity) {
+    $tokens = parent::tokens($entity);
     $tokens['true'] = 'The true value.';
     $tokens['false'] = 'The false value.';
     return $tokens;

@@ -1,0 +1,20 @@
+name: Pagination
+description: 'Pagination is navigation for paginated content.'
+group: Navigation
+links:
+  - 'https://designsystem.digital.gov/components/pagination/'
+props:
+  type: object
+  properties:
+    total_pages:
+      title: 'Total number of pages'
+      description: 'Not including previous/next links.'
+      type: integer
+    display_bound_buttons:
+      title: 'Display first and last links as buttons'
+      description: 'Default Drupal shows links as [first, previous, links, next, last]. This changes to [previous, first(as button), links, last(as button), previous].'
+      type: boolean
+    items:
+      title: 'Pagination items.'
+      description: 'List of pager items. The list is keyed by the following elements: first: Item for the first page; not present on the first page of results. previous: Item for the previous page; not present on the first page of results. next: Item for the next page; not present on the last page of results. last: Item for the last page; not present on the last page of results. pages: List of pages, keyed by page number. List of pages. Each item is an array containing the following elements: href: URL with appropriate query parameters for the item. attributes: A keyed list of HTML attributes for the item. text: The visible text used for the item link, such as Previous or Next.'
+      $ref: 'ui-patterns://links'

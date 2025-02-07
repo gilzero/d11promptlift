@@ -1,0 +1,62 @@
+name: Alert
+description: "Draws the user's attention to information without interrupting his current task."
+links:
+  - "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/alerte"
+variants:
+  error:
+    title: Error
+  success:
+    title: Success
+  info:
+    title: Information
+  warning:
+    title: Warning
+  error__sm:
+    title: "Error small"
+  success__sm:
+    title: "Success small"
+  info__sm:
+    title: "Information small"
+  warning__sm:
+    title: "Warning small"
+slots:
+  title:
+    title: Title
+  message:
+    title: Message
+props:
+  type: object
+  properties:
+    dismissible:
+      title: "Dismissible?"
+      description: "It’s possible to dismiss any alert inline."
+      type: string
+      enum:
+        - ""
+        - core
+        - custom
+      "meta:enum":
+        "": "No"
+        core: "Using dsfr"
+        custom: Custom
+    close_title:
+      title: "Close button text"
+      description: "Optional. Will be used only if alert is dismissible."
+      type: string
+    title_tag:
+      title: "HTML tag for title"
+      type: string
+      enum:
+        - p
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      "meta:enum":
+        p: p
+        h2: h2
+        h3: "h3 (default)"
+        h4: h4
+        h5: h5
+        h6: h6

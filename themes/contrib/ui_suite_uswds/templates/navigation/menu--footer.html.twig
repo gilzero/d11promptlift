@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Override of system/menu.html.twig for the primary menu.
+ *
+ * Available variables:
+ * - classes: A list of classes to apply to the top level <ul> element.
+ * - dropdown_classes: A list of classes to apply to the dropdown <ul> element.
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *
+ * @ingroup templates
+ *
+ * Define a custom macro that will render all menu trees.
+ */
+#}
+
+{{ include('ui_suite_uswds:nav_footer', {
+  items: items,
+  attributes: attributes.addClass(classes ?: ['menu', 'menu--' ~ menu_name|clean_class]),
+}, with_context = false) }}

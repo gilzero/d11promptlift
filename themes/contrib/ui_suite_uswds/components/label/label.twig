@@ -1,0 +1,16 @@
+{% if for_value %}
+  {% set attributes = attributes.setAttribute('for', for_value) %}
+{% endif %}
+
+{% if not attributes.hasClass('usa-radio__label') and not attributes.hasClass('usa-checkbox__label') %}
+  {% set attributes = attributes.addClass('usa-label') %}
+{% endif %}
+
+<label{{ attributes }}>
+
+  {{ label }}
+
+  {% if description %}
+    <span class="usa-checkbox__label-description">{{ description }}</span>
+  {% endif %}
+</label>

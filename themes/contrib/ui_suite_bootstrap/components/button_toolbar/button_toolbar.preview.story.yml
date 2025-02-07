@@ -1,0 +1,26 @@
+name: Preview
+slots:
+  groups:
+    - type: component
+      attributes:
+        class:
+          - me-2
+      component: "ui_suite_bootstrap:button_group"
+      story: preview
+      props:
+        variant: default
+    - type: component
+      attributes:
+        class:
+          - me-2
+      component: "ui_suite_bootstrap:button_group"
+      story: preview
+      props:
+        variant: default
+    - type: component
+      component: "ui_suite_bootstrap:button_group"
+      story: preview
+      props:
+        variant: default
+props:
+  label: "Toolbar with button groups"

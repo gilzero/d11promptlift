@@ -5,11 +5,14 @@ namespace Drupal\eca_content\Plugin;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\eca\EntityOriginalTrait;
 
 /**
  * Trait for saving an entity within ECA operations.
  */
 trait EntitySaveTrait {
+
+  use EntityOriginalTrait;
 
   /**
    * Saves an entity.
@@ -27,14 +30,14 @@ trait EntitySaveTrait {
   protected function saveEntity(EntityInterface $entity): ?int {
     // For nested updates, the original object may need a refresh.
     // @see https://www.drupal.org/project/eca/issues/3331810
-    if (isset($entity->original) && !$entity->isNew()) {
+    $original = $this->getOriginal($entity);
+    if (isset($original) && !$entity->isNew()) {
       // Behave the same as \Drupal\Core\Entity\EntityStorageBase::doPreSave.
       $id = $entity->getOriginalId() ?? $entity->id();
       if ($id !== NULL) {
         $etm = $this->entityTypeManager ?? \Drupal::entityTypeManager();
         try {
-          $entity->original = $etm->getStorage($entity->getEntityTypeId())
-            ->loadUnchanged($id);
+          $this->setOriginal($entity, $etm->getStorage($entity->getEntityTypeId())->loadUnchanged($id));
         }
         catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
           // This exception can not happen because the plugin is definitely

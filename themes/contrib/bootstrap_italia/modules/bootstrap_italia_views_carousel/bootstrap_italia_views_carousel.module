@@ -1,0 +1,131 @@
+<?php
+
+/**
+ * @file
+ * Carousel Views module help and theme functions.
+ */
+
+use Drupal\bootstrap_italia_views_carousel\Plugin\views\style\CarouselStyle;
+use Drupal\bootstrap_italia_views_carousel\Plugin\views\style\SlideStyle;
+use Drupal\bootstrap_italia\Helper\Suggestions;
+
+/**
+ * Implements hook_theme().
+ *
+ * Ref: https://www.drupal.org/project/coding_standards/issues/3056368
+ *
+ * @phpstan-ignore missingType.parameter, missingType.parameter, missingType.parameter, missingType.parameter, missingType.iterableValue
+ */
+function bootstrap_italia_views_carousel_style_theme($existing, $type, $theme, $path): array {
+  return [
+    'views_bootstrap_italia_views_carousel' => [
+      'variables' => [
+        'view' => NULL,
+        'rows' => NULL,
+        'options' => NULL,
+      ],
+    ],
+    'views_bootstrap_italia_views_carousel_slide' => [
+      'variables' => [
+        'view' => NULL,
+        'rows' => NULL,
+        'options' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for bootstrap carousel templates.
+ *
+ * Default template: views-bootstrap-italia-views-carousel.html.twig.
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_views_bootstrap_italia_views_carousel(array &$variables): void {
+  // Update options for twig.
+  $variables['options'] = $variables['view']->style_plugin->options;
+}
+
+/**
+ * Prepares variables for bootstrap carousel slide templates.
+ *
+ * Default template: views-bootstrap-italia-views-carousel-slide.html.twig.
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_views_bootstrap_italia_views_carousel_slide(array &$variables): void {
+  // Update options for twig.
+  $variables['options'] = $variables['view']->style_plugin->options;
+}
+
+/**
+ * Implements hook_theme_suggestions_block_alter().
+ *
+ * Ref: https://www.drupal.org/project/coding_standards/issues/3056368
+ *
+ * @phpstan-ignore missingType.iterableValue, missingType.iterableValue
+ */
+function bootstrap_italia_views_carousel_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
+  if (isset($variables['elements']['content']['#view'])) {
+    $view = $variables['elements']['content']['#view'];
+
+    // @todo This condition is always false?
+    if ($view->style_plugin instanceof CarouselStyle) {
+      $suggestions[] = 'block__views_views_bi_carousel__' . Suggestions::sanitize($view->id());
+      $suggestions[] = 'block__views_views_bi_carousel';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ *
+ * Ref: https://www.drupal.org/project/coding_standards/issues/3056368
+ *
+ * @phpstan-ignore missingType.iterableValue, missingType.iterableValue
+ */
+function bootstrap_italia_views_carousel_theme_suggestions_views_view_alter(array &$suggestions, array $variables): void {
+  if ($variables['view']->style_plugin instanceof CarouselStyle) {
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel__' . Suggestions::sanitize($variables['view']->storage->id());
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel';
+  }
+  if ($variables['view']->style_plugin instanceof SlideStyle) {
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel_slide__' . Suggestions::sanitize($variables['view']->storage->id());
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel_slide';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Ref: https://www.drupal.org/project/coding_standards/issues/3056368
+ *
+ * @phpstan-ignore missingType.iterableValue, missingType.iterableValue
+ */
+function bootstrap_italia_views_carousel_theme_suggestions_views_bootstrap_italia_views_carousel_alter(array &$suggestions, array $variables): void {
+  if ($variables['view']->style_plugin instanceof CarouselStyle) {
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel__' . Suggestions::sanitize($variables['view']->storage->id());
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Ref: https://www.drupal.org/project/coding_standards/issues/3056368
+ *
+ * @phpstan-ignore missingType.iterableValue, missingType.iterableValue
+ */
+function bootstrap_italia_views_carousel_theme_suggestions_views_bootstrap_italia_views_carousel_slide_alter(array &$suggestions, array $variables): void {
+  if ($variables['view']->style_plugin instanceof SlideStyle) {
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel_slide__' . Suggestions::sanitize($variables['view']->storage->id());
+    $suggestions[] = $variables['theme_hook_original'] . '_bi_carousel_slide';
+  }
+}

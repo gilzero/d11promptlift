@@ -1,0 +1,8 @@
+name: Preview
+props:
+  field_name: fruit
+  field_label: 'Example Time picker'
+  data_filter: '[0-9]'
+  min_date: '0000-01-01'
+  data_step: '15'
+  hint: 'Select a time from the dropdown. Type into the input to filter options'

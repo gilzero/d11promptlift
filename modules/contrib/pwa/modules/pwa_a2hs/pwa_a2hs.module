@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Contains pwa_a2hs.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pwa_a2hs_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pwa_a2hs module.
+    case 'help.page.pwa_a2hs':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides a block with a button to prompt users to add the app to their home screen.') . '</p>';
+      $output .= '<p>' . t('The block and/or button will show when your website meets all of the requirements of a PWA, is installable by the current browser, and the beforeinstallprompt event is triggered.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function pwa_a2hs_theme() {
+  // From file.module.
+  return [
+    'pwa_add_to_home_screen' => [
+      'variables' => [
+        'intro_text' => NULL,
+        'button_text' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for the add to home screen block template.
+ */
+function template_preprocess_pwa_add_to_home_screen(&$variables) {
+  $variables['attributes']['class'][] = 'pwa-a2hs';
+  $variables['attributes']['class'][] = 'hidden';
+}

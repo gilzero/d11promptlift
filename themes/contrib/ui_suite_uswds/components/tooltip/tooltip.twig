@@ -1,0 +1,18 @@
+{% if variant %}
+  {% set body_position = variant %}
+{% endif %}
+
+{% set tooltip_id = 'tooltip-' ~ tooltip_id|default(random()) %}
+
+{% set attributes = attributes|default(create_attribute())|merge({
+  'data-position': body_position,
+  'aria-describedby': tooltip_id,
+  'tabindex': 0,
+  'title': tooltip,
+  'class': 'usa-tooltip',
+}) %}
+
+{{ include('ui_suite_uswds:button', {
+  label: label|default('Show'),
+  attributes: attributes,
+}, with_context = false) }}

@@ -9,6 +9,7 @@ use Drupal\Core\DependencyInjection\Compiler\BackendCompilerPass;
 use Drupal\Core\DependencyInjection\Compiler\CorsCompilerPass;
 use Drupal\Core\DependencyInjection\Compiler\DeprecatedServicePass;
 use Drupal\Core\DependencyInjection\Compiler\DevelopmentSettingsPass;
+use Drupal\Core\Hook\HookCollectorPass;
 use Drupal\Core\DependencyInjection\Compiler\LoggerAwarePass;
 use Drupal\Core\DependencyInjection\Compiler\ModifyServiceDefinitionsPass;
 use Drupal\Core\DependencyInjection\Compiler\ProxyServicesPass;
@@ -24,6 +25,7 @@ use Drupal\Core\DependencyInjection\Compiler\TwigExtensionPass;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceModifierInterface;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
+use Drupal\Core\Extension\ModuleUninstallValidatorInterface;
 use Drupal\Core\Plugin\PluginManagerPass;
 use Drupal\Core\Queue\QueueFactoryInterface;
 use Drupal\Core\Render\MainContent\MainContentRenderersPass;
@@ -60,9 +62,11 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
         ->addTag('stream_wrapper', ['scheme' => 'private']);
     }
 
+    $container->addCompilerPass(new HookCollectorPass());
     // Add the compiler pass that lets service providers modify existing
-    // service definitions. This pass must come first so that later
-    // list-building passes are operating on the post-alter services list.
+    // service definitions. This pass must come before all passes operating on
+    // services so that later list-building passes are operating on the
+    // post-alter services list.
     $container->addCompilerPass(new ModifyServiceDefinitionsPass());
 
     $container->addCompilerPass(new DevelopmentSettingsPass());
@@ -113,6 +117,20 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
 
     $container->registerForAutoconfiguration(QueueFactoryInterface::class)
       ->addTag('queue_factory');
+
+    $container->registerForAutoconfiguration(ModuleUninstallValidatorInterface::class)
+      ->addTag('module_install.uninstall_validator');
+
+    // Deprecated parameters.
+    if ($container->hasParameter('session.storage.options')) {
+      $session_storage_options = $container->getParameter('session.storage.options');
+      if (array_key_exists('sid_length', $session_storage_options)) {
+        @trigger_error('The "sid_length" parameter is deprecated in drupal:11.1.0 and will be removed in drupal:12.0.0. This setting should be removed from the settings file, since its usage has been removed. See https://www.drupal.org/node/3469305', E_USER_DEPRECATED);
+      }
+      if (array_key_exists('sid_bits_per_character', $session_storage_options)) {
+        @trigger_error('The "sid_bits_per_character" parameter is deprecated in drupal:11.1.0 and will be removed in drupal:12.0.0. This setting should be removed from the settings file, since its usage has been removed. See https://www.drupal.org/node/3469305', E_USER_DEPRECATED);
+      }
+    }
   }
 
   /**

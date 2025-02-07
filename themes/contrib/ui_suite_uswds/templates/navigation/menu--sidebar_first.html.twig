@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Override of system/menu.html.twig for a sidebar menu.
+ */
+#}
+
+{{ include('ui_suite_uswds:side_navigation', {
+  items: items,
+  attributes: attributes.addClass(classes ?: ['menu', 'menu--' ~ menu_name|clean_class])
+}, with_context = false) }}

@@ -1,0 +1,89 @@
+$theme-messages: (
+  "error": $danger,
+  "warning": $warning,
+  "alert": $info,
+  "status": $success,
+);
+
+.messages {
+  --#{$prefix}alert-bg: transparent;
+  --#{$prefix}alert-padding-x: #{$alert-padding-x};
+  --#{$prefix}alert-padding-y: #{$alert-padding-y};
+  --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
+  --#{$prefix}alert-color: inherit;
+  --#{$prefix}alert-border-color: transparent;
+  --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
+  --#{$prefix}alert-border-radius: #{$alert-border-radius};
+  --#{$prefix}alert-link-color: inherit;
+
+  position: relative;
+  padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
+  margin-bottom: var(--#{$prefix}alert-margin-bottom);
+  color: var(--#{$prefix}alert-color);
+  background-color: var(--#{$prefix}alert-bg);
+  border: var(--#{$prefix}alert-border);
+  @include border-radius(var(--#{$prefix}alert-border-radius));
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+@each $state, $color in $theme-messages {
+  .messages--#{$state} {
+    --#{$prefix}alert-color: #{$color};
+    --#{$prefix}alert-bg: #{$color}1a;
+    --#{$prefix}alert-border-color: #{$color};
+    --#{$prefix}alert-link-color: #{$color};
+  }
+}
+
+.layout-builder-form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: $spacer * 2;
+  left: $spacer;
+  z-index: $zindex-fixed;
+  background-color: $white;
+  padding: $spacer * 2;
+  border: 0.5px solid;
+  border-radius: $spacer / 2;
+  max-height: 5.4rem;
+  overflow: hidden;
+  opacity: .5;
+  transition: opacity .25s ease-in-out;
+
+  .layout-builder__message {
+    order: 0;
+  }
+
+  .form-item.form-type-vertical-tabs {
+    order: 1;
+  }
+
+  .form-type-vertical-tabs {
+    order: 2;
+
+    .form-item {
+      margin: 0;
+    }
+  }
+
+  .form-actions {
+    order: 3;
+    margin: 0;
+  }
+
+  .js-show {
+    order: 4;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    max-height: 100%;
+    opacity: 1;
+  }
+}

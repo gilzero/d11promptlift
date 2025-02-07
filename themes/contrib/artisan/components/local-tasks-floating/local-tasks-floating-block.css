@@ -1,0 +1,56 @@
+.local-tasks-floating-block {
+  --local-tasks-floating-block-bottom: var(--theme--local-tasks-floating-block-bottom, 2rem);
+  --local-tasks-floating-block-right: var(--theme--local-tasks-floating-block-right, 6rem);
+  --local-tasks-floating-block-width: var(--theme--local-tasks-floating-block-width, 80px);
+  --local-tasks-floating-block-height: var(--theme--local-tasks-floating-block-height, 80px);
+  --local-tasks-floating-block-zindex: var(--theme--local-tasks-floating-block-zindex, 1000);
+  --local-tasks-floating-block-links-padding-y: var(--theme--local-tasks-floating-block-padding-y,  1rem);
+  --local-tasks-floating-block-links-padding-x: var(--theme--local-tasks-floating-block-padding-x, 1.5rem);
+  bottom: var(--local-tasks-floating-block-bottom);
+  right: var(--local-tasks-floating-block-right);
+  width: var(--local-tasks-floating-block-width);
+  height: var(--local-tasks-floating-block-height);
+  z-index: var(--local-tasks-floating-block-zindex);
+  cursor: pointer;
+}
+
+.local-tasks-floating-block ul.nav-tabs {
+  display: flex;
+  flex-direction: column;
+  border: unset;
+  margin: 0;
+  width: 135px;
+}
+
+.local-tasks-floating-block ul.nav-tabs li a {
+  position: relative;
+  display: block;
+  padding: var(--local-tasks-floating-block-links-padding-y) var(--local-tasks-floating-block-links-padding-x);
+  background-color: var(--theme-palette-white, var(--bs-white));
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  color: #343a40;
+}
+
+.local-tasks-floating-block ul.nav-tabs li a.active {
+  z-index: 2;
+  color: white;
+  background-color: var(--theme-palette-primary, var(--bs-primary));
+  border-color: var(--theme-palette-primary, var(--bs-primary));
+}
+
+.local-tasks-floating-block ul.nav-tabs li a:hover {
+  background-color: var(--theme-palette-primary, var(--bs-primary));
+  border-color: var(--theme-palette-primary, var(--bs-primary));
+  color: var(--theme-palette-white, var(--bs-white));
+}
+
+.local-tasks-floating-block > nav {
+  bottom: 100%;
+  display: none;
+}
+
+.local-tasks-floating-block:focus > nav,
+.local-tasks-floating-block:focus-within > nav,
+.local-tasks-floating-block:hover > nav {
+  display: block;
+}

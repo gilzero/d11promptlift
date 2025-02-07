@@ -1,0 +1,234 @@
+name: UI Suite DSFR
+type: theme
+description: "A site-builder friendly theme implementing DSFR (https://www.systeme-de-design.gouv.fr/) using the UI Suite."
+core_version_requirement: ^10.3.4 || ^11
+base theme: false
+libraries:
+  - ui_suite_dsfr/dsfr
+  - ui_suite_dsfr/overrides
+
+ckeditor_stylesheets:
+  - /libraries/dist/dsfr.css
+
+# to work with UI Icons ckeditor5
+ckeditor5-stylesheets:
+  - /libraries/dsfr/dist/core/core.css
+  - /libraries/dsfr/dist/utility/icons/icons.css
+regions:
+  header_operator_logo: Header - Operator logo
+  header_tools_links: Header - Tools links
+  header_tools_search: Header - Tools search
+  header_navbar: Header - Navbar
+  top: Top
+  content: Content
+  sidebar_first: Sidebar - First
+  sidebar_second: Sidebar - Second
+  bottom: Bottom
+  footer_operator_logo: Footer - Operator logo
+  footer_content: Footer - Content
+  footer_content_desc: Footer - Content description
+  footer_partners: Footer - Partners
+  footer_bottom: Footer - Bottom
+  footer_bottom_copy: Footer - Bottom copy
+
+dependencies:
+  - drupal:inline_form_errors
+  - ui_patterns:ui_patterns
+  - ui_styles:ui_styles
+  - ui_skins:ui_skins
+  - ui_icons:ui_icons
+  - ui_icons:ui_icons_patterns
+
+colors:
+  green-tilleul-verveine:
+    label: Tilleul Verveine
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  green-bourgeon:
+    label: Bourgeon
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  green-emeraude:
+    label: Emeraude
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  green-menthe:
+    label: Menthe
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  green-archipel:
+    label: Archipel
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  blue-ecume:
+    label: Ecume
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  blue-cumulus:
+    label: Cumulus
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  purple-glycine:
+    label: Glycine
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  pink-macaron:
+    label: Macaron
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  pink-tuile:
+    label: Tuile
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  yellow-tournesol:
+    label: Tournesol
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  yellow-moutarde:
+    label: Moutarde
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  orange-terre-battue:
+    label: Terre Battue
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  brown-cafe-creme:
+    label: Cafe creme
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  brown-caramel:
+    label: Caramel
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  brown-opera:
+    label: Opera
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+  beige-gris-galet:
+    label: Gris Galet
+    types:
+      background:
+        - action-high
+        - alt
+        - contrast
+      text:
+        - action-high
+        - label
+        - inverted
+
+# Information added by Drupal.org packaging script on 2025-02-07
+version: '1.1.0-beta2'
+project: 'ui_suite_dsfr'
+datestamp: 1738916597

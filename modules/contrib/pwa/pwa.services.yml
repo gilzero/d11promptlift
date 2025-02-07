@@ -1,0 +1,9 @@
+services:
+  pwa.manifest:
+    class: Drupal\pwa\Manifest
+    arguments:
+      - '@config.factory'
+      - '@module_handler'
+      - '@request_stack'
+      - '@theme.manager'
+      - '@entity_type.manager'

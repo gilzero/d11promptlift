@@ -1,0 +1,25 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Header
+slots:
+  top:
+    title: Header top content
+    examples:
+      - <span>Header top content</span>
+  content:
+    title: Header content
+    examples:
+      - <span>Header content</span>
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+      title: Attributes
+      examples:
+        - class: [ 'example-class-attribute' ]
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/drupal.debounce
+    - core/once

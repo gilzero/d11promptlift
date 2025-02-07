@@ -90,7 +90,7 @@ abstract class CacheWrite extends CacheActionBase {
     $form['expire'] = [
       '#type' => 'number',
       '#title' => $this->t('Lifetime until expiry'),
-      '#description' => $this->t('The lifetime in seconds until the cached value is considered invalid. Set to -1 for unlimited lifetime.'),
+      '#description' => $this->t('The timestamp in seconds when the cached item expires. Set to -1 for unlimited lifetime.'),
       '#default_value' => $this->configuration['expire'],
       '#required' => TRUE,
       '#weight' => -20,

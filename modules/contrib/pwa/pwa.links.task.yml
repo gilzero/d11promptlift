@@ -1,0 +1,5 @@
+pwa.config_manifest:
+  route_name: pwa.config_manifest
+  base_route: pwa.config_manifest
+  title: 'Manifest'
+  parent: pwa.config_manifest

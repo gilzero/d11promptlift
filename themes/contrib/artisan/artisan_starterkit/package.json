@@ -1,0 +1,28 @@
+{
+  "name": "artisan_starterkit",
+  "version": "1.0.1",
+  "description": "artisan_starterkit",
+  "private": true,
+  "scripts": {
+    "development": "mix",
+    "watch": "mix watch",
+    "production": "mix --production"
+  },
+  "engines": {
+    "npm": ">=6.14",
+    "node": ">=12.14"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "dot-env": "^0.0.1",
+    "laravel-mix": "^6.0.49",
+    "laravel-mix-copy-watched": "^3.0.0",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.1",
+    "webpack": "^5.94.0"
+  }
+}

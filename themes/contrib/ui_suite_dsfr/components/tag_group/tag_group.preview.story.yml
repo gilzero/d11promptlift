@@ -1,0 +1,33 @@
+name: Preview
+slots:
+  tags:
+    - type: component
+      component: "ui_suite_dsfr:tag"
+      slots:
+        label: "Label tag"
+        url: "https://example.com"
+    - type: component
+      component: "ui_suite_dsfr:tag"
+      slots:
+        label: "Label tag"
+    - type: component
+      component: "ui_suite_dsfr:tag"
+      slots:
+        label: "Label tag"
+        url: "https://example.com"
+      props:
+        variant: sm
+    - type: component
+      component: "ui_suite_dsfr:tag"
+      slots:
+        label: "Label tag"
+        url: "https://example.com"
+    - type: component
+      component: "ui_suite_dsfr:tag"
+      slots:
+        label: "Label tag"
+        url: "https://example.com"
+    - type: component
+      component: "ui_suite_dsfr:tag"
+      slots:
+        label: "Label tag"

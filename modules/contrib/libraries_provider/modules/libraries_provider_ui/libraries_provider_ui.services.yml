@@ -1,0 +1,5 @@
+services:
+  Drupal\libraries_provider_ui\EventSubscriber\EntityBuild:
+    autowire: true
+    tags:
+      - {name: event_subscriber}

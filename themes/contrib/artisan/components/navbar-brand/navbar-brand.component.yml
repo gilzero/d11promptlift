@@ -1,0 +1,47 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Navbar brand
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: HTML attributes for the main link wrapper
+      examples:
+        - class: ['example-attributes-class']
+    navbar_brand_logo_wrapper_attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Logo Wrapper Attributes
+      description: HTML attributes for the logo wrapper
+      examples:
+        - class: ['example-navbar-brand-logo-wrapper-attributes-class']
+    image:
+      type: string
+      title: Logo Image Source
+      description: Path to the logo image
+      examples:
+        - themes/contrib/artisan/logo.svg
+    width:
+      type: string
+      title: Image Width
+      description: Width of the logo image
+      examples:
+        - '140'
+    height:
+      type: string
+      title: Image Height
+      description: Height of the logo image
+      examples:
+        - 'auto'
+    alt:
+      type: string
+      title: Image Alt Text
+      description: Alternative text for the logo image
+      examples:
+        - 'Site Logo'
+    webp:
+      type: boolean
+      title: WebP Support
+      description: Enable WebP image format support
+      examples:
+        - true

@@ -1,0 +1,22 @@
+field.formatter.settings.readmore:
+  type: mapping
+  label: 'readmore field formatter settings'
+  mapping:
+    trim_length:
+      type: integer
+      label: 'Trim link text length'
+    trim_on_break:
+      type: boolean
+      label: 'Trim on break'
+    show_readmore:
+      type: boolean
+      label: 'Show read more'
+    show_readless:
+      type: boolean
+      label: 'Show read less'
+    ellipsis:
+      type: boolean
+      label: 'Add ellipsis'
+    wordsafe:
+      type: boolean
+      label: 'Truncate on a word boundary'

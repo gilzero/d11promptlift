@@ -1,0 +1,8 @@
+ai_deepchat.api:
+  path: '/api/deepchat'
+  defaults:
+    _controller: '\Drupal\ai_deepchat\Controller\DeepChatApi::api'
+    _format: json
+  methods:  [POST]
+  requirements:
+    _permission: 'access deepchat api'

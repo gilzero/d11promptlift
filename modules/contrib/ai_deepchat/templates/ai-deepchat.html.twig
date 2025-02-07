@@ -1,0 +1,59 @@
+{{ attach_library('ai_deepchat/deepchat') }}
+
+<div class="ai-deepchat chat-container" data-chat-id="bot1">
+  <div class="ai-deepchat--header" tabindex="0" role="button" aria-label="Toggle Chat" aria-expanded="false">
+    <div class="ai-deepchat--label">
+      <span class="ai-deepchat--bullet"></span>
+      {{ settings.label }}
+    </div>
+    <span class="toggle-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 16 16" height="16"
+           width="16"><defs></defs><title>close</title><path
+          d="m0.29166666666666663 0.2910833333333333 13.416666666666664 13.416666666666664" fill="none"
+          stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path
+          d="m13.708333333333332 0.2910833333333333 -13.416666666666664 13.416666666666664" fill="none"
+          stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+    </span>
+  </div>
+
+  <div class="chat-element chat-collapsed">
+
+    <deep-chat
+      style="height: 500px; width: 400px"
+      connect='{
+        "url": "/api/deepchat",
+        "method": "POST",
+        "stream": {{ settings.stream }},
+        "headers": {"customName": "customHeaderValue"},
+        "additionalBodyProps": {"assistant_id": "{{ settings.ai_assistant }}", "stream": {{ settings.stream }}}
+      }'
+
+      id="chat-element"
+      introMessage='{"text": "{{ settings.first_message }}"}'
+      textInput='{"placeholder":{"text": "{{ 'Message'|t }} {{ settings.bot_name }}"}}'
+      {% if settings.use_avatar == 1 %}
+        avatars='{
+          "default": {"styles": {"position": "left"}},
+          "ai": {"src": "{{ settings.bot_image }}"}
+        }'
+      {% endif %}
+
+      messageStyles='{
+        "default": {
+          "shared": {
+            "bubble": {
+              "maxWidth": "100%", "backgroundColor": "unset", "marginTop": "10px", "marginBottom": "10px"}},
+          "user": {
+            "bubble": {
+              "marginLeft": "0px", "color": "black"}},
+          "ai": {
+            "outerContainer": {
+              "backgroundColor": "rgba(247,247,248)", "borderTop": "1px solid rgba(0,0,0,.1)", "borderBottom": "1px solid rgba(0,0,0,.1)"
+            }
+          }
+        }
+      }'
+    ></deep-chat>
+
+  </div>
+</div>

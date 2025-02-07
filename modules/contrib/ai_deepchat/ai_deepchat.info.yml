@@ -1,0 +1,7 @@
+name: 'AI Deepchat'
+type: module
+description: 'Provides deepchat.dev Chatbot integration into the AI Assistant module'
+package: AI Tools
+core_version_requirement: ^10.2 || ^11
+dependencies:
+  - ai_assistant_api

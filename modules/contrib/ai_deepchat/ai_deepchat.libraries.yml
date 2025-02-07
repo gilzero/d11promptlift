@@ -1,0 +1,11 @@
+deepchat:
+  css:
+    theme:
+      css/deepchat.css: { }
+  js:
+    js/deepChat.bundle.js: {  attributes: { type: module } }
+    js/deepChat-init.js : {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

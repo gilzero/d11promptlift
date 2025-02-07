@@ -1,0 +1,6 @@
+name: "Back To Top"
+description: "Back To Top adds a button that hovers in the bottom of your screen and allow users to smoothly scroll up the page using jQuery."
+core_version_requirement: ^9 || ^10 || ^11
+configure: back_to_top_settings
+package: "User interface"
+type: module

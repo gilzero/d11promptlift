@@ -1,0 +1,10 @@
+name: Mistral AI Provider
+description: This enables the use of Mistral AI for the AI module.
+package: AI Providers
+type: module
+core_version_requirement: ^10.2 || ^11
+configure: ai_provider_mistral.settings_form
+
+dependencies:
+  - ai:ai
+  - key:key

@@ -1,0 +1,10 @@
+name: AnythingLLM Provider
+description: Use AnythingLLM API for the AI module.
+package: AI Providers
+type: module
+core_version_requirement: ^10.2 || ^11
+configure: ai_provider_anythingllm.settings_form
+
+dependencies:
+  - ai:ai
+  - key:key

@@ -1,0 +1,89 @@
+/* Header Styling */
+.ai-deepchat--header {
+  border: 1px solid #ccc;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: background-color 0.3s ease;
+}
+
+
+.ai-deepchat--header:hover,
+.ai-deepchat--header.active {
+  background-color: #0056b3;
+}
+
+.ai-deepchat--header:focus {
+  outline: 2px solid #fff;
+}
+
+/* Toggle Icon Styling (Optional) */
+.ai-deepchat--header .toggle-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.ai-deepchat--header.active .toggle-icon {
+  transform: rotate(0deg);
+}
+
+.ai-deepchat--header .toggle-icon {
+  scale: .8;
+  transform: rotate(45deg);
+}
+
+.ai-deepchat--label {
+  padding: 4px;
+}
+
+/* Using a pseudo-element for the bullet */
+.ai-deepchat--bullet::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 8px;
+  border-radius: 50%;
+  background: #0bdd3b;
+}
+
+/* Chat Container Styling */
+.chat-container {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
+  right: 20px;
+  background-color: #fff; /* Chat background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 100000;
+}
+
+/* When Chat is Open */
+.chat-container.chat-open {
+  transform: translateY(0);
+}
+
+/* When Chat is Collapsed */
+.chat-container.chat-collapsed {
+  transform: translateY(100%);
+  margin-bottom: 50px;
+}
+
+/* Chat Element Styling */
+.chat-element {
+  width: 100%;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  opacity: 1; /* Initially hidden */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}

@@ -1,0 +1,4 @@
+services:
+  ai_provider_anythingllm.api:
+    class: Drupal\ai_provider_anythingllm\AnythingllmApi
+    arguments: ['@http_client', '@key.repository', '@config.factory']

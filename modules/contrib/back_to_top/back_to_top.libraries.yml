@@ -1,0 +1,21 @@
+back_to_top_js:
+  version: VERSION
+  js:
+    js/back_to_top.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+back_to_top_text:
+  version: VERSION
+  css:
+    theme:
+      css/back_to_top_text.css: {}
+
+back_to_top_icon:
+  version: VERSION
+  css:
+    theme:
+      css/back_to_top.css: {}

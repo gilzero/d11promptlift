@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * AI provider anythingllm module file.
+ */
+
+/**
+ * Implements hook_ai_operationtype_alter().
+ */
+function ai_provider_anythingllm_ai_operationtype_alter(&$operationtypes) {
+  $operationtypes[] = [
+    'id' => 'ai_search_api',
+    'label' => t('AI Search API'),
+  ];
+}

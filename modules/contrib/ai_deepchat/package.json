@@ -1,0 +1,14 @@
+{
+  "name": "ai_chatbot",
+  "version": "1.0.0-dev",
+  "description": "An AI Chatbot for AI Assistant API",
+  "author": "",
+  "license": "GPL-2.0-only",
+  "dependencies": {
+    "deep-chat": "^2.0.1"
+  },
+  "scripts": {
+    "//": "Ugly solution for now, later webpack.",
+    "move-deepchat": "cp node_modules/deep-chat/dist/deepChat.bundle.js js/"
+  }
+}

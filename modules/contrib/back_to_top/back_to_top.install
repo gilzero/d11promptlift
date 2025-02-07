@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Contains install hooks for Back To Top.
+ * */
+
+/**
+ * Implements hook_update_N().
+ * 
+ * Add default value to the speed config field.
+ */
+function back_to_top_update_91001() {
+  $config = \Drupal::configFactory()->getEditable('back_to_top.settings');
+  $config->set('back_to_top_speed', 1200);
+  $config->save();
+}
